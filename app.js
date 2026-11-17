@@ -1,0 +1,3068 @@
+/**
+ * Sri Ayyappa Daily Pooja Vidhanam & Live Dynamic Sankalpam
+ * Author: Antigravity
+ * Dedicated to: Paidipoondla Gotram, Srinivasa & Vani Garu
+ */
+
+// ==========================================
+// 1. DATA DICTIONARIES & PANCHANGAM TABLES
+// ==========================================
+
+const SAMVATSARAS = [
+  "ప్రభవ", "విభవ", "శుక్ల", "ప్రమోదూత", "ప్రజాపతి", "అంగీరస", "శ్రీముఖ", "భావ", "యువ", "ధాత",
+  "ఈశ్వర", "బహుధాన్య", "ప్రమాథి", "విక్రమ", "వృష", "చిత్రభాను", "స్వభాను", "తారణ", "పార్థివ", "వ్యయ",
+  "సర్వజిత్", "సర్వధారి", "విరోధి", "వికృతి", "ఖర", "నందన", "విజయ", "జయ", "మన్మథ", "దుర్ముఖి",
+  "హేవళంబి", "విలంబి", "వికారి", "శార్వరి", "ప్లవ", "శుభకృత్", "శోభకృత్", "క్రోధి", "విశ్వావసు", "పరాభవ",
+  "ప్లవంగ", "కీలక", "సౌమ్య", "సాధారణ", "విరోధికృత్", "పరీధావి", "ప్రమాదీచ", "ఆనంద", "రాక్షస", "నల",
+  "పింగళ", "కాళయుక్తి", "సిద్ధార్థి", "రౌద్రి", "దుర్మతి", "దుందుభి", "రుధిరోద్గారి", "రక్తాక్షి", "క్రోధన", "అక్షయ"
+];
+
+const MASAS = [
+  { te: "చైత్ర", en: "Chaitra", ritu: "వసంత" },
+  { te: "వైశాఖ", en: "Vaishakha", ritu: "వసంత" },
+  { te: "జ్యేష్ఠ", en: "Jyeshtha", ritu: "గ్రీష్మ" },
+  { te: "ఆషాఢ", en: "Ashadha", ritu: "గ్రీష్మ" },
+  { te: "శ్రావణ", en: "Sravana", ritu: "వర్ష" },
+  { te: "భాద్రపద", en: "Bhadrapada", ritu: "వర్ష" },
+  { te: "ఆశ్వయుజ", en: "Aswayuja", ritu: "శరద్" },
+  { te: "కార్తీక", en: "Karthika", ritu: "శరద్" },
+  { te: "మార్గశిర", en: "Margashira", ritu: "హేమంత" },
+  { te: "పుష్య", en: "Pushya", ritu: "హేమంత" },
+  { te: "మాఘ", en: "Magha", ritu: "శిశిర" },
+  { te: "ఫాల్గుణ", en: "Phalguna", ritu: "శిశిర" }
+];
+
+const TITHIS = [
+  { val: "పాడ్యమ్యాం", te: "పాడ్యమి (Prathama)", en: "Prathama" },
+  { val: "విదియాయాం", te: "విదియ (Dwitiya)", en: "Dwitiya" },
+  { val: "తదియాయాం", te: "తదియ (Tritiya)", en: "Tritiya" },
+  { val: "చతుర్థ్యాం", te: "చవితి (Chaturthi)", en: "Chaturthi" },
+  { val: "పంచమ్యాం", te: "పంచమి (Panchami)", en: "Panchami" },
+  { val: "షష్ఠ్యాం", te: "షష్ఠి (Shashti)", en: "Shashti" },
+  { val: "సప్తమ్యాం", te: "సప్తమి (Saptami)", en: "Saptami" },
+  { val: "అష్టమ్యాం", te: "అష్టమి (Ashtami)", en: "Ashtami" },
+  { val: "నవమ్యాం", te: "నవమి (Navami)", en: "Navami" },
+  { val: "దశమ్యాం", te: "దశమి (Dashami)", en: "Dashami" },
+  { val: "ఏకాదశ్యాం", te: "ఏకాదశి (Ekadashi)", en: "Ekadashi" },
+  { val: "ద్వాదశ్యాం", te: "ద్వాదశి (Dwadashi)", en: "Dwadashi" },
+  { val: "త్రయోదశ్యాం", te: "త్రయోదశి (Trayodashi)", en: "Trayodashi" },
+  { val: "చతుర్దశ్యాం", te: "చతుర్దశి (Chaturdashi)", en: "Chaturdashi" },
+  { val: "పూర్ణిమాయాం", te: "పూర్ణిమ (Purnima)", en: "Purnima" },
+  { val: "అమావాస్యాయాం", te: "అమావాస్య (Amavasya)", en: "Amavasya" }
+];
+
+const VASARAS = [
+  { id: "భానువాసరే", te: "భానువాసరే (ఆదివారం)", en: "Bhanuvasare (Sunday)" },
+  { id: "ఇందువాసరే", te: "ఇందువాసరే (సోమవారం)", en: "Induvasare (Monday)" },
+  { id: "భౌమవాసరే", te: "భౌమవాసరే (మంగళవారం)", en: "Bhaumavasare (Tuesday)" },
+  { id: "సౌమ్యవాసరే", te: "సౌమ్యవాసరే (బుధవారం)", en: "Saumyavasare (Wednesday)" },
+  { id: "బృహస్పతివాసరే", te: "బృహస్పతివాసరే (గురువారం)", en: "Brihaspativasare (Thursday)" },
+  { id: "భార్గవవాసరే", te: "భార్గవవాసరే (శుక్రవారం)", en: "Bhargavavasare (Friday)" },
+  { id: "స్థిరవాసరే", te: "స్థిరవాసరే (శనివారం)", en: "Sthiravasare (Saturday)" }
+];
+
+const NAKSHATRAS = [
+  "అశ్విని", "భరణి", "కృత్తిక", "రోహిణి", "మృగశిర", "ఆర్ద్ర",
+  "పునర్వసు", "పుష్యమి", "ఆశ్లేష", "మఖ", "పుబ్బ", "ఉత్తర",
+  "హస్త", "చిత్త", "స్వాతి", "విశాఖ", "అనూరాధ", "జ్యేష్ఠ",
+  "మూల", "పూర్వాషాఢ", "ఉత్తరాషాఢ", "శ్రవణం", "ధనిష్ఠ", "శతభిషం",
+  "పూర్వాభాద్ర", "ఉత్తరాభాద్ర", "రేవతి"
+];
+
+const YOGAS = [
+  "విష్కంభ", "ప్రీతి", "ఆయుష్మాన్", "సౌభాగ్య", "శోభన", "అతిగండ", "సుకర్మ", "ధృతి",
+  "శూల", "గండ", "వృద్ధి", "ధ్రువ", "వ్యాఘాత", "హర్షణ", "వజ్ర", "సిద్ధి",
+  "వ్యతీపాత", "వరీయాన్", "పరిఘ", "శివ", "సిద్ధ", "సాధ్య", "శుభ", "శుభ్ర", "బ్రహ్మ",
+  "ఐంద్ర", "వైధృతి"
+];
+
+const KARANAS = [
+  "బవ", "బాలవ", "కౌలవ", "తైతుల", "గరజ", "వణిజ", "భద్ర (విష్టి)", "శకుని", "చతుష్పాత్", "నాగవ", "కింస్తుఘ్న"
+];
+
+// Complete 108 Ashtottara Shatanamavali
+const ASHTOTTARA_NAMES = [
+  "ఓం మహాశాస్త్రే నమః", "ఓం మహాదేవాయ నమః", "ఓం మహాదేవసుతాయ నమః", "ఓం అవ్యయాయ నమః",
+  "ఓం లోకకర్త్రే నమః", "ఓం లోకభర్త్రే నమః", "ఓం లోకహర్త్రే నమః", "ఓం పరాత్పరాయ నమః",
+  "ఓం త్రిలోకరక్షకాయ నమః", "ఓం ధన్వినే నమః", "ఓం తపస్వినే నమః", "ఓం భూతసైనికాయ నమః",
+  "ఓం మంత్రవేదినే నమః", "ఓం మహామంత్రాయ నమః", "ఓం మారుతాయ నమః", "ఓం జగదీశ్వరాయ నమః",
+  "ఓం లోకాధ్యక్షాయ నమః", "ఓం అగ్రణ్యే నమః", "ఓం శ్రీమతే నమః", "ఓం అప్రమేయపరాక్రమాయ నమః",
+  "ఓం సింహారూఢాయ నమః", "ఓం గజారూఢాయ నమః", "ఓం హయారూఢాయ నమః", "ఓం మహేశ్వరాయ నమః",
+  "ఓం నానాశాస్త్రధరాయ నమః", "ఓం అనర్ఘాయ నమః", "ఓం నానావిద్యావిశారదాయ నమః", "ఓం నానారూపధరాయ నమః",
+  "ఓం వీరాయ నమః", "ఓం నానాభూతనిషేవితాయ నమః", "ఓం ధనేశ్వరాయ నమః", "ఓం అశ్వారూఢాయ నమః",
+  "ఓం వజ్రహస్తాయ నమః", "ఓం గదాధరాయ నమః", "ఓం ఖడ్గపాణయే నమః", "ఓం శరధరాయ నమః",
+  "ఓం శక్త్యాయుధధరాయ నమః", "ఓం ఖేటధరాయ నమః", "ఓం పాశహస్తాయ నమః", "ఓం అంకుశధరాయ నమః",
+  "ఓం దండధరాయ నమః", "ఓం శూలపాణయే నమః", "ఓం ముద్గరహస్తాయ నమః", "ఓం తోమరధరాయ నమః",
+  "ఓం చక్రహస్తాయ నమః", "ఓం పరశుహస్తాయ నమః", "ఓం పట్టసధరాయ నమః", "ఓం పినాకపాణయే నమః",
+  "ఓం చాపధరాయ నమః", "ఓం సర్వాయుధధరాయ నమః", "ఓం సర్వవిద్యాప్రదాయకాయ నమః", "ఓం అప్రమేయాయ నమః",
+  "ఓం కలాధరాయ నమః", "ఓం కపాలహస్తాయ నమః", "ఓం కామదాయ నమః", "ఓం కామరూపిణే నమః",
+  "ఓం కామపాలాయ నమః", "ఓం కామదర్పఘ్నాయ నమః", "ఓం శ్యామవపుషే నమః", "ఓం సుందరాయ నమః",
+  "ఓం రక్తనేత్రాయ నమః", "ఓం విశాలాక్షాయ నమః", "ఓం సుహాసాయ నమః", "ఓం రత్నకుండలధరాయ నమః",
+  "ఓం కిరీటినే నమః", "ఓం కుండలధరాయ నమః", "ఓం హారధరాయ నమః", "ఓం కంకణాలంకృతాయ నమః",
+  "ఓం మేఖలాధరాయ నమః", "ఓం నూపురాలంకృతాయ నమః", "ఓం పీతాంబరధరాయ నమః", "ఓం వ్యాఘ్రచర్మోత్తరీయాయ నమః",
+  "ఓం చందనాలిప్తగాత్రాయ నమః", "ఓం కుంకుమార్చితవక్షసే నమః", "ఓం మృగనాభిసుగంధినే నమః", "ఓం సర్వాలంకారశోభితాయ నమః",
+  "ఓం బ్రహ్మచారిణే నమః", "ఓం శ్రితార్తిఘ్నాయ నమః", "ఓం సురపూజ్యాయ నమః", "ఓం మునిసేవితాయ నమః",
+  "ఓం హరిహరసుతాయ నమః", "ఓం మోహినీపుత్రాయ నమః", "ఓం శంకరతనయాయ నమః", "ఓం శబరీశ్వరాయ నమః",
+  "ఓం పందళరాజకుమారాయ నమః", "ఓం మణికంఠాయ నమః", "ఓం ధర్మశాస్త్రే నమః", "ఓం భూతనాథాయ నమః",
+  "ఓం పులివాహనాయ నమః", "ఓం అనాథవత్సలాయ నమః", "ఓం శరణాగతరక్షకాయ నమః", "ఓం భక్తపాలనతత్పరాయ నమః",
+  "ఓం సర్వశత్రువినాశాయ నమః", "ఓం సర్వరోగాపహారకాయ నమః", "ఓం సమస్తపాపహర్త్రే నమః", "ఓం పుత్రపౌత్రప్రదాయకాయ నమః",
+  "ఓం ఆయురారోగ్యదాయకాయ నమః", "ఓం ధనధాన్యప్రదాయకాయ నమః", "ఓం మోక్షప్రదాయకాయ నమః", "ఓం ఇరుముడిప్రియాయ నమః",
+  "ఓం పదునెట్టాంబడి నిలయాయ నమః", "ఓం జ్యోతిస్స్వరూపాయ నమః", "ఓం శాశ్వతాయ నమః", "ఓం నిత్యాయ నమః",
+  "ఓం ఆనందరూపాయ నమః", "ఓం పరబ్రహ్మణే నమః", "ఓం శ్రీ పూర్ణాపుష్కలా సమేతాయ నమః", "ఓం శ్రీ శబరీగిరీశ్వరాయ నమః"
+];
+
+// Complete 108 Ganesha Ashtottara Shatanamavali
+const GANAPATHI_ASHTOTTARA_NAMES = [
+  "ఓం వినాయకాయ నమః", "ఓం విఘ్నరాజాయ నమః", "ఓం గౌరీపుత్రాయ నమః", "ఓం గణేశ్వరాయ నమః",
+  "ఓం స్కందాగ్రజాయ నమః", "ఓం అవ్యయాయ నమః", "ఓం పూతాయ నమః", "ఓం దక్షాయ నమః",
+  "ఓం అధ్యక్షాయ నమః", "ఓం ద్విజప్రియాయ నమః", "ఓం అగ్నిగర్భచ్ఛిదే నమః", "ఓం ఇంద్రశ్రీప్రదాయ నమః",
+  "ఓం వాణీప్రదాయ నమః", "ఓం సర్వసిద్ధిప్రదాయ నమః", "ఓం శర్వతనయాయ నమః", "ఓం శర్వరీప్రియాయ నమః",
+  "ఓం సర్వాత్మకాయ నమః", "ఓం సృష్టికర్త్రే నమః", "ఓం దేవాయ నమః", "ఓం అనేకారితాయ నమః",
+  "ఓం శివాయ నమః", "ఓం శుద్ధాయ నమః", "ఓం బుద్ధిప్రియాయ నమః", "ఓం శాంతాయ నమః",
+  "ఓం బ్రహ్మచారిణే నమః", "ఓం గజాననాయ నమః", "ఓం ద్వైమాతురాయ నమః", "ఓం మునిస్తుత్యాయ నమః",
+  "ఓం భక్తవిఘ్నవినాశనాయ నమః", "ఓం ఏకదంతాయ నమః", "ఓం చతుర్బాహవే నమః", "ఓం చతురాయ నమః",
+  "ఓం శక్తిసంయుతాయ నమః", "ఓం లంబోదరాయ నమః", "ఓం శూర్పకర్ణాయ నమః", "ఓం హరయే నమః",
+  "ఓం బ్రహ్మవిదుత్తమాయ నమః", "ఓం కాలాయ నమః", "ఓం గ్రహపతయే నమః", "ఓం కామినే నమః",
+  "ఓం సోమసూర్యాగ్నిలోచనాయ నమః", "ఓం పాశాంకుశధరాయ నమః", "ఓం చండాయ నమః", "ఓం గుణాతీతాయ నమః",
+  "ఓం నిరంజనాయ నమః", "ఓం అకల్మషాయ నమః", "ఓం స్వయంసిద్ధాయ నమః", "ఓం సిద్ధార్చితపదాంబుజాయ నమః",
+  "ఓం బీజాపూరఫలాసక్తాయ నమః", "ఓం వరదాయ నమః", "ఓం శాశ్వతాయ నమః", "ఓం కృతినే నమః",
+  "ఓం వీతభయాయ నమః", "ఓం గదినే నమః", "ఓం చక్రిణే నమః", "ఓం ఇక్షుచాపధృతే నమః",
+  "ఓం శ్రీదాయ నమః", "ఓం అజాయ నమః", "ఓం ఉత్పలకరాయ నమః", "ఓం శ్రీపతయే నమః",
+  "ఓం స్తుతిహర్షితాయ నమః", "ఓం కులాద్రిభేత్త్రే నమః", "ఓం జటిలాయ నమః", "ఓం కల్యాణగురవే నమః",
+  "ఓం అవ్యక్తాయ నమః", "ఓం పూర్ణాయ నమః", "ఓం కాంక్షితార్థప్రదాయకాయ నమః", "ఓం స్థిరాయ నమః",
+  "ఓం గజపతయే నమః", "ఓం జ్ఞానినే నమః", "ఓం మయోక్తామంత్రసిద్ధిదాయ నమః", "ఓం దృఢాయ నమః",
+  "ఓం ప్రశమాయ నమః", "ఓం భద్రాయ నమః", "ఓం ప్రమోదాయ నమః", "ఓం మోదకప్రియాయ నమః",
+  "ఓం కాంతిమతే నమః", "ఓం ధృతిమతే నమః", "ఓం కామినే నమః", "ఓం కపిత్థవనప్రియాయ నమః",
+  "ఓం బ్రహ్మచారిణే నమః", "ఓం బ్రహ్మరూపిణే నమః", "ఓం బ్రహ్మవిద్యాదిదానభువే నమః", "ఓం జిష్ణవే నమః",
+  "ఓం విష్ణుప్రియాయ నమః", "ఓం భక్తజీవితాయ నమః", "ఓం జితమన్మథాయ నమః", "ఓం ఐశ్వర్యకారణాయ నమః",
+  "ఓం జ్యాయసే నమః", "ఓం యక్షకిన్నరసేవితాయ నమః", "ఓం గంగాసుతాయ నమః", "ఓం గణాధీశాయ నమః",
+  "ఓం గంభీరనినదాయ నమః", "ఓం వటవే నమః", "ఓం అభీష్టవరదాయినే నమః", "ఓం జ్యోతిషే నమః",
+  "ఓం భక్తనిధయే నమః", "ఓం భావగమ్యాయ నమః", "ఓం మంగళప్రదాయ నమః", "ఓం అవ్యక్తాయ నమః",
+  "ఓం అప్రకృతపరాక్రమాయ నమః", "ఓం సత్యధర్మిణే నమః", "ఓం సఖయే నమః", "ఓం సరసాంబునిధయే నమః",
+  "ఓం మహేశాయ నమః", "ఓం దివ్యాంగాయ నమః", "ఓం మణికంఠప్రియాయ నమః", "ఓం శ్రీ సిద్ధలక్ష్మీ సమేత శ్రీ మహాగణపతయే నమః"
+];
+
+// Complete 108 Subramanyeswara Swamy Ashtottara Shatanamavali
+const SUBRAMANYA_ASHTOTTARA_NAMES = [
+  "ఓం స్కందాయ నమః", "ఓం గుహాయ నమః", "ఓం షణ్ముఖాయ నమః", "ఓం ఫాలనేత్రసుతాయ నమః",
+  "ఓం ప్రభవే నమః", "ఓం పింగళాయ నమః", "ఓం కృత్తికాసూనవే నమః", "ఓం శిఖివాహనాయ నమః",
+  "ఓం ద్విషణ్ణేత్రాయ నమః", "ఓం శక్తిధరాయ నమః", "ఓం పిశితాశప్రభంజనాయ నమః", "ఓం తారకాసురసంహారిణే నమః",
+  "ఓం రక్షోబలవిమర్దనాయ నమః", "ఓం మత్తాయ నమః", "ఓం ప్రమత్తాయ నమః", "ఓం ఉన్మత్తాయ నమః",
+  "ఓం సురసైన్యసురక్షకాయ నమః", "ఓం దేవసేనాపతయే నమః", "ఓం ప్రాజ్ఞాయ నమః", "ఓం కృపాళవే నమః",
+  "ఓం భక్తవత్సలాయ నమః", "ఓం ఉమాసుతాయ నమః", "ఓం కుమారాయ నమః", "ఓం క్రౌంచధారణాయ నమః",
+  "ఓం సేనాన్యే నమః", "ఓం అగ్నిజన్మనే నమః", "ఓం చేతానాయ నమః", "ఓం రామాయ నమః",
+  "ఓం బాహులేయాయ నమః", "ఓం శరజన్మనే నమః", "ఓం గాంగేయాయ నమః", "ఓం శదాననాయ నమః",
+  "ఓం సర్వజ్ఞాయ నమః", "ఓం సర్వగాయ నమః", "ఓం శవ్యాయ నమః", "ఓం సనాతనాయ నమః",
+  "ఓం అనంతమూర్తయే నమః", "ఓం అక్షోభ్యాయ నమః", "ఓం పార్వతీప్రియనంధనాయ నమః", "ఓం గంగాసుతాయ నమః",
+  "ఓం శరోద్భూతాయ నమః", "ఓం ఆహూతాయ నమః", "ఓం పావకాత్మజాయ నమః", "ఓం జృంభాయ నమః",
+  "ఓం ప్రజృంభాయ నమః", "ఓం ఉజ్జృంభాయ నమః", "ఓం కమలాసనసంస్తుతాయ నమః", "ఓం ఏకవర్ణాయ నమః",
+  "ఓం ద్వివర్ణాయ నమః", "ఓం త్రివర్ణాయ నమః", "ఓం సుమనోహరాయ నమః", "ఓం చతుర్వర్ణాయ నమః",
+  "ఓం పంచవర్ణాయ నమః", "ఓం ప్రజాపతయే నమః", "ఓం పూషాయ నమః", "ఓం గభస్తయే నమః",
+  "ఓం గహనాయ నమః", "ఓం చంద్రవర్ణాయ నమః", "ఓం కళాధరాయ నమః", "ఓం మాయాధరాయ నమః",
+  "ఓం మహామాయినే నమః", "ఓం కైవల్యాయ నమః", "ఓం శంకరాత్మజాయ నమః", "ఓం విశ్వయోనయే నమః",
+  "ఓం అమేయాత్మనే నమః", "ఓం తేజోనిధయే నమః", "ఓం అనామయాయ నమః", "ఓం పరమేష్ఠినే నమః",
+  "ఓం పరబ్రహ్మణే నమః", "ఓం వేదగర్భాయ నమః", "ఓం విరాట్సుతాయ నమః", "ఓం పులిందకన్యారమణాయ నమః",
+  "ఓం భక్తసంకటనాశనాయ నమః", "ఓం మహాసేనాయ నమః", "ఓం సుబ్రహ్మణ్యాయ నమః", "ఓం సర్వసిద్ధిప్రదాయకాయ నమః",
+  "ఓం కార్తికేయాయ నమః", "ఓం దానవశమనాయ నమః", "ఓం చిత్రకృతే నమః", "ఓం చిత్రరూపాయ నమః",
+  "ఓం జయినే నమః", "ఓం రోగహారకాయ నమః", "ఓం ఆనందదాయినే నమః", "ఓం తపోరూపాయ నమః",
+  "ఓం వాయునందనవందితాయ నమః", "ఓం మోక్షదాయినే నమః", "ఓం అమితవిక్రమాయ నమః", "ఓం అస్త్రధారిణే నమః",
+  "ఓం సురాధ్యక్షాయ నమః", "ఓం భక్తసంరక్షణవ్రతినే నమః", "ఓం శూలినే నమః", "ఓం పాశినే నమః",
+  "ఓం అభయప్రదాయ నమః", "ఓం పద్మాక్షాయ నమః", "ఓం నిర్మలాయ నమః", "ఓం నిత్యాయ నమః",
+  "ఓం అమలాయ నమః", "ఓం శక్తివల్లభాయ నమః", "ఓం విశ్వేశ్వరాయ నమః", "ఓం జగత్కర్త్రే నమః",
+  "ఓం భువనేశ్వరాయ నమః", "ఓం శరణాగతరక్షకాయ నమః", "ఓం అభీష్టవరదాయినే నమః", "ఓం శరవణభవాయ నమః",
+  "ఓం ధర్మసంరక్షకాయ నమః", "ఓం శ్రీ వల్లీ దేవసేనా సమేత శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః"
+];
+
+// Unified Deity Ashtottara Registry
+const ASHTOTTARA_COLLECTIONS = {
+  ayyappa: {
+    id: "ayyappa",
+    title: "శ్రీ ధర్మశాస్తా / అయ్యప్ప అష్టోత్తర శతనామావళి (108 దివ్య నామాలు)",
+    shortTitle: "శ్రీ అయ్యప్ప అష్టోత్తరం",
+    deityName: "శ్రీ అయ్యప్ప స్వామి",
+    icon: "🐅",
+    names: ASHTOTTARA_NAMES,
+    celebrationText: "🌸 శ్రీ అయ్యప్ప స్వామి 108 అష్టోత్తర శతనామ పుష్పార్చన పరిపూర్ణమైనది! స్వామియే శరణం అయ్యప్ప! 🌸",
+    closing: "ఇతి శ్రీ ధర్మశాస్తృ అష్టోత్తరశతనామావళిః సంపూర్ణమ్ | శ్రీ పూర్ణాపుష్కలాంబా సమేత శ్రీ అయ్యప్పస్వామి సుప్రీతో సుప్రసన్నో వరదో భవతు ||"
+  },
+  ganapathi: {
+    id: "ganapathi",
+    title: "శ్రీ మహాగణపతి అష్టోత్తర శతనామావళి (108 దివ్య నామాలు)",
+    shortTitle: "శ్రీ వినాయక అష్టోత్తరం",
+    deityName: "శ్రీ మహాగణపతి",
+    icon: "🐘",
+    names: GANAPATHI_ASHTOTTARA_NAMES,
+    celebrationText: "🌸 శ్రీ మహాగణపతి 108 అష్టోత్తర శతనామ పుష్పార్చన పరిపూర్ణమైనది! ఓం శ్రీ మహాగణపతయే నమః! 🌸",
+    closing: "ఇతి శ్రీ మహాగణపతి అష్టోత్తరశతనామావళిః సంపూర్ణమ్ | శ్రీ సిద్ధిబుద్ధి సమేత శ్రీ మహాగణపతి సుప్రీతో సుప్రసన్నో వరదో భవతు, సర్వవిఘ్నోపశాంతిరస్తు ||"
+  },
+  subramanya: {
+    id: "subramanya",
+    title: "శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి అష్టోత్తర శతనామావళి (108 దివ్య నామాలు)",
+    shortTitle: "శ్రీ సుబ్రహ్మణ్య అష్టోత్తరం",
+    deityName: "శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి",
+    icon: "🦚",
+    names: SUBRAMANYA_ASHTOTTARA_NAMES,
+    celebrationText: "🌸 శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి 108 అష్టోత్తర శతనామ పుష్పార్చన పరిపూర్ణమైనది! ఓం శరవణభవాయ నమః! 🌸",
+    closing: "ఇతి శ్రీ సుబ్రహ్మణ్య అష్టోత్తరశతనామావళిః సంపూర్ణమ్ | శ్రీ వల్లీ దేవసేనా సమేత శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి సుప్రీతో సుప్రసన్నో వరదో భవతు ||"
+  }
+};
+
+// Complete 108 Saranu Ghosha of Lord Ayyappa
+const SARANU_GHOSHA_LIST = [
+  "స్వామియే శరణం అయ్యప్ప",
+  "హరిహర సుతనే శరణం అయ్యప్ప",
+  "కన్నిమూల గణపతి భగవానే శరణం అయ్యప్ప",
+  "శక్తి వడివేలన్ సోదరనే శరణం అయ్యప్ప",
+  "మాళికాపురత్తు మంజమ్మ దేవియే శరణం అయ్యప్ప",
+  "వావరు స్వామియే శరణం అయ్యప్ప",
+  "కడుత్తస్వామియే శరణం అయ్యప్ప",
+  "వనదేవతా మారే శరణం అయ్యప్ప",
+  "భూతగణనాథనే శరణం అయ్యప్ప",
+  "అనాథ రక్షకనే శరణం అయ్యప్ప",
+  "ఆపద్బాంధవనే శరణం అయ్యప్ప",
+  "ఎరుమేలి శాస్తావే శరణం అయ్యప్ప",
+  "పేట్టై తుళ్ళుం శాస్తావే శరణం అయ్యప్ప",
+  "వావరున్ తోళనే శరణం అయ్యప్ప",
+  "కాలైకట్టి ఆశ్రమమే శరణం అయ్యప్ప",
+  "అళుదానదియే శరణం అయ్యప్ప",
+  "అళుదామేడే శరణం అయ్యప్ప",
+  "కల్లెడుం కున్రే శరణం అయ్యప్ప",
+  "కరిమలాయే శరణం అయ్యప్ప",
+  "కరిమల బాగవతే శరణం అయ్యప్ప",
+  "కరిమల పాదమే శరణం అయ్యప్ప",
+  "వలియానవట్టమే శరణం అయ్యప్ప",
+  "చెరియానవట్టమే శరణం అయ్యప్ప",
+  "పంబానదియే శరణం అయ్యప్ప",
+  "పంబాయిల్ విళక్కే శరణం అయ్యప్ప",
+  "పంబోపహారమే శరణం అయ్యప్ప",
+  "నీలిమల మేడే శరణం అయ్యప్ప",
+  "అప్పాచిమేడే శరణం అయ్యప్ప",
+  "ఇప్పాచికుళీయే శరణం అయ్యప్ప",
+  "శబరిపీఠమే శరణం అయ్యప్ప",
+  "శరంకుత్తి ఆలే శరణం అయ్యప్ప",
+  "పదునెట్టాంపడియే శరణం అయ్యప్ప",
+  "కన్నిమూల గణపతియే శరణం అయ్యప్ప",
+  "నాగరాజావే శరణం అయ్యప్ప",
+  "మాళికాపురత్తమ్మే శరణం అయ్యప్ప",
+  "కొచ్చుకడుత్తస్వామియే శరణం అయ్యప్ప",
+  "వలియ కడుత్తస్వామియే శరణం అయ్యప్ప",
+  "కురుప్పస్వామియే శరణం అయ్యప్ప",
+  "భస్మకుళమే శరణం అయ్యప్ప",
+  "సన్నిధానమే శరణం అయ్యప్ప",
+  "తంగతోణియే శరణం అయ్యప్ప",
+  "పందళ రాజకుమారనే శరణం అయ్యప్ప",
+  "మణికంఠ శాస్తావే శరణం అయ్యప్ప",
+  "మహిషీ మర్దననే శరణం అయ్యప్ప",
+  "పులివాహననే శరణం అయ్యప్ప",
+  "విల్లాలి వీరనే శరణం అయ్యప్ప",
+  "వీరమణికంఠనే శరణం అయ్యప్ప",
+  "ధర్మశాస్తావే శరణం అయ్యప్ప",
+  "శరణాగత రక్షకనే శరణం అయ్యప్ప",
+  "భక్తవత్సలనే శరణం అయ్యప్ప",
+  "అష్టసిద్ధి దాయకనే శరణం అయ్యప్ప",
+  "సత్యస్వరూపనే శరణం అయ్యప్ప",
+  "శాంతి ప్రదాయకనే శరణం అయ్యప్ప",
+  "జ్యోతి స్వరూపనే శరణం అయ్యప్ప",
+  "మకరజ్యోతియే శరణం అయ్యప్ప",
+  "కాంతమలై జ్యోతియే శరణం అయ్యప్ప",
+  "కళాభాభిషేక ప్రియనే శరణం అయ్యప్ప",
+  "నేయ్యాభిషేక ప్రియనే శరణం అయ్యప్ప",
+  "భస్మాభిషేక ప్రియనే శరణం అయ్యప్ప",
+  "పుష్పాభిషేక ప్రియనే శరణం అయ్యప్ప",
+  "పన్నీరాభిషేక ప్రియనే శరణం అయ్యప్ప",
+  "చందనాభిషేక ప్రియనే శరణం అయ్యప్ప",
+  "అరవణ పాయస ప్రియనే శరణం అయ్యప్ప",
+  "అప్ప నివేద్య ప్రియనే శరణం అయ్యప్ప",
+  "తాంబూల ప్రియనే శరణం అయ్యప్ప",
+  "కర్పూర దీప ప్రియనే శరణం అయ్యప్ప",
+  "నవమణి మాలికాధరనే శరణం అయ్యప్ప",
+  "రుద్రాక్షమాలికాధరనే శరణం అయ్యప్ప",
+  "తులసిమాలికాధరనే శరణం అయ్యప్ప",
+  "ముద్రాధారకనే శరణం అయ్యప్ప",
+  "ఇరుముడి ప్రియనే శరణం అయ్యప్ప",
+  "మణిమాలాలంకృతనే శరణం అయ్యప్ప",
+  "ఆనందదాయకనే శరణం అయ్యప్ప",
+  "మోక్షప్రదాయకనే శరణం అయ్యప్ప",
+  "సుందరరూపనే శరణం అయ్యప్ప",
+  "మోహినీ తనయనే శరణం అయ్యప్ప",
+  "శంకర ప్రియసుతనే శరణం అయ్యప్ప",
+  "హరిహరైకమూర్తియే శరణం అయ్యప్ప",
+  "కోరిన వరములిచ్చు దైవమా శరణం అయ్యప్ప",
+  "కలియుగ వరదనే శరణం అయ్యప్ప",
+  "సకల గ్రహదోష నివారకనే శరణం అయ్యప్ప",
+  "శనిదోష నివారకనే శరణం అయ్యప్ప",
+  "సర్వరోగ హరనే శరణం అయ్యప్ప",
+  "సర్వదురిత నాశకనే శరణం అయ్యప్ప",
+  "శత్రుభయ వినాశకనే శరణం అయ్యప్ప",
+  "ఆధ్యాత్మిక తేజస్వీ శరణం అయ్యప్ప",
+  "ఓంకార రూపా శరణం అయ్యప్ప",
+  "ప్రణవ స్వరూపా శరణం అయ్యప్ప",
+  "నిత్యానంద స్వరూపా శరణం అయ్యప్ప",
+  "పూర్ణా పుష్కలా నాథనే శరణం అయ్యప్ప",
+  "సద్గురు నాథనే శరణం అయ్యప్ప",
+  "భూలోక రక్షకనే శరణం అయ్యప్ప",
+  "దివ్య పాదుకాధరనే శరణం అయ్యప్ప",
+  "శబరీగిరి వాసనే శరణం అయ్యప్ప",
+  "పదునెట్టుపడికే పతినే శరణం అయ్యప్ప",
+  "కలియుగ దైవమే శరణం అయ్యప్ప",
+  "కాంతిమయ నేత్రుడవే శరణం అయ్యప్ప",
+  "హరివరాసన ప్రియనే శరణం అయ్యప్ప",
+  "విశ్వమోహన రూపా శరణం అయ్యప్ప",
+  "పరమేశ్వర పుత్రుడవే శరణం అయ్యప్ప",
+  "మాతంగ గమనుడవే శరణం అయ్యప్ప",
+  "మహావైద్యుడవే శరణం అయ్యప్ప",
+  "శరణాగతుల పెన్నిధియే శరణం అయ్యప్ప",
+  "భూతనాథ సదానందనే శరణం అయ్యప్ప",
+  "కారుణ్యామృత సింధువే శరణం అయ్యప్ప",
+  "అయ్యప్ప స్వామియే శరణం అయ్యప్ప",
+  "శ్రీ శబరీగిరీశ్వరాయ శరణం అయ్యప్ప",
+  "స్వామియే శరణం అయ్యప్ప"
+];
+
+// Alias for 108 Saranu Ghosha
+const SARANU_GHOSHA_108 = SARANU_GHOSHA_LIST;
+
+// ==========================================
+// 2. STATE & DEFAULT CONFIGURATION
+// ==========================================
+
+const PINCODE_DATABASE = {
+  "522034": {
+    city: "గుంటూరు",
+    district: "గుంటూరు జిల్లా",
+    state: "ఆంధ్రప్రదేశ్",
+    subArea: "గొరింట్ల / ఇండస్ట్రియల్ ఎస్టేట్ / లామ్",
+    srisailamDir: "శ్రీశైలస్య ఈశాన్య ప్రదేశే",
+    riverRegion: "కృష్ణా నద్యాః దక్షిణ తీరే (కృష్ణా-గోదావర్యోః మధ్య ప్రదేశే)",
+    cityKshethra: "గుంటూరు నగర పరిసరే",
+    lat: 16.3067,
+    lon: 80.4365,
+    enName: "Guntur (Gorantla, Industrial Estate, Lam - 522034)"
+  },
+  "522001": {
+    city: "గుంటూరు (మెయిన్)",
+    district: "గుంటూరు జిల్లా",
+    state: "ఆంధ్రప్రదేశ్",
+    subArea: "గుంటూరు హెడ్ పోస్టాఫీస్",
+    srisailamDir: "శ్రీశైలస్య ఈశాన్య ప్రదేశే",
+    riverRegion: "కృష్ణా నద్యాః దక్షిణ తీరే (కృష్ణా-గోదావర్యోః మధ్య ప్రదేశే)",
+    cityKshethra: "గుంటూరు నగర క్షేత్రే",
+    lat: 16.3008,
+    lon: 80.4428,
+    enName: "Guntur Main - 522001"
+  },
+  "522002": {
+    city: "గుంటూరు",
+    district: "గుంటూరు జిల్లా",
+    state: "ఆంధ్రప్రదేశ్",
+    subArea: "కొత్తపేట / అరండల్‌పేట",
+    srisailamDir: "శ్రీశైలస్య ఈశాన్య ప్రదేశే",
+    riverRegion: "కృష్ణా నద్యాః దక్షిణ తీరే",
+    cityKshethra: "గుంటూరు నగర క్షేత్రే",
+    lat: 16.3120,
+    lon: 80.4350,
+    enName: "Kothapet Guntur - 522002"
+  },
+  "522503": {
+    city: "మంగళగిరి",
+    district: "గుంటూరు జిల్లా",
+    state: "ఆంధ్రప్రదేశ్",
+    subArea: "పానకాల లక్ష్మీనరసింహ క్షేత్రే",
+    srisailamDir: "శ్రీశైలస్య ఈశాన్య ప్రదేశే",
+    riverRegion: "కృష్ణా నద్యాః దక్షిణ తీరే",
+    cityKshethra: "మంగళగిరి పుణ్యక్షేత్రే",
+    lat: 16.4300,
+    lon: 80.5700,
+    enName: "Mangalagiri - 522503"
+  },
+  "520001": {
+    city: "విజయవాడ",
+    district: "ఎన్టీఆర్ జిల్లా",
+    state: "ఆంధ్రప్రదేశ్",
+    subArea: "కనకదుర్గా క్షేత్రే (ఇంద్రకీలాద్రి)",
+    srisailamDir: "శ్రీశైలస్య ఈశాన్య ప్రదేశే",
+    riverRegion: "కృష్ణా నద్యాః ఉత్తర తీరే",
+    cityKshethra: "విజయవాటికా నగర క్షేత్రే",
+    lat: 16.5062,
+    lon: 80.6480,
+    enName: "Vijayawada - 520001"
+  },
+  "522201": {
+    city: "తెనాలి",
+    district: "గుంటూరు జిల్లా",
+    state: "ఆంధ్రప్రదేశ్",
+    subArea: "ఆంధ్రా ప్యారిస్ క్షేత్రే",
+    srisailamDir: "శ్రీశైలస్య ఈశాన్య ప్రదేశే",
+    riverRegion: "కృష్ణా డెల్టా మధ్య దేశే",
+    cityKshethra: "తెనాలి నగర క్షేత్రే",
+    lat: 16.2430,
+    lon: 80.6400,
+    enName: "Tenali - 522201"
+  },
+  "500001": {
+    city: "హైదరాబాదు",
+    district: "హైదరాబాదు",
+    state: "తెలంగాణ",
+    subArea: "భాగ్యనగర క్షేత్రే",
+    srisailamDir: "శ్రీశైలస్య ఉత్తర ప్రదేశే",
+    riverRegion: "మూసీ నదీ తీరే",
+    cityKshethra: "భాగ్యనగర పరిసరే",
+    lat: 17.3850,
+    lon: 78.4867,
+    enName: "Hyderabad - 500001"
+  }
+};
+
+const DEFAULT_DEVOTEE = {
+  gotram: "పైడిపూండ్ల",
+  karta: "శ్రీనివాస",
+  wife: "వాణీ",
+  sons: "హర్ష, అఖిల్",
+  family: "సకుటుంబానాం",
+  purpose: "mandala",
+  pincode: "522034"
+};
+
+let appState = {
+  date: new Date(),
+  samvatsara: "పరాభవ",
+  ayanam: "దక్షిణాయనే",
+  ritu: "శరద్",
+  masa: "కార్తీక",
+  paksha: "శుక్ల",
+  tithi: "సప్తమ్యాం",
+  vasara: "ఇందు (సోమ) వాసరే",
+  nakshatra: "శ్రవణ",
+  yoga: "వృద్ధి",
+  karana: "వణిజ",
+  devotee: { ...DEFAULT_DEVOTEE },
+  location: { ...PINCODE_DATABASE["522034"] },
+  timings: null,
+  ashtottaraIndex: 0,
+  saranuIndex: 0,
+  userFontScale: 1.0,
+  tanpuraPlaying: false,
+  currentDeity: "ayyappa",
+  currentNityaDeity: "ayyappa"
+};
+
+// ==========================================
+// 2B. SOLAR & MUHURTHA CALCULATOR (GUNTUR & PINCODES)
+// ==========================================
+
+function getDayOfYear(d) {
+  const start = new Date(d.getFullYear(), 0, 0);
+  const diff = d - start;
+  const oneDay = 1000 * 60 * 60 * 24;
+  return Math.floor(diff / oneDay);
+}
+
+/**
+ * Calculates exact Sunrise, Sunset, and Vedic Muhurthas for Latitude and Longitude in IST (UTC+5.5)
+ */
+function calculateSunAndMuhurthas(date, lat, lon) {
+  const dayOfYear = getDayOfYear(date);
+  
+  // Approximate solar declination (radians)
+  const gamma = (2 * Math.PI / 365) * (dayOfYear - 1);
+  const decl = 0.006918 - 0.399912 * Math.cos(gamma) + 0.070257 * Math.sin(gamma)
+             - 0.006758 * Math.cos(2 * gamma) + 0.000907 * Math.sin(2 * gamma);
+  
+  // Equation of Time in minutes
+  const eqtime = 229.18 * (0.000075 + 0.001868 * Math.cos(gamma) - 0.032077 * Math.sin(gamma)
+                - 0.014615 * Math.cos(2 * gamma) - 0.040849 * Math.sin(2 * gamma));
+
+  const latRad = lat * (Math.PI / 180);
+  const zenith = 90.833 * (Math.PI / 180); // Official zenith angle for sunrise/sunset
+
+  // Solar hour angle (radians)
+  const cosHa = (Math.cos(zenith) - Math.sin(latRad) * Math.sin(decl)) / (Math.cos(latRad) * Math.cos(decl));
+  let ha = Math.acos(Math.max(-1, Math.min(1, cosHa))); // clamp to [-1, 1]
+
+  // Minutes from UTC midnight
+  const timeOffset = 330; // IST is UTC + 5:30 (330 minutes)
+  const solarNoonUtc = 720 - (4 * lon) - eqtime;
+  const sunriseMinutes = solarNoonUtc - (ha * (180 / Math.PI) * 4) + timeOffset;
+  const sunsetMinutes = solarNoonUtc + (ha * (180 / Math.PI) * 4) + timeOffset;
+
+  const dayLength = sunsetMinutes - sunriseMinutes;
+  const segmentLen = dayLength / 8; // Ashtama bhaga (8 segments)
+
+  const dayOfWeek = date.getDay(); // 0 = Sun, 1 = Mon ... 6 = Sat
+
+  // Segments (1-indexed):
+  // Rahu Kalam: Sun:8, Mon:2, Tue:7, Wed:5, Thu:6, Fri:4, Sat:3
+  const rahuSegments = [8, 2, 7, 5, 6, 4, 3];
+  // Yamagandam: Sun:5, Mon:4, Tue:3, Wed:2, Thu:1, Fri:7, Sat:6
+  const yamaSegments = [5, 4, 3, 2, 1, 7, 6];
+  // Gulika: Sun:7, Mon:6, Tue:5, Wed:4, Thu:3, Fri:2, Sat:1
+  const gulikaSegments = [7, 6, 5, 4, 3, 2, 1];
+
+  const getSegmentTime = (segIndex) => {
+    const startMin = sunriseMinutes + (segIndex - 1) * segmentLen;
+    const endMin = sunriseMinutes + segIndex * segmentLen;
+    return `${formatMinutesToTime(startMin)} - ${formatMinutesToTime(endMin)}`;
+  };
+
+  // Abhijit Muhurtham: 8th of 15 muhurthas of daytime (roughly 24 mins before and after solar noon)
+  const muhurthaLen = dayLength / 15;
+  const abhijitStart = sunriseMinutes + (7 * muhurthaLen);
+  const abhijitEnd = sunriseMinutes + (8 * muhurthaLen);
+
+  const rahuStart = sunriseMinutes + (rahuSegments[dayOfWeek] - 1) * segmentLen;
+  const rahuEnd = sunriseMinutes + rahuSegments[dayOfWeek] * segmentLen;
+
+  const yamaStart = sunriseMinutes + (yamaSegments[dayOfWeek] - 1) * segmentLen;
+  const yamaEnd = sunriseMinutes + yamaSegments[dayOfWeek] * segmentLen;
+
+  const gulikaStart = sunriseMinutes + (gulikaSegments[dayOfWeek] - 1) * segmentLen;
+  const gulikaEnd = sunriseMinutes + gulikaSegments[dayOfWeek] * segmentLen;
+
+  return {
+    sunrise: formatMinutesToTime(sunriseMinutes),
+    sunset: formatMinutesToTime(sunsetMinutes),
+    abhijit: `${formatMinutesToTime(abhijitStart)} - ${formatMinutesToTime(abhijitEnd)}`,
+    rahu: getSegmentTime(rahuSegments[dayOfWeek]),
+    yama: getSegmentTime(yamaSegments[dayOfWeek]),
+    gulika: getSegmentTime(gulikaSegments[dayOfWeek]),
+    raw: {
+      sunriseMinutes,
+      sunsetMinutes,
+      abhijitStart,
+      abhijitEnd,
+      rahuStart,
+      rahuEnd,
+      yamaStart,
+      yamaEnd,
+      gulikaStart,
+      gulikaEnd
+    }
+  };
+}
+
+function formatMinutesToTime(totalMinutes) {
+  let mins = Math.round(totalMinutes);
+  let hours = Math.floor(mins / 60);
+  let remMins = mins % 60;
+  const ampm = hours >= 12 ? "PM" : "AM";
+  let displayHours = hours % 12;
+  if (displayHours === 0) displayHours = 12;
+  const strMins = remMins < 10 ? "0" + remMins : remMins;
+  return `${displayHours}:${strMins} ${ampm}`;
+}
+
+// ==========================================
+// 3. ASTRONOMICAL / PANCHANGAM CALCULATION
+// ==========================================
+
+/**
+ * Automatically computes Hindu calendar fields based on a Gregorian date
+ */
+function calculatePanchangamForDate(date) {
+  const year = date.getFullYear();
+  const month = date.getMonth(); // 0-11
+  const day = date.getDate();
+  const dayOfWeek = date.getDay(); // 0 = Sun, 6 = Sat
+
+  // 1. Samvatsara: 60 year cycle anchored at 1987 (Prabhava = 0)
+  // 2024 = Krodhi (37), 2025 = Viswavasu (38), 2026 = Parabhava (39)
+  let samvatIndex = (year - 1987) % 60;
+  if (samvatIndex < 0) samvatIndex += 60;
+  // If before Ugadi (approx early April), it belongs to previous samvatsara
+  if (month < 3 || (month === 3 && day < 8)) {
+    samvatIndex = (samvatIndex - 1 + 60) % 60;
+  }
+  const samvatsara = SAMVATSARAS[samvatIndex] || "పరాభవ";
+
+  // 2. Ayanam:
+  // Uttarayana ~ Jan 14/15 to July 15/16
+  // Dakshinayana ~ July 16 to Jan 14
+  let ayanam = "దక్షిణాయనే";
+  if ((month === 0 && day >= 15) || (month > 0 && month < 6) || (month === 6 && day <= 15)) {
+    ayanam = "ఉత్తరాయణే";
+  }
+
+  // 3. Vasara (Day of Week):
+  const vasaraObj = VASARAS[dayOfWeek] || VASARAS[6];
+  const vasara = vasaraObj.id;
+
+  // 4. Lunar synodic month & Tithi calculation (Astronomical approximation)
+  // Reference known New Moon: Jan 11, 2024 at 11:57 UTC
+  const refNewMoon = new Date(Date.UTC(2024, 0, 11, 11, 57)).getTime();
+  const synodicMonth = 29.530588 * 24 * 60 * 60 * 1000;
+  const currentUtc = date.getTime();
+  const elapsed = currentUtc - refNewMoon;
+  const moonAgeDays = ((elapsed % synodicMonth) + synodicMonth) % synodicMonth / (24 * 60 * 60 * 1000);
+
+  // Paksha & Tithi from moon age
+  let paksha = "శుక్ల";
+  let tithiIndex = Math.floor(moonAgeDays); // 0 to 29
+  let tithiObj;
+
+  if (tithiIndex < 15) {
+    paksha = "శుక్ల";
+    if (tithiIndex === 14) {
+      tithiObj = TITHIS.find(t => t.val === "పూర్ణిమాయాం") || TITHIS[14];
+    } else {
+      tithiObj = TITHIS[tithiIndex] || TITHIS[0];
+    }
+  } else {
+    paksha = "కృష్ణ";
+    const kIndex = tithiIndex - 15;
+    if (kIndex >= 14) {
+      tithiObj = TITHIS.find(t => t.val === "అమావాస్యాయాం") || TITHIS[15];
+    } else {
+      tithiObj = TITHIS[kIndex] || TITHIS[0];
+    }
+  }
+
+  // 5. Lunar Masa approximation based on solar calendar & season
+  // Kartika ~ mid Oct to mid Nov; Margashira ~ mid Nov to mid Dec; Pushya ~ mid Dec to mid Jan
+  // Mandala Deeksha occurs mainly in Kartika, Margashira, and Pushya
+  let masaIndex = (month + 9) % 12; // Approximation connecting Gregorian month to Amanta masa
+  if (day < 15) {
+    masaIndex = (masaIndex - 1 + 12) % 12;
+  }
+  const masaObj = MASAS[masaIndex] || MASAS[7]; // Default Kartika
+  const masa = masaObj.te;
+  const ritu = masaObj.ritu;
+
+  // 6. Nakshatra approximation (Moon travels 1 nakshatra ~ 1.01 days)
+  const nakshatraIndex = Math.floor((moonAgeDays * (27 / 29.53) + (dayOfWeek * 3)) % 27);
+  const nakshatra = NAKSHATRAS[nakshatraIndex] || NAKSHATRAS[3];
+
+  // 7. Yoga calculation (Nirayana Longitudes of Sun & Moon)
+  const dayOfYear = getDayOfYear(date);
+  const sunLong = ((dayOfYear - 104) * (360 / 365.25) + 360) % 360;
+  const moonLong = (sunLong + (moonAgeDays * 12.190749) + 360) % 360;
+  const yogaIndex = Math.floor(((sunLong + moonLong) % 360) / (360 / 27));
+  const yoga = YOGAS[Math.min(26, Math.max(0, yogaIndex))] || YOGAS[0];
+
+  // 8. Karana calculation (Half of tithi, 6 degrees each, 60 in a synodic lunar month)
+  const karanaHalf = Math.floor((moonAgeDays / 29.530588) * 60);
+  let karana = "";
+  if (karanaHalf === 0) {
+    karana = "కింస్తుఘ్న";
+  } else if (karanaHalf >= 57) {
+    const fixedKaranas = ["శకుని", "చతుష్పాత్", "నాగవ", "కింస్తుఘ్న"];
+    karana = fixedKaranas[Math.min(3, karanaHalf - 57)] || "కింస్తుఘ్న";
+  } else {
+    const movable = ["బవ", "బాలవ", "కౌలవ", "తైతుల", "గరజ", "వణిజ", "భద్ర (విష్టి)"];
+    karana = movable[(karanaHalf - 1) % 7];
+  }
+
+  return {
+    samvatsara,
+    ayanam,
+    ritu,
+    masa,
+    paksha,
+    tithi: tithiObj ? tithiObj.val : "శుభతిథౌ",
+    vasara,
+    nakshatra,
+    yoga,
+    karana
+  };
+}
+
+// ==========================================
+// 4. UI POPULATION & EVENT LISTENERS
+// ==========================================
+
+function getLocalDateString(d = new Date()) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+let lastActiveDateString = getLocalDateString(new Date());
+
+function initApp() {
+  loadSavedDevoteeState();
+  populateDropdowns();
+  renderAshtottaramList();
+  renderSaranuGhoshaList();
+  setupEventListeners();
+  populateVoiceList();
+
+  // Initialize Puja Mode (Nitya 15-20 Min default vs Shodasa Full)
+  const savedMode = localStorage.getItem("ayyappa_puja_mode") || "nitya";
+  switchPujaMode(savedMode, false);
+
+  // Set today's local date in picker and compute
+  const todayStr = getLocalDateString(new Date());
+  lastActiveDateString = todayStr;
+  const dateInput = document.getElementById("pujaDate");
+  if (dateInput) {
+    dateInput.value = todayStr;
+    handleDateChange(todayStr);
+  } else {
+    updateSankalpamView();
+  }
+
+  // 1. Live second-by-second clock & active muhurtha status updater
+  setInterval(updateLiveClockAndStatus, 1000);
+  updateLiveClockAndStatus();
+
+  // 2. Midnight auto-rollover checker (every 30 seconds)
+  setInterval(checkMidnightRollover, 30000);
+
+  // 3. Device wake-up / tab visibility change listener
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      checkMidnightRollover();
+      updateLiveClockAndStatus();
+    }
+  });
+}
+
+/**
+ * Automatically detects when midnight has passed and advances today's puja date
+ */
+function checkMidnightRollover() {
+  const currentTodayStr = getLocalDateString(new Date());
+  if (currentTodayStr !== lastActiveDateString) {
+    console.log("New day detected! Auto-refreshing panchangam & muhurthas for:", currentTodayStr);
+    lastActiveDateString = currentTodayStr;
+    const dateInput = document.getElementById("pujaDate");
+    if (dateInput) {
+      dateInput.value = currentTodayStr;
+    }
+    handleDateChange(currentTodayStr);
+    showCelebrationAlert(`🌅 శుభోదయం! నేటి పంచాంగం మరియు ముహూర్తములు స్వయంచాలకంగా అప్‌డేట్ చేయబడ్డాయి (${currentTodayStr}).`);
+  }
+}
+
+/**
+ * Updates live clock and highlights currently active muhurtha card in real-time
+ */
+function updateLiveClockAndStatus() {
+  const now = new Date();
+  const timeStr = now.toLocaleTimeString("en-US", { hour12: true });
+  setElementText("lblLiveClock", timeStr);
+  setElementText("liveClock", timeStr);
+
+  const todayStr = getLocalDateString(now);
+  const viewingStr = getLocalDateString(appState.date);
+  const isViewingToday = (todayStr === viewingStr);
+
+  const statusBar = document.getElementById("liveStatusBar");
+  const statusIcon = document.getElementById("statusIndicatorIcon");
+  const statusText = document.getElementById("lblLiveStatusText");
+
+  const nityaStatus = document.getElementById("activeMuhurthaStatus");
+  const nityaText = document.getElementById("activeStatusText");
+  const tickerText = document.getElementById("quickTickerText");
+
+  const applyStatus = (statusClass, iconText, msg) => {
+    if (statusBar) statusBar.className = "live-status-bar " + statusClass;
+    if (statusIcon) statusIcon.textContent = iconText;
+    if (statusText) statusText.textContent = msg;
+
+    if (nityaStatus) nityaStatus.className = "tracker-status-bar " + statusClass;
+    if (nityaText) nityaText.textContent = msg;
+    if (tickerText) tickerText.textContent = msg;
+  };
+
+  // Clear active highlight from all timing cards
+  ["cardSunrise", "cardSunset", "cardAbhijit", "cardRahu", "cardYama", "cardGulika"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove("active-now");
+  });
+
+  if (!isViewingToday) {
+    applyStatus("", "📅", `ఎంచుకున్న పూజా తేదీ: ${viewingStr} (భవిష్యత్/గత పంచాంగ వివరాలు వీక్షిస్తున్నారు. నేటి సమయం కోసం 'ఈరోజు' బటన్ నొక్కండి).`);
+    return;
+  }
+
+  // Current minutes since local midnight (0 to 1440)
+  const currentMin = now.getHours() * 60 + now.getMinutes() + (now.getSeconds() / 60);
+  const raw = appState.timings ? appState.timings.raw : null;
+  if (!raw) return;
+
+  if (currentMin >= raw.rahuStart && currentMin < raw.rahuEnd) {
+    // Rahu Kalam
+    const el = document.getElementById("cardRahu");
+    if (el) el.classList.add("active-now");
+    applyStatus("status-varjya inauspicious", "⚠️", `ప్రస్తుత కాలం: రాహుకాలం నడుస్తోంది (${appState.timings.rahu}) - వర్జ్య సమయం (నూతన శుభకార్యాలు, దీపారాధన సమయాలను నివారించవచ్చు).`);
+  } else if (currentMin >= raw.yamaStart && currentMin < raw.yamaEnd) {
+    // Yamagandam
+    const el = document.getElementById("cardYama");
+    if (el) el.classList.add("active-now");
+    applyStatus("status-varjya inauspicious", "⚠️", `ప్రస్తుత కాలం: యమగండం నడుస్తోంది (${appState.timings.yama}) - వర్జ్య సమయం.`);
+  } else if (currentMin >= raw.abhijitStart && currentMin < raw.abhijitEnd) {
+    // Abhijit Muhurtham
+    const el = document.getElementById("cardAbhijit");
+    if (el) el.classList.add("active-now");
+    applyStatus("status-subha auspicious", "⭐", `ప్రస్తుత కాలం: అభిజిత్ ముహూర్తం నడుస్తోంది (${appState.timings.abhijit}) - శ్రీ అయ్యప్ప స్వామి పూజకు అత్యంత శుభప్రదమైన సమయం!`);
+  } else if (currentMin >= raw.gulikaStart && currentMin < raw.gulikaEnd) {
+    // Gulika
+    const el = document.getElementById("cardGulika");
+    if (el) el.classList.add("active-now");
+    applyStatus("status-subha good", "🟢", `ప్రస్తుత కాలం: గుళికా కాలం నడుస్తోంది (${appState.timings.gulika}) - శుభకార్యారంభ సమయం.`);
+  } else if (currentMin < raw.sunriseMinutes) {
+    // Before sunrise / Brahma Muhurtham
+    const el = document.getElementById("cardSunrise");
+    if (el) el.classList.add("active-now");
+    applyStatus("status-subha auspicious", "🌅", `ప్రస్తుత కాలం: ఉషఃకాలం / బ్రాహ్మీ ముహూర్తం - అయ్యప్ప నిత్య పూజకు పరమ పవిత్ర సమయం (సూర్యోదయం: ${appState.timings.sunrise}).`);
+  } else if (currentMin >= raw.sunsetMinutes && currentMin < raw.sunsetMinutes + 90) {
+    // Evening Sandhya
+    const el = document.getElementById("cardSunset");
+    if (el) el.classList.add("active-now");
+    applyStatus("status-subha auspicious", "🪔", `ప్రస్తుత కాలం: సాయం సంధ్యా సమయం - దీపారాధన, అష్టోత్తర నామార్చన, 108 శరణు ఘోష మరియు హరివరాసన పఠన సమయం.`);
+  } else {
+    // Normal daytime
+    applyStatus("status-subha good", "🪔", `ప్రస్తుత కాలం: శ్రీ అయ్యప్ప స్వామి నిత్య పూజా శుభ సమయం. స్వామియే శరణం అయ్యప్ప!`);
+  }
+}
+
+function loadSavedDevoteeState() {
+  try {
+    const saved = localStorage.getItem("ayyappa_devotee_details");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Ensure gotram is strictly updated to పైడిపూండ్ల (Paidipoondla)
+      if (!parsed.gotram || parsed.gotram === "పైడిపుండ" || parsed.gotram === "Paidipunda") {
+        parsed.gotram = "పైడిపూండ్ల";
+      }
+      if (parsed.karta === "శ్రీనివాసరావు" || parsed.karta === "Srinivasarao") {
+        parsed.karta = "శ్రీనివాస";
+      }
+      if (!parsed.sons) {
+        parsed.sons = "హర్ష, అఖిల్";
+      }
+      if (!parsed.purpose || parsed.purpose === "nitya") {
+        parsed.purpose = "mandala";
+      }
+      appState.devotee = { ...DEFAULT_DEVOTEE, ...parsed };
+      localStorage.setItem("ayyappa_devotee_details", JSON.stringify(appState.devotee));
+    }
+  } catch (e) {
+    console.warn("Could not load saved state", e);
+  }
+
+  // Resolve Location for loaded/default pincode (522034)
+  const pin = appState.devotee.pincode || "522034";
+  appState.location = resolvePincodeLocation(pin);
+
+  // Populate inputs with current devotee state
+  const txtGotram = document.getElementById("txtGotram");
+  const txtKarta = document.getElementById("txtKartaName");
+  const txtWife = document.getElementById("txtWifeName");
+  const txtSons = document.getElementById("txtSons");
+  const txtFamily = document.getElementById("txtFamily");
+  const selPurpose = document.getElementById("selPurpose");
+  const txtPincode = document.getElementById("txtPincode");
+
+  if (txtGotram) txtGotram.value = appState.devotee.gotram;
+  if (txtKarta) txtKarta.value = appState.devotee.karta;
+  if (txtWife) txtWife.value = appState.devotee.wife;
+  if (txtSons) txtSons.value = appState.devotee.sons || "హర్ష, అఖిల్";
+  if (txtFamily) txtFamily.value = appState.devotee.family;
+  if (selPurpose) selPurpose.value = appState.devotee.purpose;
+  if (txtPincode) txtPincode.value = appState.devotee.pincode;
+}
+
+function resolvePincodeLocation(pincode) {
+  const cleanPin = (pincode || "").trim();
+  if (PINCODE_DATABASE[cleanPin]) {
+    return { ...PINCODE_DATABASE[cleanPin] };
+  }
+
+  // Intelligent fallback for Andhra Pradesh / Guntur district
+  if (cleanPin.startsWith("522")) {
+    return {
+      city: "గుంటూరు పరిసర ప్రాంతం",
+      district: "గుంటూరు జిల్లా",
+      state: "ఆంధ్రప్రదేశ్",
+      subArea: `పిన్: ${cleanPin} క్షేత్రే`,
+      srisailamDir: "శ్రీశైలస్య ఈశాన్య ప్రదేశే",
+      riverRegion: "కృష్ణా నద్యాః దక్షిణ తీరే (కృష్ణా-గోదావర్యోః మధ్య ప్రదేశే)",
+      cityKshethra: "గుంటూరు మండల క్షేత్రే",
+      lat: 16.3067,
+      lon: 80.4365,
+      enName: `Guntur District (${cleanPin})`
+    };
+  }
+
+  // Generic Andhra Pradesh / South India reference
+  return {
+    city: "ఆంధ్రప్రదేశ్ / భారత దేశ క్షేత్రం",
+    district: "",
+    state: "ఆంధ్రప్రదేశ్",
+    subArea: `పిన్ కోడ్: ${cleanPin}`,
+    srisailamDir: "శ్రీశైలస్య ఈశాన్య ప్రదేశే",
+    riverRegion: "కృష్ణా-గోదావర్యోః మధ్య ప్రదేశే",
+    cityKshethra: "నివాస క్షేత్రే",
+    lat: 16.3067,
+    lon: 80.4365,
+    enName: `PIN: ${cleanPin}`
+  };
+}
+
+function handlePincodeChange(pincode) {
+  appState.devotee.pincode = (pincode || "").trim();
+  appState.location = resolvePincodeLocation(appState.devotee.pincode);
+  saveDevoteeState();
+  updateSankalpamView();
+}
+
+function updateLocationAndMuhurthas() {
+  const loc = appState.location;
+  const timings = calculateSunAndMuhurthas(appState.date, loc.lat, loc.lon);
+  appState.timings = timings;
+
+  // Update Timings Display Cards
+  setElementText("lblTimingLoc", `${loc.city} (PIN: ${appState.devotee.pincode})`);
+  
+  const dateFormatted = appState.date.toLocaleDateString("te-IN", {
+    weekday: "long", year: "numeric", month: "short", day: "numeric"
+  });
+  setElementText("lblTimingDate", dateFormatted);
+
+  setElementText("valSunrise", timings.sunrise);
+  setElementText("valSunset", timings.sunset);
+  setElementText("valAbhijit", timings.abhijit);
+  setElementText("valRahu", timings.rahu);
+  setElementText("valYama", timings.yama);
+  setElementText("valGulika", timings.gulika);
+
+  // Update Config Box labels
+  setElementText("tagLocationName", `${loc.city} - ${appState.devotee.pincode}`);
+  setElementText("pincodeDesc", `${loc.subArea} - ${loc.district || loc.state}`);
+}
+
+function saveDevoteeState() {
+  try {
+    localStorage.setItem("ayyappa_devotee_details", JSON.stringify(appState.devotee));
+  } catch (e) {
+    console.warn("Could not save devotee state", e);
+  }
+}
+
+function populateDropdowns() {
+  // Samvatsara dropdown
+  const selSamvat = document.getElementById("selSamvatsara");
+  if (selSamvat) {
+    selSamvat.innerHTML = SAMVATSARAS.map(s => 
+      `<option value="${s}" ${s === "క్రోధి" ? "selected" : ""}>శ్రీ ${s} నామ సంవత్సరం</option>`
+    ).join("");
+  }
+
+  // Tithi dropdown
+  const selTithi = document.getElementById("selTithi");
+  if (selTithi) {
+    selTithi.innerHTML = TITHIS.map(t => 
+      `<option value="${t.val}">${t.te}</option>`
+    ).join("");
+  }
+
+  // Nakshatra dropdown
+  const selNak = document.getElementById("selNakshatra");
+  if (selNak) {
+    selNak.innerHTML = NAKSHATRAS.map(n => 
+      `<option value="${n}">${n} నక్షత్రం</option>`
+    ).join("");
+  }
+
+  // Yoga dropdown
+  const selYoga = document.getElementById("selYoga");
+  if (selYoga) {
+    selYoga.innerHTML = YOGAS.map(y => 
+      `<option value="${y}" ${y === "వృద్ధి" ? "selected" : ""}>${y} యోగం</option>`
+    ).join("");
+  }
+
+  // Karana dropdown
+  const selKarana = document.getElementById("selKarana");
+  if (selKarana) {
+    selKarana.innerHTML = KARANAS.map(k => 
+      `<option value="${k}" ${k === "వణిజ" ? "selected" : ""}>${k} కరణం</option>`
+    ).join("");
+  }
+}
+
+function handleDateChange(dateString) {
+  if (!dateString) return;
+  const pickedDate = new Date(dateString + "T10:00:00");
+  appState.date = pickedDate;
+
+  const panchang = calculatePanchangamForDate(pickedDate);
+  appState.samvatsara = panchang.samvatsara;
+  appState.ayanam = panchang.ayanam;
+  appState.ritu = panchang.ritu;
+  appState.masa = panchang.masa;
+  appState.paksha = panchang.paksha;
+  appState.tithi = panchang.tithi;
+  appState.vasara = panchang.vasara;
+  appState.nakshatra = panchang.nakshatra;
+  appState.yoga = panchang.yoga;
+  appState.karana = panchang.karana;
+
+  // Sync dropdown values
+  setSelectValue("selSamvatsara", appState.samvatsara);
+  setSelectValue("selAyanam", appState.ayanam);
+  setSelectValue("selRitu", appState.ritu);
+  setSelectValue("selMasa", appState.masa);
+  setSelectValue("selPaksha", appState.paksha);
+  setSelectValue("selTithi", appState.tithi);
+  setSelectValue("selVasara", appState.vasara);
+  setSelectValue("selNakshatra", appState.nakshatra);
+  setSelectValue("selYoga", appState.yoga);
+  setSelectValue("selKarana", appState.karana);
+
+  updateSankalpamView();
+}
+
+function setSelectValue(id, val) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  for (let i = 0; i < el.options.length; i++) {
+    if (el.options[i].value === val || el.options[i].value.includes(val)) {
+      el.selectedIndex = i;
+      break;
+    }
+  }
+}
+
+// ==========================================
+// 5. SANKALPAM VIEW UPDATE & FORMATTING
+// ==========================================
+
+function updateSankalpamView() {
+  // Update Location, Sunrise, Sunset, and Muhurtha Timings for PIN (522034)
+  updateLocationAndMuhurthas();
+
+  // Update Dynamic Kshethra & Pincode Tokens
+  const loc = appState.location;
+  setElementText("outSrisailamDir", loc.srisailamDir);
+  setElementText("outSrisailam", loc.srisailamDir);
+  setElementText("outRiverRegion", loc.riverRegion);
+  setElementText("outCityKshethra", loc.cityKshethra);
+  setElementText("outPincodeVal", appState.devotee.pincode);
+  setElementText("outPincode", appState.devotee.pincode);
+  setElementText("outSubArea", loc.subArea);
+  updateAllByClass("dyn-pincode", appState.devotee.pincode);
+  setElementText("enPincode", appState.devotee.pincode);
+
+  // Update Full Sanskrit Panchangam View
+  setElementText("outSamvatsara", appState.samvatsara);
+  setElementText("outAyanam", appState.ayanam);
+  setElementText("outAyana", appState.ayanam);
+  setElementText("outRitu", appState.ritu);
+  setElementText("outMasa", appState.masa);
+  setElementText("outPaksha", appState.paksha);
+  setElementText("outTithi", appState.tithi);
+  setElementText("outVasara", appState.vasara);
+  setElementText("outNakshatra", appState.nakshatra);
+  setElementText("outYoga", appState.yoga);
+  setElementText("outKarana", appState.karana);
+
+  // Devotee Tokens from User Image
+  setElementText("outGotram", appState.devotee.gotram);
+  setElementText("outKarta", appState.devotee.karta);
+  setElementText("outWife", appState.devotee.wife);
+  setElementText("outSons", appState.devotee.sons);
+  setElementText("outFamily", appState.devotee.family);
+
+  // Update Purpose Text
+  const purposeEl = document.getElementById("outPurposeText");
+  if (purposeEl) {
+    if (appState.devotee.purpose === "mandala") {
+      purposeEl.innerHTML = `శ్రీ పూర్ణా పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామి (శ్రీ ఇష్టదేవతా) అనుగ్రహ ప్రసాద సిద్ధ్యర్థం, 
+      <strong>మమ మండల దీక్షా వ్రత నిర్విఘ్న పరిసమాప్త్యర్థం, శబరిగిరి యాత్రా సఫలతార్థం</strong>, 
+      యావచ్ఛక్తి ధ్యాన ఆవాహనాది షోడశోపచార పూజాం కరిష్యే ||`;
+    } else if (appState.devotee.purpose === "irumudi") {
+      purposeEl.innerHTML = `శ్రీ పూర్ణా పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామి ముద్దిశ్య, 
+      <strong>శ్రీ శబరిగిరి పుణ్య క్షేత్ర యాత్రా నిర్విఘ్న పరిసమాప్త్యర్థం, ఇరుముడి కట్టు పూజాం</strong>, 
+      యావచ్ఛక్తి ధ్యాన ఆవాహనాది షోడశోపచార పూజాం కరిష్యే ||`;
+    } else if (appState.devotee.purpose === "aarogya") {
+      purposeEl.innerHTML = `శ్రీ పూర్ణా పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామి అనుగ్రహ ప్రసాద సిద్ధ్యర్థం, 
+      <strong>అస్మాకం సర్వేషాం సహకుటుంబానాం క్షేమ స్థైర్య విజయ ఆయురారోగ్య ఐశ్వర్యాభివృద్ధ్యర్థం</strong>, 
+      యావచ్ఛక్తి ధ్యాన ఆవాహనాది షోడశోపచార పూజాం కరిష్యే ||`;
+    } else {
+      purposeEl.innerHTML = `శ్రీ పూర్ణా పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామి (శ్రీ ఇష్టదేవతా) అనుగ్రహ ప్రసాద సిద్ధ్యర్థం, 
+      యావచ్ఛక్తి ధ్యాన ఆవాహనాది షోడశోపచార పూజాం కరిష్యే ||`;
+    }
+  }
+
+  // Update Laghu (Short) View & Nitya Live View
+  updateAllByClass("dyn-samvat", appState.samvatsara);
+  updateAllByClass("dyn-masa", appState.masa);
+  updateAllByClass("dyn-paksha", appState.paksha);
+  updateAllByClass("dyn-tithi", appState.tithi);
+  updateAllByClass("dyn-vasara", appState.vasara);
+  updateAllByClass("dyn-ayana", appState.ayanam);
+  updateAllByClass("dyn-ritu", appState.ritu);
+  updateAllByClass("dyn-nakshatra", appState.nakshatra);
+  updateAllByClass("dyn-gotram", appState.devotee.gotram);
+  updateAllByClass("dyn-karta", appState.devotee.karta);
+  updateAllByClass("dyn-wife", appState.devotee.wife);
+  updateAllByClass("dyn-sons", appState.devotee.sons);
+  updateAllByClass("dyn-pincode", appState.devotee.pincode);
+  updateAllByClass("dyn-city", appState.location ? appState.location.city : "గుంటూరు");
+  updateAllByClass("dyn-subarea", appState.location ? appState.location.subArea : "గోరంట్ల / ఇండస్ట్రియల్ ఎస్టేట్");
+
+  // Update English View
+  setElementText("enSamvat", appState.samvatsara);
+  setElementText("enAyana", appState.ayanam);
+  setElementText("enRitu", appState.ritu);
+  setElementText("enMasa", appState.masa);
+  setElementText("enPaksha", appState.paksha);
+  setElementText("enTithi", appState.tithi);
+  setElementText("enVasara", appState.vasara);
+  setElementText("enNakshatra", appState.nakshatra);
+  setElementText("enYoga", appState.yoga);
+  setElementText("enKarana", appState.karana);
+}
+
+function setElementText(id, text) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+}
+
+function updateAllByClass(className, text) {
+  document.querySelectorAll("." + className).forEach(el => {
+    el.textContent = text;
+  });
+}
+
+// ==========================================
+// 6. 108 ASHTOTTARAM RENDER & MULTI-DEITY ENGINE
+// ==========================================
+
+function formatNamaForDisplay(name) {
+  if (!name) return "";
+  // Bind "ఓం" and the following word together using non-breaking space
+  // This prevents "ఓం" from orphaning on a line by itself on mobile screens
+  return name.replace(/^ఓం\s+/, "ఓం&nbsp;");
+}
+
+function formatSaranuForDisplay(saranu) {
+  if (!saranu) return "";
+  // Bind "శరణం అయ్యప్ప" together so it never breaks into awkward single-word lines
+  return saranu.replace(/\s+శరణం\s+అయ్యప్ప$/, "&nbsp;శరణం&nbsp;అయ్యప్ప");
+}
+
+function renderAshtottaramList() {
+  const container = document.getElementById("ashtottaramList");
+  if (container) {
+    const collection = ASHTOTTARA_COLLECTIONS[appState.currentDeity] || ASHTOTTARA_COLLECTIONS.ayyappa;
+
+    // Update section title & closing mantra
+    setElementText("ashtottaraSectionTitle", collection.title);
+    const closingEl = document.getElementById("ashtottaraClosingMantra");
+    if (closingEl) {
+      closingEl.innerHTML = `<p><strong>${collection.closing}</strong></p>`;
+    }
+
+    container.innerHTML = collection.names.map((name, idx) => `
+      <div class="nama-card" id="nama-card-${idx}" onclick="offerFlowerAt(${idx})">
+        <div class="nama-num">${idx + 1}</div>
+        <div class="nama-text">${formatNamaForDisplay(name)}</div>
+      </div>
+    `).join("");
+
+    recalculateChantedCount();
+  }
+
+  // Also render Nitya Ashtottara Grid in the Daily flow
+  switchNityaDeity(appState.currentNityaDeity || "ayyappa");
+}
+
+function switchNityaDeity(deityId) {
+  if (!ASHTOTTARA_COLLECTIONS[deityId]) deityId = "ayyappa";
+  appState.currentNityaDeity = deityId;
+
+  // Update deity tabs in Nitya flow
+  document.querySelectorAll(".nitya-deity-tab-btn").forEach(btn => {
+    if (btn.dataset.deity === deityId) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  const collection = ASHTOTTARA_COLLECTIONS[deityId];
+  const lbl = document.getElementById("lblNityaAshtottaraCounter");
+  if (lbl) {
+    lbl.textContent = `🌸 ${collection.shortTitle} (108 నామాలు)`;
+  }
+
+  const nityaGrid = document.getElementById("nityaAshtottaraGrid");
+  if (nityaGrid) {
+    nityaGrid.innerHTML = collection.names.map((name, idx) => `
+      <div class="nama-card" id="nitya-nama-${idx}" onclick="offerFlowerAtNitya(${idx})">
+        <div class="nama-num">${idx + 1}</div>
+        <div class="nama-text">${formatNamaForDisplay(name)}</div>
+      </div>
+    `).join("");
+  }
+}
+
+function setAshtottaraView(targetGridId, mode) {
+  const grid = document.getElementById(targetGridId);
+  if (!grid) return;
+
+  if (mode === "book") {
+    grid.classList.add("book-mode");
+  } else {
+    grid.classList.remove("book-mode");
+  }
+
+  // Update toggle button active states in parent section or whole document
+  const parent = grid.closest(".section-card, .puja-step-card") || document;
+  const cardBtns = parent.querySelectorAll(`.btn-view-card[data-target="${targetGridId}"]`);
+  const bookBtns = parent.querySelectorAll(`.btn-view-book[data-target="${targetGridId}"]`);
+
+  cardBtns.forEach(b => b.classList.toggle("active", mode === "card"));
+  bookBtns.forEach(b => b.classList.toggle("active", mode === "book"));
+
+  try {
+    localStorage.setItem(`view_mode_${targetGridId}`, mode);
+  } catch(e) {}
+}
+
+function initAshtottaraViewModes() {
+  ["nityaAshtottaraGrid", "ashtottaramList", "saranuListContainer"].forEach(id => {
+    try {
+      const saved = localStorage.getItem(`view_mode_${id}`);
+      if (saved === "book") {
+        setAshtottaraView(id, "book");
+      }
+    } catch(e) {}
+  });
+}
+
+function jumpToNityaDeity(deityId) {
+  switchNityaDeity(deityId);
+  const target = document.getElementById("nitya-step-5");
+  if (target) {
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function offerFlowerAtNitya(idx) {
+  const card = document.getElementById(`nitya-nama-${idx}`);
+  if (card) {
+    card.classList.toggle("chanted");
+  }
+  playTempleBell(true);
+  spawnFallingFlower();
+  if (navigator.vibrate) {
+    try { navigator.vibrate(25); } catch(err) {}
+  }
+  recalculateNityaCount();
+}
+
+function dropPujaFlower() {
+  // If called directly via button, mark the next unchanted card
+  const unchantedCard = document.querySelector("#nityaAshtottaraGrid .nama-card:not(.chanted)");
+  if (unchantedCard) {
+    unchantedCard.classList.add("chanted");
+    unchantedCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  playTempleBell(true);
+  if (navigator.vibrate) {
+    try { navigator.vibrate(30); } catch(err) {}
+  }
+  recalculateNityaCount();
+
+  spawnFallingFlower();
+}
+
+function spawnFallingFlower() {
+  // Visual flower particle animation
+  const flowers = ["🌸", "🌺", "🌼", "🏵️", "🪷", "🌻"];
+  const flower = document.createElement("div");
+  flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+  flower.style.position = "fixed";
+  flower.style.fontSize = `${Math.floor(Math.random() * 16) + 24}px`;
+  flower.style.left = `${Math.floor(Math.random() * 80) + 10}vw`;
+  flower.style.top = "15vh";
+  flower.style.zIndex = "99999";
+  flower.style.pointerEvents = "none";
+  flower.style.transition = "transform 1.4s ease-in, opacity 1.4s ease-out";
+  flower.style.transform = "translateY(0) rotate(0deg) scale(0.8)";
+  flower.style.opacity = "1";
+  document.body.appendChild(flower);
+
+  requestAnimationFrame(() => {
+    flower.style.transform = `translateY(${window.innerHeight * 0.7}px) rotate(${Math.floor(Math.random() * 360) - 180}deg) scale(1.3)`;
+    flower.style.opacity = "0";
+  });
+
+  setTimeout(() => {
+    if (flower && flower.parentNode) flower.parentNode.removeChild(flower);
+  }, 1500);
+}
+
+function recalculateNityaCount() {
+  const charted = document.querySelectorAll("#nityaAshtottaraGrid .nama-card.chanted").length;
+  const collection = ASHTOTTARA_COLLECTIONS[appState.currentNityaDeity || "ayyappa"];
+  const lbl = document.getElementById("lblNityaAshtottaraCounter");
+  if (lbl) {
+    lbl.textContent = `🌸 ${collection.shortTitle}: ${charted} / 108 సమర్పించబడ్డాయి`;
+  }
+}
+
+function switchAshtottaraDeity(deityId, shouldScroll = false) {
+  if (!ASHTOTTARA_COLLECTIONS[deityId]) return;
+  appState.currentDeity = deityId;
+
+  // Update tab buttons
+  document.querySelectorAll(".deity-tab-btn").forEach(btn => {
+    if (btn.dataset.deity === deityId) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  renderAshtottaramList();
+
+  if (shouldScroll) {
+    const sec = document.getElementById("ashtottaram");
+    if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  const collection = ASHTOTTARA_COLLECTIONS[deityId];
+  showCelebrationAlert(`✨ ${collection.shortTitle} (108 పుష్పార్చన) సిద్ధంగా ఉంది!`);
+}
+
+function offerFlowerAt(index) {
+  const card = document.getElementById(`nama-card-${index}`);
+  if (!card) return;
+
+  card.classList.toggle("chanted");
+  playTempleBell(true); // Short gentle bell chime
+  spawnFallingFlower();
+  if (navigator.vibrate) {
+    try { navigator.vibrate(25); } catch(e) {}
+  }
+  recalculateChantedCount();
+}
+
+function recalculateChantedCount() {
+  const chanted = document.querySelectorAll(".nama-card.chanted").length;
+  appState.ashtottaraIndex = chanted;
+  
+  const countEl = document.getElementById("ashtottaraCount");
+  const progEl = document.getElementById("ashtottaraProgress");
+  
+  if (countEl) countEl.textContent = `${chanted} / 108`;
+  if (progEl) progEl.style.width = `${(chanted / 108) * 100}%`;
+
+  if (chanted === 108) {
+    playTempleBell();
+    if (navigator.vibrate) {
+      try { navigator.vibrate([80, 40, 80]); } catch(e) {}
+    }
+    const collection = ASHTOTTARA_COLLECTIONS[appState.currentDeity] || ASHTOTTARA_COLLECTIONS.ayyappa;
+    showCelebrationAlert(collection.celebrationText);
+  }
+}
+
+function nextAshtottaraNama() {
+  const cards = document.querySelectorAll(".nama-card");
+  for (let i = 0; i < cards.length; i++) {
+    if (!cards[i].classList.contains("chanted")) {
+      cards[i].classList.add("chanted");
+      cards[i].scrollIntoView({ behavior: "smooth", block: "nearest" });
+      playTempleBell(true);
+      if (navigator.vibrate) {
+        try { navigator.vibrate(25); } catch(e) {}
+      }
+      recalculateChantedCount();
+      break;
+    }
+  }
+}
+
+function resetAshtottaraCounter() {
+  document.querySelectorAll(".nama-card.chanted").forEach(c => c.classList.remove("chanted"));
+  recalculateChantedCount();
+}
+
+function offerAllFlowers() {
+  document.querySelectorAll(".nama-card").forEach(c => c.classList.add("chanted"));
+  recalculateChantedCount();
+}
+
+// ==========================================
+// 7. 108 SARANU GHOSHA RENDER & COUNTER
+// ==========================================
+
+function renderSaranuGhoshaList() {
+  const container = document.getElementById("saranuListContainer");
+  if (!container) return;
+
+  container.innerHTML = SARANU_GHOSHA_LIST.map((sh, idx) => `
+    <div class="saranu-card" id="saranu-card-${idx}" onclick="chantSaranuAt(${idx})">
+      <div class="saranu-num">${idx + 1}</div>
+      <div class="saranu-text">${formatSaranuForDisplay(sh)}</div>
+    </div>
+  `).join("");
+}
+
+function chantSaranuAt(index) {
+  const card = document.getElementById(`saranu-card-${index}`);
+  if (!card) return;
+
+  card.classList.toggle("chanted");
+  playTempleBell(true);
+  if (navigator.vibrate) {
+    try { navigator.vibrate(25); } catch(e) {}
+  }
+  recalculateSaranuCount();
+}
+
+function recalculateSaranuCount() {
+  const chanted = document.querySelectorAll(".saranu-card.chanted").length;
+  appState.saranuIndex = chanted;
+
+  const countEl = document.getElementById("saranuCount");
+  const progEl = document.getElementById("saranuProgress");
+
+  if (countEl) countEl.textContent = `${chanted} / 108`;
+  if (progEl) progEl.style.width = `${(chanted / 108) * 100}%`;
+
+  if (chanted === 108) {
+    playTempleBell();
+    if (navigator.vibrate) {
+      try { navigator.vibrate([80, 40, 80]); } catch(e) {}
+    }
+    showCelebrationAlert("🕉️ 108 శరణు ఘోష పరిపూర్ణమైనది! స్వామియే శరణం అయ్యప్ప! 🕉️");
+  }
+}
+
+function nextSaranuGhosha() {
+  const cards = document.querySelectorAll(".saranu-card");
+  for (let i = 0; i < cards.length; i++) {
+    if (!cards[i].classList.contains("chanted")) {
+      cards[i].classList.add("chanted");
+      cards[i].scrollIntoView({ behavior: "smooth", block: "nearest" });
+      playTempleBell(true);
+      if (navigator.vibrate) {
+        try { navigator.vibrate(25); } catch(e) {}
+      }
+      recalculateSaranuCount();
+      break;
+    }
+  }
+}
+
+function resetSaranuCounter() {
+  document.querySelectorAll(".saranu-card.chanted").forEach(c => c.classList.remove("chanted"));
+  recalculateSaranuCount();
+}
+
+// ==========================================
+// 8. TEMPLE BELL WEB AUDIO API SYNTHESIZER
+// ==========================================
+
+let audioCtx = null;
+
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) {
+      audioCtx = new AudioContextClass();
+    }
+  }
+  if (audioCtx && audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+/**
+ * Synthesizes an authentic multi-harmonic brass temple bell sound
+ */
+function playTempleBell(isSoft = false) {
+  try {
+    if (navigator.vibrate) {
+      try { navigator.vibrate(isSoft ? 20 : 40); } catch(e) {}
+    }
+
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    // Harmonic frequencies typical of sacred Indian temple bells (strike note + overtones)
+    const baseFreq = isSoft ? 880 : 587.33; // D5
+    const harmonics = [1, 1.5, 2.01, 2.76, 3.45, 4.12];
+    const decayTime = isSoft ? 1.8 : 3.8;
+
+    harmonics.forEach((mult, index) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = index === 0 ? "sine" : "triangle";
+      osc.frequency.setValueAtTime(baseFreq * mult, now);
+      // Slight detune for shimmer
+      osc.detune.setValueAtTime((Math.random() - 0.5) * 15, now);
+
+      const amp = (1 / (index + 1)) * (isSoft ? 0.15 : 0.28);
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(amp, now + 0.008);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + decayTime);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + decayTime + 0.1);
+    });
+  } catch (err) {
+    console.warn("Web Audio chime not available:", err);
+  }
+}
+
+// ==========================================
+// 9. TANPURA DRONE SYNTHESIZER
+// ==========================================
+
+let tanpuraNodes = [];
+
+function toggleTanpura() {
+  const btn = document.getElementById("btnPlayTanpura");
+  const statusEl = document.getElementById("tanpuraStatus");
+  const btnText = document.getElementById("tanpuraBtnText");
+
+  if (appState.tanpuraPlaying) {
+    stopTanpura();
+    if (btnText) btnText.textContent = "ధ్యాన నాదం (Tanpura Sound) ప్రారంభించండి";
+    if (statusEl) statusEl.textContent = "నిశ్శబ్దం";
+  } else {
+    startTanpura();
+    if (btnText) btnText.textContent = "ధ్యాన నాదం ఆపండి (Stop Tanpura)";
+    if (statusEl) statusEl.textContent = "🔊 తంబుర శృతి ధ్వనిస్తోంది...";
+  }
+}
+
+function startTanpura() {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    stopTanpura();
+    appState.tanpuraPlaying = true;
+
+    // Pa-Sa-Sa-Sa' Tanpura tuning (base D# / Eb: ~155.56 Hz)
+    const baseFreq = 155.56;
+    const notes = [
+      { freq: baseFreq * 1.5, detune: -2 }, // Pa
+      { freq: baseFreq, detune: 0 },         // Sa
+      { freq: baseFreq, detune: 3 },         // Sa
+      { freq: baseFreq * 0.5, detune: -1 }   // Kharaj Sa
+    ];
+
+    notes.forEach((n, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(n.freq, ctx.currentTime);
+      osc.detune.setValueAtTime(n.detune, ctx.currentTime);
+
+      // Low pass filter for soft meditative drone tone
+      const filter = ctx.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.frequency.setValueAtTime(450, ctx.currentTime);
+
+      gain.gain.setValueAtTime(0.04, ctx.currentTime);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+      tanpuraNodes.push({ osc, gain });
+    });
+  } catch (e) {
+    console.warn("Tanpura start error", e);
+  }
+}
+
+function stopTanpura() {
+  tanpuraNodes.forEach(({ osc, gain }) => {
+    try {
+      osc.stop();
+      osc.disconnect();
+    } catch (e) {}
+  });
+  tanpuraNodes = [];
+  appState.tanpuraPlaying = false;
+}
+
+// ==========================================
+// 10. TEXT-TO-SPEECH (CHANT SANKALPAM)
+// ==========================================
+
+// ==========================================
+// 10. POOJA AUDIO READER & LEARNING ENGINE
+// ==========================================
+
+const PUJA_AUDIO_SCRIPT = {
+  deeparadhana: {
+    targetId: "sloka-deeparadhana",
+    title: "1. దీపారాధన శ్లోకం",
+    text: "దీప జ్యోతిః పరబ్రహ్మ, దీప జ్యోతిః జనార్దనః, దీపో హరతు మే పాపం, దీప జ్యోతిః నమోస్తు తే. శుభం కరోతి కల్యాణం, ఆరోగ్యం ధన సంపదః, శత్రు బుద్ధి వినాశాయ, దీప జ్యోతిః నమోస్తు తే. ఓం శ్రీ దివ్య దీప జ్యోతిషే నమః, ధ్యాయామి, పుష్పం సమర్పయామి.",
+    phoneticEn: "Deepa jyotih para brahma, Deepa jyotir janaardanah. Deepo haratu mey paapam, Deepa jyotir namo astu tey. Shubham karoti kalyaanam, aarogyam dhana sampadah. Shatru buddhi vinaashaaya, deepa jyotir namo astu tey. Om shree divya deepa jyotishey namaha, dhyaayaami, pushpam samarpayaami."
+  },
+  guru: {
+    targetId: "sloka-guru",
+    title: "1. గురు ప్రార్థన",
+    text: "గురుర్బ్రహ్మా గురుర్విష్ణుః, గురుర్దేవో మహేశ్వరః, గురుస్సాక్షాత్ పరబ్రహ్మ, తస్మై శ్రీ గురవే నమః. శ్రీ మద్గురు చరణారవిందాభ్యాం నమః.",
+    phoneticEn: "Gurur brahmaa Gurur vishnuhu Gurur devo Maheshwaraha. Gurus saakshaat Parabrahma, Tasmai Shree Guravey Namaha. Shree madguru charanaaravindaabhyaam namaha."
+  },
+  ganapathi: {
+    targetId: "sloka-ganapathi",
+    title: "3. విఘ్నేశ్వర ప్రార్థన",
+    text: "శుక్లాంబరధరం విష్ణుం, శశివర్ణం చతుర్భుజం, ప్రసన్నవదనం ధ్యాయేత్, సర్వ విఘ్నోపశాంతయే. అగజానన పద్మార్కం, గజాననమ్ అహర్నిశమ్, అనేకదం తం భక్తానాం, ఏకదంతమ్ ఉపాస్మహే. ఓం శ్రీ సిద్ధిబుద్ధి సమేత శ్రీ మహాగణపతయే నమః, ధ్యాయామి, పుష్పం సమర్పయామి.",
+    phoneticEn: "Shuklaambaradharam Vishnum, Shashi varnam Chaturbhujam. Prasanna vadanam dhyaayet, Sarva vighnopashaantaye. Agajaanana Padmaarkam, Gajaananam aharnisham. Anekadam tam bhaktaanaam, Ekadantam upaasmahe. Om Shree Siddhi-Buddhi sameta Shree Maha Ganapataye namaha, dhyaayaami, pushpam samarpayaami."
+  },
+  subramanya: {
+    targetId: "sloka-subramanya",
+    title: "3. సుబ్రహ్మణ్య ప్రార్థన",
+    text: "షడాననం కుంకుమరక్తవర్ణం, మహాద్యుతిం దివ్యమయూరవాహనం, రుద్రస్య సూనుం సురసైన్యనాథం, గుహం సదాహం శరణం ప్రపద్యే. ఓం శ్రీ వల్లీ దేవసేనా సమేత సుబ్రహ్మణ్య స్వామినే నమః, ధ్యాయామి, పుష్పం సమర్పయామి.",
+    phoneticEn: "Shadaananam kunkuma-rakta-varnam, mahaadyutim divya-mayoora-vaahanam. Rudrasya soonum sura-sainya-naatham, Guham sadaaham sharanam prapadye. Om Shree Valli Devasena sameta Subramanya swaaminey namaha, dhyaayaami, pushpam samarpayaami."
+  },
+  ayyappa_dhyanam: {
+    targetId: "sloka-ayyappa-dhyanam",
+    title: "4. అయ్యప్ప ధ్యానం & లఘు ఉపచారాలు",
+    text: "ధ్యాయే దుద్యత్సహస్రార్క రవిభాసమరుణారుణం, శాస్తారమభయప్రదం దేవం త్రిణేత్రం మణిభూషితం. కిరీట హార కేయూర మణికుండల మండితం, సురాసుర వందితం దేవం శాస్తారమాశ్రయే ముదా. ఓం శ్రీ పూర్ణా పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్ప స్వామినే నమః, ధ్యాయామి. ఓం శ్రీ అయ్యప్పస్వామినే నమః ఆసనం సమర్పయామి, పాద్యం సమర్పయామి, అర్ఘ్యం సమర్పయామి, ఆచమనీయం సమర్పయామి, గంధం సమర్పయామి, పుష్పమాలాం సమర్పయామి, ధూపం ఆఘ్రాపయామి.",
+    phoneticEn: "Dhyaayed udyat sahasraarka ravi-bhaasam arunaarunam, Shaastaaram abhayapradam devam trinetram mani-bhooshitam. Kireeta haara keyoora mani-kundala manditam, suraasura vanditam devam shaastaaram aashraye mudaa. Om Shree Poorna Pushkalaambaa sameta Shree Hariharaputra Ayyappa swaaminey namaha, dhyaayaami. Aasanam samarpayaami, Paadyam samarpayaami, Arghyam samarpayaami, Gandham samarpayaami, Pushpa-maalaam samarpayaami, Dhoopam aaghraapayaami."
+  },
+  naivedyam: {
+    targetId: "sloka-naivedyam",
+    title: "6. నిత్య నైవేద్యం & గాయత్రి",
+    text: "ఓం భూర్భువస్సువః, తత్సవితుర్వరేణ్యం భర్గో దేవస్య ధీమహి, ధియో యో నః ప్రచోదయాత్. సత్యం త్వర్తేన పరిషించామి, అమృతమస్తు, అమృతోపస్తరణమసి. ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా. శ్రీ పూర్ణా పుష్కలాంబా సమేత శ్రీ అయ్యప్పస్వామినే నమః అమృత నివేదనం సమర్పయామి, మధ్యే మధ్యే అమృత పానీయం సమర్పయామి, తాంబూలం సమర్పయామి.",
+    phoneticEn: "Om bhoor bhuvassuvaha, tat savitur varenyam bhargo devasya dheemahi dhiyo yo naha prachodayaat. Satyam tvartena parishinchaami, amritamastu, amritopastaranamasi. Om praanaaya svaahaa, om apaanaaya svaahaa, om vyaanaaya svaahaa, om udaanaaya svaahaa, om samaanaaya svaahaa. Shree Poorna Pushkalaambaa sameta Shree Ayyappa swaaminey namaha amrita nivedanam samarpayaami, taamboolam samarpayaami."
+  },
+  harathi: {
+    targetId: "sloka-harathi",
+    title: "7. కర్పూర నీరాజనం",
+    text: "కర్పూర గౌరం కరుణావతారం, సంసారసారం భుజగేంద్రహారం, సదా వసంతం హృదయారవిందే, భవం భవానీ సహితం నమామి. శ్రీ పూర్ణా పుష్కలాంబా సమేత శ్రీ అయ్యప్పస్వామినే నమః ఆనంద కర్పూర నీరాజనం సమర్పయామి.",
+    phoneticEn: "Karpoora gauram karunaavataaram, samsaara saaram bhujagendra haaram. Sadaa vasantam hridayaaravinde, bhavam bhavaanee sahitam namaami. Shree Poorna Pushkalaambaa sameta Shree Ayyappa swaaminey namaha aananda karpoora neeraajanam samarpayaami."
+  },
+  lokaveeram: [
+    { num: 1, text: "లోకవీరం మహాపూజ్యం, సర్వరక్షాకరం విభుం, మనోజవాఙ్మనోరూపం, శాస్తారం ప్రణమామ్యహం.", phoneticEn: "Loka-veeram mahaa-poojyam, sarva-rakshaakaram vibhum. Manojavaan-manoroopam, Shaastaaram pranamaamyaham." },
+    { num: 2, text: "విప్రపూజ్యం విశ్వవంద్యం, విష్ణుశంభ్వోః ప్రియం సుతం, క్షిప్రప్రసాదనిరతం, శాస్తారం ప్రణమామ్యహం.", phoneticEn: "Vipra-poojyam vishva-vandyam, Vishnu-shambhvoho priyam sutam. Kshipra-prasaada-niratam, Shaastaaram pranamaamyaham." },
+    { num: 3, text: "మత్తమాతంగగమనం, కారుణ్యామృతపూరితం, సర్వవిఘ్నహరం దేవం, శాస్తారం ప్రణమామ్యహం.", phoneticEn: "Matta-maatanga-gamanam, kaarunyaamrita-pooritam. Sarva-vighnaharam devam, Shaastaaram pranamaamyaham." },
+    { num: 4, text: "అస్మత్కులేశ్వరం దేవం, అస్మచ్ఛత్రువినాశనం, అస్మదిష్టప్రదాతారం, శాస్తారం ప్రణమామ్యహం.", phoneticEn: "Asmat-kuleshvaram devam, asmacchatru-vinaashanam. Asmad-ishta-pradaataaram, Shaastaaram pranamaamyaham." },
+    { num: 5, text: "పాండ్యేశవంశతిలకం, కేరళే కేళివిగ్రహం, ఆర్తత్రాణపరం దేవం, శాస్తారం ప్రణమామ్యహం.", phoneticEn: "Paandyesha-vamsha-tilakam, Kerale keli-vigraham. Aarta-traana-param devam, Shaastaaram pranamaamyaham." },
+    { num: 6, text: "త్రయంబకపురాధీశం, గణాధిపసమన్వితం, విభూతిభూషితాంగం తం, శాస్తారం ప్రణమామ్యహం.", phoneticEn: "Trayambakapuraadheesham, ganaadhipa-samanvitam. Vibhooti-bhooshitaangam tam, Shaastaaram pranamaamyaham." },
+    { num: 7, text: "పంచరత్నాఖ్యమేతద్యో, నిత్యం పఠతి మానవః, తస్య ప్రసన్నో భగవాన్, శాస్తా వసతి మానసే.", phoneticEn: "Pancha-ratnaakhyam etadyo, nityam pathati maanavaha. Tasya prasanno bhagavaan, Shaastaa vasati maanase." },
+    { num: 8, text: "యస్య ధన్వంతరిర్మాతా, పితా దేవో మహేశ్వరః, తం శాస్తారమహం వందే, మహావైద్యం దయానిధిం.", phoneticEn: "Yasya Dhanvantarir maataa, pitaa devo Maheshwaraha. Tam Shaastaaram aham vande, mahaa-vaidyam dayaa-nidhim." },
+    { num: 9, text: "భూతనాథ సదానంద, సర్వభూతదయాపర, రక్ష రక్ష మహాబాహో, శాస్త్రే తుభ్యం నమో నమః.", phoneticEn: "Bhoothanaatha sadaananda, sarva-bhoota-dayaapara. Raksha raksha mahaabaaho, Shaastre tubhyam namo namaha." }
+  ],
+  sharanu18: [
+    "స్వామియే శరణమయ్యప్ప!",
+    "హరిహర సుతనే శరణమయ్యప్ప!",
+    "కన్నిమూల గణపతి భగవానే శరణమయ్యప్ప!",
+    "శక్తి వడివేలన్ సోదరనే శరణమయ్యప్ప!",
+    "మాలికాపురత్తు మంజమ్మ దేవియే శరణమయ్యప్ప!",
+    "వావర్ స్వామియే శరణమయ్యప్ప!",
+    "కడుత్తస్వామియే శరణమయ్యప్ప!",
+    "ఇరుముడి ప్రియనే శరణమయ్యప్ప!",
+    "నెయ్యభిషేక ప్రియనే శరణమయ్యప్ప!",
+    "పంబానది శిశువే శరణమయ్యప్ప!",
+    "పందళరాజకుమారనే శరణమయ్యప్ప!",
+    "విల్లి వీరనే శరణమయ్యప్ప!",
+    "వీరమణికంఠనే శరణమయ్యప్ప!",
+    "పులివాహననే శరణమయ్యప్ప!",
+    "భక్తవత్సలనే శరణమయ్యప్ప!",
+    "పదునెట్టాంబడి ఒడయనాథనే శరణమయ్యప్ప!",
+    "కాంతమలై జ్యోతిస్వరూపనే శరణమయ్యప్ప!",
+    "ఓం శ్రీ పూర్ణాపుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామియే శరణమయ్యప్ప!"
+  ],
+  harivarasanam: [
+    { num: 1, text: "హరివరాసనం విశ్వమోహనం, హరిదధీశ్వరం ఆరాధ్యపాదుకం, అరివిమర్దనం నిత్యనర్తనం, హరిహరాత్మజం దేవమాశ్రయే. శరణం అయ్యప్పా స్వామి శరణం అయ్యప్పా.", phoneticEn: "Harivaraasanam vishva-mohanam, haridadheeshwaram aaraadhya-paadukam. Arivimardanam nitya-nartanam, Hariharaatmajam devam aashraye. Sharanam Ayyappaa swami sharanam Ayyappaa." },
+    { num: 2, text: "శరణకీర్తనం శక్తమానసం, ఆభరణశోభితం శోభనావహం, అరుణభాసురం శత్రునాశనం, హరిహరాత్మజం దేవమాశ్రయే. శరణం అయ్యప్పా స్వామి శరణం అయ్యప్పా.", phoneticEn: "Sharana-keertanam shakta-maanasam, aabharana-shobhitam shobhanaavaham. Aruna-bhaasuram shatru-naashanam, Hariharaatmajam devam aashraye. Sharanam Ayyappaa swami sharanam Ayyappaa." },
+    { num: 3, text: "ప్రణవసత్యకం ప్రౌఢకీర్తనం, దోరణభాసురం దీపకోమలం, వరనికేతనం వర్ధనాననం, హరిహరాత్మజం దేవమాశ్రయే. శరణం అయ్యప్పా స్వామి శరణం అయ్యప్పా.", phoneticEn: "Pranava-satyakam praudha-keertanam, dorana-bhaasuram deepa-komalam. Vara-niketanam vardhanaananam, Hariharaatmajam devam aashraye. Sharanam Ayyappaa swami sharanam Ayyappaa." },
+    { num: 4, text: "తురగవాహనం సుందరాననం, వరగదాయుధం దేవవర్ణితం, గురుకృపాకరం కీర్తనప్రియం, హరిహరాత్మజం దేవమాశ్రయే. శరణం అయ్యప్పా స్వామి శరణం అయ్యప్పా.", phoneticEn: "Turaga-vaahanam sundaraananam, vara-gadaayudham deva-varnitam. Guru-kripaakaram keertana-priyam, Hariharaatmajam devam aashraye. Sharanam Ayyappaa swami sharanam Ayyappaa." },
+    { num: 5, text: "త్రిభువనార్చితం దేవతాత్మకం, త్రినయనప్రభుం దివ్యదేశికం, త్రిదశపూజితం చింతితప్రదం, హరిహరాత్మజం దేవమాశ్రయే. శరణం అయ్యప్పా స్వామి శరణం అయ్యప్పా.", phoneticEn: "Tribhuvanaarchitam devataatmakam, trinayana-prabhum divya-deshikam. Tridasha-poojitam chintita-pradam, Hariharaatmajam devam aashraye. Sharanam Ayyappaa swami sharanam Ayyappaa." },
+    { num: 6, text: "భవభయాపహం భావుకావహం, భువనమోహనం భూతిభూషణం, ధవళవాహనం దివ్యవారణం, హరిహరాత్మజం దేవమాశ్రయే. శరణం అయ్యప్పా స్వామి శరణం అయ్యప్పా.", phoneticEn: "Bhavabhayaapaham bhaavukaavaham, bhuvana-mohanam bhooti-bhooshanam. Dhavala-vaahanam divya-vaaranam, Hariharaatmajam devam aashraye. Sharanam Ayyappaa swami sharanam Ayyappaa." },
+    { num: 7, text: "కలమృదుస్మితం సుందరాననం, కళభకోమలం గాత్రమోహనం, కళభకేసరీవాజివాహనం, హరిహరాత్మజం దేవమాశ్రయే. శరణం అయ్యప్పా స్వామి శరణం అయ్యప్పా.", phoneticEn: "Kala-mridu-smitam sundaraananam, kalabha-komalam gaatra-mohanam. Kalabha-kesari-vaaji-vaahanam, Hariharaatmajam devam aashraye. Sharanam Ayyappaa swami sharanam Ayyappaa." },
+    { num: 8, text: "శ్రితజనప్రియం చింతితప్రదం, శ్రుతివిభూషణం సాధుజీవనం, శ్రుతిమనోహరం గీతలాలసం, హరిహరాత్మజం దేవమాశ్రయే. శరణం అయ్యప్పా స్వామి శరణం అయ్యప్పా.", phoneticEn: "Shrita-jana-priyam chintita-pradam, shruti-vibhooshanam saadhu-jeevanam. Shruti-manoharam geeta-laalasam, Hariharaatmajam devam aashraye. Sharanam Ayyappaa swami sharanam Ayyappaa." }
+  ],
+  pradakshina: {
+    targetId: "step-pradakshina",
+    title: "11. ఆత్మప్రదక్షిణ శ్లోకం",
+    text: "యానికాని చ పాపాని జన్మాంతరకృతాని చ, తాని తాని ప్రణశ్యంతి ప్రదక్షిణ పదే పదే. అన్యథా శరణం నాస్తి త్వమేవ శరణం మమ, తస్మాత్ కారుణ్య భావేన రక్ష రక్ష శబరీశ్వర. శ్రీ అయ్యప్పస్వామినే నమః ఆత్మప్రదక్షిణ సాష్టాంగ నమస్కారాన్ సమర్పయామి.",
+    phoneticEn: "Yaanikaani cha paapaani janmaantara-kritaani cha, taani taani pranashyanti pradakshina padey padey. Anyathaa sharanam naasti tvameva sharanam mama, tasmaat kaarunya bhaavena raksha raksha Shabareeshwara. Shree Ayyappa swaaminey namaha aatmapradakshina saashtaanga namaskaaraan samarpayaami."
+  },
+  kshama: {
+    targetId: "step-kshama",
+    title: "12. క్షమా ప్రార్థన & సమర్పణ",
+    text: "అపరాధ సహస్రాణి క్రియంతేఽహర్నిశం మయా, దాసోఽయమితి మాం మత్వా క్షమస్వ పరమేశ్వర. కర చరణ కృతం వా కాయజం కర్మజం వా, శ్రవణ నయనజం వా మానసం వాఽపరాధం, విహితమవిహితం వా సర్వమేతత్ క్షమస్వ, శబరిగిరినివాస శ్రీ ధర్మశాస్తా నమోఽస్తు తే. కాయేన వాచా మనసేంద్రియైర్వా, బుద్ధ్యాత్మనా వా ప్రకృతేః స్వభావాత్, కరోమి యద్యత్ సకలం పరస్మై, శ్రీ హరిహరపుత్రాయేతి సమర్పయామి. ఓం తత్సత్ శ్రీ బ్రహ్మార్పణమస్తు.",
+    phoneticEn: "Aparaadha sahasraani kriyante aharnisham mayaa, daaso ayamiti maam matvaa kshamasva Parameshwara. Kara charana kritam vaa kaayajam karmajam vaa, shravana nayanajam vaa maanasam vaa aparaadham, vihitam avihitam vaa sarvam etat kshamasva, Shabarigiri nivaasa Shree Dharmashaastaa namo astu tey. Kaayena vaachaa manasendriyair vaa, buddhyaatmanaa vaa prakriteh svabhaavaat, karomi yadyat sakalam parasmai, Shree Hariharaputraayeti samarpayaami. Om tatsat Shree Brahmaarpanamastu."
+  },
+  bhojana1: {
+    targetId: "bhojana-mantras",
+    title: "భోజన పూర్వ మంత్రం",
+    text: "బ్రహ్మార్పణం బ్రహ్మ హవిః, బ్రహ్మాగ్నౌ బ్రహ్మణా హుతం, బ్రహ్మైవ తేన గంతవ్యం, బ్రహ్మకర్మ సమాధినా. అహం వైశ్వానరో భూత్వా, ప్రాణినాం దేహమాశ్రితః, ప్రాణాపాన సమాయుక్తః, పచామ్యన్నం చతుర్విధం.",
+    phoneticEn: "Brahmaarpanam Brahma Havir, Brahmaagnau Brahmanaahutam. Brahmaiva Tena Gantavyam, Brahma Karma Samaadhinaa. Aham Vaishwaanaro Bhootvaa, Praaninaam Dehamaashritaha. Praanaapaana Samaayuktaha, Pachaamyannam Chaturvidham."
+  },
+  bhojana2: {
+    targetId: "bhojana-mantras",
+    title: "భోజనానంతర మంత్రం",
+    text: "అగస్త్యం కుంభకర్ణం చ, శమిం చ బడబానలం, భోజనం పరిపాకార్థం, స్మరేద్భీమం చ పంచమం. అన్నదాతా సుఖీభవ, సర్వే జనాః సుఖినో భవంతు.",
+    phoneticEn: "Agastyam Kumbhakarnam cha, Shamim cha Badabaanalam. Bhojanam Paripaakaartham, Smared Bheemam cha Panchamam. Annadaataa Sukheebhava, Sarve Janaah Sukhino Bhavantu."
+  }
+};
+
+let userSelectedVoice = null;
+let availableVoices = [];
+
+let readerState = {
+  isPlaying: false,
+  isPaused: false,
+  rate: 0.82,
+  pitch: 0.90, // Deeper masculine baritone resonant temple pandit tone
+  mode: "single", // "single", "continuous", "108_namas", "108_saranu"
+  sequence: [],
+  sequenceIndex: 0,
+  currentTitle: "",
+  activeTargetId: null,
+  autoChantTimer: null,
+  autoScroll: true
+};
+
+// Lightweight transliterator for converting Telugu text to readable phonetic Sanskrit/English for Western TTS engines
+function convertTeluguToPhonetic(str) {
+  if (!str) return "";
+  let res = str
+    .replace(/స్వామియే\s*శరణమయ్యప్ప/g, " Swamiye Sharanam Ayyappa ")
+    .replace(/శరణమయ్యప్ప/g, " Sharanam Ayyappa ")
+    .replace(/శరణం\s*అయ్యప్ప/g, " Sharanam Ayyappa ")
+    .replace(/ఓం/g, "Om ")
+    .replace(/నమః/g, " Namaha ")
+    .replace(/నమః\s*$/g, " Namaha")
+    .replace(/శ్రీ/g, "Shree ")
+    .replace(/మహాగణపతయే/g, "Maha Ganapataye")
+    .replace(/సుబ్రహ్మణ్య/g, "Subramanya")
+    .replace(/అయ్యప్పస్వామి/g, "Ayyappa Swamy")
+    .replace(/హరిహరపుత్ర/g, "Hariharaputra")
+    .replace(/ఆవాహయామి/g, "Aavaahayaami")
+    .replace(/సమర్పయామి/g, "Samarpayaami")
+    .replace(/ధ్యాయామి/g, "Dhyaayaami")
+    .replace(/దీపారాధన/g, "Deepaaraadhana")
+    .replace(/హారతి/g, "Haarathi")
+    .replace(/హరివరాసనం/g, "Harivaraasanam")
+    .replace(/లోకవీరం/g, "Lokaveeram")
+    .replace(/మహాపూజ్యం/g, "Mahaapoojyam");
+
+  const teluguCharMap = {
+    'అ': 'a', 'ఆ': 'aa', 'ఇ': 'i', 'ఈ': 'ee', 'ఉ': 'u', 'ూ': 'oo', 'ఋ': 'ru',
+    'ఎ': 'e', 'ఏ': 'ae', 'ఐ': 'ai', 'ఒ': 'o', 'ఓ': 'o', 'ఔ': 'au', 'అం': 'am', 'అః': 'aha',
+    'క': 'k', 'ఖ': 'kh', 'గ': 'g', 'ఘ': 'gh', 'ఙ': 'ng',
+    'చ': 'ch', 'ఛ': 'chh', 'జ': 'j', 'ఝ': 'jh', 'ఞ': 'ny',
+    'ట': 't', 'ఠ': 'th', 'డ': 'd', 'ఢ': 'dh', 'ణ': 'n',
+    'త': 't', 'థ': 'th', 'ద': 'd', 'ధ': 'dh', 'న': 'n',
+    'ప': 'p', 'ఫ': 'ph', 'బ': 'b', 'భ': 'bh', 'మ': 'm',
+    'య': 'y', 'ర': 'r', 'ల': 'l', 'వ': 'v', 'శ': 'sh', 'ష': 'sh', 'స': 's', 'హ': 'h', 'ళ': 'l', 'క్ష': 'ksh', 'ఱ': 'r',
+    'ా': 'aa', 'ి': 'i', 'ీ': 'ee', 'ు': 'u', 'ూ': 'oo', 'ృ': 'ru',
+    'ె': 'e', 'ే': 'ae', 'ై': 'ai', 'ొ': 'o', 'ో': 'o', 'ౌ': 'au', 'ం': 'm', 'ః': 'h', '్': ''
+  };
+
+  const matras = {'ా': 'aa', 'ి': 'i', 'ీ': 'ee', 'ు': 'u', 'ూ': 'oo', 'ృ': 'ru', 'ె': 'e', 'ే': 'ae', 'ై': 'ai', 'ొ': 'o', 'ో': 'o', 'ౌ': 'au', 'ం': 'm', 'ః': 'h'};
+
+  let out = "";
+  for (let i = 0; i < res.length; i++) {
+    const ch = res[i];
+    const code = ch.charCodeAt(0);
+    if (code >= 0x0C05 && code <= 0x0C39) {
+      const base = teluguCharMap[ch] || ch;
+      const next = res[i + 1];
+      if (next === '్') {
+        out += base;
+        i++;
+      } else if (next && matras[next]) {
+        out += base + matras[next];
+        i++;
+      } else if (code >= 0x0C15 && code <= 0x0C39) {
+        out += base + 'a';
+      } else {
+        out += base;
+      }
+    } else if (teluguCharMap[ch] !== undefined) {
+      out += teluguCharMap[ch];
+    } else {
+      out += ch;
+    }
+  }
+  return out.replace(/\s+/g, ' ').trim();
+}
+
+function getBestTeluguVoice() {
+  if (!("speechSynthesis" in window)) return null;
+  let voices = window.speechSynthesis.getVoices() || [];
+  if (voices.length === 0 && availableVoices && availableVoices.length > 0) {
+    voices = availableVoices;
+  }
+  if (!voices || voices.length === 0) return null;
+
+  // 1. User manual override
+  if (userSelectedVoice) {
+    const v = voices.find(x => x.name === userSelectedVoice);
+    if (v) return v;
+  }
+
+  // 2. High Quality Telugu Voices (Edge Online Natural, Google Telugu Android)
+  const teluguVoice = voices.find(v => v.lang === "te-IN" || v.lang.startsWith("te") || v.name.toLowerCase().includes("telugu"));
+  if (teluguVoice) return teluguVoice;
+
+  // 3. Indian Hindi/Sanskrit Voices (Hindi models pronounce Sanskrit slokas authentically!)
+  const hindiVoice = voices.find(v => v.lang === "hi-IN" || v.lang.startsWith("hi") || v.name.toLowerCase().includes("hindi") || v.lang.startsWith("sa"));
+  if (hindiVoice) return hindiVoice;
+
+  // 4. Other Indian Language Voices (Kannada, Tamil, Malayalam)
+  const otherIndianVoice = voices.find(v => v.lang.startsWith("kn") || v.lang.startsWith("ta") || v.lang.startsWith("ml"));
+  if (otherIndianVoice) return otherIndianVoice;
+
+  // 5. Indian English Voices (Google en-IN, Microsoft Neerja / Prabhat)
+  const indianEnVoice = voices.find(v => v.lang === "en-IN" || v.name.toLowerCase().includes("india"));
+  if (indianEnVoice) return indianEnVoice;
+
+  // 6. Fallback: Any default or first available voice so utterance.voice is always valid
+  return voices.find(v => v.default) || voices[0] || null;
+}
+
+function populateVoiceList() {
+  const voiceSelect = document.getElementById("readerVoiceSelect");
+  if (!voiceSelect) return;
+
+  let voices = [];
+  if ("speechSynthesis" in window) {
+    voices = window.speechSynthesis.getVoices() || [];
+  }
+  if (voices.length > 0) {
+    availableVoices = voices;
+  } else if (availableVoices && availableVoices.length > 0) {
+    voices = availableVoices;
+  }
+
+  voiceSelect.innerHTML = "";
+
+  if (voices.length === 0) {
+    voiceSelect.innerHTML = `
+      <option value="auto" selected>🌟 ఆటోమేటిక్ వాయిస్ (సిస్టమ్ డిఫాల్ట్ - Recommended)</option>
+      <option value="te-IN">🗣️ తెలుగు వాయిస్ (లభ్యమైతే - Telugu Natural)</option>
+      <option value="hi-IN">🇮🇳 భారతీయ / సంస్కృత ఉచ్ఛారణ (Indian Chanting)</option>
+      <option value="en-IN">🌐 భారతీయ ఇంగ్లీష్ ఉచ్ఛారణ (Indian English)</option>
+    `;
+    const notice = document.getElementById("voiceNoticeBox");
+    if (notice) {
+      notice.style.display = "block";
+      notice.innerHTML = `
+        💡 <strong>సహజమైన పూజా ఉచ్ఛారణ చిట్కా:</strong> ఈ వెబ్‌సైట్‌ను <strong>Microsoft Edge</strong> బ్రౌజర్‌లో తెరవండి (ఇందులో ఉచితంగా అత్యంత శ్రావ్యమైన 'Microsoft Mohan / Shruti Natural Telugu' పండిత వాయిస్ లభిస్తుంది) లేదా మీ <strong>Android మొబైల్ ఫోన్</strong> లో తెరవండి.
+      `;
+    }
+    return;
+  }
+
+  const teluguVoices = voices.filter(v => v.lang.startsWith("te") || v.name.toLowerCase().includes("telugu"));
+  const hindiVoices = voices.filter(v => v.lang.startsWith("hi") || v.name.toLowerCase().includes("hindi") || v.lang.startsWith("sa"));
+  const indianVoices = voices.filter(v => (v.lang.includes("IN") || v.name.toLowerCase().includes("india")) && !teluguVoices.includes(v) && !hindiVoices.includes(v));
+  const otherVoices = voices.filter(v => !teluguVoices.includes(v) && !hindiVoices.includes(v) && !indianVoices.includes(v));
+
+  if (teluguVoices.length > 0) {
+    const grp = document.createElement("optgroup");
+    grp.label = "🌟 తెలుగు వాయిస్‌లు (Telugu - సిఫార్సు చేయబడింది)";
+    teluguVoices.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v.name;
+      opt.textContent = `${v.name} (${v.lang})`;
+      grp.appendChild(opt);
+    });
+    voiceSelect.appendChild(grp);
+  }
+
+  if (hindiVoices.length > 0 || indianVoices.length > 0) {
+    const grp = document.createElement("optgroup");
+    grp.label = "🇮🇳 భారతీయ / సంస్కృత ఉచ్ఛారణ (Indian Voices)";
+    hindiVoices.concat(indianVoices).forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v.name;
+      opt.textContent = `${v.name} (${v.lang})`;
+      grp.appendChild(opt);
+    });
+    voiceSelect.appendChild(grp);
+  }
+
+  if (otherVoices.length > 0) {
+    const grp = document.createElement("optgroup");
+    grp.label = "🌐 సిస్టమ్ వాయిస్‌లు (System Voices)";
+    otherVoices.slice(0, 8).forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v.name;
+      opt.textContent = `${v.name} (${v.lang})`;
+      grp.appendChild(opt);
+    });
+    voiceSelect.appendChild(grp);
+  }
+
+  const best = getBestTeluguVoice();
+  if (best) {
+    voiceSelect.value = best.name;
+  }
+
+  const notice = document.getElementById("voiceNoticeBox");
+  if (notice) {
+    if (teluguVoices.length === 0 && hindiVoices.length === 0 && indianVoices.length === 0) {
+      notice.style.display = "block";
+      notice.innerHTML = `
+        💡 <strong>గమనిక:</strong> మీ బ్రౌజర్‌లో ప్రస్తుతం సాధారణ ఇంగ్లీష్ వాయిస్ ఉంది. శ్లోకాలు సంస్కృత ఉచ్ఛారణతో చదవబడతాయి. 
+        మరింత సహజమైన పండిత శ్రవణం కోసం పైనున్న <strong>'🎵 1. అసలైన పూజా భక్తి గానం'</strong> ఎంచుకోండి లేదా 
+        ఈ పేజీని <strong>Microsoft Edge</strong> లో తెరవండి.
+      `;
+    } else {
+      notice.style.display = "none";
+    }
+  }
+}
+
+if ("speechSynthesis" in window) {
+  window.speechSynthesis.onvoiceschanged = () => {
+    populateVoiceList();
+  };
+  setTimeout(populateVoiceList, 100);
+  setTimeout(populateVoiceList, 800);
+}
+
+function onUserVoiceChange(voiceName) {
+  userSelectedVoice = voiceName;
+  showCelebrationAlert(`🗣️ వాయిస్ ఎంపికైంది: ${voiceName}`);
+}
+
+function switchAudioDeckTab(tabName) {
+  const tabChants = document.getElementById("tabBtnChants");
+  const tabReader = document.getElementById("tabBtnReader");
+  const panelChants = document.getElementById("panelChants");
+  const panelReader = document.getElementById("panelReader");
+
+  if (tabName === "chants") {
+    if (tabChants) tabChants.classList.add("active");
+    if (tabReader) tabReader.classList.remove("active");
+    if (panelChants) panelChants.classList.add("active");
+    if (panelReader) panelReader.classList.remove("active");
+  } else {
+    if (tabChants) tabChants.classList.remove("active");
+    if (tabReader) tabReader.classList.add("active");
+    if (panelChants) panelChants.classList.remove("active");
+    if (panelReader) panelReader.classList.add("active");
+    // Populate voice dropdown immediately when user enters reader tab
+    populateVoiceList();
+  }
+}
+
+function toggleTanpuraPlayer() {
+  toggleTanpura();
+  const textEl = document.getElementById("deckTanpuraBtnText");
+  const btn = document.getElementById("btnDeckTanpura");
+  if (textEl) {
+    textEl.textContent = appState.tanpuraPlaying ? "⏹️ తంబుర శృతి ఆపండి" : "🎵 తంబుర శృతి ఆన్ చేయండి";
+  }
+  if (btn) btn.classList.toggle("active", appState.tanpuraPlaying);
+}
+
+function sanitizeForSpeech(raw) {
+  if (!raw) return "";
+  return raw
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/\[[^\]]*\]/g, " ")
+    .replace(/[\|]+/g, ", ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getLiveSankalpaAudioText() {
+  const loc = appState.location || PINCODE_DATABASE["522034"];
+  return `
+    శుభే శోభనే ముహూర్తే, శ్రీ మహావిష్ణోరాజ్ఞయా ప్రవర్తమానస్య, అద్య బ్రహ్మణః ద్వితీయ పరార్థే, శ్వేతవరాహ కల్పే, వైవస్వత మన్వంతరే, కలియుగే, ప్రథమ పాదే, జంబూద్వీపే, భరతవర్షే, భరతఖండే, మేరోః దక్షిణ దిగ్భాగే, 
+    ${loc.srisailamDir}, ${loc.riverRegion}, స్వగృహే, సమస్త దేవతా బ్రాహ్మణ హరిహర గురుచరణ సన్నిధౌ.
+    అస్మిన్ వర్తమాన వ్యావహారిక చాంద్రమానేన శ్రీ ${appState.samvatsara} నామ సంవత్సరే, 
+    ${appState.ayanam}, ${appState.ritu} ఋతౌ, ${appState.masa} మాసే, ${appState.paksha} పక్షే, ${appState.tithi} శుభతిథౌ, ${appState.vasara}, ${appState.nakshatra} నక్షత్రే, ${appState.yoga} యోగే, ${appState.karana} కరణే, ఏవంగుణ విశేషణ విశిష్టాయాం శుభతిథౌ.
+    శ్రీమాన్ ${appState.devotee.gotram} గోత్రోద్భవస్య, ${appState.devotee.karta} నామధేయస్య, ధర్మపత్నీ ${appState.devotee.wife} సమేతస్య, పుత్రౌ ${appState.devotee.sons} నామధేయానాం, ${appState.devotee.family} క్షేమ, స్థైర్య, ధైర్య, వీర్య, విజయ, అభయ, ఆయురారోగ్య ఐశ్వర్యాభివృద్ధ్యర్థం, 
+    మమ మండల దీక్షా వ్రత నిర్విఘ్న పరిసమాప్త్యర్థం, శబరిగిరి యాత్రా సఫలతార్థం, శ్రీ పూర్ణా పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామి ముద్దిశ్య ప్రాతః సాయంకాల నిత్య పూజాం కరిష్యే.
+  `.trim();
+}
+
+function setReaderRate(newRate) {
+  readerState.rate = parseFloat(newRate) || 0.85;
+  document.querySelectorAll(".speed-btn").forEach(btn => {
+    btn.classList.toggle("active", parseFloat(btn.dataset.rate) === readerState.rate);
+  });
+  showCelebrationAlert(`🔊 పఠన వేగం ${readerState.rate}x కు అమర్చబడింది.`);
+}
+
+function updateReaderUI(isPlaying, titleText = "") {
+  readerState.isPlaying = isPlaying;
+  readerState.currentTitle = titleText;
+
+  const statusEl = document.getElementById("readerStatusText");
+  const miniTitle = document.getElementById("miniReaderTitle");
+  const miniBar = document.getElementById("miniFloatingReader");
+  const btnPauseResume = document.getElementById("btnPauseResumeReader");
+  const btnStop = document.getElementById("btnStopReader");
+  const btnFullPlay = document.getElementById("btnPlayFullPuja");
+
+  if (isPlaying) {
+    if (statusEl) statusEl.textContent = `🔊 ప్రస్తుతం చదువుతున్నారు: ${titleText}`;
+    if (miniTitle) miniTitle.textContent = titleText;
+    if (miniBar) miniBar.style.display = "flex";
+    if (btnPauseResume) btnPauseResume.style.display = "inline-flex";
+    if (btnStop) btnStop.style.display = "inline-flex";
+    if (btnFullPlay) btnFullPlay.innerHTML = `<span>🔄 రీడర్ నడుస్తోంది...</span>`;
+  } else {
+    if (statusEl) statusEl.textContent = `శ్రవణం పూర్తయింది. వినడానికి ఏదైనా శ్లోకం వద్ద '🔊 వినండి' ఎంచుకోండి.`;
+    if (miniBar) miniBar.style.display = "none";
+    if (btnPauseResume) btnPauseResume.style.display = "none";
+    if (btnStop) btnStop.style.display = "none";
+    if (btnFullPlay) btnFullPlay.innerHTML = `<span class="btn-icon">▶️</span> <span>సంపూర్ణ నిత్య పూజ ఆడియో గైడ్ (Play Full Puja)</span>`;
+    clearActiveHighlight();
+  }
+}
+
+function clearActiveHighlight() {
+  document.querySelectorAll(".reading-active").forEach(el => el.classList.remove("reading-active"));
+  readerState.activeTargetId = null;
+}
+
+function highlightTargetElement(elementId) {
+  clearActiveHighlight();
+  if (!elementId) return;
+  const target = document.getElementById(elementId);
+  if (target) {
+    target.classList.add("reading-active");
+    readerState.activeTargetId = elementId;
+    if (readerState.autoScroll) {
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+}
+
+let activeSpeechUtterance = null;
+let speechKeepAliveTimer = null;
+
+function speakUtterance(cleanText, titleText, targetId, onEndCallback = null, phoneticText = null) {
+  if (!("speechSynthesis" in window)) {
+    console.warn("SpeechSynthesis not supported on this device.");
+    if (onEndCallback) onEndCallback();
+    return;
+  }
+
+  // 1. Clear any active keep-alive heartbeat
+  if (speechKeepAliveTimer) {
+    clearInterval(speechKeepAliveTimer);
+    speechKeepAliveTimer = null;
+  }
+
+  // 2. Unfreeze any paused speech synthesis state in Chromium
+  try {
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+    }
+  } catch (e) {}
+
+  // Only cancel if previous speech is actively speaking and we are not in a callback transition
+  if (!onEndCallback && window.speechSynthesis.speaking) {
+    try {
+      window.speechSynthesis.cancel();
+    } catch (e) {}
+  }
+
+  // 3. Select best available voice
+  const voiceToUse = getBestTeluguVoice();
+  const isTeluguVoice = voiceToUse && (voiceToUse.lang === "te-IN" || voiceToUse.lang.startsWith("te") || voiceToUse.name.toLowerCase().includes("telugu"));
+  const isIndianVoice = voiceToUse && (
+    isTeluguVoice ||
+    voiceToUse.lang.includes("IN") ||
+    voiceToUse.lang.startsWith("hi") ||
+    voiceToUse.lang.startsWith("sa") ||
+    voiceToUse.lang.startsWith("kn") ||
+    voiceToUse.lang.startsWith("ta") ||
+    voiceToUse.lang.startsWith("ml")
+  );
+
+  // 4. Determine speech text (Telugu script vs Phonetic English for Western TTS engines)
+  let finalSpeechText = cleanText;
+  if (!isTeluguVoice) {
+    if (phoneticText) {
+      finalSpeechText = phoneticText;
+    } else if (!isIndianVoice) {
+      finalSpeechText = convertTeluguToPhonetic(cleanText);
+    }
+  }
+
+  finalSpeechText = sanitizeForSpeech(finalSpeechText);
+  if (!finalSpeechText || finalSpeechText.length === 0) {
+    if (onEndCallback) onEndCallback();
+    return;
+  }
+
+  const utterance = new SpeechSynthesisUtterance(finalSpeechText);
+  utterance.rate = readerState.rate || 0.82;
+  utterance.pitch = readerState.pitch || 0.90;
+
+  if (voiceToUse) {
+    utterance.voice = voiceToUse;
+    // CRITICAL: Always match utterance.lang to voiceToUse.lang to avoid language-unavailable crash!
+    utterance.lang = voiceToUse.lang;
+  } else {
+    utterance.lang = navigator.language || "en-US";
+  }
+
+  // Store in global window reference to prevent Chrome V8 garbage collection mid-speech!
+  window.activeSpeechUtterance = utterance;
+  activeSpeechUtterance = utterance;
+
+  let hasEnded = false;
+  const finishSpeech = (proceed = true) => {
+    if (hasEnded) return;
+    hasEnded = true;
+    if (speechKeepAliveTimer) {
+      clearInterval(speechKeepAliveTimer);
+      speechKeepAliveTimer = null;
+    }
+    window.activeSpeechUtterance = null;
+    activeSpeechUtterance = null;
+    clearActiveHighlight();
+
+    if (proceed && onEndCallback) {
+      onEndCallback();
+    } else if (!onEndCallback) {
+      updateReaderUI(false);
+    }
+  };
+
+  utterance.onstart = () => {
+    updateReaderUI(true, titleText);
+    highlightTargetElement(targetId);
+
+    // Chrome 14-second cutoff keep-alive heartbeat
+    speechKeepAliveTimer = setInterval(() => {
+      if (window.speechSynthesis && window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+        window.speechSynthesis.pause();
+        window.speechSynthesis.resume();
+      }
+    }, 8000);
+  };
+
+  utterance.onend = () => {
+    finishSpeech(true);
+  };
+
+  utterance.onerror = (e) => {
+    console.warn("SpeechSynthesis error:", e.error);
+    // If user canceled or paused, DO NOT advance continuous reading!
+    if (e.error === "interrupted" || e.error === "canceled") {
+      finishSpeech(false);
+      return;
+    }
+    // Failover once if rejected by browser
+    if (!hasEnded && (e.error === "language-unavailable" || e.error === "voice-unavailable")) {
+      try {
+        const fallbackUtterance = new SpeechSynthesisUtterance(finalSpeechText);
+        fallbackUtterance.rate = readerState.rate || 0.82;
+        window.activeSpeechUtterance = fallbackUtterance;
+        fallbackUtterance.onend = () => finishSpeech(true);
+        fallbackUtterance.onerror = () => finishSpeech(false);
+        window.speechSynthesis.speak(fallbackUtterance);
+        return;
+      } catch (retryErr) {
+        console.warn("Fallback speak failed:", retryErr);
+      }
+    }
+    finishSpeech(false);
+  };
+
+  // Small delay allows Chromium to clear internal cancel queues smoothly
+  setTimeout(() => {
+    try {
+      window.speechSynthesis.speak(utterance);
+    } catch (err) {
+      console.error("speechSynthesis.speak error:", err);
+      finishSpeech(false);
+    }
+  }, 40);
+}
+
+// Handles audio source loading failures (such as archive.org ISP blocks in India)
+function handleDevotionalAudioError(audioEl, trackType) {
+  if (!audioEl) return;
+  console.warn("Audio loading notice for:", trackType);
+
+  const container = audioEl.closest(".audio-track-item, .devotional-audio-player-card");
+  if (container) {
+    let alertBox = container.querySelector(".audio-isp-notice");
+    if (!alertBox) {
+      alertBox = document.createElement("div");
+      alertBox.className = "audio-isp-notice";
+      alertBox.style.background = "#fffbeb";
+      alertBox.style.border = "1px solid #f59e0b";
+      alertBox.style.borderRadius = "8px";
+      alertBox.style.padding = "10px 14px";
+      alertBox.style.marginTop = "10px";
+      alertBox.style.fontSize = "0.88rem";
+      alertBox.style.color = "#78350f";
+      alertBox.style.lineHeight = "1.5";
+      
+      let ytUrl = "https://www.youtube.com/watch?v=zLhzkuv35XY";
+      let trackLabel = "శ్రీ హరివరాసనం (కే.జె. యేసుదాస్)";
+      if (trackType === "lokaveeram") {
+        ytUrl = "https://www.youtube.com/results?search_query=lokaveeram+mahapoojyam+telugu";
+        trackLabel = "లోకవీరం మహాపూజ్యం (కె. వీరమణి)";
+      } else if (trackType === "sharanu") {
+        ytUrl = "https://www.youtube.com/results?search_query=ayyappa+108+saranu+ghosha+telugu";
+        trackLabel = "108 శరణు ఘోష";
+      }
+
+      alertBox.innerHTML = `
+        <div style="font-weight:700; margin-bottom:4px; color:#b45309;">⚠️ నెట్‌వర్క్ ఆడియో నోటీస్ (ISP Blocking Notice):</div>
+        <div>మీ ఇంటర్నెట్ నెట్‌వర్క్ (Airtel / Jio / ACT) లో ఈ ఆడియో సర్వర్ స్పందించడం లేదు. అసలైన దివ్య భక్తి గానాన్ని క్రింది బటన్ నొక్కి యూట్యూబ్‌లో స్పష్టంగా వినవచ్చు:</div>
+        <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="${ytUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-gold" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+            <span>▶️</span> <span>యూట్యూబ్‌లో అసలైన భక్తి గానం వినండి (${trackLabel})</span>
+          </a>
+          <button type="button" class="btn btn-sm btn-outline" onclick="openDevotionalModal('${trackType}')">
+            <span>📺</span> <span>ఇక్కడే భక్తి వీడియో తెరవండి</span>
+          </button>
+        </div>
+      `;
+      audioEl.parentNode.insertBefore(alertBox, audioEl.nextSibling);
+    }
+  }
+}
+
+// In-page Devotional Video/Audio Modal for YouTube (Zero ISP Block, High-Definition)
+function openDevotionalModal(trackType) {
+  let videoId = "zLhzkuv35XY"; // Official Yesudas Harivarasanam
+  let title = "శ్రీ హరివరాసనం (పద్మవిభూషణ్ డా॥ కె.జె. యేసుదాస్)";
+  let directUrl = "https://www.youtube.com/watch?v=zLhzkuv35XY";
+
+  if (trackType === "lokaveeram") {
+    videoId = "0k1qH-MvE40";
+    title = "శ్రీ శాస్తా నమస్కార స్తుతి - లోకవీరం మహాపూజ్యం";
+    directUrl = "https://www.youtube.com/results?search_query=lokaveeram+mahapoojyam+telugu";
+  } else if (trackType === "sharanu") {
+    videoId = "vV1pG8t0i_g";
+    title = "శ్రీ అయ్యప్ప 108 శరణు ఘోష (స్వామియే శరణమయ్యప్ప)";
+    directUrl = "https://www.youtube.com/results?search_query=ayyappa+108+saranu+ghosha+telugu";
+  }
+
+  let modal = document.getElementById("devotionalPlayerModal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "devotionalPlayerModal";
+    modal.style.position = "fixed";
+    modal.style.top = "0";
+    modal.style.left = "0";
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.backgroundColor = "rgba(0, 0, 0, 0.85)";
+    modal.style.zIndex = "999999";
+    modal.style.display = "flex";
+    modal.style.alignItems = "center";
+    modal.style.justifyContent = "center";
+    modal.style.padding = "16px";
+    document.body.appendChild(modal);
+  }
+
+  modal.innerHTML = `
+    <div style="background:#ffffff; border-radius:16px; max-width:620px; width:100%; overflow:hidden; box-shadow:0 20px 40px rgba(0,0,0,0.5); border:2px solid #f59e0b;">
+      <div style="background:#78350f; color:#ffffff; padding:12px 18px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:700; font-size:1.05rem;">🎵 ${title}</span>
+        <button type="button" onclick="closeDevotionalModal()" style="background:none; border:none; color:#ffffff; font-size:1.5rem; cursor:pointer; line-height:1;">✕</button>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; background:#000;">
+        <iframe 
+          src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+          title="${title}" 
+          style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div style="padding:14px 18px; display:flex; justify-content:space-between; align-items:center; background:#fffbeb; flex-wrap:wrap; gap:10px;">
+        <a href="${directUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-gold" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+          <span>▶️</span> <span>యూట్యూబ్‌లో పూర్తి స్క్రీన్‌లో వినండి (Open in YouTube HD)</span>
+        </a>
+        <button type="button" class="btn btn-sm btn-outline" onclick="closeDevotionalModal()">పూర్తయింది (Close)</button>
+      </div>
+    </div>
+  `;
+  modal.style.display = "flex";
+}
+
+function closeDevotionalModal() {
+  const modal = document.getElementById("devotionalPlayerModal");
+  if (modal) {
+    modal.innerHTML = "";
+    modal.style.display = "none";
+  }
+}
+
+// Master function to play any predefined sloka/mantra
+function playReaderSloka(key, customTitle = null) {
+  stopAllReaderAudio();
+  readerState.mode = "single";
+
+  let item = PUJA_AUDIO_SCRIPT[key];
+  if (!item) return;
+
+  let textToChant = item.text;
+  let phoneticText = item.phoneticEn || null;
+  let titleToDisplay = customTitle || item.title;
+  let target = item.targetId || key;
+
+  playTempleBell(true);
+  speakUtterance(sanitizeForSpeech(textToChant), titleToDisplay, target, null, phoneticText);
+}
+
+// Read by specific DOM element text
+function readSlokaById(elementId, title = "శ్లోక పఠనం") {
+  stopAllReaderAudio();
+  readerState.mode = "single";
+
+  const el = document.getElementById(elementId);
+  if (!el) {
+    playReaderSloka(elementId, title);
+    return;
+  }
+
+  let text = el.innerText || el.textContent;
+  // If element has easy meaning or pronunciation, only read sloka text
+  const slokaPart = el.querySelector(".sloka-spaced, .sloka, .sloka-large");
+  if (slokaPart) {
+    text = slokaPart.innerText;
+  }
+
+  playTempleBell(true);
+  speakUtterance(sanitizeForSpeech(text), title, elementId);
+}
+
+// Read specific stanza in Lokaveeram or Harivarasanam
+function readStanza(type, index) {
+  stopAllReaderAudio();
+  readerState.mode = "single";
+
+  if (type === "lokaveeram") {
+    const list = PUJA_AUDIO_SCRIPT.lokaveeram;
+    const stanza = list.find(s => s.num === index) || list[index - 1];
+    if (!stanza) return;
+    playTempleBell(true);
+    speakUtterance(sanitizeForSpeech(stanza.text), `లోకవీరం - చరణం ${index}`, `step-lokaveeram`, null, stanza.phoneticEn);
+  } else if (type === "harivarasanam") {
+    const list = PUJA_AUDIO_SCRIPT.harivarasanam;
+    const stanza = list.find(s => s.num === index) || list[index - 1];
+    if (!stanza) return;
+    playTempleBell(true);
+    speakUtterance(sanitizeForSpeech(stanza.text), `హరివరాసనం - చరణం ${index}`, `harivarasanam`, null, stanza.phoneticEn);
+  }
+}
+
+// Read entire Lokaveeram Stuti (all 9 stanzas continuously)
+function readFullLokaveeram() {
+  stopAllReaderAudio();
+  readerState.mode = "lokaveeram_full";
+
+  const stanzas = PUJA_AUDIO_SCRIPT.lokaveeram;
+  let currentIdx = 0;
+
+  function chantNext() {
+    if (currentIdx >= stanzas.length || !readerState.isPlaying) {
+      playTempleBell();
+      showCelebrationAlert("🙏 శ్రీ శాస్తా నమస్కార స్తుతి (లోకవీరం మహాపూజ్యం) సంపూర్ణం! స్వామియే శరణమయ్యప్ప!");
+      updateReaderUI(false);
+      return;
+    }
+
+    const st = stanzas[currentIdx];
+    currentIdx++;
+    speakUtterance(sanitizeForSpeech(st.text), `లోకవీరం మహాపూజ్యం (${currentIdx}/9 చరణం)`, "step-lokaveeram", () => {
+      setTimeout(chantNext, 600);
+    }, st.phoneticEn);
+  }
+
+  playTempleBell();
+  updateReaderUI(true, "లోకవీరం మహాపూజ్యం (సంపూర్ణ స్తుతి)");
+  chantNext();
+}
+
+// Read 18 Saranulu
+function read18Sharanulu() {
+  stopAllReaderAudio();
+  readerState.mode = "sharanu18";
+
+  const list = PUJA_AUDIO_SCRIPT.sharanu18;
+  let idx = 0;
+
+  function chantNext() {
+    if (idx >= list.length || !readerState.isPlaying) {
+      playTempleBell();
+      showCelebrationAlert("🙏 18 ముఖ్య శరణు ఘోష సంపూర్ణం! స్వామియే శరణమయ్యప్ప!");
+      updateReaderUI(false);
+      return;
+    }
+
+    const item = list[idx];
+    idx++;
+    speakUtterance(item, `18 శరణు ఘోష (${idx}/18)`, "saranu-ghosha", () => {
+      setTimeout(chantNext, 450);
+    });
+  }
+
+  playTempleBell();
+  updateReaderUI(true, "18 ముఖ్య శరణు ఘోష");
+  chantNext();
+}
+
+// Read entire Harivarasanam (8 Stanzas with Chorus)
+function readFullHarivarasanam() {
+  stopAllReaderAudio();
+  readerState.mode = "harivarasanam_full";
+
+  const stanzas = PUJA_AUDIO_SCRIPT.harivarasanam;
+  let currentIdx = 0;
+
+  function chantNext() {
+    if (currentIdx >= stanzas.length || !readerState.isPlaying) {
+      playTempleBell();
+      showCelebrationAlert("✨ శ్రీ హరివరాసనం కీర్తనం సంపూర్ణం! శరణం అయ్యప్పా స్వామి శరణం అయ్యప్పా!");
+      updateReaderUI(false);
+      return;
+    }
+
+    const st = stanzas[currentIdx];
+    currentIdx++;
+    speakUtterance(sanitizeForSpeech(st.text), `హరివరాసనం (${currentIdx}/8 చరణం)`, "harivarasanam", () => {
+      setTimeout(chantNext, 700);
+    }, st.phoneticEn);
+  }
+
+  playTempleBell();
+  updateReaderUI(true, "శ్రీ హరివరాసనం (8 చరణాలు)");
+  chantNext();
+}
+
+// Interactive 108 Namavali Auto Chanting (with Flower Drop & Counter)
+function toggleAutoChant108() {
+  if (readerState.mode === "108_namas" && readerState.isPlaying) {
+    stopAllReaderAudio();
+    return;
+  }
+
+  stopAllReaderAudio();
+  readerState.mode = "108_namas";
+
+  const deity = appState.currentNityaDeity || "ayyappa";
+  const collection = ASHTOTTARA_COLLECTIONS[deity] || ASHTOTTARA_COLLECTIONS.ayyappa;
+  const names = collection.names;
+  let currentNamaIndex = 0;
+
+  const btnAuto = document.getElementById("btnAutoChant108");
+  if (btnAuto) {
+    btnAuto.classList.add("active");
+    btnAuto.innerHTML = `<span class="btn-icon">⏹️</span> <span>నామ పఠనం ఆపండి</span>`;
+  }
+
+  function chantNextNama() {
+    if (currentNamaIndex >= names.length || !readerState.isPlaying) {
+      playTempleBell();
+      showCelebrationAlert(collection.celebrationText);
+      updateReaderUI(false);
+      if (btnAuto) {
+        btnAuto.classList.remove("active");
+        btnAuto.innerHTML = `<span class="btn-icon">🔊</span> <span>108 నామాల ఆటో పఠనం (Auto Chanting)</span>`;
+      }
+      return;
+    }
+
+    const namaText = names[currentNamaIndex];
+    const namaIdx = currentNamaIndex;
+    currentNamaIndex++;
+
+    // Mark card on screen & drop flower
+    const card = document.getElementById(`nitya-nama-${namaIdx}`);
+    if (card) {
+      card.classList.add("chanted");
+      card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+    dropPujaFlower();
+    recalculateNityaCount();
+
+    speakUtterance(namaText, `${collection.shortTitle}: ${currentNamaIndex}/108`, `nitya-nama-${namaIdx}`, () => {
+      readerState.autoChantTimer = setTimeout(chantNextNama, 800);
+    });
+  }
+
+  playTempleBell(true);
+  updateReaderUI(true, `${collection.shortTitle} (108 పుష్పార్చన ఆటో పఠనం)`);
+  chantNextNama();
+}
+
+// Interactive 108 Saranu Ghosha Auto Chanting
+function toggleAutoChantSaranu() {
+  if (readerState.mode === "108_saranu" && readerState.isPlaying) {
+    stopAllReaderAudio();
+    return;
+  }
+
+  stopAllReaderAudio();
+  readerState.mode = "108_saranu";
+
+  const list = SARANU_GHOSHA_108;
+  let currentIdx = 0;
+
+  const btnAuto = document.getElementById("btnAutoChantSaranu");
+  if (btnAuto) {
+    btnAuto.classList.add("active");
+    btnAuto.innerHTML = `<span class="btn-icon">⏹️</span> <span>శరణు ఘోష ఆపండి</span>`;
+  }
+
+  function chantNextSaranu() {
+    if (currentIdx >= list.length || !readerState.isPlaying) {
+      playTempleBell();
+      showCelebrationAlert("🙏 సంపూర్ణ 108 శరణు ఘోష సమర్పితం! స్వామియే శరణమయ్యప్ప!");
+      updateReaderUI(false);
+      if (btnAuto) {
+        btnAuto.classList.remove("active");
+        btnAuto.innerHTML = `<span class="btn-icon">🔊</span> <span>108 శరణు ఘోష ఆటో పఠనం</span>`;
+      }
+      return;
+    }
+
+    const saranuText = list[currentIdx];
+    const cardIdx = currentIdx;
+    currentIdx++;
+
+    // Increment count & scroll
+    const card = document.getElementById(`saranu-card-${cardIdx}`);
+    if (card) {
+      card.classList.add("chanted");
+      card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+    recalculateSaranuCount();
+
+    speakUtterance(saranuText, `108 శరణు ఘోష: ${currentIdx}/108`, `saranu-card-${cardIdx}`, () => {
+      readerState.autoChantTimer = setTimeout(chantNextSaranu, 850);
+    });
+  }
+
+  playTempleBell(true);
+  updateReaderUI(true, `సంపూర్ణ 108 శరణు ఘోష ఆటో పఠనం`);
+  chantNextSaranu();
+}
+
+// Start Continuous 13-Step Full Puja Audio Guide
+function startFullPujaReading() {
+  stopAllReaderAudio();
+  readerState.mode = "continuous";
+
+  const fullSteps = [
+    { title: "దశ 1: దీపారాధన శ్లోకం", text: PUJA_AUDIO_SCRIPT.deeparadhana.text, phoneticEn: PUJA_AUDIO_SCRIPT.deeparadhana.phoneticEn, target: "nitya-step-1" },
+    { title: "దశ 1: గురు ప్రార్థన", text: PUJA_AUDIO_SCRIPT.guru.text, phoneticEn: PUJA_AUDIO_SCRIPT.guru.phoneticEn, target: "nitya-step-1" },
+    { title: "దశ 2: నిత్య సంకల్పం (పైడిపూండ్ల గోత్రం, శ్రీనివాస, గుంటూరు-522034)", text: getLiveSankalpaAudioText(), phoneticEn: null, target: "nitya-step-2" },
+    { title: "దశ 3: శ్రీ వినాయక ప్రార్థన", text: PUJA_AUDIO_SCRIPT.ganapathi.text, phoneticEn: PUJA_AUDIO_SCRIPT.ganapathi.phoneticEn, target: "nitya-step-3" },
+    { title: "దశ 3: శ్రీ సుబ్రహ్మణ్య ప్రార్థన", text: PUJA_AUDIO_SCRIPT.subramanya.text, phoneticEn: PUJA_AUDIO_SCRIPT.subramanya.phoneticEn, target: "nitya-step-3" },
+    { title: "దశ 4: శ్రీ అయ్యప్ప ధ్యానం & లఘు ఉపచారాలు", text: PUJA_AUDIO_SCRIPT.ayyappa_dhyanam.text, phoneticEn: PUJA_AUDIO_SCRIPT.ayyappa_dhyanam.phoneticEn, target: "nitya-step-4" },
+    { title: "దశ 6: నిత్య నైవేద్య సమర్పణ & గాయత్రి", text: PUJA_AUDIO_SCRIPT.naivedyam.text, phoneticEn: PUJA_AUDIO_SCRIPT.naivedyam.phoneticEn, target: "nitya-step-6" },
+    { title: "దశ 7: కర్పూర నీరాజనం (హారతి)", text: PUJA_AUDIO_SCRIPT.harathi.text, phoneticEn: PUJA_AUDIO_SCRIPT.harathi.phoneticEn, target: "nitya-step-7" },
+    { title: "దశ 8: లోకవీరం మహాపూజ్యం (1వ చరణం)", text: PUJA_AUDIO_SCRIPT.lokaveeram[0].text, phoneticEn: PUJA_AUDIO_SCRIPT.lokaveeram[0].phoneticEn, target: "step-lokaveeram" },
+    { title: "దశ 8: లోకవీరం మహాపూజ్యం (2వ చరణం)", text: PUJA_AUDIO_SCRIPT.lokaveeram[1].text, phoneticEn: PUJA_AUDIO_SCRIPT.lokaveeram[1].phoneticEn, target: "step-lokaveeram" },
+    { title: "దశ 8: లోకవీరం మహాపూజ్యం (ఫలశ్రుతి)", text: PUJA_AUDIO_SCRIPT.lokaveeram[6].text, phoneticEn: PUJA_AUDIO_SCRIPT.lokaveeram[6].phoneticEn, target: "step-lokaveeram" },
+    { title: "దశ 8: లోకవీరం మహాపూజ్యం (మహావైద్యం దయానిధిం)", text: PUJA_AUDIO_SCRIPT.lokaveeram[7].text, phoneticEn: PUJA_AUDIO_SCRIPT.lokaveeram[7].phoneticEn, target: "step-lokaveeram" },
+    { title: "దశ 9: 18 ముఖ్య శరణు ఘోష", text: PUJA_AUDIO_SCRIPT.sharanu18.join(", "), phoneticEn: null, target: "saranu-ghosha" },
+    { title: "దశ 10: హరివరాసనం (1వ చరణం)", text: PUJA_AUDIO_SCRIPT.harivarasanam[0].text, phoneticEn: PUJA_AUDIO_SCRIPT.harivarasanam[0].phoneticEn, target: "harivarasanam" },
+    { title: "దశ 10: హరివరాసనం (8వ చరణం)", text: PUJA_AUDIO_SCRIPT.harivarasanam[7].text, phoneticEn: PUJA_AUDIO_SCRIPT.harivarasanam[7].phoneticEn, target: "harivarasanam" },
+    { title: "దశ 11: ఆత్మప్రదక్షిణ శ్లోకం", text: PUJA_AUDIO_SCRIPT.pradakshina.text, phoneticEn: PUJA_AUDIO_SCRIPT.pradakshina.phoneticEn, target: "step-pradakshina" },
+    { title: "దశ 12: క్షమా ప్రార్థన & సమర్పణ", text: PUJA_AUDIO_SCRIPT.kshama.text, phoneticEn: PUJA_AUDIO_SCRIPT.kshama.phoneticEn, target: "step-kshama" }
+  ];
+
+  let stepIdx = 0;
+
+  function runNextStep() {
+    if (stepIdx >= fullSteps.length || !readerState.isPlaying) {
+      playTempleBell();
+      showCelebrationAlert("🌺 శ్రీ అయ్యప్ప స్వామి నిత్య మండల దీక్షా పూజ సంపూర్ణం! స్వామియే శరణమయ్యప్ప!");
+      updateReaderUI(false);
+      return;
+    }
+
+    const step = fullSteps[stepIdx];
+    stepIdx++;
+
+    playTempleBell(true);
+    speakUtterance(sanitizeForSpeech(step.text), `సంపూర్ణ పూజ: ${step.title}`, step.target, () => {
+      setTimeout(runNextStep, 900);
+    }, step.phoneticEn);
+  }
+
+  playTempleBell();
+  updateReaderUI(true, "సంపూర్ణ నిత్య పూజ ఆడియో గైడ్ ప్రారంభమైంది...");
+  runNextStep();
+}
+
+// Pause or Resume
+function togglePauseResumeReader() {
+  if (!("speechSynthesis" in window)) return;
+  const btn = document.getElementById("btnPauseResumeReader");
+  const miniPauseBtn = document.getElementById("miniPauseBtn");
+
+  if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+    window.speechSynthesis.pause();
+    readerState.isPaused = true;
+    if (btn) btn.innerHTML = `<span class="btn-icon">▶️</span> <span>కొనసాగించండి (Resume)</span>`;
+    if (miniPauseBtn) miniPauseBtn.textContent = "▶️";
+    showCelebrationAlert("⏸️ ఆడియో పఠనం నిలిపివేయబడింది (Paused).");
+  } else if (window.speechSynthesis.paused) {
+    window.speechSynthesis.resume();
+    readerState.isPaused = false;
+    if (btn) btn.innerHTML = `<span class="btn-icon">⏸️</span> <span>పాజ్ (Pause)</span>`;
+    if (miniPauseBtn) miniPauseBtn.textContent = "⏸️";
+    showCelebrationAlert("▶️ ఆడియో పఠనం తిరిగి కొనసాగుతోంది (Resumed).");
+  }
+}
+
+// Stop Audio
+function stopAllReaderAudio() {
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+  if (readerState.autoChantTimer) {
+    clearTimeout(readerState.autoChantTimer);
+    readerState.autoChantTimer = null;
+  }
+  readerState.isPlaying = false;
+  readerState.isPaused = false;
+  updateReaderUI(false);
+
+  const btnAuto108 = document.getElementById("btnAutoChant108");
+  if (btnAuto108) {
+    btnAuto108.classList.remove("active");
+    btnAuto108.innerHTML = `<span class="btn-icon">🔊</span> <span>108 నామాల ఆటో పఠనం (Auto Chanting)</span>`;
+  }
+
+  const btnAutoSaranu = document.getElementById("btnAutoChantSaranu");
+  if (btnAutoSaranu) {
+    btnAutoSaranu.classList.remove("active");
+    btnAutoSaranu.innerHTML = `<span class="btn-icon">🔊</span> <span>108 శరణు ఘోష ఆటో పఠనం</span>`;
+  }
+}
+
+// Toggle Audio Reader Deck visibility
+function toggleAudioReaderDeck() {
+  const deck = document.getElementById("audioReaderDeck");
+  if (deck) {
+    if (deck.style.display === "none") {
+      deck.style.display = "block";
+      deck.scrollIntoView({ behavior: "smooth", block: "start" });
+      deck.classList.add("reading-active");
+      setTimeout(() => deck.classList.remove("reading-active"), 2000);
+    } else {
+      deck.style.display = "none";
+    }
+  }
+}
+
+// Backward-compatible alias for Sankalpam
+function speakSankalpam() {
+  stopAllReaderAudio();
+  readerState.mode = "single";
+  playTempleBell(true);
+  speakUtterance(
+    getLiveSankalpaAudioText(),
+    "నిత్య సంకల్పం (పైడిపూండ్ల గోత్రం, శ్రీనివాస & వాణి దంపతులు, గుంటూరు-522034)",
+    "sankalpamBox"
+  );
+}
+
+function stopSpeaking() {
+  stopAllReaderAudio();
+}
+
+// ==========================================
+// 11. CLIPBOARD & UTILITY FUNCTIONS
+// ==========================================
+
+function copySankalpamToClipboard() {
+  const loc = appState.location;
+  const sankalpaText = `
+శుభే, శోభనే ముహూర్తే, శ్రీ మహావిష్ణోరాజ్ఞయా ప్రవర్తమానస్య, అద్య బ్రహ్మణః ద్వితీయ పరార్థే, శ్వేతవరాహ కల్పే, వైవస్వత మన్వంతరే, కలియుగే, ప్రథమ పాదే, జంబూద్వీపే, భరతవర్షే, భరతఖండే, మేరోః దక్షిణ దిగ్భాగే, ${loc.srisailamDir}, ${loc.riverRegion}, స్వగృహే (లేదా వసతి గృహే - గుంటూరు, పిన్: ${appState.devotee.pincode}), సమస్త దేవతా బ్రాహ్మణ హరిహర గురుచరణ సన్నిధౌ...
+
+అస్మిన్ వర్తమాన వ్యావహారిక చాంద్రమానేన శ్రీ ${appState.samvatsara} నామ సంవత్సరే, ${appState.ayanam}, ${appState.ritu} ఋతౌ, ${appState.masa} మాసే, ${appState.paksha} పక్షే, ${appState.tithi} శుభతిథౌ, ${appState.vasara}, ${appState.nakshatra} నక్షత్రే, ${appState.yoga} యోగే, ${appState.karana} కరణే, ఏవంగుణ విశేషణ విశిష్టాయాం శుభతిథౌ...
+
+శ్రీమాన్ ${appState.devotee.gotram} గోత్రోద్భవస్య, ${appState.devotee.karta} నామధేయస్య, ధర్మపత్నీ ${appState.devotee.wife} సమేతస్య, పుత్రౌ ${appState.devotee.sons} నామధేయానాం, ${appState.devotee.family} క్షేమ, స్థైర్య, ధైర్య, వీర్య, విజయ, అభయ, ఆయురారోగ్య ఐశ్వర్యాభివృద్ధ్యర్థం, ధర్మార్ధ కామమోక్ష చతుర్విధ ఫల పురుషార్థ సిద్ధ్యర్థం, మనోవాంఛా ఫల సిద్ధ్యర్థం, సకల విఘ్న నివారణార్థం, శ్రీ పూర్ణా పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామి (శ్రీ ఇష్టదేవతా) అనుగ్రహ ప్రసాద సిద్ధ్యర్థం, యావచ్ఛక్తి ధ్యాన ఆవాహనాది షోడశోపచార పూజాం కరిష్యే ||
+  `.trim();
+
+  navigator.clipboard.writeText(sankalpaText).then(() => {
+    const alertEl = document.getElementById("copySuccessMsg");
+    if (alertEl) {
+      alertEl.classList.remove("hidden");
+      setTimeout(() => alertEl.classList.add("hidden"), 3000);
+    }
+  }).catch(err => {
+    console.error("Clipboard copy error:", err);
+  });
+}
+
+function showCelebrationAlert(message) {
+  const alertDiv = document.createElement("div");
+  alertDiv.style.position = "fixed";
+  alertDiv.style.top = "20px";
+  alertDiv.style.left = "50%";
+  alertDiv.style.transform = "translateX(-50%)";
+  alertDiv.style.background = "#78350f";
+  alertDiv.style.color = "#fef3c7";
+  alertDiv.style.padding = "16px 28px";
+  alertDiv.style.borderRadius = "30px";
+  alertDiv.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
+  alertDiv.style.fontWeight = "bold";
+  alertDiv.style.fontSize = "1.1rem";
+  alertDiv.style.zIndex = "99999";
+  alertDiv.style.border = "2px solid #f59e0b";
+  alertDiv.textContent = message;
+
+  document.body.appendChild(alertDiv);
+  setTimeout(() => {
+    alertDiv.style.transition = "opacity 0.5s ease";
+    alertDiv.style.opacity = "0";
+    setTimeout(() => alertDiv.remove(), 500);
+  }, 4000);
+}
+
+// ==========================================
+// 12. EVENT LISTENERS SETUP
+// ==========================================
+
+function setupEventListeners() {
+  // Temple Bell button in nav
+  const btnBell = document.getElementById("btnBell");
+  if (btnBell) btnBell.addEventListener("click", () => playTempleBell(false));
+
+  // Print button
+  const btnPrint = document.getElementById("btnPrint");
+  if (btnPrint) btnPrint.addEventListener("click", () => window.print());
+
+  // Font adjustments
+  const btnFontInc = document.getElementById("btnFontInc");
+  const btnFontDec = document.getElementById("btnFontDec");
+  const btnFontReset = document.getElementById("btnFontReset");
+
+  if (btnFontInc) btnFontInc.addEventListener("click", () => {
+    appState.userFontScale = Math.min(appState.userFontScale + 0.1, 1.5);
+    document.documentElement.style.setProperty("--user-font-scale", appState.userFontScale);
+  });
+
+  if (btnFontDec) btnFontDec.addEventListener("click", () => {
+    appState.userFontScale = Math.max(appState.userFontScale - 0.1, 0.85);
+    document.documentElement.style.setProperty("--user-font-scale", appState.userFontScale);
+  });
+
+  if (btnFontReset) btnFontReset.addEventListener("click", () => {
+    appState.userFontScale = 1.0;
+    document.documentElement.style.setProperty("--user-font-scale", 1.0);
+  });
+
+  // Date input change
+  const dateInput = document.getElementById("pujaDate");
+  if (dateInput) {
+    dateInput.addEventListener("change", (e) => handleDateChange(e.target.value));
+  }
+
+  // "Today" quick jump button
+  const btnTodayDate = document.getElementById("btnTodayDate") || document.getElementById("btnTodayReset");
+  if (btnTodayDate) {
+    btnTodayDate.addEventListener("click", () => {
+      const todayStr = getLocalDateString(new Date());
+      if (dateInput) dateInput.value = todayStr;
+      handleDateChange(todayStr);
+      showCelebrationAlert("✓ నేటి తేదీ మరియు ప్రత్యక్ష ముహూర్తములకు రీసెట్ చేయబడింది.");
+    });
+  }
+
+  // Dropdown manual changes
+  const bindDropdown = (id, stateKey) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("change", (e) => {
+        appState[stateKey] = e.target.value;
+        updateSankalpamView();
+      });
+    }
+  };
+
+  bindDropdown("selSamvatsara", "samvatsara");
+  bindDropdown("selAyanam", "ayanam");
+  bindDropdown("selRitu", "ritu");
+  bindDropdown("selMasa", "masa");
+  bindDropdown("selPaksha", "paksha");
+  bindDropdown("selTithi", "tithi");
+  bindDropdown("selVasara", "vasara");
+  bindDropdown("selNakshatra", "nakshatra");
+  bindDropdown("selYoga", "yoga");
+  bindDropdown("selKarana", "karana");
+
+  // Devotee text inputs (two-way live binding)
+  const bindTextInput = (id, field) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("input", (e) => {
+        appState.devotee[field] = e.target.value || "";
+        saveDevoteeState();
+        updateSankalpamView();
+      });
+    }
+  };
+
+  bindTextInput("txtGotram", "gotram");
+  bindTextInput("txtKartaName", "karta");
+  bindTextInput("txtWifeName", "wife");
+  bindTextInput("txtSons", "sons");
+  bindTextInput("txtFamily", "family");
+
+  // Pincode input listener (Dynamic for 522034)
+  const txtPincode = document.getElementById("txtPincode");
+  if (txtPincode) {
+    txtPincode.addEventListener("input", (e) => {
+      handlePincodeChange(e.target.value);
+    });
+  }
+
+  const selPurpose = document.getElementById("selPurpose");
+  if (selPurpose) {
+    selPurpose.addEventListener("change", (e) => {
+      appState.devotee.purpose = e.target.value;
+      saveDevoteeState();
+      updateSankalpamView();
+    });
+  }
+
+  // Reset to Srinivasarao & Vani defaults (Paidipoondla Gotram, Harsha, Akhil, 522034)
+  const btnReset = document.getElementById("btnResetDevotee");
+  if (btnReset) {
+    btnReset.addEventListener("click", () => {
+      appState.devotee = { ...DEFAULT_DEVOTEE };
+      appState.location = resolvePincodeLocation(DEFAULT_DEVOTEE.pincode);
+      saveDevoteeState();
+      loadSavedDevoteeState();
+      updateSankalpamView();
+      showCelebrationAlert("✓ వివరాలు శ్రీనివాస & వాణీ (పైడిపూండ్ల గోత్రం, పుత్రౌ హర్ష, అఖిల్, గుంటూరు - 522034) కి రీసెట్ చేయబడ్డాయి.");
+    });
+  }
+
+  // Sankalpam Tabs
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(tc => tc.classList.remove("active"));
+
+      btn.classList.add("active");
+      const targetId = `tab-${btn.dataset.tab}`;
+      const targetContent = document.getElementById(targetId);
+      if (targetContent) targetContent.classList.add("active");
+    });
+  });
+
+  // Sankalpam Actions
+  const btnCopy = document.getElementById("btnCopySankalpam");
+  if (btnCopy) btnCopy.addEventListener("click", copySankalpamToClipboard);
+
+  const btnSpeak = document.getElementById("btnSpeakSankalpam") || document.getElementById("btnPlayAudioSankalpam");
+  if (btnSpeak) btnSpeak.addEventListener("click", speakSankalpam);
+
+  const btnStop = document.getElementById("btnStopAudio");
+  if (btnStop) btnStop.addEventListener("click", stopSpeaking);
+
+  // Ashtottara buttons
+  const btnNextNama = document.getElementById("btnNextNama");
+  if (btnNextNama) btnNextNama.addEventListener("click", nextAshtottaraNama);
+
+  const btnResetNama = document.getElementById("btnResetNama");
+  if (btnResetNama) btnResetNama.addEventListener("click", resetAshtottaraCounter);
+
+  const btnOfferAll = document.getElementById("btnOfferAllFlowers");
+  if (btnOfferAll) btnOfferAll.addEventListener("click", offerAllFlowers);
+
+  // Search in Ashtottaram
+  const searchInput = document.getElementById("searchNamaInput");
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      document.querySelectorAll(".nama-card").forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(q)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  }
+
+  // Saranu Ghosha buttons
+  const btnNextSaranu = document.getElementById("btnNextSaranu");
+  if (btnNextSaranu) btnNextSaranu.addEventListener("click", nextSaranuGhosha);
+
+  const btnResetSaranu = document.getElementById("btnResetSaranu");
+  if (btnResetSaranu) btnResetSaranu.addEventListener("click", resetSaranuCounter);
+
+  // Mobile Screen Wake Lock button
+  const btnWake = document.getElementById("btnWakeLock");
+  if (btnWake) btnWake.addEventListener("click", toggleScreenWakeLock);
+
+  // Easy Sloka Meaning & Pronunciation toggle
+  const btnToggleMeaning = document.getElementById("btnToggleMeaning");
+  if (btnToggleMeaning) btnToggleMeaning.addEventListener("click", toggleEasyMeaning);
+
+  // Ashtottara Deity Switcher Tabs
+  const deityTabBtns = document.querySelectorAll(".deity-tab-btn");
+  deityTabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      switchAshtottaraDeity(btn.dataset.deity);
+    });
+  });
+
+  // Tanpura toggle
+  const btnTanpura = document.getElementById("btnPlayTanpura");
+  if (btnTanpura) btnTanpura.addEventListener("click", toggleTanpura);
+
+  // Initialize View Modes (Card vs Book reading layout)
+  initAshtottaraViewModes();
+}
+
+// Screen Wake Lock Handler for Mobile
+let screenWakeLock = null;
+
+async function toggleScreenWakeLock() {
+  const btn = document.getElementById("btnWakeLock");
+  const btnText = document.getElementById("wakeLockBtnText");
+
+  if (!('wakeLock' in navigator)) {
+    alert("మీ మొబైల్ బ్రౌజర్‌లో స్క్రీన్ ఆన్ ఉంచే సదుపాయం లేదు. మీ ఫోన్ సెట్టింగ్స్‌లో 'Screen Timeout' ను పెంచుకోవచ్చు.");
+    return;
+  }
+
+  if (!screenWakeLock) {
+    try {
+      screenWakeLock = await navigator.wakeLock.request('screen');
+      if (btn) btn.classList.add("active");
+      if (btnText) btnText.textContent = "స్క్రీన్ ఆన్ ఉంది";
+      showCelebrationAlert("📱 స్క్రీన్ లాక్ నిలిపివేయబడింది! పూజ పూర్తయ్యేవరకు మీ మొబైల్ స్క్రీన్ ఆరిపోదు.");
+
+      screenWakeLock.addEventListener('release', () => {
+        screenWakeLock = null;
+        if (btn) btn.classList.remove("active");
+        if (btnText) btnText.textContent = "స్క్రీన్ ఆన్";
+      });
+    } catch (err) {
+      console.warn("Wake Lock error:", err);
+      showCelebrationAlert("స్క్రీన్ లాక్ అనుమతి లభించలేదు.");
+    }
+  } else {
+    try {
+      await screenWakeLock.release();
+    } catch (e) {}
+    screenWakeLock = null;
+    if (btn) btn.classList.remove("active");
+    if (btnText) btnText.textContent = "స్క్రీన్ ఆన్";
+    showCelebrationAlert("📱 స్క్రీన్ లాక్ సాధారణ స్థితికి మార్చబడింది.");
+  }
+}
+
+// Toggle Easy Meaning & English Pronunciation
+function toggleEasyMeaning() {
+  appState.showEasyMeaning = !appState.showEasyMeaning;
+  const btn = document.getElementById("btnToggleMeaning");
+  if (btn) {
+    btn.classList.toggle("active", appState.showEasyMeaning);
+    const textEl = btn.querySelector(".btn-text");
+    if (textEl) textEl.textContent = appState.showEasyMeaning ? "తాత్పర్యం దాచు" : "తాత్పర్యం చూపు";
+  }
+
+  document.querySelectorAll(".sloka-easy-meaning, .sloka-english-pronunciation, .sloka-meaning").forEach(el => {
+    el.style.display = appState.showEasyMeaning ? "block" : "none";
+  });
+}
+
+// ==========================================
+// 12. PUJA MODE SWITCHER (NITYA 15-MIN vs SHODASA FULL)
+// ==========================================
+
+function switchPujaMode(mode, shouldScroll = true) {
+  const nityaEl = document.getElementById("pujaNityaContent");
+  const shodasaEl = document.getElementById("pujaShodasaContent");
+  const btnNitya = document.getElementById("btnModeNitya");
+  const btnShodasa = document.getElementById("btnModeShodasa");
+
+  if (mode === "nitya") {
+    if (nityaEl) {
+      nityaEl.style.display = "block";
+      nityaEl.classList.add("active");
+    }
+    if (shodasaEl) {
+      shodasaEl.style.display = "none";
+      shodasaEl.classList.remove("active");
+    }
+    if (btnNitya) {
+      btnNitya.classList.add("active");
+      btnNitya.setAttribute("aria-selected", "true");
+    }
+    if (btnShodasa) {
+      btnShodasa.classList.remove("active");
+      btnShodasa.setAttribute("aria-selected", "false");
+    }
+    localStorage.setItem("ayyappa_puja_mode", "nitya");
+  } else {
+    if (nityaEl) {
+      nityaEl.style.display = "none";
+      nityaEl.classList.remove("active");
+    }
+    if (shodasaEl) {
+      shodasaEl.style.display = "block";
+      shodasaEl.classList.add("active");
+    }
+    if (btnNitya) {
+      btnNitya.classList.remove("active");
+      btnNitya.setAttribute("aria-selected", "false");
+    }
+    if (btnShodasa) {
+      btnShodasa.classList.add("active");
+      btnShodasa.setAttribute("aria-selected", "true");
+    }
+    localStorage.setItem("ayyappa_puja_mode", "shodasa");
+  }
+
+  if (shouldScroll) {
+    const target = document.getElementById("pooja-vidhanam");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+}
+
+// 18 Sharanu Haptic and visual feedback
+function playHapticAndTrack(el) {
+  if (navigator.vibrate) {
+    navigator.vibrate(35);
+  }
+  if (el) {
+    el.style.transform = "scale(0.97)";
+    el.style.backgroundColor = "#fef08a";
+    setTimeout(() => {
+      el.style.transform = "";
+      el.style.backgroundColor = "";
+    }, 250);
+  }
+}
+
+// Global invocation on DOM Ready
+document.addEventListener("DOMContentLoaded", initApp);

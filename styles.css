@@ -1,0 +1,4522 @@
+/* ===================================================
+   SRI AYYAPPA DAILY POOJA VIDHANAM & LIVE SANKALPAM
+   Sacred Temple Aesthetics & Responsive Stylesheet
+   =================================================== */
+
+:root {
+  --primary-deep-maroon: #4a0e17;
+  --primary-temple-red: #831843;
+  --sacred-saffron: #ea580c;
+  --sacred-saffron-dark: #c2410c;
+  --sacred-gold: #d97706;
+  --sacred-gold-light: #fef3c7;
+  --sacred-gold-border: #f59e0b;
+  --sacred-amber: #b45309;
+  --bg-parchment: #fdfbf7;
+  --bg-card: #ffffff;
+  --text-primary: #1c1917;
+  --text-secondary: #44403c;
+  --text-muted: #78716c;
+  --border-subtle: #f3e8d2;
+  --shadow-warm: 0 10px 25px -5px rgba(180, 83, 9, 0.15), 0 8px 10px -6px rgba(180, 83, 9, 0.1);
+  --shadow-gold: 0 4px 20px rgba(217, 119, 6, 0.25);
+  --font-telugu-heading: 'Ramabhadra', 'Gautami', 'Nirmala UI', sans-serif;
+  --font-telugu-body: 'Mandali', 'Tiro Telugu', 'Gautami', 'Nirmala UI', serif;
+  --font-sanskrit: 'Tiro Telugu', 'Suranna', Georgia, serif;
+  --font-cinzel: 'Cinzel', serif;
+  --user-font-scale: 1;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-telugu-body);
+  background: var(--bg-parchment);
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: calc(1rem * var(--user-font-scale));
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(#fde68a 0.75px, transparent 0.75px), 
+    radial-gradient(#fed7aa 0.75px, #fdfbf7 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+/* ===================================================
+   TOP SACRED BANNER & STICKY NAVIGATION
+   =================================================== */
+
+.sacred-top-bar {
+  background: linear-gradient(90deg, #3f0910, #7c1322, #b45309, #7c1322, #3f0910);
+  color: #fef3c7;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #f59e0b;
+}
+
+.top-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.om-symbol {
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 4px #fbbf24);
+}
+
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #fed7aa;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.nav-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  gap: 15px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-family: var(--font-telugu-heading);
+  font-size: 1.15rem;
+  color: var(--primary-deep-maroon);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.brand-flame {
+  font-size: 1.3rem;
+  animation: pulse-glow 2s infinite alternate;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+  scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background: #fef3c7;
+  color: var(--sacred-amber);
+}
+
+.nav-link.highlight-link {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #7c2d12;
+  border: 1px solid #f59e0b;
+  font-weight: 700;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.bell-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border-color: #b45309;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3);
+}
+
+.bell-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.45);
+}
+
+.bell-btn:active {
+  transform: scale(0.95);
+}
+
+.print-btn {
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.print-btn:hover {
+  background: #e2e8f0;
+}
+
+.font-controls {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  border-radius: 16px;
+  padding: 2px;
+  border: 1px solid #cbd5e1;
+}
+
+.font-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.font-btn:hover {
+  background: #ffffff;
+  color: var(--sacred-amber);
+}
+
+/* ===================================================
+   HERO BANNER & DEVOTEE DEDICATION
+   =================================================== */
+
+.hero-section {
+  position: relative;
+  background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 30%, #991b1b 60%, #b45309 100%);
+  color: #fff;
+  padding: 60px 20px 45px;
+  text-align: center;
+  border-bottom: 5px solid #d97706;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 950px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+.diya-decor {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 12px #f59e0b);
+  animation: diya-flicker 3s infinite ease-in-out;
+}
+
+.left-diya { animation-delay: 0.2s; }
+.right-diya { animation-delay: 0.7s; }
+
+.sacred-badge {
+  display: inline-block;
+  background: rgba(254, 243, 199, 0.2);
+  border: 1px solid #fef3c7;
+  color: #fef3c7;
+  padding: 6px 18px;
+  border-radius: 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.main-title {
+  font-family: var(--font-telugu-heading);
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  color: #fffbeb;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.4);
+}
+
+.sub-title {
+  font-size: 1.18rem;
+  color: #fde68a;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+/* Devotee Highlight Pill */
+.devotee-quick-pill {
+  background: rgba(255, 255, 255, 0.95);
+  color: #451a03;
+  border-radius: 12px;
+  padding: 12px 20px;
+  margin: 0 auto 30px;
+  max-width: 800px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  border: 2px solid #f59e0b;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.05rem;
+}
+
+.pill-badge {
+  background: #7c2d12;
+  color: #fef3c7;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.devotee-names strong {
+  color: #991b1b;
+  font-size: 1.15rem;
+  text-decoration: underline dotted #d97706;
+}
+
+.pill-loc {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #f59e0b;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ===================================================
+   COMPACT DEVOTIONAL PUJA HEADER (Minimal Padding)
+   =================================================== */
+.compact-puja-header {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fff7ed 100%);
+  border-bottom: 2px solid #f59e0b;
+  padding: 18px 16px 14px;
+  text-align: center;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.08);
+}
+
+.compact-puja-header .header-sacred-tag {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #b45309;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.compact-puja-header .header-title {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #78350f;
+  margin: 4px 0 8px;
+  line-height: 1.35;
+}
+
+.compact-puja-header .header-devotee-strip {
+  font-size: 0.95rem;
+  color: #451a03;
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  padding: 8px 14px;
+  display: inline-block;
+  max-width: 95%;
+  margin-bottom: 12px;
+}
+
+.compact-puja-header .header-devotee-strip strong {
+  color: #881337;
+}
+
+.compact-puja-header .header-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ===================================================
+   COLLAPSIBLE MUHURTHA DRAWER IN STEP 2
+   =================================================== */
+.muhurtha-collapse-drawer {
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  background: #fffdf5;
+  padding: 10px 14px;
+  margin-top: 14px;
+}
+
+.muhurtha-drawer-summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #92400e;
+  font-size: 0.96rem;
+  user-select: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.muhurtha-drawer-summary:hover {
+  color: #b45309;
+}
+
+.muhurtha-drawer-body {
+  padding-top: 12px;
+  border-top: 1px dashed #fed7aa;
+  margin-top: 10px;
+}
+
+.hero-cta-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #451a03;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+.pulse-btn {
+  animation: subtle-pulse 3s infinite;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #ffffff;
+}
+
+/* ===================================================
+   MAIN LAYOUT & SECTION CARDS
+   =================================================== */
+
+.page-container {
+  max-width: 1100px;
+  margin: -25px auto 60px;
+  padding: 0 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.section-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  box-shadow: var(--shadow-warm);
+  border: 1px solid #fde68a;
+  margin-bottom: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-header {
+  padding: 30px 30px 20px;
+  border-bottom: 1px solid #fef3c7;
+}
+
+.gold-gradient-header {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fde68a 100%);
+  border-bottom: 2px solid #f59e0b;
+}
+
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #7c2d12;
+  color: #fef3c7;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #22c55e;
+  animation: live-blink 1.5s infinite;
+}
+
+.section-title {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.85rem;
+  color: var(--primary-deep-maroon);
+  font-weight: 800;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.section-description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ===================================================
+   SANKALPAM GENERATOR SPECIFIC STYLES
+   =================================================== */
+
+.sankalpam-hero-card {
+  border: 2px solid #f59e0b;
+  box-shadow: var(--shadow-gold);
+}
+
+.sankalpam-container {
+  padding: 25px 30px 35px;
+}
+
+.sankalpam-config-box {
+  background: #fffdfa;
+  border: 1px solid #fed7aa;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 30px;
+}
+
+.config-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #fed7aa;
+}
+
+.config-header h3 {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.15rem;
+  color: #7c2d12;
+  font-weight: 700;
+}
+
+.btn-text-action {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-text-action:hover {
+  background: #fecaca;
+}
+
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group.full-col {
+  grid-column: 1 / -1;
+}
+
+.form-group.highlight-input {
+  background: #fff7ed;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #fdba74;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #451a03;
+}
+
+.form-control {
+  font-family: var(--font-telugu-body);
+  padding: 9px 12px;
+  border: 1px solid #d6d3d1;
+  border-radius: 8px;
+  font-size: 0.96rem;
+  background: #ffffff;
+  color: #1c1917;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #d97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+}
+
+.help-text {
+  font-size: 0.8rem;
+  color: #78716c;
+}
+
+/* Pincode Custom Input Styling */
+.pincode-form-group {
+  grid-column: span 2;
+}
+
+.pincode-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pincode-input-wrap input {
+  max-width: 130px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  color: #991b1b;
+}
+
+.pincode-tag {
+  background: #fef3c7;
+  color: #78350f;
+  border: 1px solid #f59e0b;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Local Sunrise & Muhurtha Timings Dashboard */
+.local-timings-card {
+  background: linear-gradient(135deg, #fffdf8 0%, #fff8eb 100%);
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.08);
+}
+
+.timings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #fcd34d;
+}
+
+.timings-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.live-clock-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #1e293b;
+  color: #38bdf8;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--font-cinzel), monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.live-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  animation: pulseDot 1.4s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.clock-label {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.clock-time {
+  letter-spacing: 0.5px;
+}
+
+.live-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 8px 14px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+  font-size: 0.92rem;
+  color: #78350f;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.live-status-bar.status-subha {
+  background: #f0fdf4;
+  border-left-color: #22c55e;
+  color: #166534;
+}
+
+.live-status-bar.status-varjya {
+  background: #fef2f2;
+  border-left-color: #ef4444;
+  color: #991b1b;
+}
+
+.date-picker-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-sm-today {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-sm-today:hover {
+  background: #78350f;
+  transform: translateY(-1px);
+}
+
+.time-item.active-now {
+  outline: 3px solid #f59e0b;
+  outline-offset: -1px;
+  position: relative;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+  animation: glowActive 2s infinite ease-in-out alternate;
+}
+
+@keyframes glowActive {
+  from { box-shadow: 0 0 4px rgba(245, 158, 11, 0.2); }
+  to { box-shadow: 0 0 14px rgba(245, 158, 11, 0.6); }
+}
+
+.time-item.active-now::after {
+  content: "● ఇప్పుడు";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: #f59e0b;
+  color: #ffffff;
+  padding: 1px 5px;
+  border-radius: 8px;
+}
+
+.t-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  color: #78350f;
+}
+
+.t-title strong {
+  color: #991b1b;
+  font-size: 1.12rem;
+}
+
+.t-date {
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #fde68a;
+  color: #78350f;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.timings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.time-item {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.time-item .t-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.time-item .t-val {
+  font-family: var(--font-cinzel), var(--font-telugu-body);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.time-item .t-sub {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+/* Custom Accents for Timings */
+.time-sunrise {
+  border-color: #bae6fd;
+  background: #f0f9ff;
+}
+.time-sunrise .t-val { color: #0369a1; }
+
+.time-sunset {
+  border-color: #fed7aa;
+  background: #fff7ed;
+}
+.time-sunset .t-val { color: #c2410c; }
+
+.time-abhijit {
+  border: 2px solid #22c55e;
+  background: #f0fdf4;
+  grid-column: span 1;
+}
+.time-abhijit .t-val { color: #15803d; font-size: 1.08rem; }
+.time-abhijit .t-label { color: #166534; }
+
+.time-rahu {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+.time-rahu .t-val { color: #b91c1c; }
+
+.time-yama {
+  border-color: #fed7aa;
+  background: #fffbeb;
+}
+.time-yama .t-val { color: #b45309; }
+
+.time-gulika {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+.time-gulika .t-val { color: #15803d; }
+
+.token-kshethra-inline {
+  display: inline;
+  background: #fffbeb;
+  border-bottom: 2px solid #f59e0b;
+  padding: 0 4px;
+}
+
+.token-kshethra-inline strong {
+  color: #9a3412;
+}
+
+/* Sankalpam Tabs */
+.tab-controls {
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid #fed7aa;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  padding: 10px 18px;
+  font-family: var(--font-telugu-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #78716c;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: #b45309;
+}
+
+.tab-btn.active {
+  color: #991b1b;
+  border-bottom-color: #991b1b;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Sankalpam Presentation Box */
+.sankalpa-box {
+  position: relative;
+  background: linear-gradient(135deg, #fffcf6 0%, #fff9ec 100%);
+  border: 2px solid #f59e0b;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.1);
+  overflow: hidden;
+}
+
+.sacred-watermark {
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  font-size: 8rem;
+  font-family: var(--font-telugu-heading);
+  color: rgba(245, 158, 11, 0.05);
+  font-weight: 800;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sankalpa-text {
+  font-size: 1.15rem;
+  line-height: 1.95;
+  color: #292524;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* Dynamic Live Tokens Banner */
+.dynamic-tokens-banner {
+  background: #fff8e6;
+  border: 1px dashed #d97706;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* Sacred Flowing Text for Sankalpam & Panchangam (No boxy badges or borders) */
+.token {
+  display: inline;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.token strong {
+  color: #b45309;
+  font-weight: 700;
+}
+
+.token-subha {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  color: #451a03;
+}
+
+/* Devotee Highlight Box inside Sankalpa - Clean, Gentle & Flowing */
+.devotee-sankalpa-highlight {
+  background: #fffcf5;
+  border-left: 3px solid #d97706;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin: 12px 0;
+  font-size: 1.12rem;
+  line-height: 1.85;
+}
+
+.karta-invocation {
+  margin-bottom: 8px;
+  color: #1c1917;
+}
+
+.badge-gothra, .badge-name, .badge-wife, .badge-sons {
+  display: inline;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+.badge-gothra strong, .badge-name strong, .badge-wife strong, .badge-sons strong {
+  color: #881337;
+  font-weight: 800;
+  font-size: inherit;
+}
+
+.intent-invocation {
+  font-weight: 600;
+  color: #7f1d1d;
+}
+
+.sankalpa-footer-note {
+  font-size: 0.95rem;
+  color: #78716c;
+  font-style: italic;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Sankalpam Actions Bar */
+.sankalpam-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #78350f;
+  border: 1.5px solid #d97706;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.85rem;
+}
+
+.btn-outline:hover {
+  background: #fef3c7;
+  color: #451a03;
+  border-color: #b45309;
+}
+
+.btn-audio {
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-audio:hover {
+  background: linear-gradient(135deg, #38bdf8, #0284c7);
+}
+
+.btn-stop {
+  background: #ef4444;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.copy-alert {
+  color: #15803d;
+  font-weight: 700;
+  background: #dcfce7;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #86efac;
+  font-size: 0.92rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ===================================================
+   POOJA STEPS & RITUAL CARDS
+   =================================================== */
+
+.steps-nav-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 15px 30px;
+  background: #fdfaf3;
+  border-bottom: 1px solid #fed7aa;
+  scrollbar-width: none;
+}
+
+.steps-nav-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.step-chip {
+  text-decoration: none;
+  color: #78716c;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.step-chip:hover {
+  background: #fef3c7;
+  color: #b45309;
+  border-color: #f59e0b;
+}
+
+.step-chip.highlight-chip {
+  background: #fff7ed;
+  color: #c2410c;
+  border-color: #fdba74;
+  font-weight: 700;
+}
+
+.puja-steps-wrapper {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.puja-step-card {
+  display: flex;
+  gap: 20px;
+  background: #ffffff;
+  border: 1px solid #f3e8d2;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s;
+}
+
+.puja-step-card:hover {
+  border-color: #f59e0b;
+}
+
+.sacred-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fffbf2 100%);
+  border: 2px solid #f59e0b;
+}
+
+.step-badge-number {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #b45309, #78350f);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(180, 83, 9, 0.3);
+}
+
+.step-body {
+  flex-grow: 1;
+}
+
+.step-title {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.45rem;
+  color: #7f1d1d;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.ritual-instruction {
+  background: #f8fafc;
+  border-left: 4px solid #64748b;
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.98rem;
+  color: #334155;
+  margin-bottom: 15px;
+}
+
+.mantra-block {
+  background: #fffdf8;
+  border: 1px solid #fef3c7;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 15px;
+}
+
+.mantra-block.highlight-box {
+  background: #fff7ed;
+  border-color: #fdba74;
+}
+
+.mantra-label {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #fde68a;
+}
+
+.sloka {
+  font-family: var(--font-sanskrit);
+  font-size: 1.18rem;
+  line-height: 1.95;
+  color: #1c1917;
+  margin-bottom: 10px;
+}
+
+.sloka.highlight-sloka {
+  color: #7c2d12;
+  font-weight: 600;
+}
+
+.sloka-meaning {
+  font-size: 0.95rem;
+  color: #57534e;
+  line-height: 1.6;
+  border-top: 1px dashed #e7e5e4;
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+.inline-bell-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  color: #b45309;
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Achamana Items Grid */
+.achamana-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.achamana-item {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.02rem;
+}
+
+.names-flow {
+  background: #fdfaf3;
+  padding: 14px;
+  border-radius: 8px;
+  line-height: 2.2;
+  font-size: 1.05rem;
+  color: #44403c;
+}
+
+.names-flow span {
+  display: inline-block;
+  background: #ffffff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #f5d0fe;
+  color: #86198f;
+  margin: 2px;
+}
+
+.ganesha-names span {
+  border-color: #fed7aa;
+  color: #9a3412;
+}
+
+/* Upacharas 1 to 10 list */
+.upachara-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.upachara-card {
+  background: #fdfbf7;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.u-num {
+  width: 22px;
+  height: 22px;
+  background: #d97706;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.u-name {
+  font-weight: 700;
+  color: #7c2d12;
+  font-size: 1.05rem;
+}
+
+.u-mantra {
+  font-size: 0.95rem;
+  color: #292524;
+}
+
+.u-action {
+  font-size: 0.85rem;
+  color: #78716c;
+  font-style: italic;
+}
+
+/* Anga Pooja Grid */
+.anga-pooja-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.anga-item {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 1.02rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.anga-item span {
+  font-weight: 700;
+  color: #b45309;
+  white-space: nowrap;
+}
+
+.anga-item.full-width {
+  grid-column: 1 / -1;
+  background: #fff7ed;
+  border: 2px solid #f97316;
+  font-weight: 700;
+  color: #9a3412;
+}
+
+/* ===================================================
+   108 ASHTOTTARAM & SARANU GHOSHA STYLES
+   =================================================== */
+
+.tracker-dashboard {
+  background: #ffffff;
+  border: 2px solid #fcd34d;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 20px 0 15px;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.1);
+}
+
+.tracker-stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tracker-label {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #451a03;
+}
+
+.tracker-number {
+  font-family: var(--font-cinzel);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #b45309;
+}
+
+.tracker-progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #fef3c7;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #dc2626);
+  transition: width 0.3s ease;
+}
+
+.tracker-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-tracker {
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.35);
+  transition: all 0.2s;
+}
+
+.btn-tracker:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.btn-tracker:active {
+  transform: scale(0.96);
+}
+
+.btn-tracker-sub {
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 9px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-tracker-sub:hover {
+  background: #e2e8f0;
+}
+
+.search-nama-box {
+  margin-top: 15px;
+}
+
+/* 108 Ashtottaram Grid */
+.ashtottaram-grid {
+  padding: 25px 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.nama-card {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.nama-card:hover {
+  background: #fffbeb;
+  border-color: #f59e0b;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.nama-card.chanted {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.nama-card.chanted .nama-num {
+  background: #16a34a;
+}
+
+.nama-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #d97706;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.nama-text {
+  font-family: var(--font-telugu-body);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: #292524;
+  line-height: 1.4;
+  flex: 1;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Sacred View Mode Toggle (Cards vs Book View) */
+.view-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: 20px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.view-toggle-btn {
+  background: transparent;
+  border: none;
+  border-radius: 16px;
+  padding: 5px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #78350f;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.view-toggle-btn:hover {
+  color: #b45309;
+}
+
+.view-toggle-btn.active {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(180, 83, 9, 0.3);
+}
+
+.ashtottara-ctrls-wrap,
+.header-action-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Book Mode Scripture Layout for Ashtottaram & Saranu Ghosha */
+.ashtottaram-grid.book-mode,
+.saranu-list-grid.book-mode {
+  display: block !important;
+  background: #ffffff;
+  border: 1.5px solid #fde68a;
+  border-radius: 12px;
+  padding: 0 !important;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.08);
+}
+
+.ashtottaram-grid.book-mode .nama-card,
+.saranu-list-grid.book-mode .saranu-card {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  border: none !important;
+  border-bottom: 1px solid #fef3c7 !important;
+  border-radius: 0 !important;
+  padding: 10px 16px !important;
+  box-shadow: none !important;
+  background: #ffffff;
+  min-height: 42px;
+  transform: none !important;
+}
+
+.ashtottaram-grid.book-mode .nama-card:nth-child(even),
+.saranu-list-grid.book-mode .saranu-card:nth-child(even) {
+  background: #fffdf9;
+}
+
+.ashtottaram-grid.book-mode .nama-card:hover,
+.saranu-list-grid.book-mode .saranu-card:hover {
+  background: #fefce8;
+}
+
+.ashtottaram-grid.book-mode .nama-card:last-child,
+.saranu-list-grid.book-mode .saranu-card:last-child {
+  border-bottom: none !important;
+}
+
+.ashtottaram-grid.book-mode .nama-num,
+.saranu-list-grid.book-mode .saranu-num {
+  background: transparent !important;
+  color: #b45309 !important;
+  font-size: 0.92rem !important;
+  font-weight: 800;
+  width: auto !important;
+  min-width: 32px;
+  height: auto !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  justify-content: flex-start;
+}
+
+.ashtottaram-grid.book-mode .nama-num::after,
+.saranu-list-grid.book-mode .saranu-num::after {
+  content: ".";
+}
+
+.ashtottaram-grid.book-mode .nama-card.chanted,
+.saranu-list-grid.book-mode .saranu-card.chanted {
+  background: #f0fdf4 !important;
+}
+
+.ashtottaram-grid.book-mode .nama-card.chanted .nama-num,
+.saranu-list-grid.book-mode .saranu-card.chanted .saranu-num {
+  color: #16a34a !important;
+}
+
+.ashtottaram-grid.book-mode .nama-text,
+.saranu-list-grid.book-mode .saranu-text {
+  font-size: 1.08rem;
+  line-height: 1.45;
+}
+
+.nama-closing-mantra {
+  padding: 20px 30px 30px;
+  text-align: center;
+  background: #fffdf5;
+  border-top: 1px solid #fef3c7;
+  font-size: 1.12rem;
+  color: #7c2d12;
+}
+
+/* 108 Saranu Ghosha List */
+.saranu-list-grid {
+  padding: 25px 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 10px;
+}
+
+.saranu-card {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.saranu-card:hover {
+  background: #fff7ed;
+  border-color: #ea580c;
+}
+
+.saranu-card.chanted {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.saranu-card.chanted .saranu-num {
+  background: #dc2626;
+}
+
+.saranu-num {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #c2410c;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.saranu-text {
+  font-size: 1.05rem;
+  color: #431407;
+  font-weight: 600;
+}
+
+/* Lokaveeram Stuti Grid */
+.lokaveeram-grid {
+  padding: 25px 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 15px;
+}
+
+.stuti-item {
+  background: #fffdf9;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  padding: 16px 18px;
+  position: relative;
+}
+
+.stuti-num {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: #fef3c7;
+  color: #92400e;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid #fde68a;
+}
+
+/* Harivarasanam Section */
+.harivarasanam-section {
+  border: 2px solid #f59e0b;
+}
+
+.ambient-audio-player {
+  background: #ffffff;
+  border: 1px solid #fcd34d;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-top: 15px;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.player-status {
+  font-size: 0.95rem;
+  color: #78716c;
+  font-weight: 600;
+}
+
+.harivarasanam-stanzas {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stanza-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fffcf5 100%);
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  padding: 22px 26px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.stanza-header {
+  font-weight: 700;
+  color: #b45309;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sloka-large {
+  font-family: var(--font-sanskrit);
+  font-size: 1.25rem;
+  line-height: 2;
+  color: #1c1917;
+  margin-bottom: 10px;
+}
+
+.chorus {
+  display: block;
+  font-weight: 800;
+  color: #c2410c;
+  font-size: 1.3rem;
+  margin-top: 8px;
+  text-shadow: 0 1px 2px rgba(234, 88, 12, 0.15);
+}
+
+.stanza-meaning {
+  font-size: 0.96rem;
+  color: #57534e;
+  border-top: 1px dashed #fed7aa;
+  padding-top: 10px;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+/* Bhojana Mantras Grid */
+.bhojana-grid {
+  padding: 25px 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.bhojana-card {
+  background: #ffffff;
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.bhojana-badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #9a3412;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  margin-bottom: 14px;
+  border: 1px solid #fed7aa;
+}
+
+/* ===================================================
+   FOOTER
+   =================================================== */
+
+.sacred-footer {
+  background: linear-gradient(135deg, #1c1917 0%, #292524 50%, #451a03 100%);
+  color: #fef3c7;
+  padding: 50px 20px 30px;
+  text-align: center;
+  border-top: 4px solid #f59e0b;
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-diya {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  animation: diya-flicker 2.5s infinite;
+}
+
+.footer-motto {
+  font-family: var(--font-telugu-heading);
+  font-size: 2rem;
+  color: #fef08a;
+  margin-bottom: 10px;
+}
+
+.footer-sub {
+  font-size: 1.05rem;
+  color: #e7e5e4;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.footer-links {
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+.footer-links a {
+  color: #fde047;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 6px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-copy {
+  font-size: 0.88rem;
+  color: #a8a29e;
+  border-top: 1px solid #44403c;
+  padding-top: 20px;
+}
+
+/* ===================================================
+   KEYFRAME ANIMATIONS
+   =================================================== */
+
+@keyframes diya-flicker {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px #f59e0b); }
+  50% { transform: scale(1.08); filter: drop-shadow(0 0 16px #fbbf24); }
+}
+
+@keyframes pulse-glow {
+  0% { transform: scale(1); filter: drop-shadow(0 0 4px #f59e0b); }
+  100% { transform: scale(1.15); filter: drop-shadow(0 0 10px #ea580c); }
+}
+
+@keyframes subtle-pulse {
+  0%, 100% { box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4); }
+  50% { box-shadow: 0 8px 30px rgba(245, 158, 11, 0.7); }
+}
+
+@keyframes live-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ===================================================
+   EASY SLOKA READING & SANSKRIT HELP
+   =================================================== */
+
+.sloka-spaced {
+  font-family: var(--font-telugu-heading), var(--font-telugu-body);
+  font-size: 1.15rem;
+  line-height: 2.1;
+  color: #1c1917;
+  background: #fdfaf3;
+  border-left: 4px solid #f59e0b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+}
+
+.sloka-easy-meaning {
+  background: #f0fdf4;
+  border-left: 4px solid #22c55e;
+  padding: 10px 14px;
+  border-radius: 6px;
+  color: #14532d;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.sloka-easy-meaning strong {
+  color: #166534;
+}
+
+.sloka-english-pronunciation {
+  background: #f8fafc;
+  border-left: 4px solid #64748b;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-style: italic;
+  color: #334155;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.btn-jump-ashtottara {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff !important;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-jump-ashtottara:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(217, 119, 6, 0.4);
+}
+
+/* Deity Tabs for Ashtottaram Section */
+.deity-tab-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.deity-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 2px solid #fed7aa;
+  color: #78350f;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.deity-tab-btn:hover {
+  border-color: #f59e0b;
+  color: #9a3412;
+}
+
+.deity-tab-btn.active {
+  background: linear-gradient(135deg, #9a3412, #78350f);
+  border-color: #f59e0b;
+  color: #fef3c7;
+  box-shadow: 0 4px 12px rgba(154, 52, 18, 0.3);
+}
+
+/* Navigation Action Buttons */
+.wake-btn {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 1px solid #475569;
+  color: #94a3b8;
+}
+
+.wake-btn.active {
+  background: linear-gradient(135deg, #059669, #047857);
+  border-color: #34d399;
+  color: #ecfdf5;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.meaning-btn {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #ffffff;
+  border: 1px solid #f59e0b;
+}
+
+.meaning-btn.active {
+  background: linear-gradient(135deg, #78350f, #451a03);
+}
+
+/* ===================================================
+   PUJA MODE SELECTOR (DAILY NITYA vs SHODASA FULL)
+   =================================================== */
+
+.puja-mode-container {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #fff7ed 100%);
+  border: 2px solid #f59e0b;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.12);
+}
+
+.puja-mode-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.puja-mode-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #ffffff;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3);
+}
+
+.puja-mode-title {
+  font-size: 1.55rem;
+  color: #78350f;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+}
+
+.puja-mode-subtitle {
+  font-size: 1rem;
+  color: #92400e;
+  margin: 0 auto;
+  max-width: 760px;
+  line-height: 1.5;
+}
+
+.puja-mode-switcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mode-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border: 2px solid #fed7aa;
+  border-radius: 14px;
+  padding: 16px 20px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.mode-tab-btn:hover {
+  border-color: #f59e0b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(217, 119, 6, 0.18);
+}
+
+.mode-tab-btn.active {
+  background: linear-gradient(135deg, #78350f 0%, #451a03 100%);
+  border-color: #f59e0b;
+  color: #fef3c7;
+  box-shadow: 0 8px 20px rgba(69, 26, 3, 0.35);
+}
+
+.mode-tab-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.mode-tab-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.mode-tab-text strong {
+  font-size: 1.12rem;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.mode-tab-btn.active .mode-tab-text strong {
+  color: #fef08a;
+}
+
+.mode-tab-text small {
+  font-size: 0.84rem;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+.mode-tab-btn.active .mode-tab-text small {
+  color: #cbd5e1;
+}
+
+.mode-badge-pill {
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.4);
+}
+
+/* Nitya Blessing & Notice Card */
+.nitya-blessing-card {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-left: 5px solid #d97706;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.1);
+}
+
+.nitya-blessing-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #78350f;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nitya-blessing-text {
+  font-size: 0.98rem;
+  color: #451a03;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.nitya-time-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.time-pill {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.time-pill.highlight {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #ffffff;
+  border-color: #d97706;
+}
+
+/* Step Timing Badge */
+.step-time-badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* 18 Pradhana Saranulu Grid */
+.sharanu-18-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.sharanu-item-pill {
+  background: #ffffff;
+  border: 1px solid #fcd34d;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: #78350f;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.sharanu-item-pill:hover, .sharanu-item-pill:active {
+  background: #fef3c7;
+  border-color: #d97706;
+  transform: translateX(4px);
+}
+
+.sharanu-item-pill .s-num {
+  background: #d97706;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* Quick Sankalpa Card in Nitya Flow - Soft, Elegant & Flowing */
+.quick-sankalpa-box {
+  background: #fffdf9;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 12px 0;
+  box-shadow: 0 1px 4px rgba(217, 119, 6, 0.05);
+}
+
+.quick-sankalpa-box .karta-line {
+  font-size: 1.08rem;
+  color: #1c1917;
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+
+.quick-sankalpa-box .panchang-line {
+  font-size: 1rem;
+  color: #451a03;
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+
+.quick-sankalpa-box .deeksha-line {
+  background: transparent;
+  border-left: none;
+  padding: 4px 0;
+  color: #92400e;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+/* Quick Ashtottara Inline Section */
+.quick-ashtottara-container {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 14px;
+  padding: 18px;
+  margin: 16px 0;
+}
+
+.quick-ashtottara-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.quick-counter-badge {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.nitya-flow-action {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Mode container visibility */
+.puja-mode-content {
+  display: none;
+}
+
+.puja-mode-content.active {
+  display: block;
+}
+
+/* ===================================================
+   EXTENDED UTILITIES & COMPONENT COVERAGE
+   (Daily Puja & Full Puja Dedicated Styling)
+   =================================================== */
+
+/* Theme and Base Wrapper */
+.telugu-theme {
+  font-family: var(--font-telugu-body);
+  color: var(--text-primary);
+  background: var(--bg-parchment);
+}
+
+.telugu-text {
+  font-family: var(--font-telugu-body);
+}
+
+/* Top Sacred Banner Additions */
+.top-bar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1300px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sacred-slogan {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.panchangam-quick-ticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fef08a;
+}
+
+.live-pulse {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: live-blink 1.4s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+/* Brand & Button Helpers */
+.brand-icon {
+  font-size: 1.4rem;
+  filter: drop-shadow(0 0 4px #fbbf24);
+}
+
+.brand-text {
+  font-family: var(--font-telugu-heading);
+  font-weight: 700;
+  color: var(--primary-deep-maroon);
+  font-size: 1.18rem;
+  letter-spacing: 0.3px;
+}
+
+.btn-icon {
+  font-size: 1.05rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-text {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 0.84rem;
+  border-radius: 18px;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+  border-color: #94a3b8;
+}
+
+.ambient-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border: 1px solid #b45309;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.25);
+  transition: all 0.2s ease;
+}
+
+.ambient-btn:hover {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.35);
+}
+
+.font-zoom-ctrls {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  border-radius: 16px;
+  border: 1px solid #cbd5e1;
+  overflow: hidden;
+}
+
+.zoom-btn {
+  background: transparent;
+  border: none;
+  padding: 5px 10px;
+  font-weight: 700;
+  font-size: 0.84rem;
+  cursor: pointer;
+  color: #475569;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.zoom-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Hero & Devotee Pill Additions */
+.hero-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.pill-icon {
+  font-size: 1.3rem;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
+}
+
+.pill-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Sankalpam Meta Bar & Muhurtha Real-Time Dashboard */
+.sankalpam-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  background: #fffdfa;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.05);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: #44403c;
+}
+
+.meta-icon {
+  font-size: 1.18rem;
+  color: #d97706;
+}
+
+.meta-label {
+  font-weight: 700;
+  color: #78350f;
+}
+
+.meta-sub {
+  display: inline-block;
+  font-size: 0.82rem;
+  color: #78716c;
+  font-weight: normal;
+  margin-left: 6px;
+}
+
+.location-tag strong {
+  color: #991b1b;
+  font-size: 1.08rem;
+}
+
+.date-picker-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-input {
+  font-family: inherit;
+  font-size: 0.92rem;
+  padding: 6px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1e293b;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.date-input:focus {
+  border-color: #d97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+}
+
+.clock-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.live-time-display {
+  font-family: var(--font-cinzel), monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0284c7;
+  background: #f0f9ff;
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid #bae6fd;
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.tracker-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  color: #78350f;
+  font-size: 0.95rem;
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: live-blink 1.4s infinite;
+  flex-shrink: 0;
+}
+
+/* Solar & Muhurtha Timing Cards */
+.timing-card {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.timing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(217, 119, 6, 0.12);
+}
+
+.timing-card .t-icon {
+  font-size: 1.35rem;
+  margin-bottom: 2px;
+}
+
+.timing-card .t-label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.timing-card .t-val {
+  font-family: var(--font-cinzel), var(--font-telugu-body);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 2px 0;
+}
+
+.timing-card .t-desc {
+  font-size: 0.76rem;
+  color: #78716c;
+}
+
+.timing-card.auspicious {
+  background: #f0fdf4;
+  border: 2px solid #22c55e;
+}
+
+.timing-card.auspicious .t-val {
+  color: #15803d;
+}
+
+.timing-card.auspicious .t-label {
+  color: #166534;
+}
+
+.timing-card.inauspicious {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+}
+
+.timing-card.inauspicious .t-val {
+  color: #b91c1c;
+}
+
+.timing-card.inauspicious .t-label {
+  color: #991b1b;
+}
+
+.timing-card.good {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+}
+
+.timing-card.good .t-val {
+  color: #166534;
+}
+
+.timing-card.good .t-label {
+  color: #14532d;
+}
+
+/* Sankalpam Presentation Elements - Soft, Minimal Borders */
+.gold-bordered {
+  border: 1px solid #fed7aa !important;
+  box-shadow: 0 1px 4px rgba(217, 119, 6, 0.06) !important;
+}
+
+.sankalpa-watermark {
+  position: absolute;
+  right: 15px;
+  bottom: 8px;
+  font-size: 7.5rem;
+  font-family: var(--font-telugu-heading);
+  color: rgba(217, 119, 6, 0.05);
+  font-weight: 800;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.sankalpa-content {
+  display: none;
+}
+
+.sankalpa-content.active {
+  display: block;
+}
+
+.badge-panchang {
+  display: inline;
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #b45309;
+  font-size: inherit;
+}
+
+.badge-panchang strong {
+  color: #b45309;
+  font-weight: 700;
+}
+
+.highlight-var {
+  color: #7c2d12;
+  font-weight: 700;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+}
+
+.puja-intent-text {
+  font-weight: 600;
+  color: #78350f;
+  background: transparent;
+  padding: 4px 0;
+  border-radius: 0;
+  border-left: none;
+  margin: 8px 0;
+  line-height: 1.85;
+}
+
+/* Dynamic Panchang & Devotee Value Highlighting - Pure Flowing Text with Auspicious Colors */
+.dyn-gotram, .dyn-karta, .dyn-wife, .dyn-sons {
+  color: #881337;
+  font-weight: 800;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.dyn-samvat, .dyn-ayana, .dyn-ritu, .dyn-masa, .dyn-paksha, .dyn-tithi, .dyn-vasara, .dyn-nakshatra, .dyn-yoga, .dyn-karana {
+  color: #b45309;
+  font-weight: 700;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.dyn-pincode {
+  font-family: inherit;
+  font-weight: 700;
+  color: #7c2d12;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+/* Nitya 3-in-1 Deity Tabs */
+.nitya-deity-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.nitya-deity-tab-btn {
+  background: #ffffff;
+  border: 2px solid #fed7aa;
+  border-radius: 24px;
+  padding: 9px 20px;
+  font-family: var(--font-telugu-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #78350f;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.nitya-deity-tab-btn:hover {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #9a3412;
+  transform: translateY(-1px);
+}
+
+.nitya-deity-tab-btn.active {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #ffffff;
+  border-color: #92400e;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+}
+
+/* Ritual Instruction List & Sacred Tags */
+.sacred-tag {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid #fde68a;
+}
+
+.ritual-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ritual-list li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.ritual-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 4px;
+  color: #d97706;
+  font-weight: 800;
+}
+
+.p-icon {
+  margin-right: 4px;
+  font-size: 1.1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Full Puja Specific Grid Helpers */
+.anga-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.ashtottara-concluding {
+  padding: 20px 24px;
+  text-align: center;
+  background: #fffdf8;
+  border-top: 1px solid #fed7aa;
+  margin-top: 15px;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  color: #7c2d12;
+}
+
+.names-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 9px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #d97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+}
+
+/* Bhojana Section */
+.bhojana-title {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.25rem;
+  color: #7f1d1d;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+/* Sacred Footer Additions */
+.footer-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.6rem;
+  color: #fef08a;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.footer-text {
+  font-size: 1.02rem;
+  color: #e7e5e4;
+  max-width: 750px;
+  line-height: 1.8;
+  margin: 0 auto;
+}
+
+.copyright-note {
+  font-size: 0.88rem;
+  color: #a8a29e;
+  margin-top: 15px;
+  border-top: 1px solid #44403c;
+  padding-top: 15px;
+  width: 100%;
+}
+
+/* Utility Helpers */
+.text-gold {
+  color: #d97706 !important;
+  font-weight: 700;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.mt-2 {
+  margin-top: 8px !important;
+}
+
+.mt-3 {
+  margin-top: 14px !important;
+}
+
+.mt-4 {
+  margin-top: 20px !important;
+}
+
+.mb-3 {
+  margin-bottom: 14px !important;
+}
+
+.p-4 {
+  padding: 20px !important;
+}
+
+.highlight-dock {
+  color: #f59e0b !important;
+}
+
+/* Index.html & Additional Component Support */
+.hero-titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.top-motto {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sankalpam-display-card {
+  background: linear-gradient(135deg, #fffcf6 0%, #fff9ec 100%);
+  border: 2px solid #f59e0b;
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.1);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.devotee-en-block {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.english-box {
+  background: #f8fafc;
+  border-left: 4px solid #0284c7;
+  padding: 16px 20px;
+  border-radius: 0 10px 10px 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #1e293b;
+  margin-top: 14px;
+}
+
+.laghu-box {
+  background: #fffdf7;
+  border: 1px solid #fed7aa;
+  padding: 18px 22px;
+  border-radius: 10px;
+  margin-top: 14px;
+}
+
+.meaning-note {
+  font-size: 0.92rem;
+  color: #57534e;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+.ritual-action-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ritual-action-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 1rem;
+}
+
+.ritual-action-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 2px;
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.status-indicator-icon {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  margin-right: 6px;
+  animation: live-blink 1.4s infinite;
+}
+
+.token-samvat, .token-ayana, .token-ritu, .token-masa, .token-paksha, .token-tithi, .token-vasara, .token-nakshatra, .token-yoga, .token-karana {
+  display: inline;
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #b45309;
+  font-weight: 700;
+  box-shadow: none;
+}
+
+.token-samvat strong, .token-ayana strong, .token-ritu strong, .token-masa strong, .token-paksha strong, .token-tithi strong, .token-vasara strong, .token-nakshatra strong, .token-yoga strong, .token-karana strong {
+  color: #b45309;
+}
+
+.transliteration-text {
+  font-style: italic;
+  font-family: Georgia, serif;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 6px;
+}
+
+/* ===================================================
+   POOJA AUDIO READER & LEARNING PLAYER STYLING
+   =================================================== */
+
+.reader-btn {
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+}
+
+.reader-btn:hover {
+  background: linear-gradient(135deg, #38bdf8, #0284c7);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.45);
+}
+
+.audio-reader-deck {
+  background: linear-gradient(135deg, #fffdf7 0%, #fefcf3 50%, #fff7ed 100%);
+  border: 2px solid #f59e0b;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin: 20px 0 28px;
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.15);
+  transition: all 0.3s ease;
+}
+
+.reader-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #fed7aa;
+}
+
+.reader-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reader-pulse-icon {
+  font-size: 1.8rem;
+  background: #fef3c7;
+  color: #b45309;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
+  flex-shrink: 0;
+  animation: pulse-glow 2s infinite alternate;
+}
+
+.reader-title {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.35rem;
+  color: #7c2d12;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.reader-sub {
+  font-size: 0.88rem;
+  color: #78716c;
+}
+
+.reader-speed-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #fed7aa;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.speed-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #78350f;
+  margin-right: 4px;
+}
+
+.speed-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #78350f;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.speed-btn:hover {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.speed-btn.active {
+  background: #b45309;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(180, 83, 9, 0.3);
+}
+
+.reader-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border-left: 4px solid #0284c7;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #0369a1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.reader-live-indicator {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #0284c7;
+  box-shadow: 0 0 8px #0284c7;
+  animation: live-blink 1.2s infinite;
+  flex-shrink: 0;
+}
+
+.reader-action-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Inline Listen Button beside Slokas and Mantras */
+.mantra-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.btn-listen-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #78350f;
+  border: 1px solid #f59e0b;
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(217, 119, 6, 0.15);
+  transition: all 0.2s ease;
+}
+
+.btn-listen-inline:hover {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.35);
+}
+
+.btn-listen-inline .l-icon {
+  font-size: 0.95rem;
+}
+
+.btn-listen-mini {
+  background: #fffdf8;
+  border: 1px solid #fed7aa;
+  color: #b45309;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+}
+
+.btn-listen-mini:hover {
+  background: #f59e0b;
+  color: #ffffff;
+}
+
+/* Active Karaoke / Reading Highlight */
+.reading-active {
+  outline: 3px solid #f59e0b !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.5) !important;
+  background-color: #fffbeb !important;
+  transition: all 0.3s ease;
+  animation: reading-glow 2s infinite alternate;
+}
+
+@keyframes reading-glow {
+  0% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+  100% { box-shadow: 0 0 22px rgba(245, 158, 11, 0.65); }
+}
+
+/* Mini Floating Bottom Reader Pill */
+.mini-floating-reader {
+  position: fixed;
+  bottom: 84px;
+  right: 20px;
+  background: rgba(28, 25, 23, 0.97);
+  backdrop-filter: blur(10px);
+  color: #fef3c7;
+  border: 2px solid #f59e0b;
+  border-radius: 30px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 99998;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 90vw;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.mini-reader-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.mini-pulse-icon {
+  font-size: 1.15rem;
+  color: #fbbf24;
+}
+
+.mini-reader-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+.mini-reader-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.mini-ctrl-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mini-ctrl-btn:hover {
+  background: #f59e0b;
+  border-color: #f59e0b;
+}
+
+/* Mobile Bottom Navigation Dock Default */
+.mobile-bottom-dock {
+  display: none;
+}
+
+/* ===================================================
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+   =================================================== */
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 78px; /* Safe space for fixed bottom dock */
+  }
+
+  /* Fixed Bottom Dock */
+  .mobile-bottom-dock {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(28, 25, 23, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 2px solid #f59e0b;
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+    justify-content: space-around;
+    align-items: center;
+    z-index: 99999;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.45);
+  }
+
+  .dock-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #fef3c7;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 4px;
+    border-radius: 8px;
+    min-width: 44px;
+    transition: all 0.2s ease;
+  }
+
+  .dock-item .dock-icon {
+    font-size: 1.15rem;
+    margin-bottom: 2px;
+  }
+
+  .dock-item:active, .dock-item:hover {
+    background: rgba(245, 158, 11, 0.25);
+    color: #fde047;
+  }
+
+  .dock-bell {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #fef08a;
+    margin-top: -16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .dock-bell .dock-icon {
+    font-size: 1.35rem;
+    margin-bottom: 0;
+  }
+
+  /* Top Sacred Bar */
+  .sacred-top-bar {
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
+
+  .top-bar-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .sacred-slogan {
+    font-size: 0.8rem;
+    line-height: 1.35;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .panchangam-quick-ticker {
+    font-size: 0.76rem;
+    padding: 2px 10px;
+  }
+
+  /* Sticky Navigation Header */
+  .sticky-nav {
+    border-bottom: 1px solid #fed7aa;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px 4px;
+    gap: 4px;
+  }
+
+  .nav-brand {
+    font-size: 1.02rem;
+    gap: 6px;
+    color: var(--primary-deep-maroon);
+    flex-shrink: 0;
+  }
+
+  .nav-brand .brand-icon,
+  .nav-brand .brand-flame {
+    font-size: 1.15rem;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .nav-actions .action-btn {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .nav-actions .action-btn .btn-text {
+    display: none; /* Hide labels to avoid overflow & horizontal clipping */
+  }
+
+  .nav-actions .action-btn .btn-icon {
+    font-size: 1.12rem;
+    margin: 0;
+  }
+
+  .nav-actions .font-controls,
+  .nav-actions .font-zoom-ctrls {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 3px;
+    border-radius: 14px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+  }
+
+  .nav-actions .font-btn,
+  .nav-actions .zoom-btn {
+    padding: 3px 5px;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    overflow-x: auto;
+    padding: 4px 1px 5px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-top: 1px solid rgba(254, 215, 170, 0.45);
+    margin-top: 2px;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    border-radius: 14px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Hero Banner */
+  .hero-section {
+    padding: 22px 10px 18px;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .main-title {
+    font-size: 1.35rem;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  .sub-title {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .devotee-quick-pill {
+    font-size: 0.84rem;
+    padding: 8px 10px;
+    line-height: 1.5;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-cta-buttons {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .hero-cta-buttons .btn {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.88rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .diya-decor {
+    display: none;
+  }
+
+  /* Main Container & Section Cards - Single Border Aesthetic to prevent double borders */
+  .page-container {
+    padding: 0 4px;
+    margin: 0 auto 30px;
+    max-width: 100%;
+  }
+
+  .section-card {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    margin-bottom: 12px;
+  }
+
+  .card-header {
+    padding: 12px 10px 8px;
+    border-radius: 10px;
+    border: 1px solid #fed7aa;
+    background: #fffdf5;
+  }
+
+  .section-title {
+    font-size: 1.22rem;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .section-description {
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  /* Puja Steps Wrapper & Individual Step Cards */
+  .puja-steps-wrapper {
+    padding: 4px 0;
+    gap: 10px;
+  }
+
+  .puja-step-card {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 10px;
+    border-radius: 10px;
+    border: 1px solid #fed7aa;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  }
+
+  .sacred-card {
+    border: 1.5px solid #f59e0b;
+  }
+
+  .step-badge-number {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .step-title {
+    font-size: 1.15rem;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  .step-time-badge {
+    font-size: 0.74rem;
+    padding: 2px 8px;
+  }
+
+  .ritual-instruction {
+    padding: 8px 10px;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .mantra-block {
+    padding: 10px 8px;
+    margin-bottom: 10px;
+  }
+
+  .sankalpa-box {
+    padding: 10px 12px;
+    border: 1px solid #fed7aa;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .sankalpa-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .devotee-sankalpa-highlight {
+    padding: 8px 10px;
+    font-size: 1.02rem;
+    line-height: 1.75;
+    margin: 8px 0;
+  }
+
+  .mantra-header-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  /* 108 Ashtottaram & Saranu Ghosha on Mobile */
+  .ashtottaram-grid,
+  .saranu-list-grid {
+    padding: 4px 0;
+    gap: 8px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 520px) and (max-width: 768px) {
+    .ashtottaram-grid,
+    .saranu-list-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+  }
+
+  .nama-card,
+  .saranu-card {
+    padding: 8px 10px;
+    gap: 10px;
+    min-height: 44px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  }
+
+  .nama-num,
+  .saranu-num {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+
+  .nama-text {
+    font-size: 1.04rem;
+    line-height: 1.35;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  .saranu-text {
+    font-size: 1.02rem;
+    line-height: 1.35;
+  }
+
+  .quick-ashtottara-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .quick-counter-badge {
+    text-align: center;
+    font-size: 0.88rem;
+    padding: 6px 10px;
+  }
+
+  .ashtottara-ctrls-wrap,
+  .header-action-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .ashtottara-ctrls-wrap .btn,
+  .header-action-group .btn {
+    flex: 1 1 auto;
+    padding: 6px 10px;
+    font-size: 0.82rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .view-mode-toggle {
+    margin-right: auto;
+  }
+
+  .view-toggle-btn {
+    padding: 4px 10px;
+    font-size: 0.78rem;
+  }
+
+  .deity-tab-container {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .deity-tab-btn {
+    padding: 7px 12px;
+    font-size: 0.84rem;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  /* Lokaveeram Stuti & Stanzas */
+  .lokaveeram-grid {
+    padding: 4px 0;
+    gap: 10px;
+    grid-template-columns: 1fr;
+  }
+
+  .stuti-item {
+    padding: 12px 10px;
+    border-radius: 8px;
+  }
+
+  .sloka-spaced {
+    font-size: 1.04rem;
+    line-height: 1.8;
+    padding: 4px 0;
+  }
+
+  .sloka-easy-meaning {
+    font-size: 0.86rem;
+    line-height: 1.5;
+    padding: 8px 10px;
+    margin-top: 8px;
+  }
+
+  /* Harivarasanam */
+  .harivarasanam-stanzas {
+    padding: 6px 0;
+    gap: 12px;
+  }
+
+  .stanza-card {
+    padding: 14px 10px;
+    border-radius: 10px;
+  }
+
+  .sloka-large {
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .chorus {
+    font-size: 1.1rem;
+    margin-top: 6px;
+    display: inline-block;
+  }
+
+  /* Other Slokas & Grid Elements */
+  .bhojana-grid {
+    padding: 4px 0;
+    gap: 10px;
+    grid-template-columns: 1fr;
+  }
+
+  .sharanu-18-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin: 10px 0;
+  }
+
+  .sharanu-item-pill {
+    padding: 8px 10px;
+    font-size: 0.92rem;
+    border-radius: 8px;
+  }
+
+  /* Panchangam Timings & Devotee Config Grid */
+  .timings-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px;
+  }
+
+  .timing-card {
+    padding: 8px 8px;
+    border-radius: 8px;
+  }
+
+  .timing-card .t-icon {
+    font-size: 1.15rem;
+  }
+
+  .timing-card .t-label {
+    font-size: 0.72rem;
+  }
+
+  .timing-card .t-val {
+    font-size: 0.84rem;
+  }
+
+  .timing-card .t-desc {
+    font-size: 0.68rem;
+  }
+
+  .sankalpam-meta-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 10px;
+  }
+
+  .sankalpam-container {
+    padding: 12px 8px;
+  }
+
+  .sankalpam-config-box {
+    padding: 12px 10px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+  }
+
+  .config-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .sankalpam-text-box {
+    padding: 14px 10px;
+    font-size: 1.04rem;
+    line-height: 1.85;
+    border-radius: 8px;
+  }
+
+  /* Puja Mode Switcher */
+  .puja-mode-container {
+    padding: 14px 10px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+  }
+
+  .puja-mode-title {
+    font-size: 1.22rem;
+  }
+
+  .puja-mode-subtitle {
+    font-size: 0.86rem;
+  }
+
+  .puja-mode-switcher {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .mode-tab-btn {
+    padding: 12px 10px;
+  }
+
+  /* Audio Center / Deck */
+  .audio-reader-deck {
+    padding: 14px 10px;
+    border-radius: 12px;
+  }
+
+  .reader-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reader-speed-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .reader-action-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .reader-action-row .btn {
+    width: 100%;
+  }
+
+  .deck-mode-tabs {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .deck-mode-btn {
+    padding: 6px 12px;
+    font-size: 0.84rem;
+  }
+
+  .voice-selector-wrap {
+    padding: 10px 10px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .voice-dropdown {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .devotional-audio-player-card {
+    padding: 12px 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+
+  .d-player-title {
+    font-size: 0.92rem;
+  }
+
+  .d-player-sub {
+    font-size: 0.76rem;
+  }
+
+  .track-audio-el {
+    height: 36px;
+  }
+
+  /* Floating Mini Reader */
+  .mini-floating-reader {
+    bottom: 74px;
+    left: 8px;
+    right: 8px;
+    justify-content: space-between;
+    max-width: calc(100vw - 16px);
+    padding: 6px 10px;
+  }
+
+  .mini-reader-title {
+    max-width: 150px;
+    font-size: 0.78rem;
+  }
+}
+
+/* Extra Small Phones (iPhone SE, Galaxy Mini <= 400px) */
+@media (max-width: 400px) {
+  .nav-brand {
+    font-size: 0.95rem;
+  }
+
+  .nav-actions .action-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-actions .action-btn .btn-icon {
+    font-size: 1rem;
+  }
+
+  .main-title {
+    font-size: 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.18rem;
+  }
+
+  .nama-text,
+  .saranu-text {
+    font-size: 0.98rem;
+  }
+
+  .dock-item {
+    min-width: 38px;
+    font-size: 0.6rem;
+  }
+
+  .dock-bell {
+    width: 42px;
+    height: 42px;
+    margin-top: -14px;
+  }
+}
+
+/* ===================================================
+   DEVOTIONAL CHANT AUDIO & VOICE SELECTOR STYLES
+   =================================================== */
+
+.deck-mode-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #fed7aa;
+  padding-bottom: 8px;
+}
+
+.deck-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #f59e0b;
+  background: #ffffff;
+  color: #78350f;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.deck-mode-btn:hover {
+  background: #fef3c7;
+}
+
+.deck-mode-btn.active {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(180, 83, 9, 0.3);
+  border-color: #b45309;
+}
+
+.deck-tab-panel {
+  display: none;
+}
+
+.deck-tab-panel.active {
+  display: block;
+}
+
+/* Devotional Audio Player Card */
+.devotional-audio-player-card {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1.5px solid #f59e0b;
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 14px;
+  box-shadow: 0 3px 10px rgba(217, 119, 6, 0.1);
+}
+
+.d-player-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.d-player-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.d-player-icon {
+  font-size: 1.5rem;
+}
+
+.d-player-title {
+  font-size: 1.05rem;
+  color: #78350f;
+  font-weight: 800;
+  display: block;
+}
+
+.d-player-sub {
+  font-size: 0.82rem;
+  color: #92400e;
+  display: block;
+}
+
+.d-player-badge {
+  background: #b45309;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.audio-tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.audio-track-item {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.track-item-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.track-item-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #78350f;
+  line-height: 1.3;
+}
+
+.track-item-artist {
+  font-size: 0.8rem;
+  color: #92400e;
+}
+
+.track-audio-el {
+  width: 100%;
+  height: 38px;
+  border-radius: 8px;
+}
+
+/* Voice Selector in Reader Mode */
+.voice-selector-wrap {
+  background: #fffdf8;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.voice-select-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #78350f;
+  font-size: 0.9rem;
+}
+
+.voice-dropdown {
+  flex: 1;
+  min-width: 220px;
+  max-width: 380px;
+  padding: 6px 12px;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #451a03;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.voice-notice-box {
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #92400e;
+  margin-bottom: 12px;
+  line-height: 1.45;
+}
+
+.audio-isp-notice {
+  background: #fffbeb;
+  border: 1px solid #f59e0b;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: #78350f;
+  line-height: 1.5;
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.12);
+  animation: fadeInNotice 0.3s ease;
+}
+
+@keyframes fadeInNotice {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================================================
+   PRINT STYLESHEET (BOOKLET MODE)
+   =================================================== */
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt;
+  }
+
+  .sacred-top-bar,
+  .sticky-nav,
+  .hero-cta-buttons,
+  .sankalpam-config-box,
+  .tab-controls,
+  .sankalpam-actions,
+  .steps-nav-bar,
+  .tracker-dashboard,
+  .search-nama-box,
+  .ambient-audio-player,
+  .inline-bell-btn,
+  .btn,
+  .sacred-footer {
+    display: none !important;
+  }
+
+  .hero-section {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-bottom: 2px solid #000000 !important;
+    padding: 20px 0 !important;
+  }
+
+  .main-title, .sub-title {
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
+  .devotee-quick-pill {
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .devotee-names strong {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+
+  .section-card {
+    box-shadow: none !important;
+    border: 1px solid #cccccc !important;
+    page-break-inside: avoid;
+    margin-bottom: 20px !important;
+  }
+
+  .sankalpa-box {
+    border: 1px solid #000000 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .puja-step-card {
+    border: 1px solid #e2e8f0 !important;
+    page-break-inside: avoid;
+  }
+
+  .step-badge-number {
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+}
