@@ -4801,6 +4801,33 @@ body {
   color: #fef3c7;
 }
 
+.btn-xs {
+  font-size: 0.82rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #d97706;
+  background: #ffffff;
+  color: #78350f;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-xs:hover {
+  background: #fef3c7;
+}
+
+.btn-xs.active {
+  background: #ea580c !important;
+  color: #ffffff !important;
+  border-color: #c2410c !important;
+  box-shadow: 0 1px 3px rgba(234, 88, 12, 0.3);
+}
+
+.puja-time-badge-box {
+  transition: background-color 0.3s ease;
+}
+
 .toc-container {
   background: #fff;
   border-radius: 14px;

@@ -52,13 +52,13 @@ const TITHIS = [
 ];
 
 const VASARAS = [
-  { id: "భానువాసరే", te: "భానువాసరే (ఆదివారం)", en: "Bhanuvasare (Sunday)" },
-  { id: "ఇందువాసరే", te: "ఇందువాసరే (సోమవారం)", en: "Induvasare (Monday)" },
-  { id: "భౌమవాసరే", te: "భౌమవాసరే (మంగళవారం)", en: "Bhaumavasare (Tuesday)" },
-  { id: "సౌమ్యవాసరే", te: "సౌమ్యవాసరే (బుధవారం)", en: "Saumyavasare (Wednesday)" },
-  { id: "బృహస్పతివాసరే", te: "బృహస్పతివాసరే (గురువారం)", en: "Brihaspativasare (Thursday)" },
-  { id: "భార్గవవాసరే", te: "భార్గవవాసరే (శుక్రవారం)", en: "Bhargavavasare (Friday)" },
-  { id: "స్థిరవాసరే", te: "స్థిరవాసరే (శనివారం)", en: "Sthiravasare (Saturday)" }
+  { id: "భాను (ఆది) వాసరే", sName: "భానువాసరే", te: "భాను (ఆది) వాసరే", en: "Bhanuvasare (Sunday)" },
+  { id: "ఇందు (సోమ) వాసరే", sName: "ఇందువాసరే", te: "ఇందు (సోమ) వాసరే", en: "Induvasare (Monday)" },
+  { id: "భౌమ (మంగళ) వాసరే", sName: "భౌమవాసరే", te: "భౌమ (మంగళ) వాసరే", en: "Bhaumavasare (Tuesday)" },
+  { id: "సౌమ్య (బుధ) వాసరే", sName: "సౌమ్యవాసరే", te: "సౌమ్య (బుధ) వాసరే", en: "Saumyavasare (Wednesday)" },
+  { id: "బృహస్పతి (గురు) వాసరే", sName: "బృహస్పతివాసరే", te: "బృహస్పతి (గురు) వాసరే", en: "Brihaspativasare (Thursday)" },
+  { id: "భృగు (శుక్ర) వాసరే", sName: "భృగువాసరే", te: "భృగు (శుక్ర) వాసరే", en: "Bhriguvasare (Friday)" },
+  { id: "స్థిర (శని) వాసరే", sName: "స్థిరవాసరే", te: "స్థిర (శని) వాసరే", en: "Sthiravasare (Saturday)" }
 ];
 
 const NAKSHATRAS = [
@@ -832,14 +832,15 @@ let appState = {
   date: new Date(),
   samvatsara: "పరాభవ",
   ayanam: "దక్షిణాయనే",
-  ritu: "శరద్",
+  ritu: "హేమంత",
   masa: "కార్తీక",
   paksha: "శుక్ల",
-  tithi: "సప్తమ్యాం",
-  vasara: "ఇందు (సోమ) వాసరే",
-  nakshatra: "శ్రవణ",
+  tithi: "దశమ్యాం",
+  vasara: "బృహస్పతి (గురు) వాసరే",
+  nakshatra: "శతభిషం",
   yoga: "వృద్ధి",
   karana: "వణిజ",
+  pujaTimeMode: (typeof localStorage !== "undefined" && localStorage.getItem("ayyappa_puja_time_mode")) || "auto",
   devotee: { ...DEFAULT_DEVOTEE },
   location: { ...PINCODE_DATABASE["522034"] },
   timings: null,
@@ -1095,16 +1096,14 @@ function initApp() {
   const savedMode = localStorage.getItem("ayyappa_puja_mode") || "nitya";
   switchPujaMode(savedMode, false);
 
-  // Set today's local date in picker and compute
+  // Set today's local date in picker and compute live panchangam
   const todayStr = getLocalDateString(new Date());
   lastActiveDateString = todayStr;
-  const dateInput = document.getElementById("pujaDate");
+  const dateInput = document.getElementById("pujaDate") || document.getElementById("sankalpamDateInput");
   if (dateInput) {
     dateInput.value = todayStr;
-    handleDateChange(todayStr);
-  } else {
-    updateSankalpamView();
   }
+  handleDateChange(todayStr);
 
   // 1. Live second-by-second clock & active muhurtha status updater
   setInterval(updateLiveClockAndStatus, 1000);
@@ -1130,7 +1129,7 @@ function checkMidnightRollover() {
   if (currentTodayStr !== lastActiveDateString) {
     console.log("New day detected! Auto-refreshing panchangam & muhurthas for:", currentTodayStr);
     lastActiveDateString = currentTodayStr;
-    const dateInput = document.getElementById("pujaDate");
+    const dateInput = document.getElementById("pujaDate") || document.getElementById("sankalpamDateInput");
     if (dateInput) {
       dateInput.value = currentTodayStr;
     }
@@ -1530,10 +1529,65 @@ function setSelectValue(id, val) {
 }
 
 // ==========================================
+// 4B. DYNAMIC PUJA TIME (MORNING / EVENING NAIVEDYAM PARISECHANA)
+// ==========================================
+
+function getEffectivePujaTime() {
+  if (appState.pujaTimeMode === "morning" || appState.pujaTimeMode === "evening") {
+    return appState.pujaTimeMode;
+  }
+  const hour = new Date().getHours();
+  // 4 AM (04:00) to 5:59 PM (17:59) is morning; 6 PM (18:00) to 3:59 AM is evening/night
+  return (hour >= 4 && hour < 18) ? "morning" : "evening";
+}
+
+function getNaivedyamParisechana() {
+  return getEffectivePujaTime() === "evening" 
+    ? "ఋతం త్వా సత్యేన పరిషించామి" 
+    : "సత్యం త్వర్తేన పరిషించామి";
+}
+
+function setPujaTimeMode(mode) {
+  appState.pujaTimeMode = mode;
+  try {
+    localStorage.setItem("ayyappa_puja_time_mode", mode);
+  } catch (e) {}
+  updateSankalpamView();
+  const note = mode === "evening" 
+    ? "🌙 సాయంకాల / రాత్రి నైవేద్య విధి (ఋతం త్వా సత్యేన పరిషించామి) అమర్చబడింది." 
+    : (mode === "morning" ? "☀️ ప్రాతఃకాల / ఉదయ నైవేద్య విధి (సత్యం త్వర్తేన పరిషించామి) అమర్చబడింది." : "⚡ ఆటోమేటిక్ సమయ విధానం అమర్చబడింది.");
+  showCelebrationAlert(note);
+}
+
+// ==========================================
 // 5. SANKALPAM VIEW UPDATE & FORMATTING
 // ==========================================
 
 function updateSankalpamView() {
+  // Update Dynamic Morning / Evening Naivedyam & Parisechana
+  const effectiveTime = getEffectivePujaTime();
+  const parisechanaText = getNaivedyamParisechana();
+  updateAllByClass("dyn-parisechana", parisechanaText);
+
+  const badge = document.getElementById("lblPujaTimeActive");
+  if (badge) {
+    if (effectiveTime === "evening") {
+      badge.textContent = "🌙 సాయంకాల / రాత్రి పూజ";
+      badge.style.background = "#854d0e";
+    } else {
+      badge.textContent = "☀️ ప్రాతఃకాల / ఉదయ పూజ";
+      badge.style.background = "#ea580c";
+    }
+  }
+
+  const currentMode = appState.pujaTimeMode || "auto";
+  const btnAuto = document.getElementById("btnTimeAuto");
+  const btnMorning = document.getElementById("btnTimeMorning");
+  const btnEvening = document.getElementById("btnTimeEvening");
+  if (btnAuto) btnAuto.classList.toggle("active", currentMode === "auto");
+  if (btnMorning) btnMorning.classList.toggle("active", currentMode === "morning");
+  if (btnEvening) btnEvening.classList.toggle("active", currentMode === "evening");
+
   // Update Location, Sunrise, Sunset, and Muhurtha Timings for PIN (522034)
   updateLocationAndMuhurthas();
 
@@ -2885,6 +2939,14 @@ function playReaderSloka(key, customTitle = null) {
   let phoneticText = item.phoneticEn || null;
   let titleToDisplay = customTitle || item.title;
   let target = item.targetId || key;
+
+  // Dynamically swap Parisechana for evening if chanting Naivedyam or Ganapathi
+  if (getEffectivePujaTime() === "evening") {
+    textToChant = textToChant.replace("సత్యం త్వర్తేన పరిషించామి", "ఋతం త్వా సత్యేన పరిషించామి");
+    if (phoneticText) {
+      phoneticText = phoneticText.replace("Satyam tvartena parishinchaami", "Ritam tvaa satyena parishinchaami");
+    }
+  }
 
   playTempleBell(true);
   speakUtterance(sanitizeForSpeech(textToChant), titleToDisplay, target, null, phoneticText);

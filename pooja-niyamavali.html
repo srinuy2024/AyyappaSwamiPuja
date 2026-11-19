@@ -197,8 +197,28 @@
             <div class="p-item"><span class="p-lbl">మాసం:</span> <strong id="valMasa" class="dyn-masa">కార్తీక</strong></div>
             <div class="p-item"><span class="p-lbl">పక్షం:</span> <strong id="valPaksha" class="dyn-paksha">శుక్ల పక్షం</strong></div>
             <div class="p-item"><span class="p-lbl">తిథి:</span> <strong id="valTithi" class="dyn-tithi">దశమ్యాం</strong></div>
-            <div class="p-item"><span class="p-lbl">వారం:</span> <strong id="valVasara" class="dyn-vasara">బృహస్పతివాసరే</strong></div>
+            <div class="p-item"><span class="p-lbl">వారం:</span> <strong id="valVasara" class="dyn-vasara">బృహస్పతి (గురు) వాసరే</strong></div>
             <div class="p-item"><span class="p-lbl">నక్షత్రం:</span> <strong id="valNakshatra" class="dyn-nakshatra">శతభిషం</strong></div>
+          </div>
+        </div>
+
+        <!-- Dynamic Puja Time Switcher (Morning / Evening Naivedyam Mode) -->
+        <div class="puja-time-badge-box" style="margin-top: 10px; background: #fffdf5; border: 1.5px solid #fed7aa; border-radius: 8px; padding: 10px 14px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+          <div style="font-size: 0.98rem; color: #78350f;">
+            <strong>⏱️ పూజా సమయం:</strong> 
+            <span id="lblPujaTimeActive" class="badge" style="background: #854d0e; color: #fff; padding: 4px 10px; border-radius: 6px; font-weight: bold; margin-left: 4px; font-size: 0.95rem;">సాయంకాల / రాత్రి పూజ</span>
+            <span style="font-size: 0.88rem; color: #9a3412; margin-left: 6px; display: inline-block;">(నైవేద్య పరిషేచన మంత్రం ఆటోమేటిక్‌గా అప్‌డేట్ అవుతుంది)</span>
+          </div>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-xs btn-outline active" id="btnTimeAuto" onclick="setPujaTimeMode('auto')" style="font-size: 0.82rem; padding: 4px 8px;">
+              ⚡ ఆటో (Auto)
+            </button>
+            <button type="button" class="btn btn-xs btn-outline" id="btnTimeMorning" onclick="setPujaTimeMode('morning')" style="font-size: 0.82rem; padding: 4px 8px;">
+              ☀️ ఉదయం
+            </button>
+            <button type="button" class="btn btn-xs btn-outline" id="btnTimeEvening" onclick="setPujaTimeMode('evening')" style="font-size: 0.82rem; padding: 4px 8px;">
+              🌙 సాయంత్రం / రాత్రి
+            </button>
           </div>
         </div>
 
@@ -439,7 +459,7 @@
               <p style="margin-bottom: 6px;">
                 <strong>5. నైవేద్యం &amp; గాయత్రి:</strong><br>
                 ఓం భూర్భువస్సువః | తత్సవితుర్వరేణ్యం భర్గో దేవస్య ధీమహి | ధియో యో నః ప్రచోదయాత్ ||<br>
-                సత్యం త్వర్తేన పరిషించామి | అమృతమస్తు అమృతోపస్తరణమసి ||<br>
+                <span class="dyn-parisechana" style="color: #9a3412; font-weight: 700;">సత్యం త్వర్తేన పరిషించామి</span> <span style="font-size: 0.86rem; color: #78350f;">(ఉదయం: సత్యం త్వర్తేన | సాయంకాలం: ఋతం త్వా సత్యేన)</span> | అమృతమస్తు అమృతోపస్తరణమసి ||<br>
                 ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా, ఓం పరబ్రహ్మణే నమః |<br>
                 <span style="color: #9a3412; font-weight: bold;">శ్రీమహా గణాధిపతయే నమః — నైవేద్యం సమర్పయామి | మధ్యే మధ్యే అమృత పానీయం సమర్పయామి |</span> <em>(బెల్లం లేదా పండ్లు నివేదించాలి)</em>
               </p>
@@ -509,7 +529,7 @@
                 <strong>4. దీపం:</strong> <span style="color: #9a3412; font-weight: bold;">శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — దీపం దర్శయామి |</span> <em>(దీపం చూపించాలి)</em>
               </p>
               <p style="margin-bottom: 6px;">
-                <strong>5. నైవేద్యం &amp; తాంబూలం:</strong> ఓం భూర్భువస్సువః... ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా ||<br>
+                <strong>5. నైవేద్యం &amp; తాంబూలం:</strong> ఓం భూర్భువస్సువః... <span class="dyn-parisechana" style="color: #9a3412; font-weight: 700;">సత్యం త్వర్తేన పరిషించామి</span> | అమృతమస్తు అమృతోపస్తరణమసి | ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా ||<br>
                 <span style="color: #9a3412; font-weight: bold;">వల్లీ దేవసేనా సమేత శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — నైవేద్యం సమర్పయామి, మధ్యే మధ్యే అమృత పానీయం సమర్పయామి, తాంబూలం సమర్పయామి |</span>
               </p>
               <p style="margin-bottom: 0;">
@@ -713,7 +733,7 @@
               <div style="background: #fffbeb; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 14px; margin-bottom: 12px;">
                 <p><strong>మహానైవేద్యం:</strong><br>
                 ఓం భూర్భువస్సువః | తత్సవితుర్వరేణ్యం భర్గోదేవస్య ధీమహి | ధియోయోనః ప్రచోదయాత్ ||<br>
-                సత్యంత్వర్తేన పరిషించామి (సాయంకాలం: ఋతం త్వా సత్యేన పరిషించామి) | అమృతమస్తు అమృతోపస్తరణమసి ||<br>
+                <span class="dyn-parisechana" style="color: #9a3412; font-weight: 700;">సత్యం త్వర్తేన పరిషించామి</span> <span style="font-size: 0.86rem; color: #78350f;">(ఉదయం: సత్యం త్వర్తేన | సాయంకాలం: ఋతం త్వా సత్యేన)</span> | అమృతమస్తు అమృతోపస్తరణమసి ||<br>
                 ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా ||<br>
                 <span style="color: #9a3412; font-weight: bold;">శ్రీహరిహరసుత అయ్యప్పస్వామినే నమః — నైవేద్యం సమర్పయామి | మధ్యే మధ్యే అమృత పానీయం సమర్పయామి |</span> <em>(ఆవుపాలు, పండ్లు, కలకండ, లేదా ప్రసాదం నివేదించాలి)</em></p>
               </div>
