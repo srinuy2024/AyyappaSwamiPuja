@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mandali&family=Ramabhadra&family=Suranna&family=Cinzel:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20261119_2330" />
   <script>
     /* Immediate mobile viewport & font-scale safety check before paint */
     (function() {
@@ -23,6 +23,41 @@
         }
       } catch(e) {}
     })();
+
+    function applyInstantLivePanchangam() {
+      try {
+        var d = new Date();
+        var days = [
+          "భాను (ఆది) వాసరే",
+          "ఇందు (సోమ) వాసరే",
+          "భౌమ (మంగళ) వాసరే",
+          "సౌమ్య (బుధ) వాసరే",
+          "బృహస్పతి (గురు) వాసరే",
+          "భృగు (శుక్ర) వాసరే",
+          "స్థిర (శని) వాసరే"
+        ];
+        var currentVasara = days[d.getDay()] || "బృహస్పతి (గురు) వాసరే";
+        document.querySelectorAll(".dyn-vasara").forEach(function(el) {
+          el.textContent = currentVasara;
+        });
+        var vEl = document.getElementById("valVasara");
+        if (vEl) vEl.textContent = currentVasara;
+
+        // Dynamic Parisechana (Morning vs Evening)
+        var hr = d.getHours();
+        var isNight = (hr < 4 || hr >= 18);
+        var parisechanaText = isNight ? "ఋతం త్వా సత్యేన పరిషించామి" : "సత్యం త్వర్తేన పరిషించామి";
+        document.querySelectorAll(".dyn-parisechana").forEach(function(el) {
+          el.textContent = parisechanaText;
+        });
+        var b = document.getElementById("lblPujaTimeActive");
+        if (b) {
+          b.textContent = isNight ? "🌙 సాయంకాల / రాత్రి పూజ" : "☀️ ప్రాతఃకాల / ఉదయ పూజ";
+          b.style.background = isNight ? "#854d0e" : "#ea580c";
+        }
+      } catch(e) {}
+    }
+    document.addEventListener("DOMContentLoaded", applyInstantLivePanchangam);
   </script>
 </head>
 <body class="telugu-theme">
@@ -277,7 +312,7 @@
             </button>
           </div>
           <p class="sloka-spaced highlight-sloka" id="sankalpam-telugu-text">
-            సర్వదేవాత్మక శ్రీ అయ్యప్పస్వామినే నమః | శుభే శోభన ముహూర్తే అద్యబ్రాహ్మణః ద్వితీయపరార్థే శ్వేతవరాహకల్పే వైవస్వత మన్వంతరే కలియుగే ప్రథమపాదే జంబూద్వీపే, భరతవర్షే, భరతఖండే మేరోర్దక్షిణదిగ్భాగే, కృష్ణా-గోదావర్యోః మధ్యప్రదేశే, శ్రీశైలస్య ఈశాన్య ప్రదేశే, గుంటూరు క్షేత్రే (పిన్: <span class="dyn-pincode">522034</span>), అస్మిన్ వర్తమాన వ్యావహారిక చంద్రమాన శ్రీ <span class="dyn-samvat">క్రోధి</span> నామ సంవత్సరే, <span class="dyn-ayana">దక్షిణాయనే</span>, <span class="dyn-ritu">హేమంత</span> ఋతౌ, <span class="dyn-masa">కార్తీక</span> మాసే, <span class="dyn-paksha">శుక్ల</span> పక్షే, <span class="dyn-tithi">దశమ్యాం</span> శుభ తిథౌ, <span class="dyn-vasara">బృహస్పతి వాసరే</span>, శుభ నక్షత్రే, శుభయోగే, శుభకరణే, ఏవం గుణ విశేషణ విశిష్టాయాం శుభ తిథౌ, శ్రీమతః <span class="dyn-gotram">పైడిపూండ్ల</span> గోత్రోద్భవస్య <span class="dyn-karta">శ్రీనివాస</span> నామధేయస్య, ధర్మపత్నీ సమేతస్య <span class="dyn-wife">వాణి</span> నామధేయవత్యాః, సకుటుంబస్య క్షేమ స్థైర్య ధైర్య విజయ అభయ ఆయురారోగ్య ఐశ్వర్యాభివృద్ధ్యర్థం, ధర్మార్ధ కామ మోక్ష చతుర్విధ పురుషార్థ ఫలసిద్ధ్యర్థం, శ్రీ పూర్ణా-పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామి ముద్రోధారక మండల దీక్షా ప్రసన్నతా సిద్ధ్యర్థం, సమస్త విఘ్న నివారణార్థం, శ్రీ స్వామి సన్నిధాన ప్రీత్యర్థం యథాశక్తి పూజాం కరిష్యే ||
+            సర్వదేవాత్మక శ్రీ అయ్యప్పస్వామినే నమః | శుభే శోభన ముహూర్తే అద్యబ్రాహ్మణః ద్వితీయపరార్థే శ్వేతవరాహకల్పే వైవస్వత మన్వంతరే కలియుగే ప్రథమపాదే జంబూద్వీపే, భరతవర్షే, భరతఖండే మేరోర్దక్షిణదిగ్భాగే, కృష్ణా-గోదావర్యోః మధ్యప్రదేశే, శ్రీశైలస్య ఈశాన్య ప్రదేశే, గుంటూరు క్షేత్రే (పిన్: <span class="dyn-pincode">522034</span>), అస్మిన్ వర్తమాన వ్యావహారిక చంద్రమాన శ్రీ <span class="dyn-samvat">క్రోధి</span> నామ సంవత్సరే, <span class="dyn-ayana">దక్షిణాయనే</span>, <span class="dyn-ritu">హేమంత</span> ఋతౌ, <span class="dyn-masa">కార్తీక</span> మాసే, <span class="dyn-paksha">శుక్ల</span> పక్షే, <span class="dyn-tithi">దశమ్యాం</span> శుభ తిథౌ, <span class="dyn-vasara">బృహస్పతి (గురు) వాసరే</span>, శుభ నక్షత్రే, శుభయోగే, శుభకరణే, ఏవం గుణ విశేషణ విశిష్టాయాం శుభ తిథౌ, శ్రీమతః <span class="dyn-gotram">పైడిపూండ్ల</span> గోత్రోద్భవస్య <span class="dyn-karta">శ్రీనివాస</span> నామధేయస్య, ధర్మపత్నీ సమేతస్య <span class="dyn-wife">వాణి</span> నామధేయవత్యాః, సకుటుంబస్య క్షేమ స్థైర్య ధైర్య విజయ అభయ ఆయురారోగ్య ఐశ్వర్యాభివృద్ధ్యర్థం, ధర్మార్ధ కామ మోక్ష చతుర్విధ పురుషార్థ ఫలసిద్ధ్యర్థం, శ్రీ పూర్ణా-పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామి ముద్రోధారక మండల దీక్షా ప్రసన్నతా సిద్ధ్యర్థం, సమస్త విఘ్న నివారణార్థం, శ్రీ స్వామి సన్నిధాన ప్రీత్యర్థం యథాశక్తి పూజాం కరిష్యే ||
           </p>
           <div class="sloka-easy-meaning">
             <strong>సరళ తాత్పర్యం:</strong> పైడిపూండ్ల గోత్రోద్భవులైన శ్రీనివాస మరియు వాణి దంపతులమైన మేము, మా కుటుంబ ఆయురారోగ్య ఐశ్వర్యాల కొరకు, శ్రీ అయ్యప్ప స్వామి వారి మండల దీక్ష నిర్విఘ్నంగా పరిపూర్ణమవ్వడానికి మూల గ్రంథోక్తమైన ఈ నిత్య పూజను భక్తిశ్రద్ధలతో ఆచరిస్తున్నాము.
@@ -459,7 +494,7 @@
               <p style="margin-bottom: 6px;">
                 <strong>5. నైవేద్యం &amp; గాయత్రి:</strong><br>
                 ఓం భూర్భువస్సువః | తత్సవితుర్వరేణ్యం భర్గో దేవస్య ధీమహి | ధియో యో నః ప్రచోదయాత్ ||<br>
-                <span class="dyn-parisechana" style="color: #9a3412; font-weight: 700;">సత్యం త్వర్తేన పరిషించామి</span> <span style="font-size: 0.86rem; color: #78350f;">(ఉదయం: సత్యం త్వర్తేన | సాయంకాలం: ఋతం త్వా సత్యేన)</span> | అమృతమస్తు అమృతోపస్తరణమసి ||<br>
+                <span class="dyn-parisechana" style="color: #9a3412; font-weight: 700;">సత్యం త్వర్తేన పరిషించామి</span> <span style="font-size: 0.88rem; color: #b45309; font-weight: 600;">(ఉదయం: సత్యం త్వర్తేన | సాయంకాలం: ఋతం త్వా సత్యేన)</span> | అమృతమస్తు అమృతోపస్తరణమసి ||<br>
                 ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా, ఓం పరబ్రహ్మణే నమః |<br>
                 <span style="color: #9a3412; font-weight: bold;">శ్రీమహా గణాధిపతయే నమః — నైవేద్యం సమర్పయామి | మధ్యే మధ్యే అమృత పానీయం సమర్పయామి |</span> <em>(బెల్లం లేదా పండ్లు నివేదించాలి)</em>
               </p>
@@ -529,7 +564,8 @@
                 <strong>4. దీపం:</strong> <span style="color: #9a3412; font-weight: bold;">శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — దీపం దర్శయామి |</span> <em>(దీపం చూపించాలి)</em>
               </p>
               <p style="margin-bottom: 6px;">
-                <strong>5. నైవేద్యం &amp; తాంబూలం:</strong> ఓం భూర్భువస్సువః... <span class="dyn-parisechana" style="color: #9a3412; font-weight: 700;">సత్యం త్వర్తేన పరిషించామి</span> | అమృతమస్తు అమృతోపస్తరణమసి | ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా ||<br>
+                <strong>5. నైవేద్యం &amp; తాంబూలం:</strong> ఓం భూర్భువస్సువః | తత్సవితుర్వరేణ్యం భర్గో దేవస్య ధీమహి | ధియో యో నః ప్రచోదయాత్ ||<br>
+                <span class="dyn-parisechana" style="color: #9a3412; font-weight: 700;">సత్యం త్వర్తేన పరిషించామి</span> <span style="font-size: 0.88rem; color: #b45309; font-weight: 600;">(ఉదయం: సత్యం త్వర్తేన | సాయంకాలం: ఋతం త్వా సత్యేన)</span> | అమృతమస్తు అమృతోపస్తరణమసి | ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా ||<br>
                 <span style="color: #9a3412; font-weight: bold;">వల్లీ దేవసేనా సమేత శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — నైవేద్యం సమర్పయామి, మధ్యే మధ్యే అమృత పానీయం సమర్పయామి, తాంబూలం సమర్పయామి |</span>
               </p>
               <p style="margin-bottom: 0;">
@@ -733,7 +769,7 @@
               <div style="background: #fffbeb; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 14px; margin-bottom: 12px;">
                 <p><strong>మహానైవేద్యం:</strong><br>
                 ఓం భూర్భువస్సువః | తత్సవితుర్వరేణ్యం భర్గోదేవస్య ధీమహి | ధియోయోనః ప్రచోదయాత్ ||<br>
-                <span class="dyn-parisechana" style="color: #9a3412; font-weight: 700;">సత్యం త్వర్తేన పరిషించామి</span> <span style="font-size: 0.86rem; color: #78350f;">(ఉదయం: సత్యం త్వర్తేన | సాయంకాలం: ఋతం త్వా సత్యేన)</span> | అమృతమస్తు అమృతోపస్తరణమసి ||<br>
+                <span class="dyn-parisechana" style="color: #9a3412; font-weight: 700;">సత్యం త్వర్తేన పరిషించామి</span> <span style="font-size: 0.88rem; color: #b45309; font-weight: 600;">(ఉదయం: సత్యం త్వర్తేన | సాయంకాలం: ఋతం త్వా సత్యేన)</span> | అమృతమస్తు అమృతోపస్తరణమసి ||<br>
                 ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా ||<br>
                 <span style="color: #9a3412; font-weight: bold;">శ్రీహరిహరసుత అయ్యప్పస్వామినే నమః — నైవేద్యం సమర్పయామి | మధ్యే మధ్యే అమృత పానీయం సమర్పయామి |</span> <em>(ఆవుపాలు, పండ్లు, కలకండ, లేదా ప్రసాదం నివేదించాలి)</em></p>
               </div>
@@ -1530,6 +1566,11 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20261119_2330"></script>
+  <script>
+    if (typeof applyInstantLivePanchangam === 'function') {
+      applyInstantLivePanchangam();
+    }
+  </script>
 </body>
 </html>

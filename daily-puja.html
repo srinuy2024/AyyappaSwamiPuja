@@ -9,7 +9,43 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mandali&family=Ramabhadra&family=Suranna&family=Cinzel:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20261119_2330" />
+  <script>
+    function applyInstantLivePanchangam() {
+      try {
+        var d = new Date();
+        var days = [
+          "భాను (ఆది) వాసరే",
+          "ఇందు (సోమ) వాసరే",
+          "భౌమ (మంగళ) వాసరే",
+          "సౌమ్య (బుధ) వాసరే",
+          "బృహస్పతి (గురు) వాసరే",
+          "భృగు (శుక్ర) వాసరే",
+          "స్థిర (శని) వాసరే"
+        ];
+        var currentVasara = days[d.getDay()] || "బృహస్పతి (గురు) వాసరే";
+        document.querySelectorAll(".dyn-vasara").forEach(function(el) {
+          el.textContent = currentVasara;
+        });
+        var vEl = document.getElementById("outVasara") || document.getElementById("valVasara");
+        if (vEl) vEl.textContent = currentVasara;
+
+        // Dynamic Parisechana (Morning vs Evening)
+        var hr = d.getHours();
+        var isNight = (hr < 4 || hr >= 18);
+        var parisechanaText = isNight ? "ఋతం త్వా సత్యేన పరిషించామి" : "సత్యం త్వర్తేన పరిషించామి";
+        document.querySelectorAll(".dyn-parisechana").forEach(function(el) {
+          el.textContent = parisechanaText;
+        });
+        var b = document.getElementById("lblPujaTimeActive");
+        if (b) {
+          b.textContent = isNight ? "🌙 సాయంకాల / రాత్రి పూజ" : "☀️ ప్రాతఃకాల / ఉదయ పూజ";
+          b.style.background = isNight ? "#854d0e" : "#ea580c";
+        }
+      } catch(e) {}
+    }
+    document.addEventListener("DOMContentLoaded", applyInstantLivePanchangam);
+  </script>
 </head>
 <body class="telugu-theme">
 
@@ -424,7 +460,7 @@
                   <span class="badge-panchang dyn-masa"><strong id="outMasa">కార్తీక</strong> మాసే</span>, 
                   <span class="badge-panchang dyn-paksha"><strong id="outPaksha">శుక్ల</strong> పక్షే</span>, 
                   <span class="badge-panchang dyn-tithi"><strong id="outTithi">సప్తమ్యాం</strong> శుభతిథౌ</span>, 
-                  <span class="badge-panchang dyn-vasara"><strong id="outVasara">ఇందు (సోమ) వాసరే</strong></span>, 
+                  <span class="badge-panchang dyn-vasara"><strong id="outVasara">బృహస్పతి (గురు) వాసరే</strong></span>, 
                   <span class="badge-panchang dyn-nakshatra"><strong id="outNakshatra">శ్రవణ</strong> నక్షత్రే</span>, 
                   <span class="badge-panchang dyn-yoga"><strong id="outYoga">వృద్ధి</strong> యోగే</span>, 
                   <span class="badge-panchang dyn-karana"><strong id="outKarana">వణిజ</strong> కరణే</span>, 
@@ -1702,7 +1738,12 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20261119_2330"></script>
+  <script>
+    if (typeof applyInstantLivePanchangam === 'function') {
+      applyInstantLivePanchangam();
+    }
+  </script>
 </body>
 </html>
 

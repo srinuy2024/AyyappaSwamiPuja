@@ -1626,12 +1626,29 @@ function updateSankalpamView() {
   setElementText("valVasara", appState.vasara);
   setElementText("valNakshatra", appState.nakshatra);
 
+  // Update ALL Dynamic CSS Class Tokens across all pages
+  updateAllByClass("dyn-samvat", appState.samvatsara);
+  updateAllByClass("dyn-ayana", appState.ayanam);
+  updateAllByClass("dyn-ritu", appState.ritu);
+  updateAllByClass("dyn-masa", appState.masa);
+  updateAllByClass("dyn-paksha", appState.paksha);
+  updateAllByClass("dyn-tithi", appState.tithi);
+  updateAllByClass("dyn-vasara", appState.vasara);
+  updateAllByClass("dyn-nakshatra", appState.nakshatra);
+  updateAllByClass("dyn-yoga", appState.yoga);
+  updateAllByClass("dyn-karana", appState.karana);
+
   // Devotee Tokens from User Image
   setElementText("outGotram", appState.devotee.gotram);
   setElementText("outKarta", appState.devotee.karta);
   setElementText("outWife", appState.devotee.wife);
   setElementText("outSons", appState.devotee.sons);
   setElementText("outFamily", appState.devotee.family);
+
+  updateAllByClass("dyn-gotram", appState.devotee.gotram);
+  updateAllByClass("dyn-karta", appState.devotee.karta);
+  updateAllByClass("dyn-wife", appState.devotee.wife);
+  updateAllByClass("dyn-sons", appState.devotee.sons);
 
   // Update Purpose Text
   const purposeEl = document.getElementById("outPurposeText");
@@ -3407,7 +3424,7 @@ function setupEventListeners() {
   });
 
   // Date input change
-  const dateInput = document.getElementById("pujaDate");
+  const dateInput = document.getElementById("pujaDate") || document.getElementById("sankalpamDateInput");
   if (dateInput) {
     dateInput.addEventListener("change", (e) => handleDateChange(e.target.value));
   }

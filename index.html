@@ -8,7 +8,43 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Mandali&family=Ramabhadra&family=Suranna&family=Tiro+Telugu:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261119_2330">
+  <script>
+    function applyInstantLivePanchangam() {
+      try {
+        var d = new Date();
+        var days = [
+          "భాను (ఆది) వాసరే",
+          "ఇందు (సోమ) వాసరే",
+          "భౌమ (మంగళ) వాసరే",
+          "సౌమ్య (బుధ) వాసరే",
+          "బృహస్పతి (గురు) వాసరే",
+          "భృగు (శుక్ర) వాసరే",
+          "స్థిర (శని) వాసరే"
+        ];
+        var currentVasara = days[d.getDay()] || "బృహస్పతి (గురు) వాసరే";
+        document.querySelectorAll(".dyn-vasara").forEach(function(el) {
+          el.textContent = currentVasara;
+        });
+        var vEl = document.getElementById("outVasara") || document.getElementById("valVasara");
+        if (vEl) vEl.textContent = currentVasara;
+
+        // Dynamic Parisechana (Morning vs Evening)
+        var hr = d.getHours();
+        var isNight = (hr < 4 || hr >= 18);
+        var parisechanaText = isNight ? "ఋతం త్వా సత్యేన పరిషించామి" : "సత్యం త్వర్తేన పరిషించామి";
+        document.querySelectorAll(".dyn-parisechana").forEach(function(el) {
+          el.textContent = parisechanaText;
+        });
+        var b = document.getElementById("lblPujaTimeActive");
+        if (b) {
+          b.textContent = isNight ? "🌙 సాయంకాల / రాత్రి పూజ" : "☀️ ప్రాతఃకాల / ఉదయ పూజ";
+          b.style.background = isNight ? "#854d0e" : "#ea580c";
+        }
+      } catch(e) {}
+    }
+    document.addEventListener("DOMContentLoaded", applyInstantLivePanchangam);
+  </script>
 </head>
 <body>
 
@@ -615,7 +651,7 @@
                   📅 <strong>నేటి పంచాంగ వివరాలు (స్వయంచాలక లైవ్ అప్‌డేట్):</strong><br>
                   శ్రీ <span class="dyn-samvat">పరాభవ</span> నామ సంవత్సరే, <span class="dyn-ayana">దక్షిణాయనే</span>, <span class="dyn-ritu">శరద్</span> ఋతౌ, 
                   <span class="dyn-masa">కార్తీక</span> మాసే, <span class="dyn-paksha">శుక్ల</span> పక్షే, <span class="dyn-tithi">సప్తమ్యాం</span> శుభతిథౌ, 
-                  <span class="dyn-vasara">ఇందువాసరే</span>, <span class="dyn-nakshatra">శ్రవణ</span> నక్షత్ర యుక్తాయాం...
+                  <span class="dyn-vasara">బృహస్పతి (గురు) వాసరే</span>, <span class="dyn-nakshatra">శ్రవణ</span> నక్షత్ర యుక్తాయాం...
                 </div>
                 <div class="karta-line">
                   🙏 శ్రీమాన్ <strong class="text-gold dyn-gotram">పైడిపూండ్ల</strong> గోత్రోద్భవస్య, 
@@ -796,7 +832,7 @@
                 <div class="mantra-label">నిత్య నైవేద్య మంత్రము (సులభ పఠనం)</div>
                 <p class="sloka-spaced highlight-sloka">
                   ఓం భూర్భువస్సువః | తత్సవితుర్వరేణ్యం భర్గో దేవస్య ధీమహి | ధియో యో నః ప్రచోదయాత్ ||<br>
-                  సత్యం త్వర్తేన పరిషించామి (సాయంకాలం: ఋతం త్వా సత్యేన పరిషించామి) |<br>
+                  <span class="dyn-parisechana" style="font-weight: 700; color: #9a3412;">సత్యం త్వర్తేన పరిషించామి</span> <span style="font-size: 0.88rem; color: #b45309; font-weight: 600;">(ఉదయం: సత్యం త్వర్తేన | సాయంకాలం: ఋతం త్వా సత్యేన)</span> |<br>
                   అమృతమస్తు | అమృతోపస్తరణమసి ||<br><br>
                   ఓం ప్రాణాయ స్వాహా | ఓం అపానాయ స్వాహా | ఓం వ్యానాయ స్వాహా |<br>
                   ఓం ఉదానాయ స్వాహా | ఓం సమానాయ స్వాహా | ఓం బ్రహ్మణే స్వాహా ||
@@ -1505,7 +1541,7 @@
           </div>
           <p class="sloka-spaced">
             ఓం భూర్భువస్సువః | తత్సవితుర్వరేణ్యం భర్గో దేవస్య ధీమహి ధియో యో నః ప్రచోదయాత్ ||<br>
-            సత్యం త్వర్తేన పరిషించామి (రాత్రి అయితే: ఋతం త్వా సత్యేన పరిషించామి) |<br>
+            <span class="dyn-parisechana" style="font-weight: 700; color: #9a3412;">సత్యం త్వర్తేన పరిషించామి</span> <span style="font-size: 0.88rem; color: #b45309; font-weight: 600;">(ఉదయం: సత్యం త్వర్తేన | సాయంకాలం: ఋతం త్వా సత్యేన)</span> |<br>
             అమృతమస్తు | అమృతోపస్తరణమసి స్వాహా ||<br><br>
             🔸 <strong>ఓం ప్రాణాయ స్వాహా</strong> (ప్రాణవాయువుకు సమర్పణం)<br>
             🔸 <strong>ఓం అపానాయ స్వాహా</strong> (అపానవాయువుకు సమర్పణం)<br>
@@ -2358,7 +2394,12 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20261119_2330"></script>
+  <script>
+    if (typeof applyInstantLivePanchangam === 'function') {
+      applyInstantLivePanchangam();
+    }
+  </script>
 </body>
 </html>
 
