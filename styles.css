@@ -4185,39 +4185,42 @@ body {
   }
 
   .sloka-spaced {
-    font-size: 1.05rem;
-    line-height: 1.85;
-    padding: 10px 12px;
+    font-size: 1.12rem;
+    line-height: 2.1;
+    padding: 10px 10px;
     background: #fffdf5;
     border-left: 3.5px solid #f59e0b;
     border-radius: 8px;
-    margin-bottom: 10px;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
+    margin-bottom: 12px;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    white-space: normal !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
 
   .sloka.highlight-sloka,
   .sloka-spaced.highlight-sloka {
-    font-size: 1.05rem;
-    line-height: 1.85;
+    font-size: 1.12rem;
+    line-height: 2.1;
     color: #7c2d12;
     background: #fffdf5;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    white-space: normal !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
 
   .sloka-easy-meaning {
-    font-size: 0.92rem;
-    line-height: 1.6;
-    padding: 8px 12px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    padding: 8px 10px;
     margin-top: 8px;
     border-radius: 6px;
-    overflow-wrap: anywhere !important;
-    word-break: break-word !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    white-space: normal !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
