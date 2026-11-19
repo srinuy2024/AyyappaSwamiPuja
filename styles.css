@@ -31,20 +31,30 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: calc(16.5px * var(--user-font-scale, 1));
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
 }
 
 body {
   font-family: var(--font-telugu-body);
   background: var(--bg-parchment);
   color: var(--text-primary);
-  line-height: 1.7;
-  font-size: calc(1rem * var(--user-font-scale));
-  overflow-x: hidden;
+  line-height: 1.8;
+  font-size: 1rem;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+  touch-action: pan-y pinch-zoom;
   background-image: 
     radial-gradient(#fde68a 0.75px, transparent 0.75px), 
     radial-gradient(#fed7aa 0.75px, #fdfbf7 0.75px);
@@ -394,6 +404,62 @@ body {
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+/* ===================================================
+   PANCHANGAM MINI SUMMARY BOX (POOJA NIYAMAVALI)
+   =================================================== */
+.panchangam-summary-box {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1.5px solid #fde68a;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.08);
+}
+
+.panchangam-grid-mini {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 14px;
+}
+
+.p-item {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #fef08a;
+  font-size: 0.92rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.p-lbl {
+  font-size: 0.76rem;
+  color: #92400e;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.p-item strong {
+  color: #78350f;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .panchangam-grid-mini {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .p-item {
+    padding: 6px 10px;
+    font-size: 0.88rem;
+  }
+  .p-lbl {
+    font-size: 0.72rem;
+  }
 }
 
 /* ===================================================
@@ -1271,10 +1337,11 @@ body {
 .ritual-instruction {
   background: #f8fafc;
   border-left: 4px solid #64748b;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-radius: 0 8px 8px 0;
-  font-size: 0.98rem;
+  font-size: 1.08rem;
   color: #334155;
+  line-height: 1.75;
   margin-bottom: 15px;
 }
 
@@ -1295,9 +1362,9 @@ body {
   display: inline-block;
   background: #fef3c7;
   color: #92400e;
-  font-size: 0.82rem;
+  font-size: 0.92rem;
   font-weight: 700;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 12px;
   margin-bottom: 10px;
   border: 1px solid #fde68a;
@@ -1305,10 +1372,10 @@ body {
 
 .sloka {
   font-family: var(--font-sanskrit);
-  font-size: 1.18rem;
-  line-height: 1.95;
+  font-size: 1.35rem;
+  line-height: 2.15;
   color: #1c1917;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .sloka.highlight-sloka {
@@ -1317,12 +1384,12 @@ body {
 }
 
 .sloka-meaning {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: #57534e;
-  line-height: 1.6;
+  line-height: 1.7;
   border-top: 1px dashed #e7e5e4;
-  padding-top: 8px;
-  margin-top: 8px;
+  padding-top: 10px;
+  margin-top: 10px;
 }
 
 .inline-bell-btn {
@@ -1612,10 +1679,10 @@ body {
 
 .nama-text {
   font-family: var(--font-telugu-body);
-  font-size: 1.08rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #292524;
-  line-height: 1.4;
+  line-height: 1.5;
   flex: 1;
   word-break: normal;
   overflow-wrap: break-word;
@@ -1652,10 +1719,17 @@ body {
   color: #b45309;
 }
 
-.view-toggle-btn.active {
+.view-toggle-btn.active,
+.btn-view-card.active,
+.btn-view-book.active {
   background: linear-gradient(135deg, #d97706, #b45309);
   color: #ffffff;
   box-shadow: 0 2px 6px rgba(180, 83, 9, 0.3);
+}
+
+.btn-view-card,
+.btn-view-book {
+  cursor: pointer;
 }
 
 .ashtottara-ctrls-wrap,
@@ -1739,8 +1813,8 @@ body {
 
 .ashtottaram-grid.book-mode .nama-text,
 .saranu-list-grid.book-mode .saranu-text {
-  font-size: 1.08rem;
-  line-height: 1.45;
+  font-size: 1.25rem;
+  line-height: 1.55;
 }
 
 .nama-closing-mantra {
@@ -1801,9 +1875,10 @@ body {
 }
 
 .saranu-text {
-  font-size: 1.05rem;
+  font-size: 1.24rem;
   color: #431407;
   font-weight: 600;
+  line-height: 1.5;
 }
 
 /* Lokaveeram Stuti Grid */
@@ -2028,26 +2103,26 @@ body {
 
 .sloka-spaced {
   font-family: var(--font-telugu-heading), var(--font-telugu-body);
-  font-size: 1.15rem;
-  line-height: 2.1;
+  font-size: 1.34rem;
+  line-height: 2.25;
   color: #1c1917;
   background: #fdfaf3;
   border-left: 4px solid #f59e0b;
-  padding: 12px 16px;
+  padding: 14px 18px;
   border-radius: 8px;
-  letter-spacing: 0.3px;
-  margin-bottom: 10px;
+  letter-spacing: 0.35px;
+  margin-bottom: 12px;
 }
 
 .sloka-easy-meaning {
   background: #f0fdf4;
   border-left: 4px solid #22c55e;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-radius: 6px;
   color: #14532d;
-  font-size: 0.94rem;
-  line-height: 1.6;
-  margin-bottom: 8px;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  margin-bottom: 10px;
 }
 
 .sloka-easy-meaning strong {
@@ -3530,8 +3605,19 @@ body {
    =================================================== */
 
 @media (max-width: 768px) {
+  html {
+    font-size: calc(15px * var(--user-font-scale, 1));
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
   body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
     padding-bottom: 78px; /* Safe space for fixed bottom dock */
+    touch-action: pan-y pinch-zoom;
   }
 
   /* Fixed Bottom Dock */
@@ -3550,6 +3636,8 @@ body {
     align-items: center;
     z-index: 99999;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.45);
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .dock-item {
@@ -3598,6 +3686,9 @@ body {
   .sacred-top-bar {
     padding: 6px 8px;
     font-size: 0.8rem;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden;
   }
 
   .top-bar-content {
@@ -3605,6 +3696,8 @@ body {
     align-items: center;
     text-align: center;
     gap: 4px;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .sacred-slogan {
@@ -3612,17 +3705,25 @@ body {
     line-height: 1.35;
     text-align: center;
     justify-content: center;
+    overflow-wrap: anywhere;
   }
 
   .panchangam-quick-ticker {
     font-size: 0.76rem;
     padding: 2px 10px;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
   }
 
-  /* Sticky Navigation Header */
+  /* Sticky Navigation Header Mobile Safety */
   .sticky-nav {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
     border-bottom: 1px solid #fed7aa;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box !important;
   }
 
   .nav-container {
@@ -3632,43 +3733,69 @@ body {
     justify-content: space-between;
     padding: 6px 8px 4px;
     gap: 4px;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
   .nav-brand {
-    font-size: 1.02rem;
-    gap: 6px;
+    font-size: 0.92rem;
+    gap: 5px;
     color: var(--primary-deep-maroon);
-    flex-shrink: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: calc(100% - 138px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
+
+  .nav-brand .brand-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .nav-brand .brand-icon,
   .nav-brand .brand-flame {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+    flex-shrink: 0;
   }
 
   .nav-actions {
     display: flex;
     align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
+    gap: 3px;
+    flex: 0 0 auto;
+    max-width: 135px;
+    box-sizing: border-box;
+  }
+
+  /* Always hide print button on mobile screens */
+  .nav-actions #btnPrint,
+  .hide-on-mobile {
+    display: none !important;
   }
 
   .nav-actions .action-btn {
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     padding: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    flex-shrink: 0;
   }
 
   .nav-actions .action-btn .btn-text {
-    display: none; /* Hide labels to avoid overflow & horizontal clipping */
+    display: none !important; /* Hide labels to avoid overflow & horizontal clipping */
   }
 
   .nav-actions .action-btn .btn-icon {
-    font-size: 1.12rem;
+    font-size: 1rem;
     margin: 0;
   }
 
@@ -3676,31 +3803,40 @@ body {
   .nav-actions .font-zoom-ctrls {
     display: inline-flex;
     align-items: center;
-    padding: 1px 3px;
-    border-radius: 14px;
+    padding: 1px 2px;
+    border-radius: 12px;
     background: #f1f5f9;
     border: 1px solid #cbd5e1;
+    flex-shrink: 0;
   }
 
   .nav-actions .font-btn,
   .nav-actions .zoom-btn {
-    padding: 3px 5px;
-    font-size: 0.72rem;
+    padding: 2px 4px;
+    font-size: 0.68rem;
     font-weight: 700;
+    min-width: 20px;
+    height: 26px;
+    line-height: 1;
   }
 
+  /* Horizontal Nav Pills Bar */
   .nav-links {
     order: 3;
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     display: flex;
     align-items: center;
     gap: 5px;
-    overflow-x: auto;
-    padding: 4px 1px 5px;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 5px 2px 5px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     border-top: 1px solid rgba(254, 215, 170, 0.45);
     margin-top: 2px;
+    box-sizing: border-box !important;
+    contain: inline-size;
   }
 
   .nav-links::-webkit-scrollbar {
@@ -3708,8 +3844,8 @@ body {
   }
 
   .nav-link {
-    padding: 4px 10px;
-    font-size: 0.8rem;
+    padding: 4px 8px;
+    font-size: 0.74rem;
     border-radius: 14px;
     white-space: nowrap;
     flex-shrink: 0;
@@ -3764,35 +3900,99 @@ body {
     display: none;
   }
 
-  /* Main Container & Section Cards - Single Border Aesthetic to prevent double borders */
-  .page-container {
-    padding: 0 4px;
-    margin: 0 auto 30px;
+  /* Compact Devotional Header for Pooja Niyamavali on Mobile */
+  .compact-puja-header {
+    padding: 12px 10px 10px;
+    margin-bottom: 12px;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .compact-puja-header .header-sacred-tag {
+    font-size: 0.78rem;
+    line-height: 1.35;
+    margin-bottom: 3px;
+    overflow-wrap: anywhere;
+  }
+
+  .compact-puja-header .header-title {
+    font-size: 1.22rem;
+    line-height: 1.35;
+    margin: 4px 0 6px;
+    overflow-wrap: anywhere;
+  }
+
+  .compact-puja-header .header-devotee-strip {
+    font-size: 0.84rem;
+    padding: 6px 8px;
+    width: 100%;
     max-width: 100%;
+    box-sizing: border-box;
+    display: block;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    margin-bottom: 10px;
+  }
+
+  .compact-puja-header .header-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .compact-puja-header .header-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 0.84rem;
+    text-align: center;
+  }
+
+  /* Main Container & Section Cards - Elevated Clean Framing on Mobile */
+  .page-container {
+    padding: 0 8px !important;
+    margin: 8px auto 30px !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
   }
 
   .section-card {
-    border: none;
-    background: transparent;
-    box-shadow: none;
-    margin-bottom: 12px;
+    background: #ffffff;
+    border: 1.5px solid #fed7aa;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    margin-bottom: 14px;
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .card-header {
-    padding: 12px 10px 8px;
-    border-radius: 10px;
-    border: 1px solid #fed7aa;
-    background: #fffdf5;
+    padding: 10px 10px 8px;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 1.5px solid #fed7aa;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  }
+
+  .card-content {
+    padding: 10px 8px;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
   }
 
   .section-title {
-    font-size: 1.22rem;
+    font-size: 1.15rem;
     line-height: 1.3;
     margin-bottom: 4px;
   }
 
   .section-description {
-    font-size: 0.86rem;
+    font-size: 0.84rem;
     line-height: 1.5;
   }
 
@@ -3834,35 +4034,35 @@ body {
   }
 
   .ritual-instruction {
-    padding: 8px 10px;
-    font-size: 0.86rem;
-    line-height: 1.5;
-    margin-bottom: 10px;
+    padding: 10px 12px;
+    font-size: 1.04rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
   }
 
   .mantra-block {
-    padding: 10px 8px;
-    margin-bottom: 10px;
+    padding: 14px 12px;
+    margin-bottom: 12px;
   }
 
   .sankalpa-box {
-    padding: 10px 12px;
+    padding: 12px 14px;
     border: 1px solid #fed7aa;
     border-radius: 8px;
     box-shadow: none;
   }
 
   .sankalpa-text {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 10px;
+    font-size: 1.2rem;
+    line-height: 1.95;
+    margin-bottom: 12px;
     text-align: left;
   }
 
   .devotee-sankalpa-highlight {
-    padding: 8px 10px;
-    font-size: 1.02rem;
-    line-height: 1.75;
+    padding: 10px 12px;
+    font-size: 1.15rem;
+    line-height: 1.85;
     margin: 8px 0;
   }
 
@@ -3905,15 +4105,15 @@ body {
   }
 
   .nama-text {
-    font-size: 1.04rem;
-    line-height: 1.35;
+    font-size: 1.22rem;
+    line-height: 1.45;
     word-break: normal;
     overflow-wrap: break-word;
   }
 
   .saranu-text {
-    font-size: 1.02rem;
-    line-height: 1.35;
+    font-size: 1.2rem;
+    line-height: 1.45;
   }
 
   .quick-ashtottara-header {
@@ -3985,16 +4185,41 @@ body {
   }
 
   .sloka-spaced {
-    font-size: 1.04rem;
-    line-height: 1.8;
-    padding: 4px 0;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    padding: 10px 12px;
+    background: #fffdf5;
+    border-left: 3.5px solid #f59e0b;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .sloka.highlight-sloka,
+  .sloka-spaced.highlight-sloka {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #7c2d12;
+    background: #fffdf5;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .sloka-easy-meaning {
-    font-size: 0.86rem;
-    line-height: 1.5;
-    padding: 8px 10px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    padding: 8px 12px;
     margin-top: 8px;
+    border-radius: 6px;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   /* Harivarasanam */
@@ -4009,8 +4234,8 @@ body {
   }
 
   .sloka-large {
-    font-size: 1.08rem;
-    line-height: 1.8;
+    font-size: 1.32rem;
+    line-height: 2.1;
   }
 
   .chorus {
@@ -4225,7 +4450,7 @@ body {
 
   .nama-text,
   .saranu-text {
-    font-size: 0.98rem;
+    font-size: 1.15rem;
   }
 
   .dock-item {
@@ -4518,5 +4743,551 @@ body {
   .step-badge-number {
     background: #000000 !important;
     color: #ffffff !important;
+  }
+}
+
+/* ===================================================
+   POOJA NIYAMAVALI & BOOK READER STYLES
+   =================================================== */
+.book-cover-banner {
+  background: linear-gradient(135deg, #4a0e17 0%, #7c1322 50%, #b45309 100%);
+  color: #fff;
+  border-radius: 16px;
+  padding: 30px 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 12px 35px rgba(74, 14, 23, 0.35);
+  border: 2px solid #f59e0b;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-cover-banner::before {
+  content: "🕉️";
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  font-size: 5rem;
+  opacity: 0.15;
+}
+
+.book-cover-title {
+  font-family: var(--font-telugu-heading);
+  font-size: 2.2rem;
+  color: #fef08a;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  margin-bottom: 8px;
+}
+
+.book-cover-subtitle {
+  font-size: 1.25rem;
+  color: #fef3c7;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.book-publisher-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid #f59e0b;
+  font-size: 0.95rem;
+  color: #fef3c7;
+}
+
+.toc-container {
+  background: #fff;
+  border-radius: 14px;
+  border: 2px solid #fed7aa;
+  padding: 24px;
+  margin-bottom: 35px;
+  box-shadow: var(--shadow-warm);
+}
+
+.toc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #fde68a;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+.toc-title {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.4rem;
+  color: var(--primary-deep-maroon);
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+
+.toc-item-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #78350f;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.toc-item-link:hover {
+  background: #fde68a;
+  border-color: #f59e0b;
+  transform: translateX(4px);
+}
+
+.toc-item-num {
+  font-weight: 700;
+  color: #b45309;
+  margin-right: 6px;
+}
+
+.toc-item-page {
+  font-size: 0.8rem;
+  background: #f59e0b;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.chapter-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #fde68a;
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(180, 83, 9, 0.08);
+  position: relative;
+}
+
+.chapter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #fde68a;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chapter-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chapter-number-pill {
+  background: linear-gradient(135deg, #b45309, #78350f);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.chapter-title {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.4rem;
+  color: var(--primary-deep-maroon);
+}
+
+.pdf-page-pill {
+  font-size: 0.85rem;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.sankalpa-toggle-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.sankalpa-toggle-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1.5px solid #d97706;
+  background: #fff;
+  color: #78350f;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sankalpa-toggle-btn.active {
+  background: linear-gradient(135deg, #b45309, #78350f);
+  color: #fff;
+  border-color: #78350f;
+  box-shadow: 0 4px 12px rgba(180, 83, 9, 0.25);
+}
+
+.sankalpa-dynamic-block {
+  background: #fffbeb;
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.sankalpa-pdf-block {
+  background: #f8fafc;
+  border: 2px dashed #94a3b8;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.achamana-steps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.achamana-step-box {
+  background: #fefce8;
+  border: 1.5px solid #fef08a;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.achamana-step-num {
+  display: inline-block;
+  background: #ca8a04;
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  border-radius: 50%;
+  font-weight: 700;
+  margin-right: 8px;
+  font-size: 0.85rem;
+}
+
+.achamana-step-mantra {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #78350f;
+  margin-bottom: 4px;
+}
+
+.achamana-step-action {
+  font-size: 0.9rem;
+  color: #713f12;
+}
+
+.bhajan-card {
+  background: #fff;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+}
+
+.bhajan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ffedd5;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.bhajan-title {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.25rem;
+  color: #9a3412;
+}
+
+.bhajan-lyrics {
+  font-family: var(--font-telugu-body);
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #1f2937;
+  white-space: pre-line;
+}
+
+/* ===================================================
+   POOJA NIYAMAVALI ELEMENT & COMPONENT STYLING
+   =================================================== */
+
+.font-resizer-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 6px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 16px 80px;
+}
+
+.devotee-profile-banner {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 2px solid #f59e0b;
+  border-radius: 14px;
+  padding: 18px 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.12);
+}
+
+.profile-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-telugu-heading);
+  font-size: 1.15rem;
+  color: #78350f;
+  font-weight: 700;
+  border-bottom: 1px dashed #fde68a;
+  padding-bottom: 8px;
+}
+
+.badge-icon {
+  font-size: 1.3rem;
+}
+
+.badge-title {
+  color: #92400e;
+}
+
+.profile-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.profile-item {
+  font-size: 0.95rem;
+  color: #44403c;
+}
+
+.item-label {
+  font-weight: 600;
+  color: #78350f;
+  margin-right: 6px;
+}
+
+.item-val {
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.item-val.highlight-val,
+.highlight-val {
+  color: #b45309;
+  background: #fef08a;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.sloka-card {
+  background: #fdfbf7;
+  border: 1.5px solid #fed7aa;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 14px 0;
+  box-shadow: 0 2px 8px rgba(180, 83, 9, 0.05);
+  transition: all 0.2s ease;
+}
+
+.sloka-card:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.15);
+}
+
+.sloka-telugu {
+  font-family: var(--font-sanskrit);
+  font-size: 1.18rem;
+  line-height: 2;
+  color: #78350f;
+}
+
+.sloka-action-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-play-sloka {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-play-sloka:hover {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  transform: translateY(-1px);
+}
+
+.puja-instruction-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.instruction-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.ashtottara-book-layout {
+  background: #fff;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin-top: 12px;
+}
+
+.book-nama-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 8px 16px;
+  list-style-position: inside;
+  padding: 0;
+}
+
+.book-nama-item {
+  padding: 6px 8px;
+  border-bottom: 1px solid #fef3c7;
+  font-size: 1rem;
+  color: #1f2937;
+  font-family: var(--font-telugu-body);
+}
+
+.book-nama-item:hover {
+  background: #fef9c3;
+  color: #78350f;
+  border-radius: 4px;
+}
+
+.footer-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-emblem {
+  font-family: var(--font-telugu-heading);
+  font-size: 1.4rem;
+  color: #fef08a;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.reader-deck-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid #fed7aa;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+.reader-deck-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-telugu-heading);
+  font-size: 1.3rem;
+  color: #7c2d12;
+  font-weight: 700;
+}
+
+.deck-icon {
+  font-size: 1.4rem;
+}
+
+.deck-close-btn {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deck-close-btn:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+.reader-deck-body {
+  padding: 8px 0;
+}
+
+/* Upachara Ritual Instruction Box (Ganapathi, Subramanya, Ayyappa) */
+.upachara-list-box {
+  background: #fffbeb;
+  border: 1.5px solid #fed7aa;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 1.05rem;
+  line-height: 2.1;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .upachara-list-box {
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 1rem;
+    line-height: 1.85;
+    border-radius: 8px;
   }
 }

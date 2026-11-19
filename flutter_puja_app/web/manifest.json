@@ -1,0 +1,23 @@
+{
+  "name": "సర్వ దేవతా నిత్య పూజా మందిరం",
+  "short_name": "పూజా మందిరం",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFFBEB",
+  "theme_color": "#6B1414",
+  "description": "Bilingual Sanskrit & Telugu Step-by-Step Guided Puja App with Dynamic Sankalpam, Deep Learnings, and Custom Voice Chanting.",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icons/Icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/Icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Flutter / Dart Build Artifacts (if compiled locally)
+flutter_puja_app/.dart_tool/
+flutter_puja_app/build/
+flutter_puja_app/.packages
+flutter_puja_app/.flutter-plugins
+flutter_puja_app/.flutter-plugins-dependencies
+
+# Logs
+*.log

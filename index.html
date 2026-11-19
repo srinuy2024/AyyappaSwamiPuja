@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="te">
 <head>
   <meta charset="UTF-8">
@@ -31,8 +31,11 @@
 
       <div class="nav-links">
         <a href="#sankalpam-section" class="nav-link highlight-link">⚡ నిత్య సంకల్పం</a>
+        <a href="guided-puja.html" class="nav-link" style="color: #f97316; font-weight: 800;">🌟 గైడెడ్ పూజ (స్టెప్-బై-స్టెప్)</a>
         <a href="daily-puja.html" class="nav-link" style="color: #10b981; font-weight: 800;">⚡ నిత్య పూజ (15ని॥) ➔</a>
+        <a href="pooja-niyamavali.html" class="nav-link" style="color: #ea580c; font-weight: 800;">📖 పూజా నియామావళి (15ని॥)</a>
         <a href="full-puja.html" class="nav-link" style="color: #f59e0b; font-weight: 800;">📜 సంపూర్ణ పూజ ➔</a>
+        <a href="pooja-niyamavali-full.html" class="nav-link" style="color: #fbbf24; font-weight: 700;">📚 మూల గ్రంథం (34 అధ్యాయాలు)</a>
         <a href="#ashtottaram" class="nav-link">📿 108 నామావళి</a>
         <a href="#saranu-ghosha" class="nav-link">🕉️ 108 శరణు ఘోష</a>
         <a href="#harivarasanam" class="nav-link">🎵 హరివరాసనం</a>
@@ -1371,15 +1374,30 @@
         </p>
 
         <!-- Deity Selector Tabs -->
-        <div class="deity-tab-container">
+        <div class="deity-tab-container" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+          <button type="button" class="deity-tab-btn active" data-deity="ayyappa" onclick="switchAshtottaraDeity('ayyappa')">
+            <span>🐅 1. శ్రీ అయ్యప్ప 108</span>
+          </button>
           <button type="button" class="deity-tab-btn" data-deity="ganapathi" onclick="switchAshtottaraDeity('ganapathi')">
-            <span>🐘 1. శ్రీ వినాయక అష్టోత్తరం (108)</span>
+            <span>🐘 2. శ్రీ వినాయక 108</span>
           </button>
           <button type="button" class="deity-tab-btn" data-deity="subramanya" onclick="switchAshtottaraDeity('subramanya')">
-            <span>🦚 2. శ్రీ సుబ్రహ్మణ్య అష్టోత్తరం (108)</span>
+            <span>🦚 3. శ్రీ సుబ్రహ్మణ్య 108</span>
           </button>
-          <button type="button" class="deity-tab-btn active" data-deity="ayyappa" onclick="switchAshtottaraDeity('ayyappa')">
-            <span>🐅 3. శ్రీ అయ్యప్ప అష్టోత్తరం (108)</span>
+          <button type="button" class="deity-tab-btn" data-deity="durga" onclick="switchAshtottaraDeity('durga')">
+            <span>🔱 4. శ్రీ దుర్గా 108</span>
+          </button>
+          <button type="button" class="deity-tab-btn" data-deity="lakshmi" onclick="switchAshtottaraDeity('lakshmi')">
+            <span>🪷 5. శ్రీ లక్ష్మీ 108</span>
+          </button>
+          <button type="button" class="deity-tab-btn" data-deity="saraswati" onclick="switchAshtottaraDeity('saraswati')">
+            <span>📖 6. శ్రీ సరస్వతీ 108</span>
+          </button>
+          <button type="button" class="deity-tab-btn" data-deity="shiva" onclick="switchAshtottaraDeity('shiva')">
+            <span>🕉️ 7. శ్రీ శివ 108</span>
+          </button>
+          <button type="button" class="deity-tab-btn" data-deity="vishnu" onclick="switchAshtottaraDeity('vishnu')">
+            <span>🪈 8. శ్రీ విష్ణు 108</span>
           </button>
         </div>
 
@@ -2042,6 +2060,234 @@
       </div>
     </section>
 
+      <!-- ========================================== -->
+    <!-- SECTION 11: AYYAPPA DEEKSHA NIYAMAVALI      -->
+    <!-- ========================================== -->
+    <section class="section-card" id="deeksha-niyamavali">
+      <div class="card-header gold-gradient-header">
+        <div class="header-badge">హరిహరామృతం గ్రంథోక్తం (పేజీలు 3-10)</div>
+        <h2 class="section-title">అయ్యప్ప దీక్షా నియమావళి & పదునెట్టాంబడి రహస్యం</h2>
+        <p class="section-description">
+          41 రోజుల మండల దీక్షలో పాటించవలసిన 18 పవిత్ర నియమాలు, మాలాధారణ & విసర్జన మంత్రాలు, మరియు 18 మెట్ల తత్వార్థం.
+        </p>
+      </div>
+
+      <div class="puja-steps-wrapper">
+        <!-- 18 Deeksha Rules Card -->
+        <div class="mantra-block" style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 18px;">
+          <div class="mantra-label" style="font-size: 1.15rem; color: #9a3412;">📜 అయ్యప్ప దీక్షలో పాటించాల్సిన 18 ముఖ్య నియమాలు (PDF పేజీలు 3-4)</div>
+          <ol style="margin-left: 20px; line-height: 1.9; color: #451a03; font-size: 0.98rem;">
+            <li>కార్తీక మాస శుక్ల పాడ్యమి నాడు ప్రారంభించి, దీక్షాకాలం కనీసం 41 రోజులకు తక్కువ కాకుండా ఒక మంచి రోజు గురుస్వామి ద్వారా 108 పూసల తులసి లేదా రుద్రాక్ష మాలను ధరించాలి.</li>
+            <li>మాల ధరించడానికి కనీసం మూడు రోజుల ముందు నుంచే పవిత్రంగా ఉండాలి. మద్యం, మాంసాహారం ముట్టరాదు.</li>
+            <li>దీక్షా సమయంలో అల్లం, వెల్లుల్లి లేని పూర్తి సాత్వికాహారం ఆరగించాలి. మధ్యాహ్నం 3 గంటల లోపే భిక్ష పూర్తి చేయాలి. సాయంత్రం లఘు అల్పాహారం తీసుకోవాలి.</li>
+            <li>గురుస్వామికి విధేయుడై గురుస్వామి చెప్పినట్లుగా దీక్ష నియమాలు పాటించాలి.</li>
+            <li>నిత్యం బ్రహ్మముహూర్తంలో నిద్రలేచి, చన్నీటి స్నానమాచరించి, సూర్యోదయం కాకముందే పూజను ముగించాలి. సాయంత్రం కూడా చన్నీటి స్నానం చేసి సంధ్యాపూజ చేయాలి.</li>
+            <li>స్నానానంతరం విభూతి, చందనం, కుంకుమ బొట్లు ధరించి, గణపతి, షణ్ముఖులను పూజించి 108 శరణుఘోష పలికి కర్పూర హారతి ఇవ్వాలి.</li>
+            <li>దీక్షాకాలంలో నలుపు, నీలం లేదా కాషాయం దుస్తులు ధరించాలి. ప్రతి రోజూ కనీసం ఒక్కసారైనా అయ్యప్ప స్వామి ఆలయానికి లేదా ఇతర దేవాలయానికి వెళ్ళాలి.</li>
+            <li>చెప్పులు ధరించకూడదు. ధూమపానం, మద్యపానం, తాంబూలం నిషిద్ధం. జుట్టు, గడ్డం, గోర్లు కత్తిరించుకోకూడదు.</li>
+            <li>పగటిపూట నిద్రించకూడదు. రాత్రి నేలపై చాప వేసుకొని పడుకోవాలి (తలదిండు వాడరాదు). నిద్రించేటప్పుడు, పాద నమస్కార వేళ మాల నేలకు తాకరాదు.</li>
+            <li>స్వామి శరణు ఘోష ప్రియుడు కాబట్టి నిరంతరం భజనల్లో పాల్గొనాలి. స్వాములందరినీ సాక్షాత్ అయ్యప్పగా భావించి పాదాభివందనం చేయాలి.</li>
+            <li>పూజ, భజన సమయంలో తడి దుస్తులు లేదా చొక్కా ధరించరాదు. అంగవస్త్రాన్ని నడుముకు చుట్టుకోవాలి.</li>
+            <li>అశుభకార్యాల్లో పాల్గొనవద్దు. అత్యవసరమైతే తప్ప దూర ప్రయాణాలు చేయరాదు. రక్తసంబంధీకులు మరణిస్తే మాలను విసర్జింపజేయాలి.</li>
+            <li>అయ్యప్ప అన్నదాన ప్రియుడు కాబట్టి కనీసం ముగ్గురికైనా భిక్ష పెట్టడం ఉత్తమం. కనీసం మూడుసార్లైనా ఇతరుల ఇంటికి భిక్షకు వెళ్ళాలి.</li>
+            <li>దీక్షాకాలంలో కఠిన బ్రహ్మచర్యం పాటించాలి. స్త్రీలను మాతృభావంతో చూడాలి. సినిమాలు, వినోద కార్యక్రమాలకు దూరంగా ఉండాలి.</li>
+            <li>పదేళ్ల లోపు ఆడపిల్లలు, 50 ఏళ్లు పైబడిన స్త్రీలు మాత్రమే అయ్యప్ప మాల ధరించాలి.</li>
+            <li>శబరిగిరికి ప్రయాణమైనప్పుడు 'పోయి వస్తాను' అనకూడదు; 'స్వామి శరణం' అని మాత్రమే పలకాలి. పంబా నదిలో స్నానమాచరించేటప్పుడు పితృదేవతల ఆత్మశాంతిని కోరుకోవాలి.</li>
+            <li>ఇరుముడితో బయలుదేరిన స్వాములు రెండు పూటలా స్నానం ఆచరించి, స్వామి పటాలకు, ఇరుముడులకు హారతి ఇచ్చి శరణులు చెప్పాలి.</li>
+            <li>శబరిమల యాత్ర ముగిసిన తర్వాత అభిషేక ప్రసాదంతో ఇంటికి వచ్చి సన్నిధానం కదిపిన తరువాతనే మాల విసర్జన మంత్రం పఠించి గురుస్వామి లేదా తల్లితో మాల తీయించాలి.</li>
+          </ol>
+        </div>
+
+        <!-- Mala Dharana & Visarjana Mantras Card -->
+        <div class="mantra-block" style="margin-top: 16px;">
+          <div class="mantra-label">📿 మాలాధారణ & మాల విసర్జన మంత్రములు (PDF పేజీలు 7-8)</div>
+          
+          <div style="margin-bottom: 16px; background: #fafaf9; border-left: 4px solid #f59e0b; padding: 12px;">
+            <p><strong>అయ్యప్ప మాలాధారణ మంత్రం (గురుస్వామి సమక్షంలో పఠించేది):</strong></p>
+            <p class="sloka-spaced" style="font-size: 1.05rem;">
+              జ్ఞానముద్రాం శాస్త్రముద్రాం గురుముద్రాం నమామ్యహం |<br>
+              వనముద్రాం శుద్ధముద్రాం రుద్రముద్రాం నమామ్యహం ||<br>
+              శాంతముద్రాం సత్యముద్రాం వ్రతముద్రాం నమామ్యహం |<br>
+              శబర్యాశ్రమ సత్యేన ముద్రాం పాతు సదాపిమే ||<br>
+              గురు దక్షిణయా పూర్వం తస్యానుగ్రహకారిణే |<br>
+              శరణాగతముద్రాఖ్యం త్వన్ముద్రాం ధారయామ్యహం ||<br>
+              చిన్ముద్రాం ఖేచరీముద్రాం భద్రముద్రాం నమామ్యహం |<br>
+              శబర్యాచలముద్రాయై నమస్తుభ్యం నమో నమః ||<br>
+              <strong>ఓం శ్రీ స్వామియే శరణమయ్యప్ప ||</strong>
+            </p>
+          </div>
+
+          <div style="background: #fafaf9; border-left: 4px solid #10b981; padding: 12px;">
+            <p><strong>మాల విసర్జన మంత్రం (యాత్రానంతరం పీఠం కదిపిన తర్వాత):</strong></p>
+            <p class="sloka-spaced" style="font-size: 1.05rem;">
+              అపూర్వ మచలా రోహత్ దివ్య దర్శన కారణ |<br>
+              శాస్త్ర ముద్రాద్మహదేవ దేహి మే వ్రతమోచనమ్ ||
+            </p>
+            <div class="sloka-easy-meaning">
+              <strong>విధానం:</strong> గురుస్వామి లేదా తల్లి ద్వారా మాల తీయించుకుని, పూజాగదిలోని స్వామి పటానికి వేయాలి. మరుసటి ఏడాది యాత్రకు సన్నద్ధమయ్యే వేళ అదే మాలను శుభ్రపరిచి ధరించాలి.
+            </div>
+          </div>
+        </div>
+
+        <!-- 18 Steps & 18 Deeksha Years Card -->
+        <div class="mantra-block" style="margin-top: 16px;">
+          <div class="mantra-label">🪜 పదునెట్టాంబడి (18 మెట్లు) & 18 సంవత్సరాల దీక్షా నామాలు (PDF పేజీలు 9-10)</div>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 10px;">
+            <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 14px;">
+              <h4 style="color: #9a3412; margin-bottom: 8px;">18 మెట్ల తత్వార్థం:</h4>
+              <ul style="font-size: 0.92rem; line-height: 1.8; color: #451a03; padding-left: 18px;">
+                <li><strong>1-5 మెట్లు:</strong> పంచేంద్రియములు (కళ్ళు, చెవులు, నాలుక, ముక్కు, స్పర్శ నిగ్రహం).</li>
+                <li><strong>6-13 మెట్లు:</strong> అష్టరాగాలు & అరిషడ్వర్గాలు (కామం, క్రోధం, లోభం, మోహం, మదం, మాత్సర్యం, ఈర్ష్య, ద్వేషం త్యాగం).</li>
+                <li><strong>14-16 మెట్లు:</strong> త్రిగుణములు (సత్త్వ, రజో, తమో గుణాల సమతుల్యత).</li>
+                <li><strong>17-18 మెట్లు:</strong> విద్యా & అవిద్య (అహంకారం వీడి జ్ఞానోదయం / మోక్షం పొందడం).</li>
+              </ul>
+            </div>
+
+            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 14px;">
+              <h4 style="color: #1e40af; margin-bottom: 8px;">18 సంవత్సరాల దీక్షా నామాలు:</h4>
+              <ol style="font-size: 0.92rem; line-height: 1.8; color: #1e3a8a; padding-left: 18px;">
+                <li>1వ సం॥: కన్నె స్వామి</li>
+                <li>2వ సం॥: కత్తి స్వామి</li>
+                <li>3వ సం॥: గంట స్వామి</li>
+                <li>4వ సం॥: గద స్వామి</li>
+                <li>5వ సం॥: విల్లు స్వామి</li>
+                <li>6వ సం॥: జ్యోతి స్వామి</li>
+                <li>7వ సం॥: సూర్య స్వామి</li>
+                <li>8వ సం॥: చంద్ర స్వామి</li>
+                <li>9వ సం॥: వేలు స్వామి</li>
+                <li>10వ సం॥: విష్ణు చక్ర స్వామి</li>
+                <li>11వ సం॥: శంఖాధర స్వామి</li>
+                <li>12వ సం॥: నాగభరణ స్వామి</li>
+                <li>13వ సం॥: శ్రీహరి స్వామి</li>
+                <li>14వ సం॥: పద్మ స్వామి</li>
+                <li>15వ సం॥: త్రిశూల స్వామి</li>
+                <li>16వ సం॥: శ్రీ శబరిగిరి స్వామి</li>
+                <li>17వ సం॥: ఓంకార స్వామి</li>
+                <li>18వ సం॥: నారికేళ స్వామి</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 12: BHAJAN SONGS & PADI PAATA       -->
+    <!-- ========================================== -->
+    <section class="section-card" id="bhajan-songs">
+      <div class="card-header gold-gradient-header">
+        <div class="header-badge">హరిహరామృతం పేజీలు 35-49</div>
+        <h2 class="section-title">శ్రీ అయ్యప్ప భజన కీర్తనలు & 18 మెట్ల పడిపాట</h2>
+        <p class="section-description">
+          పూజ మరియు పడిపూజల సమయంలో భక్తులందరూ కలసి భక్తిపారవశ్యంతో ఆలపించే సాంప్రదాయ భజన పాటలు.
+        </p>
+      </div>
+
+      <div class="puja-steps-wrapper">
+        <!-- 18 Steps Padi Paata -->
+        <div class="mantra-block highlight-box" style="background: #fffbeb; border: 2px solid #f59e0b; border-radius: 12px; padding: 18px;">
+          <div class="mantra-label" style="font-size: 1.15rem; color: #9a3412;">🎵 అయ్యప్ప స్వామి 18 మెట్ల పడిపాట (PDF పేజీలు 48-49)</div>
+          <p class="sloka-large" style="text-align: center; color: #b45309; font-weight: bold; margin-bottom: 12px;">
+            ఓం శ్రీ స్వామియే శరణమయ్యప్పా |<br>
+            స్వామి శరణం అయ్యన్ శరణం అయ్యప్ప శరణం శరణపున అయ్యప్ప |<br>
+            స్వామియే శరణం శరణపున అయ్యప్పా ||
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; font-size: 0.96rem; line-height: 1.8;">
+            <div>1. ఎరుమేలి శాస్తా శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>2. పేటైతుళ్లియే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>3. వావర్ స్వామియే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>4. కాలిఘట ఆశ్రమమే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>5. అలుదా నదియే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>6. అలుదై స్నానమే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>7. అలుదా సద్దియే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>8. కరిమల తోడే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>9. కరిమల ఏట్రమే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>10. కరిమల ఎరక్కమే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>11. పెరియాన ఓట్టమే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>12. పంబా నదియే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>13. పంబై స్నానమే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>14. కన్నెమూల గణపతి శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>15. నీలిమల ఏట్రమే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>16. అప్పాచ్చి మేడే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>17. శబరి పీఠమే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+            <div>18. పదునెట్టాంబడియే శరణపున అయ్యప్ప || స్వామి శరణం ||</div>
+          </div>
+        </div>
+
+        <!-- Featured Bhajans Accordion / Grid -->
+        <div class="mantra-block" style="margin-top: 16px;">
+          <div class="mantra-label">🪘 ప్రసిద్ధ అయ్యప్ప భజనల సంకలనం (PDF పేజీలు 35-47)</div>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 12px;">
+            <!-- Bhajan 1 -->
+            <div style="background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 10px; padding: 14px;">
+              <h4 style="color: #9a3412; margin-bottom: 6px;">1. గణేశ శరణం (గణపతి స్తుతి)</h4>
+              <p style="font-size: 0.92rem; line-height: 1.7; color: #44403c;">
+                గణేశ శరణం శరణం గణేశా | గణేశ శరణం శరణం గణేశా ||<br>
+                గజముఖ వదనా శరణం గణేశా | గౌరీ పుత్రా శరణం గణేశా ||<br>
+                విఘ్నవినాయక శరణం గణేశా | వినుత ప్రదాత శరణం గణేశా ||
+              </p>
+            </div>
+
+            <!-- Bhajan 2 -->
+            <div style="background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 10px; padding: 14px;">
+              <h4 style="color: #9a3412; margin-bottom: 6px;">2. మాల ధారణం నియమాల తోరణం</h4>
+              <p style="font-size: 0.92rem; line-height: 1.7; color: #44403c;">
+                మాల ధారణం నియమాల తోరణం | మాల ధారణం నియమాల తోరణం ||<br>
+                జన్మ తారణం దుష్కర్మ వారణం | జన్మ తారణం దుష్కర్మ వారణం ||<br>
+                శరణం శరణం శరణం శరణం | అయ్యప్ప స్వామి శరణం ||
+              </p>
+            </div>
+
+            <!-- Bhajan 3 -->
+            <div style="background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 10px; padding: 14px;">
+              <h4 style="color: #9a3412; margin-bottom: 6px;">3. ఓం ఓం అయ్యప్ప ఓంకార రూప అయ్యప్ప</h4>
+              <p style="font-size: 0.92rem; line-height: 1.7; color: #44403c;">
+                ఓం ఓం అయ్యప్ప ఓంకార రూప అయ్యప్ప |<br>
+                సహస్రారమే శబరీ శిఖరం బ్రహ్మకపాలం నీ స్థానం |<br>
+                ధనుష్కోటికి ఆది మూలమై ఉన్నది మూలాధారం |<br>
+                అది గణపతికే ప్రాకారం ఎరుమేలి యాత్రకే ఆరంభం ||
+              </p>
+            </div>
+
+            <!-- Bhajan 4 -->
+            <div style="background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 10px; padding: 14px;">
+              <h4 style="color: #9a3412; margin-bottom: 6px;">4. భగవాన్ శరణం భగవతి శరణం</h4>
+              <p style="font-size: 0.92rem; line-height: 1.7; color: #44403c;">
+                భగవాన్ శరణం భగవతి శరణం శరణం శరణం అయ్యప్ప |<br>
+                భగవతి శరణం భగవాన్ శరణం శరణం శరణం అయ్యప్ప ||<br>
+                భగవాన్ శరణం భగవతి శరణం దేవన్ పాదం దేవి పాదం |<br>
+                భగవానే భగవతియే దేవనే దేవియే ||
+              </p>
+            </div>
+
+            <!-- Bhajan 5 -->
+            <div style="background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 10px; padding: 14px;">
+              <h4 style="color: #9a3412; margin-bottom: 6px;">5. కొండల్లో కొలువున్న కొండదేవరా</h4>
+              <p style="font-size: 0.92rem; line-height: 1.7; color: #44403c;">
+                కొండల్లో కొలువున్న కొండదేవరా మా కోర్కెలను దీర్చవయ్య కొండదేవరా ||<br>
+                కార్తీక మాసాన కొండదేవరా మేము మాలలే వేస్తాము కొండదేవరా ||<br>
+                పద్దెనిమిది మెట్లెక్కి కొండదేవరా మేము పరవశించినామయ్య కొండదేవరా ||
+              </p>
+            </div>
+
+            <!-- Bhajan 6 -->
+            <div style="background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 10px; padding: 14px;">
+              <h4 style="color: #9a3412; margin-bottom: 6px;">6. గురుస్వామి గురుస్వామి</h4>
+              <p style="font-size: 0.92rem; line-height: 1.7; color: #44403c;">
+                గురుస్వామి గురుస్వామి నీకు కోటి కోటి దండాలు గురుస్వామి |<br>
+                నీ తోడు లేనిదే గురుస్వామి మేము శబరియాత్ర చేయలేము గురుస్వామి ||<br>
+                గురువులేని విద్య విద్యకాదు గురువులేని యాత్ర శబరియాత్ర కాదు ||
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- Devotional Footer -->
@@ -2056,6 +2302,10 @@
       <div class="footer-links">
         <a href="#hero">పైకి వెళ్ళండి (Back to Top)</a> • 
         <a href="#sankalpam-section">నిత్య సంకల్పం</a> • 
+        <a href="daily-puja.html">నిత్య పూజ (15ని॥)</a> • 
+        <a href="pooja-niyamavali.html" style="color: #ea580c; font-weight: bold;">📖 పూజా నియామావళి (15ని॥)</a> • 
+        <a href="full-puja.html">సంపూర్ణ పూజ</a> • 
+        <a href="pooja-niyamavali-full.html" style="color: #f59e0b; font-weight: bold;">📚 మూల గ్రంథం (34 అధ్యాయాలు)</a> • 
         <a href="#ashtottaram">108 నామావళి</a> • 
         <a href="#harivarasanam">హరివరాసనం</a>
       </div>
@@ -2090,6 +2340,10 @@
       <span class="dock-icon">📜</span>
       <span>సంపూర్ణ</span>
     </a>
+    <a href="pooja-niyamavali.html" class="dock-item" title="మూల గ్రంథం (PDF పూర్తి పాఠం)">
+      <span class="dock-icon">📖</span>
+      <span>గ్రంథం</span>
+    </a>
   </nav>
 
   <!-- Mini Sticky Floating Reader Pill (Active during Chanting) -->
@@ -2107,3 +2361,4 @@
   <script src="app.js"></script>
 </body>
 </html>
+

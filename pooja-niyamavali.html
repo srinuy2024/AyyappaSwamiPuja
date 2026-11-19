@@ -1,0 +1,1423 @@
+﻿<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>శ్రీ అయ్యప్ప స్వామి నిత్య పూజా నియామావళి (మూల గ్రంథ నిత్య క్రమం) | పైడిపూండ్ల గోత్రం</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mandali&family=Ramabhadra&family=Suranna&family=Cinzel:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    /* Immediate mobile viewport & font-scale safety check before paint */
+    (function() {
+      try {
+        if (window.innerWidth <= 768) {
+          var s = parseFloat(localStorage.getItem('ayyappa_font_scale'));
+          if (s > 1.15 || isNaN(s)) {
+            localStorage.setItem('ayyappa_font_scale', '1.0');
+            document.documentElement.style.setProperty('--user-font-scale', '1');
+          }
+        }
+      } catch(e) {}
+    })();
+  </script>
+</head>
+<body class="telugu-theme">
+
+  <!-- Sacred Top Notification & Live Panchangam Bar -->
+  <aside class="sacred-top-bar" aria-label="పూజా సమయ సమాచారం">
+    <div class="top-bar-content">
+      <div class="sacred-slogan">
+        <span class="om-symbol">🕉️</span>
+        <span class="telugu-text">స్వామియే శరణమయ్యప్ప! శ్రీ అయ్యప్ప స్వామి పూజా విధానం &amp; నియామావళి (మూల గ్రంథము నుండి గ్రహించిన నిత్య లఘు క్రమము - 15 నుండి 20 నిమిషాలు)</span>
+      </div>
+      <div class="panchangam-quick-ticker" id="topPanchangTicker">
+        <span class="live-pulse"></span>
+        <span id="quickTickerText">నేటి కాలం: లెక్కించబడుతోంది...</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sticky Main Navigation -->
+  <nav class="sticky-nav" id="mainNavbar">
+    <div class="nav-container">
+      <a href="pooja-niyamavali.html" class="nav-brand">
+        <span class="brand-icon">📖</span>
+        <span class="brand-text">పూజా నియామావళి</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#sankalpam-section" class="nav-link highlight-link">⚡ నిత్య సంకల్పం</a>
+        <a href="#step-ganapathi" class="nav-link" style="color: #ea580c; font-weight: 700;">🐘 గణపతి పూజ</a>
+        <a href="#step-subramanya" class="nav-link" style="color: #d97706; font-weight: 700;">🦚 షణ్ముఖ పూజ</a>
+        <a href="#step-ayyappa" class="nav-link" style="color: #10b981; font-weight: 700;">🪔 అయ్యప్ప పూజ</a>
+        <a href="#nitya-step-5" class="nav-link">📿 108 నామాలు</a>
+        <a href="#step-lokaveeram" class="nav-link">🔱 లోకవీరం</a>
+        <a href="#saranu-ghosha" class="nav-link">🕉️ శరణు ఘోష</a>
+        <a href="#harivarasanam" class="nav-link">🎵 హరివరాసనం</a>
+        <a href="#step-samarpanam" class="nav-link">🙏 సమర్పణ</a>
+        <a href="pooja-niyamavali-full.html" class="nav-link" style="color: #fbbf24; font-weight: 800;">📚 మూల గ్రంథం (34 అధ్యాయాలు)</a>
+        <a href="daily-puja.html" class="nav-link" style="color: #3b82f6; font-weight: 700;">⚡ నిత్య పూజ ➔</a>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Audio Reader Quick Launch Button -->
+        <button id="btnReaderNav" class="action-btn reader-btn" onclick="toggleAudioReaderDeck()" title="పూజా వాచకం / ఆడియో గైడ్ తెరవండి">
+          <span class="btn-icon">🔊</span>
+          <span class="btn-text">ఆడియో గైడ్</span>
+        </button>
+
+        <!-- Temple Bell Chime Button -->
+        <button id="btnBell" class="action-btn bell-btn" title="దేవాలయ ఘంటానాదం (Play Temple Bell)">
+          <span class="btn-icon">🔔</span>
+          <span class="btn-text">గంట కొట్టండి</span>
+        </button>
+
+        <!-- Print Action -->
+        <button id="btnPrint" class="action-btn icon-only hide-on-mobile" title="పూజా విధానం ముద్రించండి (Print)">
+          <span class="btn-icon">🖨️</span>
+        </button>
+
+        <!-- Font Size Controls -->
+        <div class="font-zoom-ctrls">
+          <button type="button" id="btnFontDec" class="zoom-btn" title="అక్షరాల పరిమాణం తగ్గించండి">-A</button>
+          <button type="button" id="btnFontReset" class="zoom-btn" title="సాధారణ పరిమాణం">A</button>
+          <button type="button" id="btnFontInc" class="zoom-btn" title="అక్షరాల పరిమాణం పెంచండి">+A</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Devotional Interactive Voice Reader Control Deck -->
+  <section class="audio-reader-deck" id="audioReaderDeck" style="display: none;" aria-label="పూజా శ్రవణ నియంత్రణ పలక">
+    <div class="deck-inner-card">
+      <div class="deck-header">
+        <div class="deck-badge">
+          <span class="pulse-dot-live" id="readerStatusDot"></span>
+          <span id="readerStatusText" class="badge-text">పూజా శ్రవణం: సిద్ధంగా ఉంది</span>
+        </div>
+        <div class="deck-meta-info">
+          <span class="chant-label">ప్రస్తుత మంత్రం:</span>
+          <span id="readerChantTitle" class="current-chant-name">దీపారాధన &amp; ప్రారంభ ప్రార్థన</span>
+        </div>
+        <button type="button" class="deck-close-btn" onclick="toggleAudioReaderDeck()" title="మూసివేయండి">✕</button>
+      </div>
+
+      <div class="deck-controls-row">
+        <div class="deck-primary-actions">
+          <button type="button" id="btnPlayFullPuja" class="btn btn-gold pulse-btn" onclick="startContinuousPujaReader()">
+            <span class="btn-icon">▶️</span>
+            <span class="btn-text">మూల గ్రంథ నిత్య పూజా పఠనం ప్రారంభించండి (15-20 ని॥)</span>
+          </button>
+          
+          <button type="button" id="btnPauseResumeReader" class="btn btn-secondary" onclick="togglePauseResumeReader()" style="display: none;">
+            <span class="btn-icon">⏸️</span>
+            <span class="btn-text">పాజ్ / కొనసాగించండి</span>
+          </button>
+
+          <button type="button" id="btnStopReader" class="btn btn-outline" onclick="stopAllReaderAudio()" style="display: none;">
+            <span class="btn-icon">⏹️</span>
+            <span class="btn-text">ఆపండి</span>
+          </button>
+        </div>
+
+        <div class="deck-audio-settings">
+          <div class="setting-item">
+            <label for="readerSpeedSelect">పఠన వేగం:</label>
+            <select id="readerSpeedSelect" class="form-select-sm" onchange="changeReaderSpeed(this.value)">
+              <option value="0.8">0.8x (నెమ్మదిగా)</option>
+              <option value="0.9" selected>0.9x (సాంప్రదాయం)</option>
+              <option value="1.0">1.0x (సాధారణం)</option>
+              <option value="1.15">1.15x (వేగంగా)</option>
+            </select>
+          </div>
+
+          <div class="setting-item">
+            <label for="readerVoiceSelect">స్వరం ఎంపిక:</label>
+            <select id="readerVoiceSelect" class="form-select-sm" onchange="changeReaderVoice(this.value)">
+              <option value="auto">స్వయంచాలక తెలుగు స్వరం</option>
+            </select>
+          </div>
+
+          <button type="button" class="btn btn-sm btn-outline bell-deck-btn" id="btnBellDeck" onclick="playTempleBell()" title="ఆలయ ఘంటానాదం">
+            <span>🔔</span> <span>ఘంటానాదం</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compact Devotional Header (Mobile-Friendly & Dignified) -->
+  <header class="compact-puja-header" id="hero">
+    <div class="header-sacred-tag">
+      📖 శ్రీ అయ్యప్ప స్వామి నిత్య పూజా నియామావళి (సంక్షిప్త పూజా క్రమము)
+    </div>
+    <h1 class="header-title">శ్రీ అయ్యప్ప స్వామి నిత్య పూజా నియామావళి</h1>
+    <div class="header-devotee-strip">
+      🙏 శ్రీమాన్ <strong>పైడిపూండ్ల</strong> గోత్రోద్భవస్య <strong>శ్రీనివాస</strong> నామధేయస్య, 
+      ధర్మపత్నీ <strong>వాణీ</strong> సమేతస్య, పుత్రౌ <strong>హర్ష, అఖిల్</strong> నామధేయానాం 
+      (గుంటూరు - <strong>522034</strong>)
+    </div>
+    <div class="header-actions">
+      <button type="button" class="btn btn-sm btn-primary" onclick="toggleAudioReaderDeck()" title="ఆడియో గైడ్ తెరవండి">
+        <span>🔊 ఆడియో గైడ్ (15-20 ని॥) ▾</span>
+      </button>
+      <a href="pooja-niyamavali-full.html" class="btn btn-sm btn-secondary" style="color: #78350f; border-color: #d97706;" title="పూర్తి 34 అధ్యాయాల మూల గ్రంథం">
+        <span>📚 మూల గ్రంథం (34 అధ్యాయాలు) ➔</span>
+      </a>
+      <a href="daily-puja.html" class="btn btn-sm btn-outline" title="నిత్య పూజా పేజీకి వెళ్ళండి">
+        <span>⚡ నిత్య పూజ ➔</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Body -->
+  <main class="page-container" id="pooja-niyamavali-content">
+
+    <!-- LIVE DYNAMIC SANKALPAM SECTION -->
+    <section class="section-card dynamic-sankalpam-card" id="sankalpam-section">
+      <div class="card-header gold-gradient-header">
+        <div class="header-badge">శాస్త్రోక్త నిత్య సంకల్పం</div>
+        <h2 class="card-title">శ్రీ అయ్యప్ప నిత్య పూజా సంకల్పం</h2>
+        <p class="card-subtitle">
+          గోత్రం: <strong>పైడిపూండ్ల గోత్రం</strong> | భక్తులు: <strong>శ్రీనివాస &amp; వాణి</strong> | స్థలం: <strong>గుంటూరు (522034)</strong>
+        </p>
+      </div>
+
+      <div class="card-content">
+        <!-- Live Panchangam Overview -->
+        <div class="panchangam-summary-box" id="livePanchangamSummary">
+          <div class="panchangam-grid-mini">
+            <div class="p-item"><span class="p-lbl">సంవత్సరం:</span> <strong id="valSamvatsara" class="dyn-samvat">క్రోధి</strong></div>
+            <div class="p-item"><span class="p-lbl">ఆయనం:</span> <strong id="valAyanam" class="dyn-ayana">దక్షిణాయనం</strong></div>
+            <div class="p-item"><span class="p-lbl">ఋతువు:</span> <strong id="valRitu" class="dyn-ritu">హేమంత</strong></div>
+            <div class="p-item"><span class="p-lbl">మాసం:</span> <strong id="valMasa" class="dyn-masa">కార్తీక</strong></div>
+            <div class="p-item"><span class="p-lbl">పక్షం:</span> <strong id="valPaksha" class="dyn-paksha">శుక్ల పక్షం</strong></div>
+            <div class="p-item"><span class="p-lbl">తిథి:</span> <strong id="valTithi" class="dyn-tithi">దశమ్యాం</strong></div>
+            <div class="p-item"><span class="p-lbl">వారం:</span> <strong id="valVasara" class="dyn-vasara">బృహస్పతివాసరే</strong></div>
+            <div class="p-item"><span class="p-lbl">నక్షత్రం:</span> <strong id="valNakshatra" class="dyn-nakshatra">శతభిషం</strong></div>
+          </div>
+        </div>
+
+        <!-- Devotee Details Editor Drawer (Collapsible) -->
+        <details class="devotee-customizer-drawer">
+          <summary class="drawer-summary">
+            <span>⚙️ పూజాకర్త వివరాలు సవరించండి (Edit Devotee / Gotram Details)</span>
+          </summary>
+          <div class="drawer-body">
+            <div class="form-grid-3">
+              <div class="form-group">
+                <label for="devoteeGotramInput">గోత్రము:</label>
+                <input type="text" id="devoteeGotramInput" class="form-control" value="పైడిపూండ్ల" placeholder="ఉదా: పైడిపూండ్ల" />
+              </div>
+              <div class="form-group">
+                <label for="devoteeNameInput">దీక్షాపరుడి నామధేయం:</label>
+                <input type="text" id="devoteeNameInput" class="form-control" value="శ్రీనివాస" placeholder="ఉదా: శ్రీనివాస" />
+              </div>
+              <div class="form-group">
+                <label for="devoteeSpouseInput">ధర్మపత్ని నామధేయం:</label>
+                <input type="text" id="devoteeSpouseInput" class="form-control" value="వాణి" placeholder="ఉదా: వాణి" />
+              </div>
+              <div class="form-group">
+                <label for="devoteeChildrenInput">సంతానం:</label>
+                <input type="text" id="devoteeChildrenInput" class="form-control" value="సకుటుంబస్య" placeholder="సకుటుంబస్య" />
+              </div>
+              <div class="form-group">
+                <label for="devoteeCityInput">ప్రాంతము / పిన్ కోడ్:</label>
+                <input type="text" id="devoteeCityInput" class="form-control" value="గుంటూరు-522034" placeholder="గుంటూరు-522034" />
+              </div>
+              <div class="form-group">
+                <label for="sankalpamDateInput">పూజా దినం:</label>
+                <input type="date" id="sankalpamDateInput" class="form-control" />
+              </div>
+            </div>
+            <div class="form-actions mt-2">
+              <button type="button" class="btn btn-sm btn-primary" id="btnSaveDevoteeState" onclick="saveDevoteeState()">
+                <span>💾 వివరాలు భద్రపరచండి</span>
+              </button>
+              <button type="button" class="btn btn-sm btn-secondary" id="btnComputeSankalpam" onclick="computeLiveSankalpamFromPicker()">
+                <span>🔄 నేటి పంచాంగం లెక్కించండి</span>
+              </button>
+              <button type="button" class="btn btn-sm btn-outline" id="btnResetDevoteeState" onclick="resetDevoteeDefaults()">
+                <span>గృహ పూర్వస్థితికి మార్చండి</span>
+              </button>
+            </div>
+          </div>
+        </details>
+
+        <!-- Sankalpam Sanskrit Text Preview -->
+        <div class="sankalpam-preview-box mt-3" id="sankalpam-preview-box">
+          <div class="mantra-header-bar">
+            <span class="mantra-label">శాస్త్రోక్త నిత్య సంకల్ప మంత్రం</span>
+            <button type="button" class="btn-listen-inline" onclick="playReaderSloka('sankalpam', 'నిత్య సంకల్పం')">
+              <span class="l-icon">🔊</span> <span>సంకల్పం వినండి</span>
+            </button>
+          </div>
+          <p class="sloka-spaced highlight-sloka" id="sankalpam-telugu-text">
+            సర్వదేవాత్మక శ్రీ అయ్యప్పస్వామినే నమః | శుభే శోభన ముహూర్తే అద్యబ్రాహ్మణః ద్వితీయపరార్థే శ్వేతవరాహకల్పే వైవస్వత మన్వంతరే కలియుగే ప్రథమపాదే జంబూద్వీపే, భరతవర్షే, భరతఖండే మేరోర్దక్షిణదిగ్భాగే, కృష్ణా-గోదావర్యోః మధ్యప్రదేశే, శ్రీశైలస్య ఈశాన్య ప్రదేశే, గుంటూరు క్షేత్రే (పిన్: <span class="dyn-pincode">522034</span>), అస్మిన్ వర్తమాన వ్యావహారిక చంద్రమాన శ్రీ <span class="dyn-samvat">క్రోధి</span> నామ సంవత్సరే, <span class="dyn-ayana">దక్షిణాయనే</span>, <span class="dyn-ritu">హేమంత</span> ఋతౌ, <span class="dyn-masa">కార్తీక</span> మాసే, <span class="dyn-paksha">శుక్ల</span> పక్షే, <span class="dyn-tithi">దశమ్యాం</span> శుభ తిథౌ, <span class="dyn-vasara">బృహస్పతి వాసరే</span>, శుభ నక్షత్రే, శుభయోగే, శుభకరణే, ఏవం గుణ విశేషణ విశిష్టాయాం శుభ తిథౌ, శ్రీమతః <span class="dyn-gotram">పైడిపూండ్ల</span> గోత్రోద్భవస్య <span class="dyn-karta">శ్రీనివాస</span> నామధేయస్య, ధర్మపత్నీ సమేతస్య <span class="dyn-wife">వాణి</span> నామధేయవత్యాః, సకుటుంబస్య క్షేమ స్థైర్య ధైర్య విజయ అభయ ఆయురారోగ్య ఐశ్వర్యాభివృద్ధ్యర్థం, ధర్మార్ధ కామ మోక్ష చతుర్విధ పురుషార్థ ఫలసిద్ధ్యర్థం, శ్రీ పూర్ణా-పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామి ముద్రోధారక మండల దీక్షా ప్రసన్నతా సిద్ధ్యర్థం, సమస్త విఘ్న నివారణార్థం, శ్రీ స్వామి సన్నిధాన ప్రీత్యర్థం యథాశక్తి పూజాం కరిష్యే ||
+          </p>
+          <div class="sloka-easy-meaning">
+            <strong>సరళ తాత్పర్యం:</strong> పైడిపూండ్ల గోత్రోద్భవులైన శ్రీనివాస మరియు వాణి దంపతులమైన మేము, మా కుటుంబ ఆయురారోగ్య ఐశ్వర్యాల కొరకు, శ్రీ అయ్యప్ప స్వామి వారి మండల దీక్ష నిర్విఘ్నంగా పరిపూర్ణమవ్వడానికి మూల గ్రంథోక్తమైన ఈ నిత్య పూజను భక్తిశ్రద్ధలతో ఆచరిస్తున్నాము.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP-BY-STEP PUJA NIYAMAVALI -->
+    <div class="puja-steps-wrapper">
+
+      <!-- STEP 1: Deeparadhana & Prarambha Slokalu -->
+      <article class="puja-step-card" id="step-1">
+        <div class="step-badge-number">1</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            ప్రారంభ ప్రార్థన &amp; దీపారాధన
+            <span class="step-time-badge">⏱️ 2 నిమిషాలు</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>విధానం:</strong> పసుపుతో విఘ్నేశ్వరుని చేసి తమలపాకులో ఉంచి, అగరుబత్తులు వెలిగించి, ప్రమిదలలో ఆవునెయ్యి లేదా నూనెతో దీపారాధన చేయాలి.
+          </div>
+
+          <!-- Prarambha Slokas -->
+          <div class="mantra-block" id="sloka-prarambha">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">ప్రారంభ ప్రార్థనా శ్లోకములు</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('deeparadhana', 'దీపారాధన & ప్రారంభ శ్లోకం')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+            <p class="sloka-spaced">
+              ఓం దేవీంవాచ మజనయంత దేవాస్తాం విశ్వ రూపాః పశవో వదంతి |<br>
+              సానో మంద్రేష మూర్జం దుహానాధే నుర్వాగ స్మానుప సుష్టుతైతు ||<br>
+              అయం ముహూర్త స్సుముహూర్తోస్తు ||<br><br>
+              య శ్శివో నామరూపాభ్యాం యాదేవీ సర్వమంగళా |<br>
+              తయో స్సంస్మరణా త్పుంసాం సర్వ తో జయమంగళం ||<br><br>
+              తదేవ లగ్నం సుదినం తదేవ తారాబలం చంద్ర బలం తదేవ |<br>
+              విద్యాబలం దైవబలం తదేవ లక్ష్మీ పతే తేంఘ్రి యుగం స్మరామి ||<br><br>
+              సర్వ మంగళ మాంగళ్యే శివే సర్వార్థసాధికే |<br>
+              శరణ్యే త్ర్యంబకే దేవి నారాయణి నమోస్తుతే ||
+            </p>
+          </div>
+
+          <!-- Deeparadhana Sloka -->
+          <div class="mantra-block" id="sloka-deeparadhana">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">దీపారాధన శ్లోకం</div>
+            </div>
+            <p class="sloka-spaced">
+              దీపజ్యోతిః పరబ్రహ్మ | దీపజ్యోతిః జనార్దనః |<br>
+              దీపో హరతు మే పాపం | దీపజ్యోతిః నమోస్తు తే ||<br><br>
+              శుభం కరోతి కల్యాణం | ఆరోగ్యం ధనసంపదః |<br>
+              శత్రుబుద్ధి వినాశాయ | దీపజ్యోతిః నమోస్తు తే ||
+            </p>
+            <p class="sloka mt-2">
+              <strong>ఓం శ్రీ దివ్య దీపజ్యోతిషే నమః — ధ్యాయామి, ఆసనం సమర్పయామి, గంధ-పుష్పాక్షతాన్ సమర్పయామి |</strong>
+            </p>
+          </div>
+
+          <!-- Guru Prarthana -->
+          <div class="mantra-block" id="sloka-guru">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">గురు ప్రార్థన</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('guru', 'గురు ప్రార్థన')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+            <p class="sloka-spaced">
+              గురుర్బ్రహ్మా గురుర్విష్ణుః | గురుర్దేవో మహేశ్వరః |<br>
+              గురుస్సాక్షాత్ పరబ్రహ్మ | తస్మై శ్రీ గురవే నమః ||
+            </p>
+            <p class="sloka mt-2">
+              <strong>శ్రీ మద్గురు చరణారవిందాభ్యాం నమః — నమస్కరోమి |</strong>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 2: Achamanam -->
+      <article class="puja-step-card" id="step-2">
+        <div class="step-badge-number">2</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            ఆచమనం &amp; ప్రాణాయామం
+            <span class="step-time-badge">⏱️ 1 నిమిషం</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>విధానం:</strong> కుడి అరచేతిలో ఉద్ధరిణెతో జలం తీసుకుని మూడుసార్లు తీర్థం స్వీకరించి, నాలుగోసారి చేతులు కడుక్కోవాలి.
+          </div>
+
+          <div class="mantra-block" id="achamanam-section">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">ఆచమన మంత్రములు (24 విష్ణు నామాలు)</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('achamanam', 'ఆచమనం')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+            <p class="sloka-spaced highlight-sloka">
+              ఓం కేశవాయ స్వాహా <em>(తీర్థం స్వీకరించాలి)</em> |<br>
+              ఓం నారాయణాయ స్వాహా <em>(తీర్థం స్వీకరించాలి)</em> |<br>
+              ఓం మాధవాయ స్వాహా <em>(తీర్థం స్వీకరించాలి)</em> |<br>
+              ఓం గోవిందాయ నమః <em>(చేతులు కడుక్కోవాలి)</em> |
+            </p>
+            <div class="ritual-pill-grid mt-2">
+              <span>ఓం విష్ణవే నమః</span> <span>ఓం మధుసూదనాయ నమః</span> <span>ఓం త్రివిక్రమాయ నమః</span>
+              <span>ఓం వామనాయ నమః</span> <span>ఓం శ్రీధరాయ నమః</span> <span>ఓం హృషీకేశాయ నమః</span>
+              <span>ఓం పద్మనాభాయ నమః</span> <span>ఓం దామోదరాయ నమః</span> <span>ఓం సంకర్షణాయ నమః</span>
+              <span>ఓం వాసుదేవాయ నమః</span> <span>ఓం ప్రద్యుమ్నాయ నమః</span> <span>ఓం అనిరుద్ధాయ నమః</span>
+              <span>ఓం పురుషోత్తమాయ నమః</span> <span>ఓం అధోక్షజాయ నమః</span> <span>ఓం నారసింహాయ నమః</span>
+              <span>ఓం అచ్యుతాయ నమః</span> <span>ఓం జనార్దనాయ నమః</span> <span>ఓం ఉపేంద్రాయ నమః</span>
+              <span>ఓం హరయే నమః</span> <span>ఓం శ్రీకృష్ణాయ నమః</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 3: VIGNESHWARA PUJA -->
+      <article class="puja-step-card sacred-card" id="step-ganapathi">
+        <div class="step-badge-number">3</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            శ్రీ విఘ్నేశ్వర స్వామి లఘు పూజ
+            <span class="step-time-badge">⏱️ 3 నిమిషాలు</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>విధానం:</strong> ధ్యానం, ఆవాహనం చేసి ధూపం, దీపం, గాయత్రీ నైవేద్యం, తాంబూలం, మరియు కర్పూర నీరాజనం సమర్పించాలి.
+          </div>
+
+          <div class="mantra-block" id="sloka-ganapathi" style="border-left: 4px solid #ea580c; background: #fffdfa;">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">🐘 విఘ్నేశ్వర ధ్యాన శ్లోకములు &amp; గాయత్రి</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('ganapathi', 'విఘ్నేశ్వర లఘు పూజ')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+            <p class="sloka-spaced highlight-sloka">
+              శుక్లాంబరధరం విష్ణుం | శశివర్ణం చతుర్భుజం |<br>
+              ప్రసన్నవదనం ధ్యాయేత్ | సర్వ విఘ్నోపశాంతయే ||<br><br>
+              వక్రతుండ మహాకాయ | సూర్యకోటి సమప్రభ |<br>
+              అవిఘ్నం కురు మే దేవ | సర్వ కార్యేషు సర్వదా ||<br><br>
+              తత్పురుషాయ విద్మహే | వక్రతుండాయ ధీమహి |<br>
+              తన్నో దంతిః ప్రచోదయాత్ ||
+            </p>
+
+            <!-- Complete Upacharas for Ganapathi -->
+            <div class="upachara-list-box">
+              <p style="margin-bottom: 6px;">
+                <strong>1. ధ్యానం &amp; ఆవాహనం:</strong> ఓం శ్రీ మహా గణాధిపతయే నమః — ధ్యాయామి, ఆవాహయామి, రత్నసింహాసనం సమర్పయామి | <em>(పుష్పము/అక్షతలు సమర్పించాలి)</em>
+              </p>
+              <p style="margin-bottom: 6px;">
+                <strong>2. గంధం &amp; పుష్పం:</strong> ఓం శ్రీ మహా గణాధిపతయే నమః — శ్రీ గంధం ధారయామి, సమస్త పరిమళ పత్ర పుష్పాణి సమర్పయామి, పుష్పైః పూజయామి |
+              </p>
+              <p style="margin-bottom: 6px;">
+                <strong>3. ధూపం:</strong> <span style="color: #9a3412; font-weight: bold;">ఓం శ్రీమహా గణాధిపతయే నమః — ధూపమాఘ్రాపయామి |</span> <em>(అగరుబత్తి చూపించాలి)</em>
+              </p>
+              <p style="margin-bottom: 6px;">
+                <strong>4. దీపం:</strong> <span style="color: #9a3412; font-weight: bold;">ఓం శ్రీమహా గణాధిపతయే నమః — దీపం దర్శయామి |</span> <em>(దీపం చూపించాలి)</em>
+              </p>
+              <p style="margin-bottom: 6px;">
+                <strong>5. నైవేద్యం &amp; గాయత్రి:</strong><br>
+                ఓం భూర్భువస్సువః | తత్సవితుర్వరేణ్యం భర్గో దేవస్య ధీమహి | ధియో యో నః ప్రచోదయాత్ ||<br>
+                సత్యం త్వర్తేన పరిషించామి | అమృతమస్తు అమృతోపస్తరణమసి ||<br>
+                ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా, ఓం పరబ్రహ్మణే నమః |<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీమహా గణాధిపతయే నమః — నైవేద్యం సమర్పయామి | మధ్యే మధ్యే అమృత పానీయం సమర్పయామి |</span> <em>(బెల్లం లేదా పండ్లు నివేదించాలి)</em>
+              </p>
+              <p style="margin-bottom: 6px;">
+                <strong>6. తాంబూలం:</strong> ఓం శ్రీమహా గణాధిపతయే నమః — తాంబూలం సమర్పయామి, తాంబూల రూపేణ అక్షతాన్ సమర్పయామి |
+              </p>
+              <p style="margin-bottom: 0;">
+                <strong>7. కర్పూర నీరాజనం:</strong><br>
+                <span style="color: #9a3412; font-weight: bold;">ఓం శ్రీమహా గణాధిపతయే నమః — కర్పూర ఆనంద నీరాజనం సమర్పయామి |</span> <em>(కర్పూర హారతి ఇవ్వాలి)</em><br>
+                నీరాజనానంతరం శుద్ధాచమనీయం సమర్పయామి | నమస్కరోమి ||
+              </p>
+            </div>
+
+            <div class="mt-2">
+              <button type="button" class="btn btn-sm btn-secondary" onclick="jumpToNityaDeity('ganapathi')">
+                <span>🐘 సమయం ఉంటే: విఘ్నేశ్వర 108 నామావళి చదవండి ➔</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 4: SUBRAMANYA PUJA -->
+      <article class="puja-step-card sacred-card" id="step-subramanya">
+        <div class="step-badge-number">4</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            శ్రీ సుబ్రహ్మణ్య స్వామి లఘు పూజ
+            <span class="step-time-badge">⏱️ 3 నిమిషాలు</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>విధానం:</strong> సంకల్పం, ధ్యానం చేసి గంధం, పుష్పం, ధూపం, దీపం, నైవేద్యం, మరియు కర్పూర నీరాజనం సమర్పించాలి.
+          </div>
+
+          <div class="mantra-block" id="sloka-subramanya" style="border-left: 4px solid #d97706; background: #fffdfa;">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">🦚 సుబ్రహ్మణ్య సంకల్పం &amp; ప్రార్థనా శ్లోకాలు</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('subramanya', 'సుబ్రహ్మణ్య లఘు పూజ')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+
+            <!-- Subramanya Sankalpam & Dhyanam -->
+            <p class="sloka-spaced highlight-sloka">
+              పూర్వోక్త ఏవం గుణ విశేషణ విశిష్టాయాం శుభ తిథౌ వల్లీ దేవసేనా సమేత శ్రీ సుబ్రహ్మణ్యేశ్వర ప్రసాదేన సర్వోప శాంతి పూర్వక దీర్ఘాయురారోగ్య ధన కళత్ర పుత్ర పౌత్రాభివృద్ధ్యర్థం స్థిరలక్ష్మీ కీర్తిలాభ శత్రుపరాజయాది సకలాభీష్టసిద్ధ్యర్థం శ్రీ సుబ్రహ్మణ్యస్వామి పూజాం కరిష్యే ||<br><br>
+              షడాననం కుంకుమ రక్తవర్ణం | మహామతిం దివ్య మయూర వాహనం ||<br>
+              రుద్రస్య సూనుం సుర సైన్య నాథం | గుహం సదా శరణమహం భజే ||<br><br>
+              తత్పురుషాయ విద్మహే | మహా సేనాయ ధీమహి |<br>
+              తన్నో షణ్ముఖః ప్రచోదయాత్ ||
+            </p>
+
+            <!-- Complete Upacharas for Subramanya -->
+            <div class="upachara-list-box">
+              <p style="margin-bottom: 6px;">
+                <strong>1. ఆవాహనం &amp; ఆసనం:</strong> వల్లీ దేవసేనా సమేత శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — ఆవాహయామి, ఆసనం సమర్పయామి |
+              </p>
+              <p style="margin-bottom: 6px;">
+                <strong>2. గంధం &amp; పుష్పం:</strong> శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — దివ్యపరిమళ గంధాన్ సమర్పయామి, హరిద్రా చూర్ణకుంకుమాన్ సమర్పయామి, అక్షతాన్ సమర్పయామి, పుష్పైః పూజయామి |
+              </p>
+              <p style="margin-bottom: 6px;">
+                <strong>3. ధూపం:</strong> <span style="color: #9a3412; font-weight: bold;">వల్లీ దేవసేనా సమేత శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — ధూపమాఘ్రాపయామి |</span> <em>(అగరుబత్తులు చూపించాలి)</em>
+              </p>
+              <p style="margin-bottom: 6px;">
+                <strong>4. దీపం:</strong> <span style="color: #9a3412; font-weight: bold;">శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — దీపం దర్శయామి |</span> <em>(దీపం చూపించాలి)</em>
+              </p>
+              <p style="margin-bottom: 6px;">
+                <strong>5. నైవేద్యం &amp; తాంబూలం:</strong> ఓం భూర్భువస్సువః... ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా ||<br>
+                <span style="color: #9a3412; font-weight: bold;">వల్లీ దేవసేనా సమేత శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — నైవేద్యం సమర్పయామి, మధ్యే మధ్యే అమృత పానీయం సమర్పయామి, తాంబూలం సమర్పయామి |</span>
+              </p>
+              <p style="margin-bottom: 0;">
+                <strong>6. కర్పూర నీరాజనం:</strong> <span style="color: #9a3412; font-weight: bold;">శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — కర్పూర ఆనంద నీరాజనం సమర్పయామి |</span> <em>(కర్పూర హారతి ఇవ్వాలి)</em><br>
+                నీరాజనానంతరం శుద్ధాచమనీయం సమర్పయామి | నమస్కరోమి ||
+              </p>
+            </div>
+
+            <div class="mt-2">
+              <button type="button" class="btn btn-sm btn-secondary" onclick="jumpToNityaDeity('subramanya')">
+                <span>🦚 సమయం ఉంటే: సుబ్రహ్మణ్యేశ్వర 108 నామావళి చదవండి ➔</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 5: SRI AYYAPPA SWAMI PUJA & UPACHARAS -->
+      <article class="puja-step-card sacred-card" id="step-ayyappa">
+        <div class="step-badge-number">5</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            శ్రీ అయ్యప్ప స్వామి పూజ &amp; ఉపచారాలు
+            <span class="step-time-badge">⏱️ 3 నిమిషాలు</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>విధానం:</strong> స్వామివారి ప్రార్థనా శ్లోకములతో ధ్యానము చేసి, గంధము, కుంకుమ, అక్షతలు, పుష్పములు సమర్పించాలి.
+          </div>
+
+          <!-- Ayyappa Intro & Dhyanam -->
+          <div class="mantra-block" id="sloka-ayyappa-dhyanam">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">శ్రీ అయ్యప్ప స్వామి ప్రార్థనా శ్లోకములు &amp; మూల మంత్రం</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('ayyappa_dhyanam', 'అయ్యప్ప ధ్యానం & ఉపచారాలు')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+            <p class="sloka-spaced highlight-sloka">
+              ఓం శ్రీ స్వామియే శరణమయ్యప్ప ||<br><br>
+              భూతనాథ సదానంద | సర్వభూత దయాపర |<br>
+              రక్షరక్ష మహాబాహో | శాస్త్రే తుభ్యం నమో నమః ||<br><br>
+              ఓం హ్రీం హరిహర పుత్రాయ | పుత్ర లాభాయ |<br>
+              శత్రునాశాయ | మద గజ వాహనాయ మహాశాస్త్రే నమః ||<br><br>
+              భూతనాథాయ విద్మహే | భవ పుత్రాయ ధీమహి |<br>
+              తన్నో శాస్తా ప్రచోదయాత్ ||
+            </p>
+          </div>
+
+          <!-- Ayyappa Upachara Mantras -->
+          <div class="mantra-block">
+            <div class="mantra-label">వస్త్రాలంకరణ &amp; ఉపచార మంత్రములు</div>
+            <div class="ritual-instruction" style="background: #fef9c3; border-left: 4px solid #d97706; padding: 10px 14px; margin-bottom: 14px; font-size: 1.05rem; border-radius: 6px; color: #78350f; line-height: 1.6;">
+              💡 <strong>నిత్య పూజా సులభ విధి:</strong> సమయం తక్కువగా ఉన్నప్పుడు శ్లోకాలు చదవలేకపోయినా ఎటువంటి దోషం లేదు. నేరుగా క్రింద ఉన్న ముదురు రంగు నామ మంత్రమును (ఉదా: <strong>శ్రీ హరిహరసుత అయ్యప్పస్వామినే నమః — శుద్ధోదక స్నానం సమర్పయామి</strong>) మాత్రమే పఠించి పుష్పం/అక్షతలు లేదా తీర్థం సమర్పించినా పూజ సంపూర్ణంగా సిద్ధిస్తుంది.
+            </div>
+            <ul class="ritual-list">
+              <li>
+                <strong>శుద్ధోదక స్నానం:</strong> తీర్థోదకైః కాంచన కుంభ సంస్థితైః సువాసితైర్దేవ కృపారసార్ద్రైః | మయార్పితం స్నాన విధిం గృహాణ పాదాబ్జనిష్ఠుత్వ నదీ ప్రవాహ |<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీ హరిహరసుత అయ్యప్పస్వామినే నమః — శుద్ధోదక స్నానం సమర్పయామి |</span>
+              </li>
+              <li>
+                <strong>వస్త్రమ్:</strong> విద్యుద్విలాస రమ్యేణ స్వర్ణ వస్త్రేణసంయుక్తం వస్త్రయుగ్మం గృహాణేదం భక్త్యా దత్తం మయాప్రభో |<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీ హరిహరసుత అయ్యప్పస్వామినే నమః — వస్త్రం సమర్పయామి |</span>
+              </li>
+              <li>
+                <strong>యజ్ఞోపవీతమ్:</strong> రాజితం బ్రహ్మ సూత్రంచ కాంచనం చోత్తరీయకం యజ్ఞోపవీతం గృహాణేదం భక్త్యా దత్తం మయా ప్రభో |<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీ హరిహరసుత అయ్యప్పస్వామినే నమః — యజ్ఞోపవీతం సమర్పయామి |</span>
+              </li>
+              <li>
+                <strong>గంధం:</strong> సర్వభూత ప్రమధన, సర్వజ్ఞ సకలలోకోద్భవ సర్వాత్మన్ సర్వభూతేశ సుగంధం సంగృహాణ భో |<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీ హరిహరసుత అయ్యప్పస్వామినే నమః — దివ్య శ్రీ చందనం సమర్పయామి |</span>
+              </li>
+              <li>
+                <strong>కుంకుమ &amp; అక్షతలు:</strong> హరిద్రా చూర్ణ సమాయుక్తం కుంకుమం క్షేమదాయకం నానా పరిమళం దివ్యం గృహాణ గుణభూషణ | అక్షతాన్ ధవళాన్ దివ్యాన్ శాలీయాన్ తండులాన్ శుభాన్ హరిద్రామిశ్రితాన్ తుభ్యం గృహాణాసుర సంహార |<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీ హరిహరసుత అయ్యప్పస్వామినే నమః — కుంకుమం సమర్పయామి, అక్షతాన్ సమర్పయామి |</span>
+              </li>
+              <li>
+                <strong>పుష్పము:</strong> అఘోర పరమ ప్రఖ్య అచింత్యావ్యక్త లక్షణ అనంతాదిత్య సంకాశం, పుష్పాణి ప్రతిగృహ్యతాం |<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీ హరిహరసుత అయ్యప్పస్వామినే నమః — పుష్పం సమర్పయామి, పుష్పైః పూజయామి |</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 6: 108 ASHTOTTARA PUSHPARCHANA -->
+      <article class="puja-step-card sacred-card" id="nitya-step-5">
+        <div class="step-badge-number">6</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            శ్రీ అయ్యప్ప స్వామి 108 అష్టోత్తర శతనామావళి
+            <span class="step-time-badge">⏱️ 5 - 10 నిమిషాలు</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>పుష్పార్చన క్రమము:</strong> 108 దివ్య నామములను పఠిస్తూ ప్రతి నామానికి "నమః" అంటూ తాజా పుష్పములు లేదా అక్షతలను స్వామివారి పీఠం వద్ద సమర్పించాలి.
+          </div>
+
+          <div class="quick-ashtottara-container">
+            <!-- Deity Switcher Tabs -->
+            <div class="deity-tab-container nitya-deity-tabs" style="margin-bottom: 14px; display: flex; flex-wrap: wrap; gap: 8px;">
+              <button type="button" class="deity-tab-btn active nitya-deity-tab-btn" data-deity="ayyappa" onclick="switchNityaDeity('ayyappa')">
+                <span>🐅 1. అయ్యప్ప 108</span>
+              </button>
+              <button type="button" class="deity-tab-btn nitya-deity-tab-btn" data-deity="ganapathi" onclick="switchNityaDeity('ganapathi')">
+                <span>🐘 2. వినాయక 108</span>
+              </button>
+              <button type="button" class="deity-tab-btn nitya-deity-tab-btn" data-deity="subramanya" onclick="switchNityaDeity('subramanya')">
+                <span>🦚 3. సుబ్రహ్మణ్య 108</span>
+              </button>
+              <button type="button" class="deity-tab-btn nitya-deity-tab-btn" data-deity="durga" onclick="switchNityaDeity('durga')">
+                <span>🔱 4. దుర్గా 108</span>
+              </button>
+              <button type="button" class="deity-tab-btn nitya-deity-tab-btn" data-deity="lakshmi" onclick="switchNityaDeity('lakshmi')">
+                <span>🪷 5. లక్ష్మీ 108</span>
+              </button>
+              <button type="button" class="deity-tab-btn nitya-deity-tab-btn" data-deity="saraswati" onclick="switchNityaDeity('saraswati')">
+                <span>📖 6. సరస్వతీ 108</span>
+              </button>
+              <button type="button" class="deity-tab-btn nitya-deity-tab-btn" data-deity="shiva" onclick="switchNityaDeity('shiva')">
+                <span>🕉️ 7. శివ 108</span>
+              </button>
+              <button type="button" class="deity-tab-btn nitya-deity-tab-btn" data-deity="vishnu" onclick="switchNityaDeity('vishnu')">
+                <span>🪈 8. విష్ణు 108</span>
+              </button>
+            </div>
+
+            <div class="quick-ashtottara-header">
+              <div class="quick-counter-badge" id="lblNityaAshtottaraCounter">
+                🌸 శ్రీ అయ్యప్ప అష్టోత్తరం (108 నామాలు)
+              </div>
+              <div class="ashtottara-ctrls-wrap">
+                <div class="view-mode-toggle" aria-label="పఠన విధానం">
+                  <button type="button" class="view-toggle-btn btn-view-card active" data-target="nityaAshtottaraGrid" onclick="setAshtottaraView('nityaAshtottaraGrid', 'card')" title="కార్డుల రూపం (Card View)">
+                    <span>📑 కార్డులు</span>
+                  </button>
+                  <button type="button" class="view-toggle-btn btn-view-book" data-target="nityaAshtottaraGrid" onclick="setAshtottaraView('nityaAshtottaraGrid', 'book')" title="పుస్తక పఠన రీతి (Book / Scripture Reading View)">
+                    <span>📖 పుస్తక రీతి</span>
+                  </button>
+                </div>
+                <button type="button" id="btnAutoChant108" class="btn btn-tracker" onclick="toggleAutoChant108()" title="108 నామాల ఆటో పఠనం & పుష్పార్చన">
+                  <span class="btn-icon">🔊</span>
+                  <span>ఆటో పఠనం</span>
+                </button>
+                <button type="button" class="btn btn-primary" onclick="dropPujaFlower()" title="పుష్పం సమర్పించండి">
+                  <span>🌸 పుష్పం</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Dynamic 108 Names Grid -->
+            <div class="ashtottaram-grid" id="nityaAshtottaraGrid">
+              <!-- Rendered automatically by app.js using authentic book names -->
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 7: DHOOPAM, DEEPAM, NAIVEDYAM -->
+      <article class="puja-step-card" id="step-naivedyam">
+        <div class="step-badge-number">7</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            ధూప, దీప, మహానైవేద్యం &amp; తాంబూలం
+            <span class="step-time-badge">⏱️ 3 నిమిషాలు</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>విధానం:</strong> దశాంగ ధూపం, ఘృతవర్తి దీపం, గాయత్రీ మంత్ర పరిషేచనంతో మహానైవేద్యం, మరియు కర్పూర తాంబూలం సమర్పించాలి.
+          </div>
+
+          <!-- Exact Dhoopam, Deepam, Naivedyam, Tamboolam -->
+          <div class="mantra-block" id="sloka-naivedyam" style="border-left: 4px solid #16a34a; background: #fffdfa;">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">ధూప దీప నైవేద్య మంత్రములు</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('naivedyam', 'నైవేద్య సమర్పణ')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+
+            <div style="font-size: 1.05rem; line-height: 2.2; color: #1f2937;">
+              <!-- Dhoopam -->
+              <div style="background: #fffbeb; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 14px; margin-bottom: 12px;">
+                <p><strong>ధూపం:</strong><br>
+                దశాంగం గుగ్గులోపేతం సుగంధం సుమనోహరమ్ |<br>
+                ధూపం గృహాణదేవేశ భక్తానుగ్రహకారక ||<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీహరిహరసుత అయ్యప్పస్వామినే నమః — ధూపమాఘ్రాపయామి, ధూపం దర్శయామి |</span> <em>(అగరుబత్తులు చూపించాలి)</em></p>
+              </div>
+
+              <!-- Deepam -->
+              <div style="background: #fffbeb; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 14px; margin-bottom: 12px;">
+                <p><strong>దీపం:</strong><br>
+                దీపం గృహాణ దేవేశ ఘృతవర్తి సమన్వితం |<br>
+                జ్ఞానరూపాయ నిత్యాయ నిర్మలాయ నమోస్తుతే ||<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీహరిహరసుత అయ్యప్పస్వామినే నమః — దీపం దర్శయామి |</span> <em>(దీపం చూపించాలి)</em></p>
+              </div>
+
+              <!-- Naivedyam -->
+              <div style="background: #fffbeb; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 14px; margin-bottom: 12px;">
+                <p><strong>మహానైవేద్యం:</strong><br>
+                ఓం భూర్భువస్సువః | తత్సవితుర్వరేణ్యం భర్గోదేవస్య ధీమహి | ధియోయోనః ప్రచోదయాత్ ||<br>
+                సత్యంత్వర్తేన పరిషించామి (సాయంకాలం: ఋతం త్వా సత్యేన పరిషించామి) | అమృతమస్తు అమృతోపస్తరణమసి ||<br>
+                ఓం ప్రాణాయ స్వాహా, ఓం అపానాయ స్వాహా, ఓం వ్యానాయ స్వాహా, ఓం ఉదానాయ స్వాహా, ఓం సమానాయ స్వాహా ||<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీహరిహరసుత అయ్యప్పస్వామినే నమః — నైవేద్యం సమర్పయామి | మధ్యే మధ్యే అమృత పానీయం సమర్పయామి |</span> <em>(ఆవుపాలు, పండ్లు, కలకండ, లేదా ప్రసాదం నివేదించాలి)</em></p>
+              </div>
+
+              <!-- Tamboolam -->
+              <div style="background: #fffbeb; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px 14px;">
+                <p><strong>తాంబూలం:</strong><br>
+                పూగీఫల సమాయుక్తం నాగవల్లీదళైర్యుతం |<br>
+                కర్పూరచూర్ణ సంయుక్తం తాంబూలం ప్రతిగృహ్యతాం ||<br>
+                <span style="color: #9a3412; font-weight: bold;">శ్రీహరిహరసుత అయ్యప్పస్వామినే నమః — తాంబూలం సమర్పయామి |</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 8: KARPURA NEERAJANAM & LOKAVEERAM -->
+      <article class="puja-step-card sacred-card" id="step-lokaveeram">
+        <div class="step-badge-number">8</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            కర్పూర నీరాజనం, మంగళ హారతి &amp; లోకవీరం నమస్కార స్తుతి
+            <span class="step-time-badge">⏱️ 4 - 5 నిమిషాలు</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>విధానం:</strong> నైవేద్యం అనంతరం కర్పూర హారతి వెలిగించి, ఘంటానాదం చేస్తూ మంగళ హారతి సమర్పించి, పీఠం ఎదుట నిలబడి లోకవీరం 13 శ్లోకాలతో నమస్కరించాలి.
+          </div>
+
+          <!-- Karpura Neerajanam -->
+          <div class="mantra-block" id="sloka-harathi" style="margin-bottom: 16px;">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">కర్పూర నీరాజన మంత్రము (గ్రంథోక్తం)</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('harathi', 'కర్పూర నీరాజనం')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+            <p class="sloka-spaced highlight-sloka">
+              కర్పూర దీపం సుమనోహరం విభో రక్షార్థమేతద్దేవహర ప్రసీదతో |<br>
+              పాపాంధకారం దురితం నివారయ-ప్రజ్ఞానదీపం మనసుప్రదీపయ ||<br><br>
+              ఓం యఃజ్యోతి సర్వలోకానాం తేజసాం తేజముత్తమం |<br>
+              ఆత్మజ్యోతి పరంధామ నీరాజన మిదం ప్రభో ||<br><br>
+              కర్పూర గౌరం కరుణా అవతారం | సంసార సారం భుజగేంద్ర హారమ్ |<br>
+              సదా వసంతం హృదయ అరవిందే | భవం భవానీ సహితం నమామి ||
+            </p>
+            <p class="sloka mt-2">
+              <strong>శ్రీ పూర్ణా-పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామినే నమః — సమస్త మంగళవ్యాప్త్యర్థం కర్పూర ఆనంద నీరాజనం సమర్పయామి |</strong><br>
+              నీరాజనానంతరం శుద్ధాచమనీయం సమర్పయామి |
+            </p>
+          </div>
+
+          <!-- Mangala Harathi from Book Page 94 -->
+          <div class="mantra-block" id="sloka-mangalam" style="border-left: 4px solid #f59e0b; background: #fffdfa; margin-bottom: 16px;">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">🌺 శ్రీ అయ్యప్ప నిత్య మంగళ హారతి (గ్రంథోక్తం)</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('mangalam', 'మంగళ హారతి')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+            <p class="sloka-spaced" style="background: #fffbeb; border-left: 4px solid #d97706; font-size: 1.05rem; line-height: 2.1; color: #78350f;">
+              శంకరాయ శంకరాయ శంకరాయ మంగళం |<br>
+              శంకరీ మనోహరాయ శాశ్వతాయ మంగళం ||<br>
+              గజాననాయ మంగళం షడాననాయ మంగళం |<br>
+              శంకరాయ శంకరాయ శంకరాయ మంగళం ||<br><br>
+              గురువరాయ మంగళం దత్తాత్రేయ మంగళం |<br>
+              రాజరాజాయ మంగళం రామకృష్ణ మంగళం ||<br>
+              శంకర మనోహరాయ శాశ్వతాయ మంగళం |<br>
+              శ్రీనివాస మంగళం జై జై శివాయ మంగళం ||<br><br>
+              ఓం శక్తి మంగళం జై శక్తి మంగళం |<br>
+              సుబ్రహ్మణ్యం మంగళం వేల్ మురుగ మంగళం ||<br>
+              అయ్యప్పా మంగళం మణికంఠ మంగళం |<br>
+              మంగళం మంగళం — శుభ మంగళం ||<br>
+              మంగళం మంగళం — జయ మంగళం ||
+            </p>
+            <p class="sloka mt-2">
+              <strong>శ్రీ పూర్ణా-పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామినే నమః — దివ్య మంగళ నీరాజనం సమర్పయామి |</strong>
+            </p>
+          </div>
+
+          <!-- Lokaveeram Complete 13 Slokas -->
+          <div class="mantra-header-bar" style="margin-bottom: 14px;">
+            <div class="mantra-label">నమస్కార శ్లోకాలు — లోకవీరం మహాపూజ్యం (13 శ్లోకాలు)</div>
+            <button type="button" class="btn-listen-inline" onclick="readFullLokaveeram()">
+              <span class="l-icon">🔊</span> <span>సంపూర్ణ లోకవీరం వినండి (13 చరణాలు)</span>
+            </button>
+          </div>
+
+          <div class="lokaveeram-grid" id="lokaveeram-stanzas-container">
+            <!-- Stanza 1 -->
+            <div class="stuti-item highlight-box" id="lokaveeram-stanza-1">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">1</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 1)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                లోకవీరం మహాపూజ్యం | సర్వరక్షాకరం విభుమ్ |<br>
+                పార్వతీ హృదయానందం | శాస్తారం ప్రణమామ్యహమ్ ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> ముల్లోకాలలో వీరుడు, సర్వపూజితుడు, సకల ప్రాణులను రక్షించే విభుడు, పార్వతీదేవికి హృదయానందకరుడైన శ్రీ అయ్యప్ప ధర్మశాస్తాకు ప్రణమిల్లుతున్నాను.
+              </div>
+            </div>
+
+            <!-- Stanza 2 -->
+            <div class="stuti-item" id="lokaveeram-stanza-2">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">2</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 2)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                విప్రపూజ్యం విశ్వవంద్యం | విష్ణుశంభ్వోః ప్రియం సుతమ్ |<br>
+                క్షిప్రప్రసాదనిరతం | శాస్తారం ప్రణమామ్యహమ్ ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> విద్వాంసులచే పూజింపబడువాడు, జగత్తుకు వందనీయుడు, హరిహరుల ముద్దుల తనయుడు, వేడుకోగానే తక్షణమే అనుగ్రహించే శాస్తాకు నా నమస్కారాలు.
+              </div>
+            </div>
+
+            <!-- Stanza 3 -->
+            <div class="stuti-item" id="lokaveeram-stanza-3">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">3</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 3)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                మత్తమాతంగ గమనం | కారుణ్యామృత పూరితమ్ |<br>
+                సర్వవిఘ్నహరం దేవం | శాస్తారం ప్రణమామ్యహమ్ ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> గజరాజ గమనము కలవాడు, అమృతమయమైన కరుణ గలవాడు, సకల విఘ్నాలను తొలగించే దివ్య దేవుడైన అయ్యప్పకు ప్రణామములు.
+              </div>
+            </div>
+
+            <!-- Stanza 4 -->
+            <div class="stuti-item" id="lokaveeram-stanza-4">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">4</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 4)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                అస్మత్కులేశ్వరం దేవం | అస్మచ్ఛత్రు వినాశనమ్ |<br>
+                అస్మదిష్టప్రదాతారం | శాస్తారం ప్రణమామ్యహమ్ ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> మా కులదైవము, మా శత్రువులను మరియు ఆపదలను నాశనం చేయువాడు, మేము కోరిన సకల శుభములను ప్రసాదించే శ్రీ శాస్తాకు నా నమస్కారాలు.
+              </div>
+            </div>
+
+            <!-- Stanza 5 -->
+            <div class="stuti-item" id="lokaveeram-stanza-5">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">5</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 5)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                పాండ్యేశ వంశతిలకం | కేరళే కేళివిగ్రహమ్ |<br>
+                ఆర్తత్రాణపరం దేవం | శాస్తారం ప్రణమామ్యహమ్ ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> పందళ రాజవంశ తిలకుడు, కేరళలో బాల్య లీలలను ప్రదర్శించిన దివ్యమూర్తి, ఆర్తులను రక్షించే శాస్తాకు ప్రణామములు.
+              </div>
+            </div>
+
+            <!-- Stanza 6 -->
+            <div class="stuti-item highlight-box" id="lokaveeram-stanza-6">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">6 (పంచరత్నం ముగింపు)</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 6)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                పంచరత్నాఖ్య మేతద్యో | నిత్యం చేతసా జపేత్ |<br>
+                తస్య ప్రసన్నో భగవాన్ | శాస్తా వసతి మానసే ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> ఈ దివ్య పంచరత్న శ్లోకాలను నిత్యం భక్తితో జపించే వారి హృదయంలో భగవానుడైన శ్రీ అయ్యప్ప శాస్తా సదా నివసిస్తాడు.
+              </div>
+            </div>
+
+            <!-- Stanza 7 -->
+            <div class="stuti-item" id="lokaveeram-stanza-7">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">7</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 7)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                భూతనాథ సదానంద | సర్వభూత దయాపర |<br>
+                రక్ష రక్ష మహాబాహో | శాస్త్రే తుభ్యం నమో నమః ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> భూతగణముల అధిపతి, సదానంద స్వరూపుడు, సర్వభూతములపై దయగల మహాబాహుడైన అయ్యప్ప, మమ్ములను రక్షించుము.
+              </div>
+            </div>
+
+            <!-- Stanza 8 -->
+            <div class="stuti-item" id="lokaveeram-stanza-8">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">8</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 8)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                శబరి పర్వతే పూజ్యం | సర్వజన మనోహరం |<br>
+                శ్రవణానంద దాతారం | శాస్తారం ప్రణమామ్యహమ్ ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> శబరిమల పర్వతంపై కొలువైనవాడు, సర్వజనుల మనస్సులను ఆకర్షించేవాడు, దివ్య నామ శ్రవణంతో ఆనందాన్నిచ్చే స్వామికి నా నమస్కారాలు.
+              </div>
+            </div>
+
+            <!-- Stanza 9 -->
+            <div class="stuti-item" id="lokaveeram-stanza-9">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">9</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 9)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                కలియుగ వరదం దేవం | దానవకుల నాశనం |<br>
+                కల్యాణ గుణ నిలయం | శాస్తారం ప్రణమామ్యహమ్ ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> కలియుగంలో భక్తులకు కొంగుబంగారమైన వరదాత, రాక్షస శక్తులను నాశనం చేసి సకల శుభగుణములకు నిలయమైన శాస్తాకు నమస్కారాలు.
+              </div>
+            </div>
+
+            <!-- Stanza 10 -->
+            <div class="stuti-item" id="lokaveeram-stanza-10">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">10</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 10)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                నానాశాస్త్రార్థ తత్వజ్ఞం | నానారోగ నివారణం |<br>
+                నానావిధాభీష్టదం | శాస్తారం ప్రణమామ్యహమ్ ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> సకల వేదశాస్త్రముల తత్వమెరిగిన జ్ఞాని, భయంకరమైన సమస్త రోగములను నివారించి కోరిన కోర్కెలను తీర్చే అయ్యప్పకు ప్రణామములు.
+              </div>
+            </div>
+
+            <!-- Stanza 11 -->
+            <div class="stuti-item" id="lokaveeram-stanza-11">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">11</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 11)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                యస్య ధన్వంతరీ మాతా | పితా దేవో మహేశ్వరః |<br>
+                తం శాస్తార మహం వందే | మహావైద్యం దయానిధిమ్ ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> ధన్వంతరి (మోహిని) మాతగా, పరమేశ్వరుడు పితగా జన్మించి, భవరోగాలను నయం చేసే మహావైద్యుడైన కరుణాసింధువు అయ్యప్పకు వందనములు.
+              </div>
+            </div>
+
+            <!-- Stanza 12 -->
+            <div class="stuti-item" id="lokaveeram-stanza-12">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">12</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 12)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                మహిషీమర్దనం దేవం | శాస్తార ప్రణమామ్యహమ్ |<br>
+                భక్తప్రియాయ దేవాయ | శాస్త్రే నిత్యం నమో నమః ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> దుష్ట మహిషిని సంహరించి లోకకంటకాన్ని తొలగించిన భక్తప్రియుడైన అయ్యప్ప స్వామికి నిత్యమూ నమస్కరిస్తున్నాను.
+              </div>
+            </div>
+
+            <!-- Stanza 13 -->
+            <div class="stuti-item highlight-box" id="lokaveeram-stanza-13">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">13 (సంపూర్ణ శాస్తా నమస్కారం)</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('lokaveeram', 13)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                భూతభేతాళ సంసేవ్యం | సిద్ధవిద్యాధరాదిభిః |<br>
+                సదా సంపూజితం దేవం | శాస్తారం ప్రణమామ్యహమ్ ||<br>
+                <span class="chorus">॥ స్వామియే శరణమయ్యప్ప ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>తాత్పర్యం:</strong> భూతగణములు, సిద్ధులు, విద్యాధరులచే నిత్యము పూజింపబడుతూ భక్తులను కాపాడే శ్రీ అయ్యప్ప ధర్మశాస్తాకు సదా ప్రణమిల్లుతున్నాను.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 9: 108 SHARANU GHOSHA -->
+      <article class="puja-step-card sacred-card" id="saranu-ghosha">
+        <div class="step-badge-number">9</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            శ్రీ అయ్యప్ప స్వామి 108 శరణు ఘోష
+            <span class="step-time-badge">⏱️ 3 నిమిషాలు</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>విధానం:</strong> భక్తిశ్రద్ధలతో శరణు ఘోషలను పఠించాలి.
+          </div>
+
+          <div class="saranu-container">
+            <div class="saranu-header-bar">
+              <div class="saranu-counter-pill">
+                శరణు ఘోష సంఖ్య: <span id="saranuCounterNumber">0</span> / 108
+              </div>
+              <div class="saranu-actions">
+                <button type="button" id="btnAutoChantSaranu" class="btn btn-tracker" onclick="toggleAutoChantSaranu()">
+                  <span>🔊 ఆటో శరణు ఘోష</span>
+                </button>
+                <button type="button" id="btnSaranuAllOffer" class="btn btn-secondary" onclick="markAllSaranuOffered()">
+                  <span>✔️ అన్నీ సమర్పించాను</span>
+                </button>
+                <button type="button" id="btnResetSaranuOffer" class="btn btn-outline" onclick="resetSaranuCounter()">
+                  <span>రీసెట్</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Chief 18 Sharanu Highlight Strip -->
+            <div class="chief-18-sharanu-box mb-3" style="background: #fffbeb; border: 1.5px solid #fed7aa; border-radius: 10px; padding: 14px 18px;">
+              <h4 style="color: #9a3412; font-size: 1.15rem; margin-bottom: 8px;">🌟 ముఖ్యమైన 18 శరణు ఘోషలు:</h4>
+              <div style="font-size: 1.05rem; line-height: 2.2; color: #1f2937;">
+                1. స్వామియే శరణమయ్యప్ప • 2. హరిహరసుతనే శరణమయ్యప్ప • 3. కన్నిమూల గణపతి భగవానే శరణమయ్యప్ప • 4. శక్తివడివేలన్ సోదరనే శరణమయ్యప్ప • 5. మాళికాపురత్తు మంజమ్మ దేవియే శరణమయ్యప్ప • 6. వావర్ స్వామియే శరణమయ్యప్ప • 7. కడుత్తస్వామియే శరణమయ్యప్ప • 8. ఇరుముడి ప్రియనే శరణమయ్యప్ప • 9. పదునెట్టాంబడి ఒడయవనే శరణమయ్యప్ప • 10. నెయ్యాభిషేక ప్రియనే శరణమయ్యప్ప • 11. కాంతమలై జ్యోతియే శరణమయ్యప్ప • 12. మకరకుంద ప్రియనే శరణమయ్యప్ప • 13. శబరి గిరీశనే శరణమయ్యప్ప • 14. పందళ రాజకుమారనే శరణమయ్యప్ప • 15. వ్యాఘ్రవాహననే శరణమయ్యప్ప • 16. మోహినీ సుతనే శరణమయ్యప్ప • 17. అనాథ రక్షకనే శరణమయ్యప్ప • 18. సద్గురునాథనే శరణమయ్యప్ప ||
+              </div>
+            </div>
+
+            <!-- Full 108 List Container -->
+            <div class="saranu-list-grid" id="saranuListContainer">
+              <!-- Rendered automatically by app.js using authentic book names -->
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 10: HARIVARASANAM -->
+      <article class="puja-step-card sacred-card" id="harivarasanam">
+        <div class="step-badge-number">10</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            రాత్రి పవళింపు సేవ — శ్రీ హరివరాసనం
+            <span class="step-time-badge">⏱️ 3 - 4 నిమిషాలు</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>విధానం:</strong> రాత్రి పూజ ముగింపులో స్వామివారిని శయనోత్సవంలో లాలిస్తూ సంపూర్ణ 8 చరణాలతో హరివరాసనం గానం చేయాలి.
+          </div>
+
+          <!-- Harivarasanam Devotional Audio Player Card -->
+          <div class="devotional-audio-player-card" style="margin-bottom: 16px;">
+            <div class="d-player-header">
+              <div class="d-player-title-wrap">
+                <span class="d-player-icon">🌙</span>
+                <div>
+                  <span class="d-player-title">శ్రీ హరివరాసనం — పద్మవిభూషణ్ డా॥ కె.జె. యేసుదాస్</span>
+                  <span class="d-player-sub">శబరిమల మూలస్థాన రాత్రి శయనోత్సవ దివ్య ధ్వని</span>
+                </div>
+              </div>
+              <span class="d-player-badge">అసలైన ఆలయ గానం</span>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;">
+              <button type="button" class="btn btn-sm btn-gold" onclick="openDevotionalModal('harivarasanam')" style="flex: 1; min-width: 140px;">
+                <span>📺</span> <span>ఇక్కడే వినండి (In-Page Player)</span>
+              </button>
+              <a href="https://www.youtube.com/watch?v=zLhzkuv35XY" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" style="text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                <span>▶️</span> <span>యూట్యూబ్‌లో (HD)</span>
+              </a>
+              <button type="button" class="btn btn-sm btn-outline" onclick="readFullHarivarasanam()" title="8 చరణాల పఠనం వినండి">
+                <span>🗣️</span> <span>వాయిస్ పఠనం (8 చరణాలు)</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="harivarasanam-stanzas-container" id="harivarasanam-stanzas-container">
+            <!-- Stanza 1 -->
+            <div class="harivarasanam-card highlight-box" id="harivarasanam-stanza-1">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">1</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('harivarasanam', 1)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                హరివరాసనం విశ్వమోహనం | హరిదధీశ్వరం ఆరాధ్యపాదుకం |<br>
+                అరివిమర్దనం నిత్యనర్తనం | హరిహరాత్మజం దేవమాశ్రయే ||<br>
+                <span class="pallavi">॥ శరణమయ్యప్పా స్వామి శరణమయ్యప్పా ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>సరళ తాత్పర్యం:</strong> హరిచే ఆశీర్వదింపబడిన సింహాసనాసీనుడు, విశ్వాన్ని మోహింపజేసే సుందరుడు, శత్రుసంహారకుడు, నిత్య నాట్యప్రియుడైన హరిహర పుత్రుడైన అయ్యప్పను ఆశ్రయిస్తున్నాను.
+              </div>
+            </div>
+
+            <!-- Stanza 2 -->
+            <div class="harivarasanam-card" id="harivarasanam-stanza-2">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">2</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('harivarasanam', 2)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                శరణకీర్తనం శక్తమానసం | భరణలోలుపం నర్తనాలసం |<br>
+                అరుణభాసురం భూతనాయకం | హరిహరాత్మజం దేవమాశ్రయే ||<br>
+                <span class="pallavi">॥ శరణమయ్యప్పా స్వామి శరణమయ్యప్పా ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>సరళ తాత్పర్యం:</strong> భక్తుల శరణుఘోషచే పరవశించువాడు, జగత్తును పోషించేవాడు, ఉదయసూర్యుని తేజస్సు కలవాడు, భూతగణ నాయకుడైన అయ్యప్పను శరణు వేడుచున్నాను.
+              </div>
+            </div>
+
+            <!-- Stanza 3 -->
+            <div class="harivarasanam-card" id="harivarasanam-stanza-3">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">3</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('harivarasanam', 3)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                ప్రణయసత్యకం ప్రాణనాయకం | ప్రణతకల్పకం సుప్రభాంచితం |<br>
+                ప్రణవమందిరం కీర్తనప్రియం | హరిహరాత్మజం దేవమాశ్రయే ||<br>
+                <span class="pallavi">॥ శరణమయ్యప్పా స్వామి శరణమయ్యప్పా ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>సరళ తాత్పర్యం:</strong> సత్యస్వరూపుడు, భక్తుల ప్రాణనాథుడు, కోరిన కోర్కెలు తీర్చే కల్పవృక్షం, ప్రణవ స్వరూపుడు, భజన ప్రియుడైన హరిహరాత్మజుని ఆశ్రయిస్తున్నాను.
+              </div>
+            </div>
+
+            <!-- Stanza 4 -->
+            <div class="harivarasanam-card" id="harivarasanam-stanza-4">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">4</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('harivarasanam', 4)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                తురగవాహనం సుందరాననం | వరగదాయుధం వేదవర్ణితం |<br>
+                గురుకృపాకరం కీర్తనాద్భుతం | హరిహరాత్మజం దేవమాశ్రయే ||<br>
+                <span class="pallavi">॥ శరణమయ్యప్పా స్వామి శరణమయ్యప్పా ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>సరళ తాత్పర్యం:</strong> అశ్వవాహనుడు, సుందరవదనుడు, గదాయుధధారి, వేదములచే కీర్తింపబడేవాడు, గురుకృపను కురిపించే అయ్యప్పకు నా ప్రణామములు.
+              </div>
+            </div>
+
+            <!-- Stanza 5 -->
+            <div class="harivarasanam-card" id="harivarasanam-stanza-5">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">5</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('harivarasanam', 5)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                త్రిభువనార్చితం దేవతాత్మకం | త్రినయనప్రభం దివ్యదేశికం |<br>
+                త్రిదశపూజితం చింతిప్రదం | హరిహరాత్మజం దేవమాశ్రయే ||<br>
+                <span class="pallavi">॥ శరణమయ్యప్పా స్వామి శరణమయ్యప్పా ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>సరళ తాత్పర్యం:</strong> ముల్లోకాలచే అర్చింపబడువాడు, త్రినేత్రుడైన శివుని తేజస్సు కలవాడు, దేవతలచే పూజింపబడే దివ్య గురువైన అయ్యప్పను శరణు వేడుతున్నాను.
+              </div>
+            </div>
+
+            <!-- Stanza 6 -->
+            <div class="harivarasanam-card" id="harivarasanam-stanza-6">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">6</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('harivarasanam', 6)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                భవభయావహం భావుకావహం | భువనమోహనం భూతిభూషణం |<br>
+                ధవళవాహనం దివ్యవారణం | హరిహరాత్మజం దేవమాశ్రయే ||<br>
+                <span class="pallavi">॥ శరణమయ్యప్పా స్వామి శరణమయ్యప్పా ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>సరళ తాత్పర్యం:</strong> సంసార భయాలను పోగొట్టేవాడు, శుభములు ప్రసాదించేవాడు, విభూతిభూషితుడు, శ్వేత గజ వాహనుడైన అయ్యప్పను ఆశ్రయిస్తున్నాను.
+              </div>
+            </div>
+
+            <!-- Stanza 7 -->
+            <div class="harivarasanam-card" id="harivarasanam-stanza-7">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">7</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('harivarasanam', 7)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                కలమృదుస్మితం సుందరాననం | కలభకోమలం గాత్రమోహనం |<br>
+                కలభకేసరీ కాంతమంగళం | హరిహరాత్మజం దేవమాశ్రయే ||<br>
+                <span class="pallavi">॥ శరణమయ్యప్పా స్వామి శరణమయ్యప్పా ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>సరళ తాత్పర్యం:</strong> చిరునవ్వులు చిందించే ముఖారవిందం కలవాడు, ఏనుగుపిల్ల వలె సుకుమారుడు, సర్వజన మనోహరుడైన హరిహరాత్మజుని శరణు వేడుతున్నాను.
+              </div>
+            </div>
+
+            <!-- Stanza 8 -->
+            <div class="harivarasanam-card highlight-box" id="harivarasanam-stanza-8">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span class="stuti-num">8 (ముగింపు మంగళ చరణం)</span>
+                <button type="button" class="btn-listen-mini" onclick="readStanza('harivarasanam', 8)">🔊 వినండి</button>
+              </div>
+              <p class="sloka-spaced">
+                శ్రితజనప్రియం చింతితప్రదం | శ్రుతివిభూషణం సాధుజీవనం |<br>
+                శ్రుతిమనోహరం గీతలాలసం | హరిహరాత్మజం దేవమాశ్రయే ||<br>
+                <span class="pallavi">॥ శరణమయ్యప్పా స్వామి శరణమయ్యప్పా ॥</span>
+              </p>
+              <div class="sloka-easy-meaning">
+                <strong>సరళ తాత్పర్యం:</strong> ఆశ్రయించిన భక్తుల పట్ల ప్రేమగలవాడు, కోరిన కోర్కెలను నెరవేర్చువాడు, వేదాల సారమైనవాడు, దివ్య గాన ప్రియుడైన శ్రీ అయ్యప్ప ధర్మశాస్తాకు నా సమస్త సమర్పణలు.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STEP 11: ATMAPRADAKSHINA, SASTHANGA NAMASKARAM, KSHAMAPANA & THEERTHA -->
+      <article class="puja-step-card sacred-card" id="step-samarpanam">
+        <div class="step-badge-number">11</div>
+        <div class="step-body">
+          <h3 class="step-title">
+            ఆత్మ ప్రదక్షిణ, సాష్టాంగ నమస్కారం, క్షమాపణ &amp; తీర్థ ప్రసాదం
+            <span class="step-time-badge">⏱️ 3 నిమిషాలు</span>
+          </h3>
+          <div class="ritual-instruction">
+            <strong>విధానం:</strong> ఉన్నచోటే కుడివైపుగా మూడు ఆత్మప్రదక్షిణలు చేసి, స్వామివారి పీఠం ఎదుట సాష్టాంగ నమస్కారం ఆచరించి, మూల గ్రంథోక్త క్షమాపణ వేడుకుని, పవిత్ర తీర్థ ప్రసాదాలను స్వీకరించాలి.
+          </div>
+
+          <!-- 1. Atmapradakshina Sloka -->
+          <div class="mantra-block" id="step-pradakshina">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">1. ఆత్మ ప్రదక్షిణ మంత్రం</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('pradakshina', 'ఆత్మప్రదక్షిణ')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+            <p class="sloka-spaced highlight-sloka">
+              యానికానిచ పాపాని | జన్మాంతర కృతాని చ |<br>
+              తాని తాని ప్రణశ్యంతి | ప్రదక్షిణ పదే పదే ||<br><br>
+              పాపోఽహం పాప కర్మాఽహం | పాపాత్మా పాప సంభవః |<br>
+              త్రాహి మాం కృపయా దేవ | శరణాగత వత్సల ||<br><br>
+              అన్యథా శరణం నాస్తి | త్వమేవ శరణం మమ |<br>
+              తస్మాత్ కారుణ్య భావేన | రక్ష రక్షో మహేశ్వరా ||
+            </p>
+            <p class="sloka mt-2">
+              <strong>శ్రీ హరిహరపుత్ర అయ్యప్పస్వామినే నమః — ఆత్మప్రదక్షిణ నమస్కారాన్ సమర్పయామి |</strong>
+            </p>
+          </div>
+
+          <!-- 2. Sashtanga Namaskaram -->
+          <div class="mantra-block" id="step-sashtanga" style="border-left: 4px solid #ea580c; background: #fffdfa;">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">2. సాష్టాంగ నమస్కార మంత్రం</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('sashtanga', 'సాష్టాంగ నమస్కారం')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+            <p class="sloka-spaced highlight-sloka">
+              ఉరసా శిరసా దృష్ట్యా | మనసా వచసా తథా |<br>
+              పద్భ్యాం కరాభ్యాం కర్ణాభ్యాం | ప్రణామోఽష్టాంగ ఉచ్యతే ||<br><br>
+              నమస్తేఽస్తు మహాదేవ | మహాదేవ ప్రియాత్మజ |<br>
+              శరణాగతం మాం రక్ష రక్ష | హరిహరపుత్ర నమోఽస్తు తే ||
+            </p>
+            <div class="upachara-list-box" style="margin: 10px 0; background: #fffbeb;">
+              <p style="margin-bottom: 6px; color: #9a3412; font-weight: bold; font-size: 1.05rem;">
+                శ్రీ పూర్ణా-పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామినే నమః — సాష్టాంగ నమస్కారాన్ సమర్పయామి |
+              </p>
+              <p style="margin-bottom: 0; font-size: 0.95rem; color: #451a03; line-height: 1.7;">
+                <em>(విధానం: వక్షఃస్థలము, శిరస్సు, దృష్టి, మనస్సు, వాక్కు, పాదములు, కరములు, కర్ణములు అనే ఎనిమిది అంగములతో భూమిపై సాష్టాంగ ప్రణామం ఆచరించి — <strong>"స్వామియే శరణమయ్యప్ప!"</strong> అని వేడుకోవలెను)</em>
+              </p>
+            </div>
+          </div>
+
+          <!-- 3. Kshamapana (Authentic Book Text from user's handbook) -->
+          <div class="mantra-block" id="step-kshama" style="border-left: 4px solid #d97706; background: #fffdfa;">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">3. అయ్యప్ప క్షమాపణ ప్రార్థన (గ్రంథోక్తం)</div>
+              <button type="button" class="btn-listen-inline" onclick="playReaderSloka('kshama', 'అయ్యప్ప క్షమాపణ ప్రార్థన')">
+                <span class="l-icon">🔊</span> <span>వినండి</span>
+              </button>
+            </div>
+
+            <!-- Authentic Moola Kshamapana in Telugu script -->
+            <div style="background: #fef3c7; border: 1.5px solid #f59e0b; border-radius: 10px; padding: 14px 16px; margin: 10px 0;">
+              <div style="font-weight: 800; color: #9a3412; margin-bottom: 6px; font-size: 1.05rem;">
+                🌟 మూల క్షమాపణ మంత్రం (తమిళ / మలయాళ మూల స్తోత్రము - తెలుగు లిపిలో):
+              </div>
+              <p class="sloka-spaced" style="background: #ffffff; border-left: 4px solid #ea580c; color: #7c2d12; font-weight: 600; font-size: 1.08rem; line-height: 2.1; margin: 6px 0;">
+                ఆఱింజు ఆఱియామలుం తెరింజు తెరియామలుం నాన్ చేయు ఎల్లాపావంగళై పొఱుత్తు కాత్తు రక్షిక్కు సత్యమాన పొన్ను పదునెట్టాంబడియెల్ వసిక్కు ఓం శ్రీ హరిహరసుతాన్ ఆనందచిత్తన్ విల్లాళివీరన్ వీరమణి కంఠన్ అయ్యన్ అయ్యప్పన్ ఓం శ్రీస్వామియే శరణం అయ్యప్ప ||
+              </p>
+            </div>
+
+            <!-- Divya Darsana Bhavamu -->
+            <div style="background: #fffbeb; border: 1.5px solid #fed7aa; border-radius: 10px; padding: 12px 16px; margin: 10px 0; color: #451a03; line-height: 2; font-size: 1.02rem;">
+              <strong style="color: #9a3412;">శబరిగిరి దివ్య దర్శన భావము:</strong><br>
+              పావన శబరిగిరిపై అష్టాదశ సోపానమున స్వర్ణమందిరములో జీవుని, దేవుని ఏకపరిచే చిన్ముద్రచూపించి ఆనందములో ప్రణవరూపముగా కొలువుండి ఈ భువిలో చరాచరము లన్నింటిని నీ కడగంటి కరుణతో చూచి రక్షించునట్టి...
+            </div>
+
+            <!-- Telugu Kshamapana Prayer -->
+            <div style="background: #fefce8; border-left: 4px solid #ca8a04; border-radius: 10px; padding: 14px 16px; margin: 10px 0; color: #713f12; line-height: 2.1; font-size: 1.05rem;">
+              <strong style="color: #854d0e; font-size: 1.05rem;">తెలుగు క్షమాపణ ప్రార్థన:</strong><br>
+              "ఓ దేవా ! మేము జ్ఞానముతోను, అజ్ఞానముతోను చేయు సకల తప్పు ఒప్పులను క్షమించి రక్షించి కాపాడవలెను. హరిహరసుతుడవు కలియుగ వరదుడవు, ఆనందచిత్తుడవు, విల్లాళి వీరుడవు అగు ఓ అయ్యప్పస్వామి మీ పాదారవిందములే మాకు శరణం ఓం శ్రీ స్వామియే శరణమయ్యప్ప ||"
+            </div>
+
+            <!-- Sanskrit Poornata & Shodashopachara Samarpana -->
+            <div class="mt-3">
+              <div style="font-weight: 700; color: #9a3412; margin-bottom: 6px;">శాస్త్రోక్త సంపూర్ణతా ప్రార్థన &amp; సమర్పణ:</div>
+              <p class="sloka-spaced">
+                మంత్రహీనం క్రియాహీనం | భక్తిహీనం సురేశ్వర |<br>
+                యత్పూజితం మయా దేవ | పరిపూర్ణం తదస్తు తే ||<br><br>
+                అపరాధ సహస్రాణి | క్రియంతేఽహర్నిశం మయా |<br>
+                దాసోఽయమితి మాం మత్వా | క్షమస్వ పరమేశ్వర ||<br><br>
+                కాయేన వాచా మనసేంద్రియైర్వా | బుద్ధ్యాత్మనా వా ప్రకృతేః స్వభావాత్ |<br>
+                కరోమి యద్యత్ సకలం పరస్మై | నారాయణాయేతి సమర్పయామి ||
+              </p>
+              <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; padding: 12px 16px; margin-top: 10px; font-size: 1.05rem;">
+                <p style="margin-bottom: 6px; color: #166534; font-weight: bold;">
+                  అనయా ధ్యాన ఆవాహనాది షోడశోపచార పూజాయా చ భగవాన్ సర్వాత్మక శ్రీ పూర్ణా-పుష్కలాంబా సమేత శ్రీ హరిహరపుత్ర అయ్యప్పస్వామి సుప్రీతో సుప్రసన్నో వరదో భవతు ||
+                </p>
+                <p style="margin-bottom: 0; font-weight: bold; color: #15803d;">
+                  ఓం తత్సత్ బ్రహ్మార్పణమస్తు || స్వామియే శరణమయ్యప్ప! 🕉️
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Theertha Prashana & Prasadam -->
+          <div class="mantra-block" id="step-theertham">
+            <div class="mantra-header-bar">
+              <div class="mantra-label">4. తీర్థ ప్రాశన &amp; ప్రసాద స్వీకరణ</div>
+            </div>
+            <p class="sloka-spaced highlight-sloka">
+              అకాల మృత్యు హరణం | సర్వ వ్యాధి నివారణమ్ |<br>
+              సర్వ దురితోపశమనం | అయ్యప్ప పాదోదకం పావనం శుభమ్ ||
+            </p>
+            <div style="background: #fffbeb; border: 1px solid #fed7aa; border-radius: 8px; padding: 10px 14px; margin-top: 8px; font-size: 0.98rem; color: #78350f;">
+              <strong>శ్రీ అయ్యప్ప స్వామి ప్రసాదం శిరసా గృహ్ణామి:</strong><br>
+              (స్వామివారి పాదోదక తీర్థమును స్వీకరించి, పీఠం వద్దనున్న అక్షతలు మరియు నైవేద్య ప్రసాదాన్ని శిరస్సున ధరించి అందరికీ పంచవలెను)
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Devotional Video/Audio Modal Container -->
+  <div class="devotional-modal-backdrop" id="devotionalModal" style="display: none;" onclick="closeDevotionalModal(event)">
+    <div class="devotional-modal-window" onclick="event.stopPropagation()">
+      <div class="devotional-modal-head">
+        <div class="d-modal-title" id="dModalTitle">శ్రీ హరివరాసనం (శబరిమల మూలస్థాన రాత్రి శయనోత్సవం)</div>
+        <button type="button" class="d-modal-close" onclick="closeDevotionalModal()" title="మూసివేయండి">✕</button>
+      </div>
+      <div class="devotional-modal-body">
+        <div class="video-responsive-wrap" id="dModalVideoWrap">
+          <!-- Embedded YouTube Iframe dynamically loaded -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared Temple Footer -->
+  <footer class="temple-footer">
+    <div class="footer-inner">
+      <div class="temple-crest-footer">
+        <span class="crest-symbol">🪔</span>
+        <span class="crest-title">శ్రీ అయ్యప్ప స్వామి నిత్య పూజా నియామావళి</span>
+      </div>
+      <p class="footer-blessing">
+        పైడిపూండ్ల గోత్రోద్భవులైన శ్రీనివాస మరియు వాణి దంపతులకు, వారి కుటుంబ సభ్యులకు సమస్త సన్మంగళములు, దీర్ఘాయురారోగ్య ఐశ్వర్యములు సిద్ధించుగాక!
+      </p>
+      <div class="footer-links">
+        <a href="#sankalpam-section">నిత్య సంకల్పం</a> • 
+        <a href="#step-ganapathi">గణపతి పూజ</a> • 
+        <a href="#step-subramanya">షణ్ముఖ పూజ</a> • 
+        <a href="#step-ayyappa">అయ్యప్ప పూజ</a> • 
+        <a href="pooja-niyamavali-full.html" style="color: #fbbf24; font-weight: bold;">మూల గ్రంథం (34 అధ్యాయాలు)</a> • 
+        <a href="daily-puja.html">నిత్య పూజ (15ని॥)</a> • 
+        <a href="#step-lokaveeram">లోకవీరం</a> • 
+        <a href="#harivarasanam">హరివరాసనం</a>
+      </div>
+      <div class="copyright-note">
+        సమస్త సన్మంగళాని భవంతు | సర్వే జనాః సుఖినో భవంతు | లోకాః సమస్తాః సుఖినో భవంతు 🕉️
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Quick Action Floating Bottom Bar -->
+  <nav class="mobile-bottom-dock" id="mobileBottomDock" aria-label="మొబైల్ శీఘ్ర నావిగేషన్">
+    <a href="#sankalpam-section" class="dock-item" title="సంకల్పం">
+      <span class="dock-icon">⚡</span>
+      <span>సంకల్పం</span>
+    </a>
+    <a href="#step-ganapathi" class="dock-item" title="గణపతి పూజ">
+      <span class="dock-icon">🐘</span>
+      <span>గణపతి</span>
+    </a>
+    <a href="#step-subramanya" class="dock-item" title="షణ్ముఖ పూజ">
+      <span class="dock-icon">🦚</span>
+      <span>షణ్ముఖ</span>
+    </a>
+    <button type="button" class="dock-item dock-bell" onclick="playTempleBell()" title="ఘంటానాదం మోగించండి">
+      <span class="dock-icon">🔔</span>
+    </button>
+    <a href="#nitya-step-5" class="dock-item" title="108 నామావళి">
+      <span class="dock-icon">📿</span>
+      <span>108 నామాలు</span>
+    </a>
+    <a href="#step-lokaveeram" class="dock-item" title="లోకవీరం స్తుతి">
+      <span class="dock-icon">🔱</span>
+      <span>లోకవీరం</span>
+    </a>
+    <a href="#harivarasanam" class="dock-item" title="హరివరాసనం">
+      <span class="dock-icon">🎵</span>
+      <span>హరివరాసనం</span>
+    </a>
+    <a href="pooja-niyamavali-full.html" class="dock-item" title="మూల గ్రంథం">
+      <span class="dock-icon">📚</span>
+      <span>గ్రంథం</span>
+    </a>
+  </nav>
+
+  <!-- Mini Sticky Floating Reader Pill (Active during Chanting) -->
+  <div class="mini-floating-reader" id="miniFloatingReader" style="display: none;">
+    <div class="mini-reader-left">
+      <span class="mini-pulse-icon">🔊</span>
+      <span id="miniReaderTitle" class="mini-reader-title">పూజా శ్రవణం నడుస్తోంది...</span>
+    </div>
+    <div class="mini-reader-right">
+      <button type="button" id="miniPauseBtn" class="mini-ctrl-btn" onclick="togglePauseResumeReader()" title="పాజ్ / కొనసాగించండి">⏸️</button>
+      <button type="button" class="mini-ctrl-btn" onclick="stopAllReaderAudio()" title="ఆపండి">⏹️</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>సర్వ దేవతా నిత్య & షోడశోపచార పూజా మందిరం (Step-by-Step Guided Puja)</title>
+  
+  <!-- Sacred Fonts for Flawless Telugu & Sanskrit Devanagari Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mandali&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --maroon: #6b1414;
+      --maroon-dark: #450a0a;
+      --gold: #d97706;
+      --gold-light: #fef3c7;
+      --orange: #c2410c;
+      --orange-light: #ffedd5;
+      --saffron-bg: #fffbeb;
+      --card-bg: #ffffff;
+      --text-dark: #2b1704;
+      --border-color: #fde68a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Mandali', 'Noto Sans Telugu', system-ui, sans-serif;
+      background-color: var(--saffron-bg);
+      color: var(--text-dark);
+      line-height: 1.65;
+      padding-bottom: 90px;
+    }
+
+    .telugu-font { font-family: 'Mandali', 'Noto Sans Telugu', sans-serif; line-height: 1.7; }
+    .sanskrit-font { font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.65; letter-spacing: 0.3px; }
+
+    /* Top Sticky Header */
+    .app-header {
+      background: linear-gradient(135deg, var(--maroon), #831843);
+      color: #fff;
+      padding: 12px 18px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-header {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-header:hover { background: rgba(255,255,255,0.25); }
+
+    /* Main Container */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Screen Transitions */
+    .screen { display: none; }
+    .screen.active { display: block; animation: fadeIn 0.25s ease-out; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Devotee Family Profile Banner */
+    .profile-banner {
+      background: linear-gradient(135deg, #78350f, #b45309);
+      color: #fff;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 14px rgba(120, 53, 15, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .profile-left h3 { font-size: 1.1rem; color: #fde68a; margin-bottom: 4px; }
+    .profile-left p { font-size: 0.92rem; opacity: 0.95; }
+    .btn-edit-profile {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    /* Live Panchangam Card */
+    .panchang-card {
+      background: #fff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .panchang-title {
+      font-weight: 700;
+      color: var(--maroon);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .panchang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 6px 12px;
+      font-size: 0.9rem;
+      color: #78350f;
+    }
+    .panchang-item strong { color: #451a03; }
+
+    /* Quick Start Button */
+    .btn-quick-start {
+      width: 100%;
+      background: linear-gradient(135deg, var(--orange), #ea580c);
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(194, 65, 12, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      transition: transform 0.15s;
+    }
+    .btn-quick-start:hover { transform: translateY(-2px); }
+
+    /* Section Headers */
+    .section-heading {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--maroon);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Deity Selection Grid */
+    .deity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .deity-card {
+      background: #fff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .deity-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(217, 119, 6, 0.15);
+    }
+    .deity-card.selected {
+      border: 2px solid var(--orange);
+      background: var(--gold-light);
+    }
+    .deity-icon { font-size: 2rem; margin-bottom: 4px; }
+    .deity-name { font-weight: 700; color: var(--maroon); font-size: 1rem; }
+    .deity-sub { font-size: 0.8rem; color: #78350f; }
+
+    /* ================= STEP-BY-STEP PLAYER SCREEN ================= */
+    .player-progress-bar {
+      background: var(--gold-light);
+      padding: 10px 16px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      border: 1px solid #fcd34d;
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #78350f;
+      margin-bottom: 6px;
+    }
+    .progress-track {
+      background: #fde68a;
+      height: 10px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      background: linear-gradient(90deg, var(--gold), var(--orange));
+      height: 100%;
+      width: 10%;
+      transition: width 0.3s ease-out;
+    }
+
+    /* Action Prompt Banner (Clear Instruction for Devotee) */
+    .action-prompt-banner {
+      background: #fef3c7;
+      border-left: 5px solid var(--gold);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-weight: 600;
+      color: #92400e;
+      font-size: 1rem;
+    }
+
+    /* Script Switcher Pills */
+    .script-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .script-pill {
+      background: #fff;
+      border: 1.5px solid #d97706;
+      color: #92400e;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .script-pill.active {
+      background: var(--gold);
+      color: #fff;
+    }
+
+    /* Main Sacred Sloka Card */
+    .sloka-card {
+      background: #fff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 14px;
+      padding: 22px 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .sloka-step-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--maroon);
+      margin-bottom: 12px;
+    }
+    .sloka-text {
+      font-size: 1.22rem;
+      font-weight: 600;
+      color: #2b1704;
+      white-space: pre-line;
+      margin-bottom: 16px;
+    }
+
+    /* Interactive Elements inside Sloka Card */
+    .achamana-drops {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+    .drop-btn {
+      background: #eff6ff;
+      border: 1.5px solid #60a5fa;
+      color: #1e40af;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .drop-btn.checked {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #15803d;
+    }
+
+    /* 108 Flower Offering Interactive Counter */
+    .flower-counter-box {
+      background: #fff7ed;
+      border: 1.5px dashed var(--orange);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 14px 0;
+    }
+    .counter-display {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+    .btn-offer-flower {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.1s;
+    }
+    .btn-offer-flower:active { transform: scale(0.96); }
+
+    /* Learning Mode Collapsible Accordion (అంతరార్థం & తాత్పర్యం) */
+    .learning-accordion {
+      background: #fff;
+      border: 1.5px solid #fde68a;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .accordion-header {
+      background: #fefce8;
+      padding: 12px 16px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: var(--maroon);
+      font-size: 1rem;
+    }
+    .accordion-body {
+      padding: 16px;
+      display: none;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #451a03;
+      border-top: 1px solid #fef08a;
+    }
+    .accordion-body.open { display: block; }
+    .accordion-body h4 {
+      color: #92400e;
+      margin: 8px 0 4px 0;
+      font-size: 0.95rem;
+    }
+
+    /* Voice Mode Options */
+    .voice-mode-bar {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .btn-voice-rec {
+      background: #fee2e2;
+      border: 1px solid #ef4444;
+      color: #b91c1c;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    /* Sticky Bottom Guided Navigation Bar */
+    .bottom-nav-dock {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1.5px solid var(--border-color);
+      box-shadow: 0 -4px 14px rgba(0,0,0,0.08);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 780px;
+      margin: 0 auto;
+      z-index: 99;
+    }
+    .btn-nav-prev {
+      background: #fff;
+      border: 1.5px solid var(--maroon);
+      color: var(--maroon);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .btn-nav-play {
+      background: #ffedd5;
+      border: 1.5px solid var(--orange);
+      color: var(--orange);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-nav-next {
+      background: linear-gradient(135deg, var(--maroon), #831843);
+      color: #fff;
+      border: none;
+      padding: 11px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(107, 20, 20, 0.3);
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-card {
+      background: #fff;
+      border-radius: 14px;
+      max-width: 500px;
+      width: 100%;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .modal-header {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--maroon);
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #78350f;
+      margin-bottom: 4px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    /* Public Domain Citations Card */
+    .citations-card {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: #78350f;
+      margin-top: 24px;
+    }
+    .citations-card h4 { font-size: 0.9rem; color: #451a03; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <header class="app-header">
+    <div class="header-brand">
+      <span>🕉️</span>
+      <span id="headerTitle">సర్వ దేవతా పూజా మందిరం</span>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="btn-header" onclick="goToHomeScreen()" title="హోమ్ స్క్రీన్‌కు వెళ్ళండి">🏠 హోమ్</button>
+      <button type="button" class="btn-header" onclick="openProfileModal()" title="కుటుంబ ప్రొఫైల్">👤 ప్రొఫైల్</button>
+      <a href="index.html" class="btn-header" style="text-decoration: none;" title="వెబ్‌సైట్ మెనూ">📖 మెనూ</a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- ================= SCREEN 1: HOME & DEITY DASHBOARD ================= -->
+    <div id="homeScreen" class="screen active">
+      
+      <!-- Devotee Profile Banner -->
+      <div class="profile-banner">
+        <div class="profile-left">
+          <h3 id="bannerGotramTitle">పైడిపూండ్ల గోత్రోద్భవుల పూజా సంకల్పం</h3>
+          <p id="bannerNames">శ్రీనివాసరావు & వాణి దంపతులు (పుత్రౌ: హర్ష, అఖిల్)</p>
+          <p id="bannerLocation" style="font-size: 0.82rem; color: #fef3c7;">గుంటూరు (522034) - కృష్ణా నదీ దక్షిణ తీరే</p>
+        </div>
+        <button type="button" class="btn-edit-profile" onclick="openProfileModal()">✏️ మార్చండి</button>
+      </div>
+
+      <!-- Live Panchangam Card -->
+      <div class="panchang-card">
+        <div class="panchang-title">
+          <span>📅</span>
+          <span>నేటి ప్రత్యక్ష పంచాంగం (Live Drik Panchangam):</span>
+        </div>
+        <div class="panchang-grid">
+          <div class="panchang-item">సంవత్సరం: <strong id="lblSamvat">శ్రీ క్రోధి</strong></div>
+          <div class="panchang-item">ఆయనం: <strong id="lblAyana">దక్షిణాయనం</strong></div>
+          <div class="panchang-item">మాసం: <strong id="lblMasa">కార్తిక మాసం</strong></div>
+          <div class="panchang-item">పక్షం: <strong id="lblPaksha">కృష్ణ పక్షం</strong></div>
+          <div class="panchang-item">తిథి: <strong id="lblTithi">చతుర్దశి</strong></div>
+          <div class="panchang-item">వారం: <strong id="lblVara">బుధవారము</strong></div>
+          <div class="panchang-item">నక్షత్రం: <strong id="lblNakshatra">స్వాతి</strong></div>
+          <div class="panchang-item">రాహుకాలం: <strong>12:00 - 01:30</strong></div>
+        </div>
+      </div>
+
+      <!-- Prominent One-Click Quick Start Button -->
+      <button type="button" class="btn-quick-start" onclick="startPujaWizard('ayyappa')">
+        <span style="font-size: 1.5rem;">⚡</span>
+        <span>నేటి నిత్య పూజ ప్రారంభించండి (15 ని॥ గైడెడ్)</span>
+      </button>
+
+      <!-- Deity Selection Section -->
+      <h3 class="section-heading">
+        <span>🌟</span>
+        <span>ఇష్టదేవతను ఎంచుకోండి (Select Deity):</span>
+      </h3>
+
+      <div class="deity-grid">
+        <div class="deity-card selected" onclick="startPujaWizard('ayyappa')">
+          <div class="deity-icon">🪔</div>
+          <div class="deity-name">శ్రీ అయ్యప్పస్వామి</div>
+          <div class="deity-sub">హరిహరపుత్ర శాస్తా పూజ</div>
+        </div>
+        <div class="deity-card" onclick="startPujaWizard('ganapathi')">
+          <div class="deity-icon">🐘</div>
+          <div class="deity-name">శ్రీ మహాగణపతి</div>
+          <div class="deity-sub">విఘ్నవినాశక పూజ</div>
+        </div>
+        <div class="deity-card" onclick="startPujaWizard('shiva')">
+          <div class="deity-icon">🔱</div>
+          <div class="deity-name">పరమశివుడు</div>
+          <div class="deity-sub">మహాదేవ లింగేశ్వర పూజ</div>
+        </div>
+        <div class="deity-card" onclick="startPujaWizard('venkateswara')">
+          <div class="deity-icon">🏹</div>
+          <div class="deity-name">శ్రీ వేంకటేశ్వరుడు</div>
+          <div class="deity-sub">శ్రీనివాస నిత్య పూజ</div>
+        </div>
+        <div class="deity-card" onclick="startPujaWizard('subramanya')">
+          <div class="deity-icon">🦚</div>
+          <div class="deity-name">సుబ్రహ్మణ్యేశ్వరుడు</div>
+          <div class="deity-sub">కార్తికేయ స్కంద పూజ</div>
+        </div>
+        <div class="deity-card" onclick="startPujaWizard('lakshmi')">
+          <div class="deity-icon">🌸</div>
+          <div class="deity-name">శ్రీ మహాలక్ష్మి</div>
+          <div class="deity-sub">అష్టైశ్వర్య ప్రదాయిని</div>
+        </div>
+        <div class="deity-card" onclick="startPujaWizard('durga')">
+          <div class="deity-icon">🌺</div>
+          <div class="deity-name">శ్రీ దుర్గా భవానీ</div>
+          <div class="deity-sub">నవరాత్రి విశేష పూజ</div>
+        </div>
+        <div class="deity-card" onclick="startPujaWizard('anjaneya')">
+          <div class="deity-icon">🐒</div>
+          <div class="deity-name">శ్రీ హనుమాన్</div>
+          <div class="deity-sub">వాయుపుత్ర వీరాంజనేయ</div>
+        </div>
+      </div>
+
+      <!-- Public Domain Citations Card -->
+      <div class="citations-card">
+        <h4>📜 సమాచార ఆధారాలు & కృతజ్ఞతలు (Public Domain Citations):</h4>
+        <p>• <strong>పిన్‌కోడ్ సమాచారం:</strong> Open Government Data (data.gov.in) - Department of Posts, Ministry of Communications (GODL-India).</p>
+        <p>• <strong>పంచాంగం:</strong> ద్రిక-సిద్ధాంతం & Jean Meeus / Moshier Astronomical Ephemeris (MIT License).</p>
+        <p>• <strong>స్తోత్ర & వేద మంత్రాలు:</strong> SanskritDocuments.org & తెలుగు వికీసోర్స్ (Public Domain CC0 / CC-BY).</p>
+      </div>
+
+    </div>
+
+    <!-- ================= SCREEN 2: STEP-BY-STEP GUIDED PUJA WIZARD ================= -->
+    <div id="playerScreen" class="screen">
+      
+      <!-- Top Step Progress Bar -->
+      <div class="player-progress-bar">
+        <div class="progress-labels">
+          <span id="lblStepNumber">దశ 1 / 10: ప్రథమ దీపారాధన</span>
+          <span id="lblPercent">10% పూర్తయింది</span>
+        </div>
+        <div class="progress-track">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Action Prompt Banner -->
+      <div class="action-prompt-banner">
+        <span>👉</span>
+        <span id="lblActionPrompt">రెండు ప్రమిదలలో ఆవునెయ్యి లేదా నువ్వుల నూనెతో దీపాలు వెలిగించి నమస్కరించండి.</span>
+      </div>
+
+      <!-- Script Switcher Pills (తెలుగు లిపి ↔ సంస్కృతం) -->
+      <div class="script-switcher">
+        <button type="button" id="btnScriptTe" class="script-pill active" onclick="switchScript('telugu')">తెలుగు లిపి</button>
+        <button type="button" id="btnScriptSa" class="script-pill" onclick="switchScript('sanskrit')">संस्कृतम् (దేవనాగరి)</button>
+      </div>
+
+      <!-- Main Sacred Sloka Card -->
+      <div class="sloka-card">
+        <h2 id="slokaStepTitle" class="sloka-step-title">1. ప్రథమ దీపారాధన</h2>
+        
+        <div id="slokaContent" class="sloka-text telugu-font">
+దీపం జ్యోతిః పరబ్రహ్మ దీపం సర్వతమోపహమ్ |
+దీపేన సాధ్యతే సర్వం సంధ్యాదీప నమోऽస్తు తే ||
+ఆజ్ఞాన తిమిరాంధస్య జ్ఞానాంజన శలాకయా |
+చక్షురున్మీలితం యేన తస్మై శ్రీగురవే నమః ||
+        </div>
+
+        <!-- Special Interactive Area: Achamanam Drops (Shown only on Step 2) -->
+        <div id="achamanaArea" class="achamana-drops" style="display: none;">
+          <button type="button" class="drop-btn" id="drop1" onclick="toggleDrop(1)">💧 1. కేశవాయ స్వాహా</button>
+          <button type="button" class="drop-btn" id="drop2" onclick="toggleDrop(2)">💧 2. నారాయణాయ స్వాహా</button>
+          <button type="button" class="drop-btn" id="drop3" onclick="toggleDrop(3)">💧 3. మాధవాయ స్వాహా</button>
+        </div>
+
+        <!-- Special Interactive Area: 108 Flower Counter (Shown only on Step 7) -->
+        <div id="flowerArea" class="flower-counter-box" style="display: none;">
+          <div class="counter-display">
+            సమర్పించిన పుష్పాలు: <span id="flowerCount">0</span> / 108
+          </div>
+          <button type="button" class="btn-offer-flower" onclick="offerFlower()">
+            <span>🌸</span>
+            <span>పుష్పం సమర్పించండి (+1)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Learning Mode Collapsible Accordion (అంతరార్థం & తాత్పర్యం) -->
+      <div class="learning-accordion">
+        <div class="accordion-header" onclick="toggleAccordion()">
+          <span>💡 ఈ దశ యొక్క అంతరార్థం & తాత్పర్యం (Learn Meaning)</span>
+          <span id="accordionArrow">▼</span>
+        </div>
+        <div id="accordionBody" class="accordion-body">
+          <h4>📜 తాత్పర్యం:</h4>
+          <p id="lblTatparyam">దీపము పరబ్రహ్మ స్వరూపము. సకల అంధకారాలను నశింపజేసి సకల శుభాలను చేకూరుస్తుంది.</p>
+          
+          <h4>🧘 ఆధ్యాత్మిక అంతరార్థం (Spiritual Significance):</h4>
+          <p id="lblSpiritual">రెండు వత్తులు జీవాత్మ, పరమాత్మల ఐక్యతకు ప్రతీక. అంతరంగంలోని అజ్ఞాన చీకట్లను తొలగించి జ్ఞాన దీపాన్ని వెలిగించడమే దీపారాధన అంతరార్థం.</p>
+        </div>
+      </div>
+
+      <!-- Voice Mode Bar -->
+      <div class="voice-mode-bar">
+        <div>
+          <span>🎙️ ఆడియో స్వరం: </span>
+          <select id="selVoiceMode" onchange="changeVoiceMode()" style="padding: 4px; border-radius: 6px;">
+            <option value="priest">🕉️ వేద పండితుని స్వరం</option>
+            <option value="user">👤 యూజర్ సొంత స్వరం (User Voice)</option>
+          </select>
+        </div>
+        <button type="button" class="btn-voice-rec" onclick="startVoiceRecording()">🔴 గొంతు రికార్డ్ చేయండి</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Sticky Bottom Guided Navigation Bar -->
+  <nav id="bottomNav" class="bottom-nav-dock" style="display: none;">
+    <button type="button" id="btnPrevStep" class="btn-nav-prev" onclick="goToPrevStep()">⬅ వెనుకకు</button>
+    <button type="button" id="btnPlayStep" class="btn-nav-play" onclick="toggleAudioChant()">
+      <span id="playIcon">🔊</span>
+      <span id="playText">వినండి</span>
+    </button>
+    <button type="button" id="btnNextStep" class="btn-nav-next" onclick="goToNextStep()">తర్వాతి దశ ➔</button>
+  </nav>
+
+  <!-- Edit Devotee Profile Modal -->
+  <div id="profileModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span>భక్తుని కుటుంబ వివరాలు (Devotee Profile)</span>
+        <button type="button" onclick="closeProfileModal()" style="border:none;background:none;font-size:1.2rem;cursor:pointer;">✕</button>
+      </div>
+      <div class="form-group">
+        <label>గోత్రం (Gotram):</label>
+        <input type="text" id="inpGotram" value="పైడిపూండ్ల">
+      </div>
+      <div class="form-group">
+        <label>కర్త పేరు (Karta Name):</label>
+        <input type="text" id="inpKarta" value="శ్రీనివాసరావు">
+      </div>
+      <div class="form-group">
+        <label>ధర్మపత్ని పేరు (Spouse Name):</label>
+        <input type="text" id="inpSpouse" value="వాణి">
+      </div>
+      <div class="form-group">
+        <label>సంతానం పేర్లు (Children Names):</label>
+        <input type="text" id="inpChildren" value="హర్ష, అఖిల్">
+      </div>
+      <div class="form-group">
+        <label>పిన్‌కోడ్ (Pincode):</label>
+        <input type="text" id="inpPincode" value="522034">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-nav-prev" onclick="closeProfileModal()">రద్దు</button>
+        <button type="button" class="btn-nav-next" onclick="saveDevoteeProfile()">సేవ్ చేయండి</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Audio & Wizard Script -->
+  <script>
+    // State
+    let currentDeity = 'ayyappa';
+    let currentStepIndex = 0;
+    let currentScript = 'telugu';
+    let flowerCount = 0;
+    let isPlaying = false;
+    let audioSynth = window.speechSynthesis;
+    let audioCtx = null;
+
+    // Devotee Profile State
+    let devotee = {
+      gotram: localStorage.getItem('puja_gotram') || 'పైడిపూండ్ల',
+      karta: localStorage.getItem('puja_karta') || 'శ్రీనివాసరావు',
+      spouse: localStorage.getItem('puja_spouse') || 'వాణి',
+      children: localStorage.getItem('puja_children') || 'హర్ష, అఖిల్',
+      pincode: localStorage.getItem('puja_pincode') || '522034',
+      city: 'గుంటూరు'
+    };
+
+    // Deities Info
+    const DEITIES = {
+      ayyappa: { nameTe: 'శ్రీ అయ్యప్పస్వామి', nameSa: 'श्री अय्यप्पस्वामी' },
+      ganapathi: { nameTe: 'శ్రీ మహాగణపతి', nameSa: 'श्री महागणाधिपतिः' },
+      shiva: { nameTe: 'పరమశివుడు', nameSa: 'श्री साम्बसदाशिवः' },
+      venkateswara: { nameTe: 'శ్రీ వేంకటేశ్వర స్వామి', nameSa: 'श्री वेङ्कटेश्वर स्वामी' },
+      subramanya: { nameTe: 'శ్రీ సుబ్రహ్మణ్యేశ్వరుడు', nameSa: 'श्री सुब्रह्मण्येश्वर स्वामी' },
+      lakshmi: { nameTe: 'శ్రీ మహాలక్ష్మీ దేవి', nameSa: 'श्री महालक्ष्मी देवी' },
+      durga: { nameTe: 'శ్రీ దుర్గా భవానీ', nameSa: 'श्री दुर्गा भवानी' },
+      anjaneya: { nameTe: 'శ్రీ ఆంజనేయ స్వామి', nameSa: 'श्री आञ्जनेय स्वामी' }
+    };
+
+    // 10 Guided Puja Steps with Bilingual Slokas & Deep Meanings
+    function getStepsForDeity(deityId) {
+      const d = DEITIES[deityId] || DEITIES.ayyappa;
+      
+      const sankalpaTe = `శుభే శోభనే ముహూర్తే, శ్రీ మహావిష్ణోరాజ్ఞయా ప్రవర్తమానస్య, అద్య బ్రహ్మణః ద్వితీయ పరార్థే, శ్వేతవరాహ కల్పే, వైవస్వత మన్వంతరే, కలియుగే, ప్రథమ పాదే, జంబూద్వీపే, భరతవర్షే, భరతఖండే, మేరోర్దక్షిణ దిగ్భాగే, కృష్ణా నదీ దక్షిణ తీరే, గుంటూరు దివ్య క్షేత్రే,
+
+అస్మిన్ వర్తమానే చాంద్రమానేన శ్రీ క్రోధి నామ సంవత్సరే, దక్షిణాయనే, శరద్ ఋతౌ, కార్తిక మాసే, కృష్ణ పక్షే, చతుర్దశ్యాం తిథౌ, బుధవాసరే, శుభ నక్షత్రే,
+
+శ్రీమతః ${devotee.gotram} గోత్రోద్భవస్య, ${devotee.karta} నామధేయస్య, ధర్మపత్నీ సమేతస్య (${devotee.spouse}), సపుత్రస్య సకుటుంబస్య (${devotee.children}),
+
+మమ ఉపాత్త సమస్త దురితక్షయ ద్వారా శ్రీ ${d.nameTe} ప్రీత్యర్థం, ఆయురారోగ్య ఐశ్వర్యాభివృద్ధ్యర్థం, ధ్యానావాహనాది షోడశోపచార నిత్య పూజాం కరిష్యే ||`;
+
+      const sankalpaSa = `शुभे शोभने मुहूर्ते, श्री महाविष्णोराज्ञया प्रवर्तमानस्य, अद्य ब्रह्मणः द्वितीय परार्धे, श्वेतवराह कल्पे, वैवस्वत मन्वन्तरे, कलियुगे, प्रथम पादे, जम्बूद्वीपे, भारतवर्षे, भरतखण्डे, मेरोर्दक्षिण दिग्भागे, कृष्णा नद्याः दक्षिण तीरे, गुन्टूरु दिव्य क्षेत्रे,
+
+अस्मिन् वर्तमाने चान्द्रमानेन श्री क्रोधी नाम संवत्सरे, दक्षिणायने, शरद् ऋतौ, कार्तिक मासे, कृष्ण पक्षे, चतुर्दश्यां तिथौ, सौम्यवासरे, शुभ नक्षत्रे,
+
+श्रीमन्तः ${devotee.gotram} गोत्रोद्भवस्य, ${devotee.karta} नामधेयस्य, धर्मपत्नी समेतस्य (${devotee.spouse}), सपुत्रस्य सकुंटुम्बस्य (${devotee.children}),
+
+मम उपात्त समस्त दुरितक्षय द्वारा श्री ${d.nameSa} प्रीत्यर्थं, आयुरारोग्य ऐश्वर्याभिवृद्ध्यर्थं, ध्यानावाहनादि षोडशोपचार नित्य पूजां करिष्ये ॥`;
+
+      return [
+        {
+          titleTe: '1. ప్రథమ దీపారాధన',
+          titleSa: '१. प्रथम दीपाराधनम्',
+          actionTe: 'రెండు ప్రమిదలలో ఆవునెయ్యి లేదా నువ్వుల నూనెతో దీపాలు వెలిగించి నమస్కరించండి.',
+          actionSa: 'घृतेन तैलमिश्रितेन वा दीपं प्रज्वाल्य नमस्कुरुत ।',
+          slokaTe: `దీపం జ్యోతిః పరబ్రహ్మ దీపం సర్వతమోపహమ్ |
+దీపేన సాధ్యతే సర్వం సంధ్యాదీప నమోऽస్తు తే ||
+ఆజ్ఞాన తిమిరాంధస్య జ్ఞానాంజన శలాకయా |
+చక్షురున్మీలితం యేన తస్మై శ్రీగురవే నమః ||`,
+          slokaSa: `दीपं ज्योतिः परब्रह्म दीपं सर्वतमोपहम् ।
+दीपेन साध्यते सर्वं सन्ध्यादीप नमोऽस्तु ते ॥
+अज्ञान तिमिरान्धस्य ज्ञानाञ्जन शलाकया ।
+चक्षुरुन्मीलितं येन तस्मै श्रीगुरवे नमः ॥`,
+          tatparyam: 'దీపము పరబ్రహ్మ స్వరూపము. సకల అంధకారాలను నశింపజేసి సర్వ శుభాలను చేకూరుస్తుంది.',
+          spiritual: 'రెండు వత్తులు జీవాత్మ మరియు పరమాత్మల ఐక్యతకు సంకేతం. మనలోని అహంకారాన్ని దహించి జ్ఞానజ్యోతిని వెలిగించడమే దీపారాధన అంతరార్థం.'
+        },
+        {
+          titleTe: '2. ఆచమనం (అంతఃశుద్ధి)',
+          titleSa: '२. आचमनम् (अन्तःशुद्धिः)',
+          actionTe: 'ఆచమన పాత్ర నుండి 3 ఉద్ధరిణల పవిత్ర జలమును కుడి అరచేతిలో పోసుకుని క్రమంగా స్వీకరించండి.',
+          actionSa: 'आचमन पात्रात् त्रीणि वारान् हस्ततले जलं स्वीकृत्य प्राशयेत् ।',
+          slokaTe: `ఓం కేశవాయ స్వాహా | (ఒకసారి తీర్థం స్వీకరించండి)
+ఓం నారాయణాయ స్వాహా | (రెండవసారి స్వీకరించండి)
+ఓం మాధవాయ స్వాహా | (మూడవసారి స్వీకరించండి)
+
+గోవిందాయ నమః, విష్ణవే నమః, మధుసూదనాయ నమః, త్రివిక్రమాయ నమః, వామనాయ నమః, శ్రీధరాయ నమః, హృషీకేశాయ నమః, పద్మనాభాయ నమః, దామోదరాయ నమః...`,
+          slokaSa: `ॐ केशवाय स्वाहा । (प्रथमं जलं पिबेत्)
+ॐ नारायणाय स्वाहा । (द्वितीयं जलं पिबेत्)
+ॐ माधवाय स्वाहा । (तृतीयं जलं पिबेत्)
+
+गोविन्दाय नमः, विष्णवे नमः, मधुसूदनाय नमः, त्रिविक्रमाय नमः, वामनाय नमः, श्रीधराय नमः, हृषीकेशाय नमः, पद्मनाभाय नमः, दामोदराय नमः...`,
+          tatparyam: 'మూడుసార్లు విష్ణు నామాలతో పవిత్ర జలమును స్వీకరించి అంతఃశుద్ధి గావించుకొనుట.',
+          spiritual: 'శరీరంలోని వాత, పిత్త, కఫములనే త్రిదోషాలను శాంతింపజేసి, ఇంద్రియాలను దైవారాధనకు సంసిద్ధం చేయడమే ఆచమన విజ్ఞానం.'
+        },
+        {
+          titleTe: '3. ఘంటానాదం (దేవతాహ్వానం)',
+          titleSa: '३. घण्टानादम् (देवताह्वानम्)',
+          actionTe: 'ఎడమచేత్తో గంటను నిదానంగా మోగిస్తూ, కుడిచేతితో అక్షతలను సమర్పించండి.',
+          actionSa: 'वामहस्तेन घण्टां नादयन्, दक्षिणहस्तेन अक्षतान् समर्पयेत् ।',
+          slokaTe: `ఆగమార్థం తు దేవానాం గమనార్థం తు రక్షసామ్ |
+కుర్వే ఘంటారవం తత్ర దేవతాహ్వాన లాంఛనమ్ ||`,
+          slokaSa: `आगमार्थं तु देवानां गमनार्थं तु रक्षसाम् ।
+कुर्वे घण्टारवं तत्र देवताव्हान लाञ्छनम् ॥`,
+          tatparyam: 'దేవతలను మన పూజకు ఆహ్వానిస్తూ, చెడు శక్తులను పారద్రోలుతూ ఈ పవిత్ర నాదాన్ని సమర్పిస్తున్నాను.',
+          spiritual: 'ఘంటానాదం నుండి వెలువడే ఓంకార ధ్వని తరంగాలు మనస్సులోని చంచలత్వాన్ని తొలగించి గాఢమైన ఏకాగ్రతను కలిగిస్తాయి.'
+        },
+        {
+          titleTe: '4. లైవ్ డైనమిక్ సంకల్పం',
+          titleSa: '४. प्रत्यक्ष सङ्कल्पः',
+          actionTe: 'చేతిలో అక్షతలు, పువ్వు, నీరు ఉంచుకుని మీ కుటుంబ వివరాలతో సంకల్పం పఠించండి.',
+          actionSa: 'हस्ते अक्षतान्, पुष्पं, जलं च धृत्वा सङ्कल्पं पठेत् ।',
+          slokaTe: sankalpaTe,
+          slokaSa: sankalpaSa,
+          tatparyam: `ఈ అనంత విశ్వంలో, నేటి పవిత్ర తిథిలో నా గోత్రం (${devotee.gotram}), నా కుటుంబ సభ్యుల ఆయురారోగ్య ఐశ్వర్యాభివృద్ధ్యర్థం శ్రీ ${d.nameTe} పూజను సంకల్పిస్తున్నాను.`,
+          spiritual: 'సంకల్పం అంటే అనంత విశ్వ కాలచక్రంతో (Cosmic Space-Time) మన ఆత్మను సంధానించుకుని పూజా లక్ష్యాన్ని నిర్దేశించుకోవడం.'
+        },
+        {
+          titleTe: '5. శ్రీ విఘ్నేశ్వర ప్రార్థన & పూజ',
+          titleSa: '५. श्री विघ्नेश्वर पूजा',
+          actionTe: 'పసుపు గణపతికి గంధం, కుంకుమ, పుష్పాలు సమర్పించి విఘ్న నివారణకై ప్రార్థించండి.',
+          actionSa: 'हरिद्रा गणपतये गन्धं, कुङ्कुमं, पुष्पाणि समर्प्य प्रार्थयेत् ।',
+          slokaTe: `శుక్లాంబరధరం విష్ణుం శశివర్ణం చతుర్భుజమ్ |
+ప్రసన్నవదనం ధ్యాయేత్ సర్వవిఘ్నోపశాంతయే ||
+అగజానన పద్మార్కం గజాననమహర్నిశమ్ |
+అనేకదంతం భక్తానాం ఏకదంతముపాస్మహే ||`,
+          slokaSa: `शुक्लाम्बरधरं विष्णुं शशिवर्णं चतुर्भुजम् ।
+प्रसन्नवदनं ध्यायेत् सर्वविघ्नोपशान्तये ॥
+अगजानन पद्मार्कं गजाननमहर्निशम् ।
+अनेकदन्तं भक्तानां एकदन्तमुपास्महे ॥`,
+          tatparyam: 'తెల్లని వస్త్రము ధరించి, ప్రసన్న ముఖము గల శ్రీ గణపతిని సమస్త విఘ్నాలు తొలగిపోవుటకై ధ్యానిస్తున్నాను.',
+          spiritual: 'గణపతి మూలాధార చక్రానికి అధిపతి. అంతర్గత శక్తులు జాగృతమై పూజ నిర్విఘ్నంగా సాగడానికి ప్రథమంగా గణపతిని పూజిస్తారు.'
+        },
+        {
+          titleTe: `6. శ్రీ ${d.nameTe} షోడశోపచారాలు`,
+          titleSa: `६. श्री ${d.nameSa} षोडशोपचाराः`,
+          actionTe: 'ధ్యానం నుండి నీరాజనం వరకు 16 ఉపచారాలను స్వామికి భక్తితో సమర్పించండి.',
+          actionSa: 'ध्यानात् नीराजन पर्यन्तं षोडशोपचारान् भक्त्या समर्पयेत् ।',
+          slokaTe: `శ్రీ ${d.nameTe} ధ్యాయామి, ఆవాహయామి | ఆసనం సమర్పయామి |
+పాద్యం సమర్పయామి | అర్ఘ్యం సమర్పయామి | ఆచమనీయం సమర్పయామి |
+స్నానం సమర్పయామి | వస్త్రయుగ్మం సమర్పయామి | యజ్ఞోపవీతం సమర్పయామి |
+దివ్య శ్రీచందనం సమర్పయామి | పుష్పమాలాం సమర్పయామి |
+ధూపం ఆఘ్రాపయామి | దీపం దర్శయామి | నైవేద్యం సమర్పయామి |
+తాంబూలం సమర్పయామి | ఆనంద కర్పూర నీరాజనం సమర్పయామి ||`,
+          slokaSa: `श्री ${d.nameSa} ध्यायामि, आवाहयामि । आसनं समर्पयामि ।
+पाद्यं समर्पयामि । अर्घ्यं समर्पयामि । आचमनीयं समर्पयामि ।
+स्नानं समर्पयामि । वस्त्रयुग्मं समर्पयामि । यज्ञोपवीतं समर्पयामि ।
+दिव्य श्रीचन्दनं समर्पयामि । पुष्पमालां समर्पयामि ।
+धूपं आघ्रापयामि । दीपं दर्शयामि । नैवेद्यं समर्पयामि ।
+ताम्बूलं समर्पयामि । आनन्द कर्पूर नीराजनं समर्पयामि ॥`,
+          tatparyam: 'భగవంతుని మన ఇంటికి విచ్చేసిన అత్యున్నత దివ్య అతిథిగా భావించి 16 రకాల ఉపచారాలతో సేవించుట.',
+          spiritual: 'మనలోని 16 సంస్కారాలను, భావాలను భగవంతునికి సంపూర్ణంగా అర్పించడమే షోడశోపచారాల ఆంతర్యం.'
+        },
+        {
+          titleTe: '7. 108 నామావళి & పుష్పార్చన',
+          titleSa: '७. अष्टोत्तर शतनामावलिः (पुष्पार्चनम्)',
+          actionTe: 'ఒక్కొక్క నామం చదువుతూ బటన్ నొక్కి పువ్వు సమర్పించండి (కౌంటర్ 108 వరకు సాగుతుంది).',
+          actionSa: 'एकैकं नाम उच्चार्य पुष्पं समर्पयेत् (१०८ वारम्) ।',
+          slokaTe: `ఓం శ్రీ స్వామియే శరణమయ్యప్ప నమః 🌸
+ఓం మహాశాస్త్రే నమః 🌸
+ఓం విశ్వభర్త్రే నమః 🌸
+ఓం లోకనాథాయ నమః 🌸
+ఓం మహాద్యుతయే నమః 🌸
+(108 నామాలు పూర్తయ్యేవరకు సుగంధ పుష్పాలతో అర్చించండి...)`,
+          slokaSa: `ॐ श्री स्वामिये शरणमय्यप्प नमः 🌸
+ॐ महाशास्त्रे नमः 🌸
+ॐ विश्वभर्त्रे नमः 🌸
+ॐ लोकनाथाय नमः 🌸
+ॐ महाद्युतये नमः 🌸
+(१०८ नामानि पुष्पार्चनेन समर्पयेत्...)`,
+          tatparyam: 'స్వామి దివ్య గుణ నామాలను స్మరిస్తూ 108 సుగంధ పుష్పములతో అర్చన చేయుట.',
+          spiritual: 'విశ్వంలోని 27 నక్షత్రాలు, 4 పాదాలు (27 × 4 = 108). సమస్త బ్రహ్మాండం స్వామి స్వరూపమే అని భావించి చేసే ఆరాధన.'
+        },
+        {
+          titleTe: '8. మహా నైవేద్యం & తాంబూలం',
+          titleSa: '८. महानैवेद्यम् & ताम्बूलम्',
+          actionTe: 'పాయసం లేదా పండ్లను నివేదిస్తూ చుట్టూ మూడుసార్లు జలమును ప్రోక్షించండి.',
+          actionSa: 'नैवेद्यं समर्प्य त्रीणि वारान् जलं प्रोक्षयेत् ।',
+          slokaTe: `ఓం భూర్భువస్సువః | తత్సవితుర్వరేణ్యం భర్గో దేవస్య ధీమహి ధియో యో నః ప్రచోదయాత్ ||
+సత్యం త్వర్తేన పరిషించామి | అమృతమస్తు | అమృతోపస్తరణమసి ||
+
+ఓం ప్రాణాయ స్వాహా | ఓం అపానాయ స్వాహా | ఓం వ్యానాయ స్వాహా |
+ఓం ఉదానాయ స్వాహా | ఓం సమానాయ స్వాహా | ఓం బ్రహ్మణే స్వాహా ||
+మధ్యే మధ్యే పానీయం సమర్పయామి | అమృతాపిధానమసి ||`,
+          slokaSa: `ॐ भूर्भुवस्सुवः । तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥
+सत्यं त्वर्तेन परिषञ्चामि । अमृतमस्तु । अमृतोपस्तरणमसि ॥
+
+ॐ प्राणाय स्वाहा । ॐ अपानाय स्वाहा । ॐ व्यानाय स्वाहा ।
+ॐ उदानाय स्वाहा । ॐ समानाय स्वाहा । ॐ ब्रह्मणे स्वाहा ॥
+मध्ये मध्ये पानीयं समर्पयामि । अमृतापिधानमसि ॥`,
+          tatparyam: 'పంచ ప్రాణ స్వరూపుడైన పరమాత్మకు భక్తితో అమృతతుల్యమైన ఆహార నైవేద్యమును సమర్పించుట.',
+          spiritual: 'మనం తినే ఆహారమే మన ఆలోచనలను నిర్దేశిస్తుంది. ఆ ఆహారాన్ని దైవార్పణ చేయడం ద్వారా అది పవిత్ర ప్రసాదంగా మారుతుంది.'
+        },
+        {
+          titleTe: '9. మంగళ హారతి & లోకవీరం',
+          titleSa: '९. मङ्गल नीराजनम् & लोकवीरम्',
+          actionTe: 'కర్పూర హారతిని వెలిగించి స్వామికి నివేదిస్తూ, గంట వాయిస్తూ స్తుతించండి.',
+          actionSa: 'कर्पूर नीराजनं प्रज्वाल्य स्वामिने दर्शयेत् ।',
+          slokaTe: `లోకవీరం మహాపూజ్యం సర్వరక్షాకరం విభుమ్ |
+మనోహరం సురశ్రేష్ఠం శాస్తారం ప్రణమామ్యహమ్ ||
+శరణమయ్యప్పా స్వామి శరణమయ్యప్పా...
+హరివరాసనం విశ్వమోహనం హరిదధీశ్వరం ఆరాధ్యపాదుకమ్...`,
+          slokaSa: `लोकवीरं महापूज्यं सर्वरक्षाकरं विभुम् ।
+मनोहरं सुरश्रेष्ठं शास्तारं प्रणमाम्यहम् ॥
+शरणमय्यप्पा स्वामि शरणमय्यप्पा...
+हरिवरासनं विश्वमोहनं हरिदधीश्वरं आराध्यपादुकाम्...`,
+          tatparyam: 'సకల భయాలను హరించే శ్రీ అయ్యప్పస్వామికి భక్తితో మంగళ హారతులను సమర్పిస్తున్నాను.',
+          spiritual: 'కర్పూరం పూర్తిగా కరిగిపోయి ఎటువంటి బూడిదను మిగల్చదు. అలాగే మన అహంకారం కూడా జ్ఞానాగ్నిలో కరిగి పరమాత్మలో లీనం కావాలి.'
+        },
+        {
+          titleTe: '10. ప్రదక్షిణ, క్షమాపణ & ఉద్వాసన',
+          titleSa: '१०. प्रदक्षिणा, क्षमापणम् & उद्धासनम्',
+          actionTe: 'కుడివైపుకు 3 సార్లు ప్రదక్షిణ చేసి, సాష్టాంగ నమస్కారం చేసి తీర్థ ప్రసాదాలు స్వీకరించండి.',
+          actionSa: 'प्रदक्षिणं कृत्वा, साष्टाङ्गं प्रणम्य तीर्थप्रसादं गृह्णीयात् ।',
+          slokaTe: `యానికాని చ పాపాని జన్మాంతరకృతాని చ |
+తాని తాని ప్రణశ్యంతి ప్రదక్షిణ పదే పదే ||
+
+మంత్రహీనం క్రియాహీనం భక్తిహీనం సురేశ్వర |
+యత్పూజితం మయా దేవ పరిపూర్ణం తదస్తు తే ||
+ఆవాహనం న జానామి న జానామి విసర్జనమ్ |
+పూజావిధిం న జానామి క్షమస్వ పరమేశ్వర ||`,
+          slokaSa: `यानिकानि च पापानि जन्मान्तरकृतानि च ।
+तानि तानि प्रणश्यन्ति प्रदक्षिणे पदे पदे ॥
+
+मन्त्रहीनं क्रियाहीनं भक्तिहीनं सुरेश्वर ।
+यत्पूजितं मया देव परिपूर्णं तदस्तु ते ॥
+आवाहनं न जानामि न जानामि विसर्जनम् ।
+पूजाविधिं न जानामि क्षमस्व परमेश्वर ॥`,
+          tatparyam: 'తెలిసీ తెలియక చేసిన తప్పులను క్షమించి, నా పూజను సంపూర్ణంగా స్వీకరించి సర్వ మంగళాలను ప్రసాదించుము.',
+          spiritual: 'మనలోని అహంకారాన్ని తుడిచివేసి, భగవంతుని దివ్య చైతన్యాన్ని తిరిగి మన హృదయ కమలంలో నిలుపుకోవడమే క్షమాపణ, ఉద్వాసనల రహస్యం.'
+        }
+      ];
+    }
+
+    // Wizard Navigation
+    function startPujaWizard(deityId) {
+      currentDeity = deityId;
+      currentStepIndex = 0;
+      flowerCount = 0;
+      
+      document.getElementById('homeScreen').classList.remove('active');
+      document.getElementById('playerScreen').classList.add('active');
+      document.getElementById('bottomNav').style.display = 'flex';
+      
+      renderCurrentStep();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToHomeScreen() {
+      stopAudio();
+      document.getElementById('playerScreen').classList.remove('active');
+      document.getElementById('homeScreen').classList.add('active');
+      document.getElementById('bottomNav').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderCurrentStep() {
+      const steps = getStepsForDeity(currentDeity);
+      const step = steps[currentStepIndex];
+      const isTe = (currentScript === 'telugu');
+
+      // Progress
+      const progressPercent = Math.round(((currentStepIndex + 1) / steps.length) * 100);
+      document.getElementById('lblStepNumber').textContent = `దశ ${currentStepIndex + 1} / ${steps.length}: ${isTe ? step.titleTe : step.titleSa}`;
+      document.getElementById('lblPercent').textContent = `${progressPercent}% పూర్తయింది`;
+      document.getElementById('progressFill').style.width = `${progressPercent}%`;
+
+      // Prompt & Title
+      document.getElementById('lblActionPrompt').textContent = isTe ? step.actionTe : step.actionSa;
+      document.getElementById('slokaStepTitle').textContent = isTe ? step.titleTe : step.titleSa;
+
+      // Sloka Text
+      const slokaEl = document.getElementById('slokaContent');
+      slokaEl.textContent = isTe ? step.slokaTe : step.slokaSa;
+      slokaEl.className = isTe ? 'sloka-text telugu-font' : 'sloka-text sanskrit-font';
+
+      // Interactive Areas
+      document.getElementById('achamanaArea').style.display = (currentStepIndex === 1) ? 'flex' : 'none';
+      document.getElementById('flowerArea').style.display = (currentStepIndex === 6) ? 'block' : 'none';
+
+      // Meaning
+      document.getElementById('lblTatparyam').textContent = step.tatparyam;
+      document.getElementById('lblSpiritual').textContent = step.spiritual;
+
+      // Prev Button Visibility
+      document.getElementById('btnPrevStep').style.visibility = (currentStepIndex === 0) ? 'hidden' : 'visible';
+
+      // Next Button Label
+      const nextBtn = document.getElementById('btnNextStep');
+      if (currentStepIndex === steps.length - 1) {
+        nextBtn.innerHTML = 'పూజ సంపూర్ణం ✨';
+        nextBtn.style.background = 'linear-gradient(135deg, #15803d, #166534)';
+      } else {
+        nextBtn.innerHTML = 'తర్వాతి దశ ➔';
+        nextBtn.style.background = 'linear-gradient(135deg, var(--maroon), #831843)';
+      }
+
+      stopAudio();
+    }
+
+    function goToNextStep() {
+      const steps = getStepsForDeity(currentDeity);
+      if (currentStepIndex < steps.length - 1) {
+        currentStepIndex++;
+        renderCurrentStep();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        playTempleBellSound();
+        alert('🎉 స్వామి కృపతో మీ పూజ సంపూర్ణమైనది! సమస్త సన్మంగళాని భవంతు! 🕉️');
+        goToHomeScreen();
+      }
+    }
+
+    function goToPrevStep() {
+      if (currentStepIndex > 0) {
+        currentStepIndex--;
+        renderCurrentStep();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function switchScript(lang) {
+      currentScript = lang;
+      document.getElementById('btnScriptTe').classList.toggle('active', lang === 'telugu');
+      document.getElementById('btnScriptSa').classList.toggle('active', lang === 'sanskrit');
+      renderCurrentStep();
+    }
+
+    function toggleAccordion() {
+      const body = document.getElementById('accordionBody');
+      const arrow = document.getElementById('accordionArrow');
+      body.classList.toggle('open');
+      arrow.textContent = body.classList.contains('open') ? '▲' : '▼';
+    }
+
+    function toggleDrop(num) {
+      const btn = document.getElementById('drop' + num);
+      btn.classList.toggle('checked');
+      playWaterChimeSound();
+    }
+
+    function offerFlower() {
+      if (flowerCount < 108) {
+        flowerCount++;
+        document.getElementById('flowerCount').textContent = flowerCount;
+        playTempleBellSound();
+      }
+    }
+
+    // Audio Engine: Web Audio Synthesizer for Bell & Chime
+    function initAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playTempleBellSound() {
+      initAudioContext();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, audioCtx.currentTime); // High Bell Chime A5
+      osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 1.2);
+      gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 1.2);
+    }
+
+    function playWaterChimeSound() {
+      initAudioContext();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.4);
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.4);
+    }
+
+    // Speech Chanting
+    function toggleAudioChant() {
+      if (isPlaying) {
+        stopAudio();
+      } else {
+        startAudio();
+      }
+    }
+
+    function startAudio() {
+      if (!audioSynth) return;
+      stopAudio();
+      
+      const textToSpeak = document.getElementById('slokaContent').textContent;
+      const utter = new SpeechSynthesisUtterance(textToSpeak);
+      utter.rate = 0.82; // Calm, respectful Vedic pace
+      utter.pitch = 0.95;
+      utter.lang = (currentScript === 'telugu') ? 'te-IN' : 'hi-IN';
+
+      utter.onend = function() {
+        stopAudio();
+      };
+
+      audioSynth.speak(utter);
+      isPlaying = true;
+      document.getElementById('playIcon').textContent = '⏸️';
+      document.getElementById('playText').textContent = 'పాజ్ చేయండి';
+    }
+
+    function stopAudio() {
+      if (audioSynth && audioSynth.speaking) {
+        audioSynth.cancel();
+      }
+      isPlaying = false;
+      document.getElementById('playIcon').textContent = '🔊';
+      document.getElementById('playText').textContent = 'వినండి';
+    }
+
+    function changeVoiceMode() {
+      const mode = document.getElementById('selVoiceMode').value;
+      if (mode === 'user') {
+        alert('👤 యూజర్ సొంత గొంతు మోడ్ ఎంచుకోబడింది. మీరు రికార్డ్ చేసిన ఆడియో క్లిప్స్ ఇక్కడ ప్లే అవుతాయి.');
+      }
+    }
+
+    function startVoiceRecording() {
+      alert('🎙️ యూజర్ వాయిస్ రికార్డర్: మీ మొబైల్ మైక్రోఫోన్ ద్వారా ఈ మంత్రాన్ని మీ స్వంత గొంతుతో రికార్డ్ చేసుకుని భద్రపరచవచ్చు (Microphone Ready).');
+    }
+
+    // Profile Modal
+    function openProfileModal() {
+      document.getElementById('inpGotram').value = devotee.gotram;
+      document.getElementById('inpKarta').value = devotee.karta;
+      document.getElementById('inpSpouse').value = devotee.spouse;
+      document.getElementById('inpChildren').value = devotee.children;
+      document.getElementById('inpPincode').value = devotee.pincode;
+      document.getElementById('profileModal').classList.add('active');
+    }
+
+    function closeProfileModal() {
+      document.getElementById('profileModal').classList.remove('active');
+    }
+
+    function saveDevoteeProfile() {
+      devotee.gotram = document.getElementById('inpGotram').value || 'పైడిపూండ్ల';
+      devotee.karta = document.getElementById('inpKarta').value || 'శ్రీనివాసరావు';
+      devotee.spouse = document.getElementById('inpSpouse').value || 'వాణి';
+      devotee.children = document.getElementById('inpChildren').value || 'హర్ష, అఖిల్';
+      devotee.pincode = document.getElementById('inpPincode').value || '522034';
+
+      localStorage.setItem('puja_gotram', devotee.gotram);
+      localStorage.setItem('puja_karta', devotee.karta);
+      localStorage.setItem('puja_spouse', devotee.spouse);
+      localStorage.setItem('puja_children', devotee.children);
+      localStorage.setItem('puja_pincode', devotee.pincode);
+
+      document.getElementById('bannerGotramTitle').textContent = `${devotee.gotram} గోత్రోద్భవుల పూజా సంకల్పం`;
+      document.getElementById('bannerNames').textContent = `${devotee.karta} & ${devotee.spouse} దంపతులు (పుత్రౌ: ${devotee.children})`;
+      document.getElementById('bannerLocation').textContent = `గుంటూరు (${devotee.pincode}) - కృష్ణా నదీ దక్షిణ తీరే`;
+
+      closeProfileModal();
+      if (document.getElementById('playerScreen').classList.contains('active')) {
+        renderCurrentStep();
+      }
+    }
+
+    function initLivePanchang() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth();
+      const day = now.getDate();
+      const dayOfWeek = now.getDay();
+
+      const SAMVATSARAS = [
+        "ప్రభవ", "విభవ", "శుక్ల", "ప్రమోదూత", "ప్రజోత్పత్తి", "ఆంగీరస", "శ్రీముఖ", "భావ", "యువ", "ధాత",
+        "ఈశ్వర", "బహుధాన్య", "ప్రమాథి", "విక్రమ", "వృష", "చిత్రభాను", "స్వభాను", "తారణ", "పార్థివ", "వ్యయ",
+        "సర్వజిత్తు", "సర్వధారి", "విరోధి", "వికృతి", "ఖర", "నందన", "విజయ", "జయ", "మన్మథ", "దుర్ముఖి",
+        "హేవిళంబి", "విళంబి", "వికారి", "శార్వరి", "ప్లవ", "శుభకృతు", "శోభకృతు", "క్రోధి", "విశ్వావసు", "పరాభవ"
+      ];
+
+      let samvatIndex = (year - 1987) % 60;
+      if (samvatIndex < 0) samvatIndex += 60;
+      if (month < 3 || (month === 3 && day < 8)) {
+        samvatIndex = (samvatIndex - 1 + 60) % 60;
+      }
+      const samvatsara = SAMVATSARAS[samvatIndex] || "క్రోధి";
+
+      let ayanam = "దక్షిణాయనం";
+      if ((month === 0 && day >= 15) || (month > 0 && month < 6) || (month === 6 && day <= 15)) {
+        ayanam = "ఉత్తరాయణం";
+      }
+
+      const MASAS = ["చైత్ర", "వైశాఖ", "జ్యేష్ఠ", "ఆషాఢ", "శ్రావణ", "భాద్రపద", "ఆశ్వయుజ", "కార్తిక", "మార్గశిర", "పుష్య", "మాఘ", "ఫాల్గుణ"];
+      const masa = MASAS[(month + 8) % 12] + " మాసం";
+
+      const VARAS = ["ఆదివారము", "సోమవారము", "మంగళవారము", "బుధవారము", "గురువారము", "శుక్రవారము", "శనివారము"];
+      const vara = VARAS[dayOfWeek];
+
+      const refNewMoon = new Date(Date.UTC(2024, 0, 11, 11, 57)).getTime();
+      const synodicMonth = 29.530588 * 24 * 60 * 60 * 1000;
+      const elapsed = now.getTime() - refNewMoon;
+      const moonAgeDays = ((elapsed % synodicMonth) + synodicMonth) % synodicMonth / (24 * 60 * 60 * 1000);
+
+      let paksha = "శుక్ల పక్షం";
+      let tithiIdx = Math.floor(moonAgeDays);
+      if (tithiIdx >= 15) {
+        paksha = "కృష్ణ పక్షం";
+        tithiIdx = tithiIdx - 15;
+      }
+      const TITHI_NAMES = ["పాడ్యమి", "విదియ", "తదియ", "చవితి", "పంచమి", "షష్ఠి", "సప్తమి", "అష్టమి", "నవమి", "దశమి", "ఏకాదశి", "ద్వాదశి", "త్రయోదశి", "చతుర్దశి", paksha === "శుక్ల పక్షం" ? "పూర్ణిమ" : "అమావాస్య"];
+      const tithi = TITHI_NAMES[tithiIdx % 15];
+
+      const NAKSHATRAS = ["అశ్విని", "భరణి", "కృత్తిక", "రోహిణి", "మృగశిర", "ఆర్ద్ర", "పునర్వసు", "పుష్యమి", "ఆశ్లేష", "మఖ", "పుబ్బ", "ఉత్తర", "హస్త", "చిత్త", "స్వాతి", "విశాఖ", "అనూరాధ", "జ్యేష్ఠ", "మూల", "పూర్వాషాఢ", "ఉత్తరాషాఢ", "శ్రవణం", "ధనిష్ఠ", "శతభిషం", "పూర్వాభాద్ర", "ఉత్తరాభాద్ర", "రేవతి"];
+      const nakshatra = NAKSHATRAS[Math.floor((moonAgeDays * 27 / 29.53)) % 27];
+
+      if (document.getElementById('lblSamvat')) document.getElementById('lblSamvat').textContent = 'శ్రీ ' + samvatsara;
+      if (document.getElementById('lblAyana')) document.getElementById('lblAyana').textContent = ayanam;
+      if (document.getElementById('lblMasa')) document.getElementById('lblMasa').textContent = masa;
+      if (document.getElementById('lblPaksha')) document.getElementById('lblPaksha').textContent = paksha;
+      if (document.getElementById('lblTithi')) document.getElementById('lblTithi').textContent = tithi;
+      if (document.getElementById('lblVara')) document.getElementById('lblVara').textContent = vara;
+      if (document.getElementById('lblNakshatra')) document.getElementById('lblNakshatra').textContent = nakshatra;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initLivePanchang();
+    });
+  </script>
+</body>
+</html>
