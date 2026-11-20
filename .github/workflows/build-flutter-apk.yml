@@ -1,0 +1,51 @@
+name: Build Flutter Android APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.x'
+          channel: 'stable'
+          cache: true
+
+      - name: Create Android Platform Scaffolding if Missing
+        working-directory: flutter_puja_app
+        run: |
+          if [ ! -d "android" ]; then
+            echo "Generating android platform files..."
+            flutter create . --platforms=android --org=com.ayyappa.puja
+          fi
+
+      - name: Install Flutter Dependencies
+        working-directory: flutter_puja_app
+        run: flutter pub get
+
+      - name: Build Android Release APK
+        working-directory: flutter_puja_app
+        run: flutter build apk --release
+
+      - name: Upload Release APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ayyappa-Puja-Release-APK
+          path: flutter_puja_app/build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30

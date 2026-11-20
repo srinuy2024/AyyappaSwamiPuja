@@ -3739,3 +3739,10 @@ function playHapticAndTrack(el) {
 // Global invocation on DOM Ready
 document.addEventListener("DOMContentLoaded", initApp);
 
+// Register Service Worker for PWA Offline Mobile App installation
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+
