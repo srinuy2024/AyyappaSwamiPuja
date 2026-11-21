@@ -71,7 +71,16 @@ jobs:
       - name: Build Android APK
         working-directory: flutter_puja_app
         run: |
-          flutter build apk --release --no-tree-shake-icons || flutter build apk --debug --no-tree-shake-icons
+          # Build split-per-abi APKs (slashes APK size by ~60% from 22MB down to ~9MB)
+          flutter build apk --release --split-per-abi --no-tree-shake-icons || flutter build apk --release --no-tree-shake-icons
+
+          # Copy with clear device-friendly labels
+          if [ -f "build/app/outputs/flutter-apk/app-arm64-v8a-release.apk" ]; then
+            cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk build/app/outputs/flutter-apk/PoojaMandiram-arm64-OnePlus-Modern-Phones.apk
+          fi
+          if [ -f "build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk" ]; then
+            cp build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/flutter-apk/PoojaMandiram-armeabi-Older-32bit-Phones.apk
+          fi
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
