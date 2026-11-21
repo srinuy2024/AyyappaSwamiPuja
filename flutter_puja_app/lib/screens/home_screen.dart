@@ -6,6 +6,8 @@ import '../services/deity_puja_data_service.dart';
 import '../constants/app_typography.dart';
 import 'puja_player_screen.dart';
 import 'ayyappa_deeksha_screen.dart';
+import 'suprabhatam_screen.dart';
+import '../services/auto_update_service.dart';
 
 /// యాప్ హోమ్ స్క్రీన్ (Devotional Dashboard, Live Panchangam & Deity Puja Selector)
 class HomeScreen extends StatefulWidget {
@@ -99,6 +101,23 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _panchang = PanchangamService.calculate(DateTime.now());
+    // Auto-update check in background (100% safe offline)
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      AutoUpdateService.checkForUpdate().then((info) {
+        if (info != null && mounted) {
+          AutoUpdateService.showUpdateDialog(context, info);
+        }
+      });
+    });
+  }
+
+  void _openSuprabhatamScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SuprabhatamScreen(),
+      ),
+    );
   }
 
   void _startPujaForDeity(String deityId, String nameTe, String nameSa, bool isFullMode) {
@@ -173,6 +192,32 @@ class _HomeScreenState extends State<HomeScreen> {
               TextField(controller: spouseController, decoration: const InputDecoration(labelText: 'ధర్మపత్ని పేరు (Spouse)')),
               TextField(controller: childrenController, decoration: const InputDecoration(labelText: 'సంతానం పేర్లు (Children)')),
               TextField(controller: pincodeController, decoration: const InputDecoration(labelText: 'పిన్‌కోడ్ (Pincode)')),
+              const SizedBox(height: 14),
+              const Divider(),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.system_update_alt, color: AppTypography.primaryMaroon),
+                title: const Text('అప్‌డేట్స్ తనిఖీ చేయండి (Check Updates)', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+                subtitle: const Text('వెర్షన్: v1.1.0 • 100% ఆఫ్‌లైన్ సేఫ్', style: TextStyle(fontSize: 11.5)),
+                trailing: TextButton(
+                  onPressed: () {
+                    Navigator.pop(ctx);
+                    AutoUpdateService.checkForUpdate().then((info) {
+                      if (info != null) {
+                        AutoUpdateService.showUpdateDialog(context, info);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('మీరు తాజా వెర్షన్ (v1.1.0) వాడుతున్నారు! ఎటువంటి అప్‌డేట్ అవసరం లేదు.'),
+                            backgroundColor: AppTypography.primaryMaroon,
+                          ),
+                        );
+                      }
+                    });
+                  },
+                  child: const Text('చెక్ చేయి'),
+                ),
+              ),
             ],
           ),
         ),
@@ -438,6 +483,59 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
+
+            // 2.5 Dedicated Suprabhatam Suite Button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              child: InkWell(
+                onTap: _openSuprabhatamScreen,
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFFFEF3C7), Color(0xFFFDE68A)],
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: const Color(0xFFF59E0B), width: 1.2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.amber.shade200.withOpacity(0.5),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      const Text('🌅', style: TextStyle(fontSize: 26)),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'సర్వ దేవతా సుప్రభాత నిధి',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: AppTypography.primaryMaroon,
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            Text(
+                              'వేంకటేశ్వర • అయ్యప్ప • శివ • గణపతి సుప్రభాతాలు & కరదర్శనం',
+                              style: TextStyle(fontSize: 12.5, color: AppTypography.textSecondary),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.arrow_forward_ios, size: 16, color: AppTypography.primaryMaroon),
+                    ],
+                  ),
                 ),
               ),
             ),
