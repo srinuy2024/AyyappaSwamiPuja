@@ -18,3 +18,7 @@ flutter_puja_app/.flutter-plugins-dependencies
 
 # Logs
 *.log
+
+# Scratch scripts
+scratch/
+scratch_ashtottara.json

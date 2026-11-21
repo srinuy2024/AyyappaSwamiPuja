@@ -27,14 +27,32 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Create Android Platform Scaffolding if Missing
+      - name: Create Android Platform Scaffolding and Preserve Sacred Icons
         working-directory: flutter_puja_app
         run: |
-          if [ ! -d "android" ]; then
+          mkdir -p /tmp/saved_res
+          if [ -d "android/app/src/main/res" ]; then
+            cp -r android/app/src/main/res/mipmap* /tmp/saved_res/ || true
+          fi
+          if [ -f "android/app/src/main/AndroidManifest.xml" ]; then
+            cp android/app/src/main/AndroidManifest.xml /tmp/saved_manifest.xml || true
+          fi
+
+          if [ ! -f "android/build.gradle" ] && [ ! -f "android/build.gradle.kts" ]; then
             echo "Generating android platform files..."
             flutter create . --platforms=android --org=com.ayyappa.puja
           fi
-          # Ensure modern Android compatibility
+
+          # Restore custom sacred launcher icons and manifest
+          if [ -d "/tmp/saved_res" ]; then
+            mkdir -p android/app/src/main/res
+            cp -r /tmp/saved_res/* android/app/src/main/res/ || true
+          fi
+          if [ -f "/tmp/saved_manifest.xml" ]; then
+            cp /tmp/saved_manifest.xml android/app/src/main/AndroidManifest.xml || true
+          fi
+
+          # Ensure modern Android minSdkVersion 21 compatibility
           if [ -f "android/app/build.gradle" ]; then
             sed -i 's/minSdkVersion flutter.minSdkVersion/minSdkVersion 21/g' android/app/build.gradle || true
           fi

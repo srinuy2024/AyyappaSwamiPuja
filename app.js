@@ -1483,6 +1483,14 @@ function populateDropdowns() {
       `<option value="${k}" ${k === "వణిజ" ? "selected" : ""}>${k} కరణం</option>`
     ).join("");
   }
+
+  // Vasara dropdown (Ensure accurate day of week)
+  const selVas = document.getElementById("selVasara");
+  if (selVas) {
+    selVas.innerHTML = VASARAS.map(v => 
+      `<option value="${v.id}">${v.te} (${v.en})</option>`
+    ).join("");
+  }
 }
 
 function handleDateChange(dateString) {
@@ -1519,9 +1527,11 @@ function handleDateChange(dateString) {
 
 function setSelectValue(id, val) {
   const el = document.getElementById(id);
-  if (!el) return;
+  if (!el || !val) return;
   for (let i = 0; i < el.options.length; i++) {
-    if (el.options[i].value === val || el.options[i].value.includes(val)) {
+    const optVal = el.options[i].value;
+    const optText = el.options[i].text;
+    if (optVal === val || val.includes(optVal) || optVal.includes(val) || optText.includes(val) || val.includes(optText)) {
       el.selectedIndex = i;
       break;
     }
