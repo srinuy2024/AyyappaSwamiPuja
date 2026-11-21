@@ -103,7 +103,7 @@ class _AyyappaDeekshaScreenState extends State<AyyappaDeekshaScreen> with Single
                     color: AppTypography.templeDeepOrange,
                     borderRadius: BorderRadius.circular(19),
                   ),
-                  alignment: TextAlign.center,
+                  alignment: Alignment.center,
                   child: Text(
                     item['step']!,
                     style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),

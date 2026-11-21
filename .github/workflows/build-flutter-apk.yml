@@ -27,15 +27,12 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Create Android Platform Scaffolding and Preserve Sacred Icons
+      - name: Prepare Android Platform and Sacred Resources
         working-directory: flutter_puja_app
         run: |
           mkdir -p /tmp/saved_res
           if [ -d "android/app/src/main/res" ]; then
-            cp -r android/app/src/main/res/mipmap* /tmp/saved_res/ || true
-          fi
-          if [ -f "android/app/src/main/AndroidManifest.xml" ]; then
-            cp android/app/src/main/AndroidManifest.xml /tmp/saved_manifest.xml || true
+            cp -r android/app/src/main/res/* /tmp/saved_res/ || true
           fi
 
           if [ ! -f "android/build.gradle" ] && [ ! -f "android/build.gradle.kts" ]; then
@@ -43,13 +40,17 @@ jobs:
             flutter create . --platforms=android --org=com.ayyappa.puja
           fi
 
-          # Restore custom sacred launcher icons and manifest
+          # Restore custom sacred launcher icons and strings.xml
           if [ -d "/tmp/saved_res" ]; then
             mkdir -p android/app/src/main/res
             cp -r /tmp/saved_res/* android/app/src/main/res/ || true
           fi
-          if [ -f "/tmp/saved_manifest.xml" ]; then
-            cp /tmp/saved_manifest.xml android/app/src/main/AndroidManifest.xml || true
+
+          # Ensure AndroidManifest.xml has correct label, icon, and NO package attribute (required for AGP 8+)
+          if [ -f "android/app/src/main/AndroidManifest.xml" ]; then
+            sed -i 's/package="com.ayyappa.puja"//g' android/app/src/main/AndroidManifest.xml || true
+            sed -i 's/android:label="[^"]*"/android:label="@string\/app_name"/g' android/app/src/main/AndroidManifest.xml || true
+            sed -i 's/android:icon="[^"]*"/android:icon="@mipmap\/ic_launcher"/g' android/app/src/main/AndroidManifest.xml || true
           fi
 
           # Ensure modern Android minSdkVersion 21 compatibility
@@ -59,6 +60,9 @@ jobs:
           if [ -f "android/app/build.gradle.kts" ]; then
             sed -i 's/minSdkVersion = flutter.minSdkVersion/minSdkVersion = 21/g' android/app/build.gradle.kts || true
           fi
+
+          # Ensure all declared asset directories exist
+          mkdir -p assets/data assets/icon assets/images/deities
 
       - name: Install Flutter Dependencies
         working-directory: flutter_puja_app

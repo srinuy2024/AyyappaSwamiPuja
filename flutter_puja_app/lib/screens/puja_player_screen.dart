@@ -214,7 +214,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                               color: !_isFullMode ? AppTypography.templeDeepOrange : Colors.grey.shade300,
                             ),
                           ),
-                          alignment: TextAlign.center,
+                          alignment: Alignment.center,
                           child: Text(
                             '⚡ నిత్య లఘు పూజ (15-20 ని)',
                             style: TextStyle(
@@ -240,7 +240,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                               color: _isFullMode ? AppTypography.primaryMaroon : Colors.grey.shade300,
                             ),
                           ),
-                          alignment: TextAlign.center,
+                          alignment: Alignment.center,
                           child: Text(
                             '🪔 సంపూర్ణ షోడశ పూజ (35-45 ని)',
                             style: TextStyle(
