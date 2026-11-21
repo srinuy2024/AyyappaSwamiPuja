@@ -13,7 +13,7 @@ class PujaMandiramApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'సర్వ దేవతా నిత్య పూజా మందిరం',
+      title: 'పూజా మందిరం',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: AppTypography.primaryMaroon,

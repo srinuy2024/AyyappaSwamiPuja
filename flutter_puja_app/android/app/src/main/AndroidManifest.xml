@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ayyappa.puja">
     <application
-        android:label="శ్రీ అయ్యప్ప పూజ"
+        android:label="పూజా మందిరం"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

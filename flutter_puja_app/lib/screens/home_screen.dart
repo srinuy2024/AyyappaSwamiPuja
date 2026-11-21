@@ -183,8 +183,8 @@ class _HomeScreenState extends State<HomeScreen> {
           children: const [
             Text('🪔 ', style: TextStyle(fontSize: 22)),
             Text(
-              'శ్రీ అయ్యప్ప నిత్య & సమగ్ర పూజ',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+              'పూజా మందిరం',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ],
         ),
