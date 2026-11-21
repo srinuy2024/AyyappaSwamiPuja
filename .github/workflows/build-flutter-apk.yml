@@ -82,9 +82,16 @@ jobs:
             cp build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk build/app/outputs/flutter-apk/PoojaMandiram-armeabi-Older-32bit-Phones.apk
           fi
 
-      - name: Upload APK Artifact
+      - name: Upload OnePlus & Modern Phones Lightweight APK (~9MB)
         uses: actions/upload-artifact@v4
         with:
-          name: Ayyappa-Puja-APK
-          path: flutter_puja_app/build/app/outputs/flutter-apk/*.apk
+          name: PoojaMandiram-OnePlus-Modern-Phones-APK
+          path: flutter_puja_app/build/app/outputs/flutter-apk/PoojaMandiram-arm64-OnePlus-Modern-Phones.apk
+          retention-days: 30
+
+      - name: Upload Older 32-bit Phones APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PoojaMandiram-Older-32bit-Phones-APK
+          path: flutter_puja_app/build/app/outputs/flutter-apk/PoojaMandiram-armeabi-Older-32bit-Phones.apk
           retention-days: 30
