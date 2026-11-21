@@ -206,13 +206,18 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppTypography.saffronBackground,
       appBar: AppBar(
         backgroundColor: AppTypography.primaryMaroon,
+        foregroundColor: Colors.white,
         elevation: 3,
         title: Row(
           children: const [
             Text('🪔 ', style: TextStyle(fontSize: 22)),
             Text(
               'పూజా మందిరం',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 21,
+                color: Colors.white,
+              ),
             ),
           ],
         ),

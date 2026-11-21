@@ -23,6 +23,17 @@ class PujaMandiramApp extends StatelessWidget {
           secondary: AppTypography.templeDeepOrange,
         ),
         scaffoldBackgroundColor: AppTypography.saffronBackground,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppTypography.primaryMaroon,
+          foregroundColor: Colors.white,
+          elevation: 2,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
         useMaterial3: true,
       ),
       home: const HomeScreen(),
