@@ -125,6 +125,34 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget _buildDeityAvatar(String deityId, String icon, double size) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(size / 2),
+      child: Image.asset(
+        'assets/images/deities/$deityId.png',
+        width: size,
+        height: size,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Image.asset(
+            'assets/images/deities/$deityId.jpg',
+            width: size,
+            height: size,
+            fit: BoxFit.cover,
+            errorBuilder: (ctx, err, st) {
+              return Container(
+                width: size,
+                height: size,
+                alignment: Alignment.center,
+                child: Text(icon, style: TextStyle(fontSize: size * 0.52)),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+
   void _showProfileDialog() {
     final gotraController = TextEditingController(text: _profile.gotram);
     final kartaController = TextEditingController(text: _profile.kartaName);
@@ -304,15 +332,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: 56,
-                          height: 56,
+                          width: 58,
+                          height: 58,
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.18),
-                            borderRadius: BorderRadius.circular(28),
+                            borderRadius: BorderRadius.circular(29),
                             border: Border.all(color: const Color(0xFFFDE68A), width: 1.5),
                           ),
                           alignment: TextAlign.center,
-                          child: const Text('🪔', style: TextStyle(fontSize: 30)),
+                          child: _buildDeityAvatar('ayyappa', '🪔', 56),
                         ),
                         const SizedBox(width: 14),
                         Expanded(
@@ -451,15 +479,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           children: [
                             Container(
-                              width: 48,
-                              height: 48,
+                              width: 50,
+                              height: 50,
                               decoration: BoxDecoration(
                                 color: (deity['color'] as Color).withOpacity(0.12),
-                                borderRadius: BorderRadius.circular(24),
+                                borderRadius: BorderRadius.circular(25),
                                 border: Border.all(color: deity['color'] as Color, width: 1.2),
                               ),
                               alignment: TextAlign.center,
-                              child: Text(deity['icon'], style: const TextStyle(fontSize: 26)),
+                              child: _buildDeityAvatar(deity['id'], deity['icon'], 48),
                             ),
                             const SizedBox(width: 12),
                             Expanded(
