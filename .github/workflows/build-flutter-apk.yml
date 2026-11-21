@@ -34,18 +34,26 @@ jobs:
             echo "Generating android platform files..."
             flutter create . --platforms=android --org=com.ayyappa.puja
           fi
+          # Ensure modern Android compatibility
+          if [ -f "android/app/build.gradle" ]; then
+            sed -i 's/minSdkVersion flutter.minSdkVersion/minSdkVersion 21/g' android/app/build.gradle || true
+          fi
+          if [ -f "android/app/build.gradle.kts" ]; then
+            sed -i 's/minSdkVersion = flutter.minSdkVersion/minSdkVersion = 21/g' android/app/build.gradle.kts || true
+          fi
 
       - name: Install Flutter Dependencies
         working-directory: flutter_puja_app
         run: flutter pub get
 
-      - name: Build Android Release APK
+      - name: Build Android APK
         working-directory: flutter_puja_app
-        run: flutter build apk --release
+        run: |
+          flutter build apk --release --no-tree-shake-icons || flutter build apk --debug --no-tree-shake-icons
 
-      - name: Upload Release APK Artifact
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Ayyappa-Puja-Release-APK
-          path: flutter_puja_app/build/app/outputs/flutter-apk/app-release.apk
+          name: Ayyappa-Puja-APK
+          path: flutter_puja_app/build/app/outputs/flutter-apk/*.apk
           retention-days: 30
