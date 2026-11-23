@@ -14,6 +14,7 @@ class PujaPlayerScreen extends StatefulWidget {
   final String deityNameTe;
   final String deityNameSa;
   final bool initialIsFullMode;
+  final PanchangamData? initialPanchang;
 
   const PujaPlayerScreen({
     Key? key,
@@ -22,6 +23,7 @@ class PujaPlayerScreen extends StatefulWidget {
     required this.deityNameTe,
     required this.deityNameSa,
     this.initialIsFullMode = false,
+    this.initialPanchang,
   }) : super(key: key);
 
   @override
@@ -44,7 +46,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
   void initState() {
     super.initState();
     _isFullMode = widget.initialIsFullMode;
-    _panchang = PanchangamService.calculate(DateTime.now());
+    _panchang = widget.initialPanchang ?? PanchangamService.calculate(DateTime.now());
     _deity = DeityPujaDataService.getDeity(widget.deityId);
     _reloadSteps();
   }
@@ -355,6 +357,52 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        // Sankalpam Quick Elements Reference Card
+                        if (step.stepId == 'sankalpam') ...[
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 14),
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFFFFBEB),
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: const Color(0xFFF59E0B), width: 1.2),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: const [
+                                    Text('🪔 ', style: TextStyle(fontSize: 15)),
+                                    Text(
+                                      'సంకల్ప పంచాంగ వివరాలు (Key Elements):',
+                                      style: TextStyle(
+                                        fontSize: 12.5,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppTypography.primaryMaroon,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                Wrap(
+                                  spacing: 6,
+                                  runSpacing: 6,
+                                  children: [
+                                    _buildSankalpaPill('సంవత్సరం', 'శ్రీ ${_panchang.samvatsaraTe} నామ'),
+                                    _buildSankalpaPill('ఆయనం', _panchang.ayanaTe),
+                                    _buildSankalpaPill('ఋతువు', _panchang.rithuTe),
+                                    _buildSankalpaPill('మాసం', '${_panchang.masaTe} మాసం'),
+                                    _buildSankalpaPill('పక్షం', _panchang.pakshaTe),
+                                    _buildSankalpaPill('తిథి', _panchang.tithiTe),
+                                    _buildSankalpaPill('వారం', _panchang.vasaraTe),
+                                    _buildSankalpaPill('నక్షత్రం', '${_panchang.nakshatraTe} నక్షత్రం'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+
                         // Sloka or Sacred Text
                         if (!isAshtottaraStep || _showAll108Names) ...[
                           SelectableText(
@@ -713,6 +761,38 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                   ),
                 ],
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSankalpaPill(String label, String value) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFFFDE68A)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '$label: ',
+            style: const TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: AppTypography.textMuted,
+            ),
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 11.5,
+              fontWeight: FontWeight.bold,
+              color: AppTypography.primaryMaroon,
             ),
           ),
         ],

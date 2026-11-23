@@ -7,8 +7,8 @@ class DynamicSankalpamService {
   static Map<String, String> generateBilingualSankalpam({
     required DevoteeProfile profile,
     required PanchangamData panchang,
-    required String deityNameTe,
-    required String deityNameSa,
+    String deityNameTe = 'శ్రీ అయ్యప్పస్వామి',
+    String deityNameSa = 'श्री अय्यप्पस्वामी',
   }) {
     // క్షేత్రం / నది నిర్ణయం
     String kshetraTe = 'కృష్ణా నదీ దక్షిణ తీరే, గుంటూరు దివ్య క్షేత్రే';
@@ -26,7 +26,7 @@ class DynamicSankalpamService {
     String sankalpamTe = '''
 శుభే శోభనే ముహూర్తే, శ్రీ మహావిష్ణోరాజ్ఞయా ప్రవర్తమానస్య, అద్య బ్రహ్మణః ద్వితీయ పరార్థే, శ్వేతవరాహ కల్పే, వైవస్వత మన్వంతరే, కలియుగే, ప్రథమ పాదే, జంబూద్వీపే, భరతవర్షే, భరతఖండే, మేరోర్దక్షిణ దిగ్భాగే, $kshetraTe, శోభన గృహే, సమస్త దేవతా బ్రాహ్మణ హరిహర గురు చరణ సన్నిధౌ,
 
-అస్మిన్ వర్తమాన వ్యావహారిక చాంద్రమానేన శ్రీ ${panchang.samvatsaraTe} నామ సంవత్సరే, ${panchang.ayanaTe}, ${panchang.rithuTe}, ${panchang.masaTe} మాసే, ${panchang.pakshaTe}, ${panchang.tithiTe} తిథౌ, ${panchang.vasaraTe}, శుభ నక్షత్ర, శుభ యోగ, శుభ కరణ ఏవంగుణ విశేషణ విశిష్టాయాం శుభ తిథౌ,
+అస్మిన్ వర్తమాన వ్యావహారిక చాంద్రమానేన శ్రీ ${panchang.samvatsaraTe} నామ సంవత్సరే, ${panchang.ayanaTe}, ${panchang.rithuTe}, ${panchang.masaTe} మాసే, ${panchang.pakshaTe}, ${panchang.tithiTe} తిథౌ, ${panchang.vasaraTe}, ${panchang.nakshatraTe} నక్షత్రే, శుభ యోగ, శుభ కరణ ఏవంగుణ విశేషణ విశిష్టాయాం శుభ తిథౌ,
 
 శ్రీమతః ${profile.gotram} గోత్రోద్భవస్య, ${profile.kartaName} నామధేయస్య, ధర్మపత్నీ సమేతస్య (${profile.spouseName}), సపుత్రస్య సకుటుంబస్య (${profile.childrenNames}),
 
@@ -37,7 +37,7 @@ class DynamicSankalpamService {
     String sankalpamSa = '''
 शुभे शोभने मुहूर्ते, श्री महाविष्णोराज्ञया प्रवर्तमानस्य, अद्य ब्रह्मणः द्वितीय परार्धे, श्वेतवराह कल्पे, वैवस्वत मन्वन्तरे, कलियुगे, प्रथम पादे, जम्बूद्वीपे, भारतवर्षे, भरतखण्डे, मेरोर्दक्षिण दिग्भागे, $kshetraSa, शोभन गृहे, समस्त देवता ब्राह्मण हरिहर गुरु चरण सन्निधौ,
 
-अस्मिन् वर्तमाने व्यावहारिक चान्द्रमानेन श्री ${panchang.samvatsaraSa} नाम संवत्सरे, ${panchang.ayanaSa}, ${panchang.rithuSa}, ${panchang.masaSa} मासे, ${panchang.pakshaSa}, ${panchang.tithiSa} तिथौ, ${panchang.vasaraSa}, शुभ नक्षत्रे, शुभ योगे, शुभ करणे, एवं गुण विशेषण विशिष्टायां शुभ तिथौ,
+अस्मिन् वर्तमाने व्यावहारिक चान्द्रमानेन श्री ${panchang.samvatsaraSa} नाम संवत्सरे, ${panchang.ayanaSa}, ${panchang.rithuSa}, ${panchang.masaSa} मासे, ${panchang.pakshaSa}, ${panchang.tithiSa} तिथौ, ${panchang.vasaraSa}, ${panchang.nakshatraSa} नक्षत्रे, शुभ योगे, शुभ करणे, एवं गुण विशेषण विशिष्टायां शुभ तिथौ,
 
 श्रीमन्तः ${profile.gotram} गोत्रोद्भवस्य, ${profile.kartaName} नामधेयस्य, धर्मपत्नी समेतस्य (${profile.spouseName}), सपुत्रस्य सकुंटुम्बस्य (${profile.childrenNames}),
 

@@ -8,6 +8,7 @@ import 'puja_player_screen.dart';
 import 'ayyappa_deeksha_screen.dart';
 import 'suprabhatam_screen.dart';
 import '../services/auto_update_service.dart';
+import '../widgets/sankalpam_panchang_box.dart';
 
 /// యాప్ హోమ్ స్క్రీన్ (Devotional Dashboard, Live Panchangam & Deity Puja Selector)
 class HomeScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   DevoteeProfile _profile = DevoteeProfile();
   late PanchangamData _panchang;
+  DateTime _selectedDate = DateTime.now();
 
   final List<Map<String, dynamic>> _deitiesList = [
     {
@@ -120,6 +122,31 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> _selectPanchangDate() async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2035),
+      helpText: 'పంచాంగ పూజా తేదీని ఎంచుకోండి (Select Puja Date)',
+      confirmText: 'నిర్ణయించు',
+      cancelText: 'రద్దు',
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+        _panchang = PanchangamService.calculate(picked);
+      });
+    }
+  }
+
+  void _resetPanchangDate() {
+    setState(() {
+      _selectedDate = DateTime.now();
+      _panchang = PanchangamService.calculate(_selectedDate);
+    });
+  }
+
   void _startPujaForDeity(String deityId, String nameTe, String nameSa, bool isFullMode) {
     Navigator.push(
       context,
@@ -130,6 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
           deityNameTe: nameTe,
           deityNameSa: nameSa,
           initialIsFullMode: isFullMode,
+          initialPanchang: _panchang,
         ),
       ),
     );
@@ -198,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 contentPadding: EdgeInsets.zero,
                 leading: const Icon(Icons.system_update_alt, color: AppTypography.primaryMaroon),
                 title: const Text('అప్‌డేట్స్ తనిఖీ చేయండి (Check Updates)', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
-                subtitle: const Text('వెర్షన్: v1.1.0 • 100% ఆఫ్‌లైన్ సేఫ్', style: TextStyle(fontSize: 11.5)),
+                subtitle: const Text('వెర్షన్: v1.2.0 • 100% ఆఫ్‌లైన్ సేఫ్', style: TextStyle(fontSize: 11.5)),
                 trailing: TextButton(
                   onPressed: () {
                     Navigator.pop(ctx);
@@ -208,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('మీరు తాజా వెర్షన్ (v1.1.0) వాడుతున్నారు! ఎటువంటి అప్‌డేట్ అవసరం లేదు.'),
+                            content: Text('మీరు తాజా వెర్షన్ (v1.2.0) వాడుతున్నారు! ఎటువంటి అప్‌డేట్ అవసరం లేదు.'),
                             backgroundColor: AppTypography.primaryMaroon,
                           ),
                         );
@@ -278,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 1. Live Panchangam & Devotee Bar
+            // 1. Devotee Family Bar
             Container(
               decoration: BoxDecoration(
                 color: AppTypography.primaryMaroonDark,
@@ -290,69 +318,59 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: Column(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Devotee names line
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          '🙏 ${_profile.gotram} గోత్రం • ${_profile.kartaName} & ${_profile.spouseName} (${_profile.childrenNames})',
-                          style: const TextStyle(
-                            color: Color(0xFFFEF3C7),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13.5,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                  Expanded(
+                    child: Text(
+                      '🙏 ${_profile.gotram} గోత్రం • ${_profile.kartaName} & ${_profile.spouseName} (${_profile.childrenNames})',
+                      style: const TextStyle(
+                        color: Color(0xFFFEF3C7),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.5,
                       ),
-                      InkWell(
-                        onTap: _showProfileDialog,
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 4.0),
-                          child: Icon(Icons.edit, size: 16, color: Color(0xFFFDE68A)),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 6),
-
-                  // Dynamic Live Panchangam line
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(8),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '📅 ${_panchang.samvatsaraTe} నామ సంవత్సరం • ${_panchang.masaTe} మాసం',
-                          style: const TextStyle(color: Colors.white, fontSize: 12),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: AppTypography.sacredGold,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text(
-                            '${_panchang.tithiTe} • ${_panchang.vasaraTe}',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                  ),
+                  InkWell(
+                    onTap: _showProfileDialog,
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.15),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: const Color(0xFFFDE68A), width: 0.8),
+                      ),
+                      child: Row(
+                        children: const [
+                          Icon(Icons.edit, size: 13, color: Color(0xFFFDE68A)),
+                          SizedBox(width: 4),
+                          Text(
+                            'సవరించు',
+                            style: TextStyle(
+                              color: Color(0xFFFDE68A),
                               fontSize: 11.5,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
+            ),
+
+            // 1.5 Dedicated Proper Sankalpam & Panchangam Box
+            SankalpamPanchangBox(
+              panchang: _panchang,
+              profile: _profile,
+              selectedDate: _selectedDate,
+              onSelectDate: _selectPanchangDate,
+              onResetDate: _resetPanchangDate,
+              onEditProfile: _showProfileDialog,
             ),
 
             // 2. HERO CARD: Sri Ayyappa Swamy Puja & Mandala Deeksha Hub
