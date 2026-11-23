@@ -38,6 +38,23 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
   int _ashtottaraCounter = 1; // 1 to 108
   bool _showAll108Names = false;
   late bool _isFullMode;
+  double _slokaFontSize = 15.5; // Allows full sloka lines to fit without wrapping
+
+  void _decreaseFontSize() {
+    if (_slokaFontSize > 12.5) {
+      setState(() {
+        _slokaFontSize -= 1.0;
+      });
+    }
+  }
+
+  void _increaseFontSize() {
+    if (_slokaFontSize < 22.0) {
+      setState(() {
+        _slokaFontSize += 1.0;
+      });
+    }
+  }
 
   late PanchangamData _panchang;
   late DeityModel _deity;
@@ -168,7 +185,9 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
               ),
             ),
             Text(
-              _isFullMode ? 'సంపూర్ణ షోడశోపచార పూజ (16 ఉపచారాలు)' : 'నిత్య లఘు పూజ (10 దశలు)',
+              _isFullMode
+                  ? 'సంపూర్ణ షోడశ పూజ (${_pujaSteps.length} దశలు)'
+                  : 'నిత్య లఘు పూజ (${_pujaSteps.length} దశలు)',
               style: const TextStyle(
                 fontSize: 12,
                 color: Color(0xFFFDE68A),
@@ -178,16 +197,53 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
           ],
         ),
         actions: [
+          // Live Sloka Font Size Stepper (A- / A+)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.text_decrease, color: Colors.white, size: 20),
+                tooltip: 'ఫాంట్ తగ్గించండి (A-)',
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                onPressed: _decreaseFontSize,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                decoration: BoxDecoration(
+                  color: Colors.black26,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  _slokaFontSize.toStringAsFixed(0),
+                  style: const TextStyle(
+                    fontSize: 11,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.text_increase, color: Colors.white, size: 20),
+                tooltip: 'ఫాంట్ పెంచండి (A+)',
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                onPressed: _increaseFontSize,
+              ),
+            ],
+          ),
+          const SizedBox(width: 4),
+
           // Script Switcher (తెలుగు / దేవనాగరి)
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTypography.sacredGold,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
                 elevation: 1,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
               onPressed: () {
                 setState(() {
@@ -196,7 +252,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
               },
               child: Text(
                 _activeScript == 'telugu' ? 'संस्कृतम्' : 'తెలుగు',
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
               ),
             ),
           ),
@@ -347,21 +403,21 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
           // 3. Scrollable Sacred Ritual Sloka & Meaning Area
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(14, 6, 14, 14),
+              padding: const EdgeInsets.fromLTRB(8, 4, 8, 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // Step Title
                   Text(
                     _activeScript == 'telugu' ? step.titleTe : step.titleSa,
-                    style: AppTypography.sacredHeader(fontSize: 21),
+                    style: AppTypography.sacredHeader(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 8),
 
                   // Main Sacred Card (Pure White with Gold Border for maximum readability)
                   Container(
-                    padding: const EdgeInsets.all(18),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
                     decoration: BoxDecoration(
                       color: AppTypography.cardSurface,
                       borderRadius: BorderRadius.circular(14),
@@ -428,8 +484,8 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                           SelectableText(
                             _activeScript == 'telugu' ? step.slokaTe : step.slokaSa,
                             style: _activeScript == 'telugu'
-                                ? AppTypography.teluguSloka(fontSize: 18.0)
-                                : AppTypography.sanskritSloka(fontSize: 18.5),
+                                ? AppTypography.teluguSloka(fontSize: _slokaFontSize)
+                                : AppTypography.sanskritSloka(fontSize: _slokaFontSize + 0.5),
                             textAlign: TextAlign.center,
                           ),
                         ],

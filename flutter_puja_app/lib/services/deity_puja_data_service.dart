@@ -302,8 +302,8 @@ class DeityPujaDataService {
         PujaStepModel(
           stepNumber: 4,
           stepId: 'sankalpam',
-          titleTe: '4. లైవ్ డైనమిక్ సంకల్పం',
-          titleSa: '४. प्रत्यक्ष सङ्कल्पः',
+          titleTe: '4. సంకల్పం',
+          titleSa: '४. सङ्कल्पः',
           actionInstructionTe: 'చేతిలో అక్షతలు, పువ్వు, కొద్దిగా నీరు ఉంచుకుని సంకల్పం పఠించండి.',
           actionInstructionSa: 'हस्ते अक्षतान्, पुष्पं, जलं च धृत्वा सङ्कल्पं पठेत् ।',
           slokaTe: sankalpaMap['telugu']!,
@@ -462,8 +462,8 @@ class DeityPujaDataService {
         PujaStepModel(
           stepNumber: 5,
           stepId: 'sankalpam',
-          titleTe: '5. లైవ్ డైనమిక్ సంకల్పం',
-          titleSa: '५. प्रत्यक्ष सङ्कल्पः',
+          titleTe: '5. సంకల్పం',
+          titleSa: '५. सङ्कल्पः',
           actionInstructionTe: 'చేతిలో అక్షతలు, పువ్వు, కొద్దిగా నీరు ఉంచుకుని మీ కుటుంబ గోత్ర నామాలతో కూడిన సంకల్పం పఠించండి.',
           actionInstructionSa: 'हस्ते अक्षतान्, पुष्पं, जलं च धृत्वा सङ्कल्पं पठेत् ।',
           slokaTe: sankalpaMap['telugu']!,

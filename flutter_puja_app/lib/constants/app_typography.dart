@@ -34,17 +34,17 @@ class AppTypography {
 
   /// తెలుగు శ్లోకాలు & మంత్రాల ఫాంట్ (Telugu Font Style with safe line heights)
   static TextStyle teluguSloka({
-    double fontSize = 18.0,
+    double fontSize = 15.5,
     FontWeight fontWeight = FontWeight.w600,
     Color color = textMaroon,
-    double height = 1.75, // Generous line height ensures Telugu matras/vothulu never collide
+    double height = 1.65, // Generous line height ensures Telugu matras/vothulu never collide
   }) {
     return GoogleFonts.mandali(
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
       height: height,
-      letterSpacing: 0.3,
+      letterSpacing: 0.1,
     );
   }
 

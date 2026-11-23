@@ -12,7 +12,7 @@ class AyyappaCanonicalPujaData {
   // 1. అంగపూజలు (PDF అనుసారంగా ఖచ్చితమైన అంగ పూజా మంత్రాలు)
   // ========================================================
 
-  /// విఘ్నేశ్వర అంగపూజ (PDF Pages 29-30)
+  /// విఘ్నేశ్వర అంగపూజ
   static const String vighneswaraAngaPujaTe = '''
 ఓం గణేశాయ నమః — పాదౌ పూజయామి |
 ఓం విఘ్నరాజాయ నమః — జానునీ పూజయామి |
@@ -41,7 +41,7 @@ class AyyappaCanonicalPujaData {
 ॐ सर्वेश्वराय नमः — शिरः पूजयामि ।
 ॐ सर्वात्मकाय नमः — सर्वाण्यङ्गानि पूजयामि ॥''';
 
-  /// సుబ్రహ్మణ్యేశ్వర అంగపూజ (PDF Page 33)
+  /// సుబ్రహ్మణ్యేశ్వర అంగపూజ
   static const String subrahmanyaAngaPujaTe = '''
 ఓం సురవందిత పాదాయ నమః — పాదౌ పూజయామి |
 ఓం స్కందాయ నమః — గుల్ఫౌ పూజయామి |
@@ -80,7 +80,7 @@ class AyyappaCanonicalPujaData {
 ॐ क्रौञ्चाद्रिभेदिने नमः — शिरः पूजयामि ।
 ॐ शिखिवाहनाय नमः — सर्वाण्यङ्गानि पूजयामि ॥''';
 
-  /// శ్రీ అయ్యప్పస్వామి అంగపూజ (PDF Page 44)
+  /// శ్రీ అయ్యప్పస్వామి అంగపూజ
   static const String ayyappaAngaPujaTe = '''
 ఓం మహాశాస్త్రే నమః — పాదౌ పూజయామి |
 ఓం శిల్పిరూపాయ నమః — గుల్ఫౌ పూజయామి |
@@ -165,7 +165,7 @@ class AyyappaCanonicalPujaData {
 श्री वल्ली देवसेना समेत श्री सुब्रह्मण्येश्वर स्वामिने नमः — कर्पूर नीराजनं दर्शयामि ॥''';
 
   // ========================================================
-  // 3. అయ్యప్ప 108 శరణు ఘోష (PDF Pages 48-49)
+  // 3. అయ్యప్ప 108 శరణు ఘోష
   // ========================================================
   static const String ayyappa108SaranaluTe = '''
 పొన్నంబలవాసనే — శరణమయ్యప్ప!
@@ -360,7 +360,7 @@ class AyyappaCanonicalPujaData {
 स्वामिये शरणमय्यप्पा ॥''';
 
   // ========================================================
-  // 5. మంగళ హారతి (PDF Pages 64-65)
+  // 5. మంగళ హారతి
   // ========================================================
   static const String mangalaHarathiTe = '''
 శంకరాయ శంకరాయ శంకరాయ మంగళం |
@@ -407,7 +407,7 @@ class AyyappaCanonicalPujaData {
 कर्पूर नीराजनं समर्पयामि ॥''';
 
   // ========================================================
-  // 6. వేదోక్త మంత్రపుష్పం (PDF Pages 65-66)
+  // 6. వేదోక్త మంత్రపుష్పం
   // ========================================================
   static const String mantraPushpamTe = '''
 యోऽపాం పుష్పం వేద | పుష్పవాన్ ప్రజావాన్ పశుమాన్ భవతి |
@@ -454,7 +454,7 @@ class AyyappaCanonicalPujaData {
 ॐ शान्तिः शान्तिः शान्तिः ॥''';
 
   // ========================================================
-  // 7. ఆత్మ ప్రదక్షిణ నమస్కారం (PDF Page 66)
+  // 7. ఆత్మ ప్రదక్షిణ నమస్కారం
   // ========================================================
   static const String aatmaPradakshinamTe = '''
 యానికాని చ పాపాని జన్మాంతరకృతాని చ |
@@ -525,7 +525,7 @@ class AyyappaCanonicalPujaData {
 श्री अय्यप्प स्वामि प्रसादं शिरसा गृह्णामि ॥''';
 
   // ========================================================
-  // 9. ఉద్వాసన మంత్రం (PDF Page 67)
+  // 9. ఉద్వాసన మంత్రం
   // ========================================================
   static const String udvasanaMantramTe = '''
 ఓం యజ్ఞేన యజ్ఞమయజంత దేవాః |
@@ -564,11 +564,11 @@ class AyyappaCanonicalPujaData {
     );
 
     return [
-      // 1. Deeparadhana (PDF Page 25)
+      // 1. Deeparadhana
       PujaStepModel(
         stepNumber: 1,
         stepId: 'deepam',
-        titleTe: '1. ప్రథమ దీపారాధన (PDF Page 25)',
+        titleTe: '1. ప్రథమ దీపారాధన',
         titleSa: '१. प्रथम दीपाराधनम्',
         actionInstructionTe: 'పళ్లెంలో బియ్యం పోసి, తమలపాకుపై పసుపు గణపతిని ఉంచి, దీపాలు వెలిగించి నమస్కరించండి.',
         actionInstructionSa: 'घृतेन तैलमिश्रितेन वा दीपं प्रज्वाल्य नमस्कुरुत ।',
@@ -608,11 +608,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'deeparadhana',
       ),
 
-      // 2. Achamanam (PDF Page 26)
+      // 2. Achamanam
       PujaStepModel(
         stepNumber: 2,
         stepId: 'achamanam',
-        titleTe: '2. ఆచమనం & అంతఃశుద్ధి (PDF Page 26)',
+        titleTe: '2. ఆచమనం & అంతఃశుద్ధి',
         titleSa: '२. आचमनम् (२४ नामानि)',
         actionInstructionTe: 'కుడి అరచేతితో మూడుసార్లు తీర్థాన్ని స్వీకరించి, 24 కేశవ నామాలను పఠించండి.',
         actionInstructionSa: 'आचमनं कृत्वा २४ नामानि पठेत् ।',
@@ -646,11 +646,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'achamanam',
       ),
 
-      // 3. Bhutochatana & Pranayama (PDF Pages 26-27)
+      // 3. Bhutochatana & Pranayama
       PujaStepModel(
         stepNumber: 3,
         stepId: 'ghanta_pranayama',
-        titleTe: '3. ఘంటానాదం, భూతోచ్ఛాటన & ప్రాణాయామం (PDF Pages 26-27)',
+        titleTe: '3. ఘంటానాదం, భూతోచ్ఛాటన & ప్రాణాయామం',
         titleSa: '३. घण्टानादम्, भूतोच्चाटनं & प्राणायामः',
         actionInstructionTe: 'ఘంటను నిదానంగా మోగిస్తూ, అక్షతలను నాలుగు దిక్కులా చిలకరించి ప్రాణాయామం చేయండి.',
         actionInstructionSa: 'घण्टां नादयन् भूतोच्चाटनं प्राणायामं च कुर्यात् ।',
@@ -681,7 +681,7 @@ class AyyappaCanonicalPujaData {
       PujaStepModel(
         stepNumber: 4,
         stepId: 'sankalpam',
-        titleTe: '4. లైవ్ డైనమిక్ సంకల్పం (PDF Page 27)',
+        titleTe: '4. సంకల్పం',
         titleSa: '४. प्रत्यक्ष सङ्कल्पः',
         actionInstructionTe: 'చేతిలో అక్షతలు, పువ్వు, కొద్దిగా నీరు ఉంచుకుని సంకల్పం పఠించండి.',
         actionInstructionSa: 'हस्ते अक्षतान्, पुष्पं, जलं च धृत्वा सङ्कल्पं पठेत् ।',
@@ -693,11 +693,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'sankalpam',
       ),
 
-      // 5. Kalasha Puja (PDF Page 28)
+      // 5. Kalasha Puja
       PujaStepModel(
         stepNumber: 5,
         stepId: 'kalasha_puja',
-        titleTe: '5. కలశ పూజ (PDF Page 28)',
+        titleTe: '5. కలశ పూజ',
         titleSa: '५. कलश पूजा (सप्तनदी सङ्गमः)',
         actionInstructionTe: 'కలశ పాత్రపై కుడిచేతిని ఉంచి సప్త పవిత్ర నదులను కలశ జలంలోకి ఆహ్వానించండి.',
         actionInstructionSa: 'कलशस्य मुखे हस्तं निधाय सप्तनदीः आवाहयेत् ।',
@@ -726,7 +726,7 @@ class AyyappaCanonicalPujaData {
       PujaStepModel(
         stepNumber: 6,
         stepId: 'ganapathi_laghu_anga',
-        titleTe: '6. శ్రీ విఘ్నేశ్వర స్వామి లఘు పూజ & అంగపూజ (PDF Pages 28-30)',
+        titleTe: '6. శ్రీ విఘ్నేశ్వర స్వామి లఘు పూజ & అంగపూజ',
         titleSa: '६. श्री विघ्नेश्वर लघुपूजा & अङ्गपूजा',
         actionInstructionTe: 'పసుపు గణపతికి షోడశోపచారాలు చేసి, అంగపూజలోని 12 అంగములకు పుష్పాక్షతలను సమర్పించండి (అష్టోత్తరం ఉండదు).',
         actionInstructionSa: 'हरिद्रा गणपतये उपचाराः अङ्गपूजां च समर्पयेत् ।',
@@ -740,7 +740,7 @@ class AyyappaCanonicalPujaData {
             'శ్రీ మహాగణాధిపతయే నమః — ధ్యాయామి, ఆవాహయామి | ఆసనం, పాద్యం, అర్ఘ్యం, ఆచమనీయం సమర్పయామి |\n'
             'స్నానం సమర్పయామి, వస్త్రం సమర్పయామి, యజ్ఞోపవీతం సమర్పయామి, శ్రీ గంధం ధారయామి, సిందూరం సమర్పయామి, పుష్పైః పూజయామి ||\n\n'
             '-----------------------------------------\n'
-            '🌿 శ్రీ విఘ్నేశ్వర అంగపూజ (PDF Pages 29-30):\n'
+            '🌿 శ్రీ విఘ్నేశ్వర అంగపూజ:\n'
             '$vighneswaraAngaPujaTe',
         slokaSa: 'वक्रतुण्ड महाकाय कोटिसूर्य समप्रभ ।\n'
             'अविघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥\n\n'
@@ -758,7 +758,7 @@ class AyyappaCanonicalPujaData {
       PujaStepModel(
         stepNumber: 7,
         stepId: 'subramanya_laghu_anga',
-        titleTe: '7. శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి లఘు పూజ & అంగపూజ (PDF Page 33)',
+        titleTe: '7. శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి లఘు పూజ & అంగపూజ',
         titleSa: '७. श्री सुब्रह्मण्येश्वर लघुपूजा & अङ्गपूजा',
         actionInstructionTe: 'సుబ్రహ్మణ్యేశ్వరునికి నమస్కరించి, అంగపూజలోని 16 అంగములకు పుష్పాక్షతలను సమర్పించండి (అష్టోత్తరం ఉండదు).',
         actionInstructionSa: 'श्री सुब्रह्मण्येश्वराय उपचाराः अङ्गपूजां च कुर्यात् ।',
@@ -768,7 +768,7 @@ class AyyappaCanonicalPujaData {
             'ధ్యానం సమర్పయామి, ఆవాహయామి | ఆసనం, పాద్యం, అర్ఘ్యం, ఆచమనీయం సమర్పయామి |\n'
             'స్నానం, వస్త్రం, యజ్ఞోపవీతం, గంధం, పుష్పాక్షతాన్ సమర్పయామి ||\n\n'
             '-----------------------------------------\n'
-            '🦚 శ్రీ సుబ్రహ్మణ్యేశ్వర అంగపూజ (PDF Page 33):\n'
+            '🦚 శ్రీ సుబ్రహ్మణ్యేశ్వర అంగపూజ:\n'
             '$subrahmanyaAngaPujaTe',
         slokaSa: 'षडाननं चन्दनलेपिताङ्गं महोरसं दिव्यमयूरवाहनम् ।\n'
             'रुद्रस्य सूनुं सुरलोकनाथं ब्रह्मण्यदेवं शरणं प्रपद्ये ॥\n\n'
@@ -782,11 +782,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'dhyanam',
       ),
 
-      // 8. Sri Ayyappa Swami Dhyanam & Shodashopachara (PDF Pages 41-44)
+      // 8. Sri Ayyappa Swami Dhyanam & Shodashopachara
       PujaStepModel(
         stepNumber: 8,
         stepId: 'ayyappa_dhyanam_shodasa',
-        titleTe: '8. శ్రీ అయ్యప్పస్వామి ధ్యానం & ఆవాహనాది షోడశోపచారాలు (PDF Pages 41-44)',
+        titleTe: '8. శ్రీ అయ్యప్పస్వామి ధ్యానం & ఆవాహనాది షోడశోపచారాలు',
         titleSa: '८. श्री अय्यप्पस्वामी ध्यानं & षोडशोपचाराः',
         actionInstructionTe: 'స్వామివారి దివ్య మంగళ రూపాన్ని స్మరిస్తూ ఆవాహన చేసి, పంచామృత స్నానం, గంధం, పుష్పాలను సమర్పించండి.',
         actionInstructionSa: 'स्वामिनं ध्यात्वा आवाह्य उपचाराः पञ्चामृतस्नानं च समर्पयेत् ।',
@@ -815,11 +815,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'dhyanam',
       ),
 
-      // 9. Sri Ayyappa Swami Anga Puja (PDF Page 44)
+      // 9. Sri Ayyappa Swami Anga Puja
       PujaStepModel(
         stepNumber: 9,
         stepId: 'ayyappa_anga_puja',
-        titleTe: '9. శ్రీ అయ్యప్పస్వామి అంగ పూజ (PDF Page 44)',
+        titleTe: '9. శ్రీ అయ్యప్పస్వామి అంగపూజ',
         titleSa: '९. श्री अय्यप्पस्वामी अङ्गपूजा',
         actionInstructionTe: 'స్వామివారి పాదాల నుండి రత్న కిరీటం వరకు ప్రతి అంగాన్ని స్మరిస్తూ పువ్వులు లేదా అక్షతలను సమర్పించండి.',
         actionInstructionSa: 'पादादारभ्य शिरःपर्यन्तं अङ्गानि सम्पूज्य पुष्पाणि समर्पयेत् ।',
@@ -831,11 +831,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'angapuja',
       ),
 
-      // 10. Sri Ayyappa Swami Ashtottaram (PDF Pages 45-46)
+      // 10. Sri Ayyappa Swami Ashtottaram
       PujaStepModel(
         stepNumber: 10,
         stepId: 'ayyappa_ashtottaram',
-        titleTe: '10. శ్రీ అయ్యప్పస్వామి అష్టోత్తర శతనామావళి (PDF Pages 45-46)',
+        titleTe: '10. శ్రీ అయ్యప్పస్వామి అష్టోత్తర శతనామావళి',
         titleSa: '१०. श्री अय्यप्पस्वामी अष्टोत्तर शतनामावळिः',
         actionInstructionTe: 'ఒక్కొక్క నామం చదువుతూ స్క్రీన్ పై తాకి పువ్వు సమర్పించండి (కౌంటర్ 108 వరకు సాగుతుంది).',
         actionInstructionSa: 'एकैकं नाम उच्चार्य पुष्पं समर्पयेत् (१०८ वारम्) ।',
@@ -849,11 +849,11 @@ class AyyappaCanonicalPujaData {
         counterTarget: 108,
       ),
 
-      // 11. Sri Ayyappa Swami Maha Naivedyam & Tambulam (PDF Page 47)
+      // 11. Sri Ayyappa Swami Maha Naivedyam & Tambulam
       PujaStepModel(
         stepNumber: 11,
         stepId: 'ayyappa_naivedyam',
-        titleTe: '11. శ్రీ అయ్యప్పస్వామి మహా నైవేద్యం & తాంబూలం (PDF Page 47)',
+        titleTe: '11. శ్రీ అయ్యప్పస్వామి మహా నైవేద్యం & తాంబూలం',
         titleSa: '११. श्री अय्यप्पस्वामी महानैवेद्यम् & ताम्बूलम्',
         actionInstructionTe: 'అప్పాలు, పాయసం, అరటిపండ్లు సమర్పిస్తూ చుట్టూ మూడుసార్లు జలమును ప్రోక్షించి గాయత్రి మంత్రం పఠించండి.',
         actionInstructionSa: 'नैवेद्यं समर्प्य त्रीणि वारान् जलं प्रोक्षयेत् ।',
@@ -877,11 +877,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'naivedyam',
       ),
 
-      // 12. Sri Ayyappa Swami 108 Saranalu (PDF Pages 48-49)
+      // 12. Sri Ayyappa Swami 108 Saranalu
       PujaStepModel(
         stepNumber: 12,
         stepId: 'ayyappa_108_saranalu',
-        titleTe: '12. శ్రీ అయ్యప్పస్వామి 108 శరణు ఘోష (PDF Pages 48-49)',
+        titleTe: '12. శ్రీ అయ్యప్పస్వామి 108 శరణు ఘోష',
         titleSa: '१२. श्री अय्यप्पस्वामी १०८ शरण घोष',
         actionInstructionTe: 'ప్రతి శరణు నామానికి "శరణమయ్యప్ప" అంటూ భక్తితో శరణు ఘోష చేయండి (భజన పాటలు మినహాయించబడ్డాయి).',
         actionInstructionSa: 'एकैकं शरणं उच्चार्य प्रणमेत् ।',
@@ -897,7 +897,7 @@ class AyyappaCanonicalPujaData {
       PujaStepModel(
         stepNumber: 13,
         stepId: 'namaskara_slokalu',
-        titleTe: '13. శ్రీ అయ్యప్ప నమస్కార శ్లోకాలు (13 శ్లోకాలు) (PDF Page 64)',
+        titleTe: '13. శ్రీ అయ్యప్ప నమస్కార శ్లోకాలు',
         titleSa: '१३. श्री अय्यप्प नमस्कार श्लोकाः (१३ श्लोकाः)',
         actionInstructionTe: 'ప్రతి శ్లోకం పఠించిన తర్వాత "స్వామియే శరణమయ్యప్ప" అంటూ సాష్టాంగ నమస్కారం చేయండి.',
         actionInstructionSa: 'श्लोकं पठित्वा साष्टाङ्गं प्रणमेत् ।',
@@ -909,11 +909,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'pradakshina',
       ),
 
-      // 14. Mangala Harathi (PDF Pages 64-65)
+      // 14. Mangala Harathi
       PujaStepModel(
         stepNumber: 14,
         stepId: 'mangala_harathi',
-        titleTe: '14. శ్రీ అయ్యప్పస్వామి దివ్య మంగళ హారతి (PDF Pages 64-65)',
+        titleTe: '14. శ్రీ అయ్యప్పస్వామి దివ్య మంగళ హారతి',
         titleSa: '१४. श्री अय्यप्पस्वामी मङ्गल नीराजनम्',
         actionInstructionTe: 'కర్పూర హారతిని వెలిగించి నివేదిస్తూ, ఘంట వాయిస్తూ భక్తితో స్తుతించండి.',
         actionInstructionSa: 'कर्पूर नीराजनं प्रज्वाल्य स्वामिने दर्शयेत् ।',
@@ -925,11 +925,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'harathi',
       ),
 
-      // 15. Mantrapushpam (PDF Pages 65-66)
+      // 15. Mantrapushpam
       PujaStepModel(
         stepNumber: 15,
         stepId: 'mantrapushpam',
-        titleTe: '15. వేదోక్త దివ్య మంత్రపుష్పం & చతుర్వేద గాయత్రి (PDF Pages 65-66)',
+        titleTe: '15. వేదోక్త దివ్య మంత్రపుష్పం & చతుర్వేద గాయత్రి',
         titleSa: '१५. वेदोक्त दिव्य मन्त्रपुष्पं & गायत्री',
         actionInstructionTe: 'చేతిలో పుష్పాలు, అక్షతలు ఉంచుకుని వేద మంత్రపుష్పం పఠించి సమర్పించండి.',
         actionInstructionSa: 'हस्ते पुष्पाणि अक्षतान् धृत्वा मन्त्रपुष्पं समर्पयेत् ।',
@@ -941,11 +941,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'mantrapushpam',
       ),
 
-      // 16. Aatma Pradakshinam (PDF Page 66)
+      // 16. Aatma Pradakshinam
       PujaStepModel(
         stepNumber: 16,
         stepId: 'aatma_pradakshina',
-        titleTe: '16. ఆత్మ ప్రదక్షిణ నమస్కారం (PDF Page 66)',
+        titleTe: '16. ఆత్మ ప్రదక్షిణ నమస్కారం',
         titleSa: '१६. आत्मप्रदक्षिणा & साष्टाङ्ग प्रणामः',
         actionInstructionTe: 'కుడివైపుకు మూడుసార్లు తిరిగి ఆత్మప్రదక్షిణ చేసి, సాష్టాంగ నమస్కారం ఆచరించండి.',
         actionInstructionSa: 'त्रिः प्रदक्षिणं कृत्वा साष्टाङ्गं प्रणमेत् ।',
@@ -961,7 +961,7 @@ class AyyappaCanonicalPujaData {
       PujaStepModel(
         stepNumber: 17,
         stepId: 'kshamapana',
-        titleTe: '17. అయ్యప్ప దివ్య క్షమాపణ & బ్రహ్మార్పణం (Attached Images)',
+        titleTe: '17. అయ్యప్ప దివ్య క్షమాపణ & బ్రహ్మార్పణం',
         titleSa: '१७. अय्यप्प दिव्य क्षमापणं समर्पणं च',
         actionInstructionTe: 'చేతులు జోడించి పూజలో జరిగిన తప్పు ఒప్పులను క్షమించమని వేడుకుంటూ ప్రసాదాన్ని శిరసా ధరించండి.',
         actionInstructionSa: 'क्षमां प्रार्थ्य स्वामिनः पादोदकं प्रसादं च शिरसा गृह्णीयात् ।',
@@ -973,11 +973,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'kshama',
       ),
 
-      // 18. Udyasana Mantram (PDF Page 67)
+      // 18. Udyasana Mantram
       PujaStepModel(
         stepNumber: 18,
         stepId: 'udvasana',
-        titleTe: '18. యజ్ఞోక్త ఉద్వాసన మంత్రం (PDF Page 67)',
+        titleTe: '18. యజ్ఞోక్త ఉద్వాసన మంత్రం',
         titleSa: '१८. यज्ञोक्त उद्धासन मन्त्रः',
         actionInstructionTe: 'స్వామివారిపై కొన్ని అక్షతలు వేసి, దైవ చైతన్యాన్ని తిరిగి మీ హృదయ కమలంలో నిలుపుకోండి.',
         actionInstructionSa: 'अक्षतान् समर्प्य स्वामिनं स्वहृदये स्थापयेत् ।',
@@ -1006,11 +1006,11 @@ class AyyappaCanonicalPujaData {
     );
 
     return [
-      // 1. Deeparadhana (PDF Page 25)
+      // 1. Deeparadhana
       PujaStepModel(
         stepNumber: 1,
         stepId: 'deepam',
-        titleTe: '1. ప్రథమ దీపారాధన (PDF Page 25)',
+        titleTe: '1. ప్రథమ దీపారాధన',
         titleSa: '१. प्रथम दीपाराधनम्',
         actionInstructionTe: 'పళ్లెంలో బియ్యం పోసి, తమలపాకుపై పసుపు గణపతిని ఉంచి, దీపాలు వెలిగించి నమస్కరించండి.',
         actionInstructionSa: 'घृतेन तैलमिश्रितेन वा दीपं प्रज्वाल्य नमस्कुरुत ।',
@@ -1050,11 +1050,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'deeparadhana',
       ),
 
-      // 2. Achamanam (PDF Page 26)
+      // 2. Achamanam
       PujaStepModel(
         stepNumber: 2,
         stepId: 'achamanam',
-        titleTe: '2. ఆచమనం & అంతఃశుద్ధి (PDF Page 26)',
+        titleTe: '2. ఆచమనం & అంతఃశుద్ధి',
         titleSa: '२. आचमनम् (२४ नामानि)',
         actionInstructionTe: 'కుడి అరచేతితో మూడుసార్లు తీర్థాన్ని స్వీకరించి, 24 కేశవ నామాలను పఠించండి.',
         actionInstructionSa: 'आचमनं कृत्वा २४ नामानि पठेत् ।',
@@ -1088,11 +1088,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'achamanam',
       ),
 
-      // 3. Ghanta & Bhutochatana (PDF Pages 26-27)
+      // 3. Ghanta & Bhutochatana
       PujaStepModel(
         stepNumber: 3,
         stepId: 'ghanta_bhutochatana',
-        titleTe: '3. ఘంటానాదం & భూతోచ్ఛాటన (PDF Pages 26-27)',
+        titleTe: '3. ఘంటానాదం & భూతోచ్ఛాటన',
         titleSa: '३. घण्टानादम् & भूतोच्चाटनम्',
         actionInstructionTe: 'ఘంటను నిదానంగా మోగిస్తూ, తెల్లని అక్షతలను నాలుగు దిక్కులా చిలకరించి ప్రతికూల శక్తులను తొలగించండి.',
         actionInstructionSa: 'घण्टां नादयन्, अक्षतान् दिक्षु विक्षिप्य भूतोच्चाटनं कुर्यात् ।',
@@ -1114,11 +1114,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'bell',
       ),
 
-      // 4. Pranayama (PDF Page 27)
+      // 4. Pranayama
       PujaStepModel(
         stepNumber: 4,
         stepId: 'pranayama',
-        titleTe: '4. ప్రాణాయామం & పవిత్ర ధారణ (PDF Page 27)',
+        titleTe: '4. ప్రాణాయామం & పవిత్ర ధారణ',
         titleSa: '४. प्राणायामः & पवित्र धारणम्',
         actionInstructionTe: 'కుడి ముక్కు మూసి ఎడమ ముక్కు ద్వారా గాలి పీల్చి, బంధించి, ఓంకార ధ్యానంతో నిదానంగా వదలండి.',
         actionInstructionSa: 'प्राणायामं कृत्वा मनः समाधाय स्थितो भव ।',
@@ -1134,11 +1134,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'pranayama',
       ),
 
-      // 5. Dynamic Live Sankalpam (PDF Page 27)
+      // 5. Dynamic Live Sankalpam
       PujaStepModel(
         stepNumber: 5,
         stepId: 'sankalpam',
-        titleTe: '5. లైవ్ డైనమిక్ సంకల్పం (PDF Page 27)',
+        titleTe: '5. సంకల్పం',
         titleSa: '५. प्रत्यक्ष सङ्कल्पः',
         actionInstructionTe: 'చేతిలో అక్షతలు, పువ్వు, కొద్దిగా నీరు ఉంచుకుని మీ కుటుంబ గోత్ర నామాలతో కూడిన సంకల్పం పఠించండి.',
         actionInstructionSa: 'हस्ते अक्षतान्, पुष्पं, जलं च धृत्वा सङ्कल्पं पठेत् ।',
@@ -1150,11 +1150,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'sankalpam',
       ),
 
-      // 6. Kalasha Puja (PDF Page 28)
+      // 6. Kalasha Puja
       PujaStepModel(
         stepNumber: 6,
         stepId: 'kalasha_puja',
-        titleTe: '6. కలశ పూజ (PDF Page 28)',
+        titleTe: '6. కలశ పూజ',
         titleSa: '६. कलश पूजा (सप्तनदी सङ्गमः)',
         actionInstructionTe: 'కలశ పాత్రపై కుడిచేతిని ఉంచి సప్త పవిత్ర నదులను కలశ జలంలోకి ఆహ్వానించండి.',
         actionInstructionSa: 'कलशस्य मुखे हस्तं निधाय सप्तनदीः आवाहयेत् ।',
@@ -1179,11 +1179,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'kalasha',
       ),
 
-      // 7. Vighneswara Shodashopachara & Anga Puja (PDF Pages 28-30)
+      // 7. Vighneswara Shodashopachara & Anga Puja
       PujaStepModel(
         stepNumber: 7,
         stepId: 'ganapathi_shodasa_anga',
-        titleTe: '7. శ్రీ విఘ్నేశ్వర స్వామి షోడశోపచారాలు & అంగపూజ (PDF Pages 28-30)',
+        titleTe: '7. శ్రీ విఘ్నేశ్వర స్వామి షోడశోపచారాలు & అంగపూజ',
         titleSa: '७. श्री विघ्नेश्वर षोडशोपचाराः & अङ्गपूजा',
         actionInstructionTe: 'పసుపు గణపతికి షోడశోపచారాలు చేసి, అంగపూజలోని ప్రతి అవయవానికి పుష్పాక్షతలను సమర్పించండి.',
         actionInstructionSa: 'हरिद्रा गणपतये षोडशोपचारान् अङ्गपूजां च कुर्यात् ।',
@@ -1197,7 +1197,7 @@ class AyyappaCanonicalPujaData {
             'శ్రీ మహాగణాధిపతయే నమః — ధ్యానం సమర్పయామి, ఆవాహయామి | ఆసనం, పాద్యం, అర్ఘ్యం, ఆచమనీయం సమర్పయామి |\n'
             'స్నానం సమర్పయామి, వస్త్రం సమర్పయామి, యజ్ఞోపవీతం సమర్పయామి, దివ్య శ్రీచందనం సమర్పయామి, పుష్పాక్షతాన్ సమర్పయామి ||\n\n'
             '-----------------------------------------\n'
-            '🌿 శ్రీ విఘ్నేశ్వర అంగపూజ (PDF Pages 29-30):\n'
+            '🌿 శ్రీ విఘ్నేశ్వర అంగపూజ:\n'
             '$vighneswaraAngaPujaTe',
         slokaSa: 'शुक्लाम्बरधरं विष्णुं शशिवर्णं चतुर्भुजम् ।\n'
             'प्रसन्नवदनं ध्यायेत् सर्वविघ्नोपशान्तये ॥\n\n'
@@ -1211,17 +1211,17 @@ class AyyappaCanonicalPujaData {
         audioKey: 'ganapathi',
       ),
 
-      // 8. Vighneswara Ashtottaram, Naivedyam & Harathi (PDF Pages 30-32)
+      // 8. Vighneswara Ashtottaram, Naivedyam & Harathi
       PujaStepModel(
         stepNumber: 8,
         stepId: 'ganapathi_ashtottara_naivedyam',
-        titleTe: '8. శ్రీ విఘ్నేశ్వర అష్టోత్తర శతనామావళి & నైవేద్యం (PDF Pages 30-32)',
+        titleTe: '8. శ్రీ విఘ్నేశ్వర అష్టోత్తర శతనామావళి & నైవేద్యం',
         titleSa: '८. श्री विघ्नेश्वर अष्टोत्तर शतनामावळिः & नैवेद्यम्',
         actionInstructionTe: 'గణపతి 108 నామాలతో పుష్పార్చన చేసి, బెల్లం/కుడుములు నైవేద్యం మరియు కర్పూర హారతిని సమర్పించండి.',
         actionInstructionSa: '१०८ नामभिः सम्पूज्य नैवेद्यं नीराजनं च समर्पयेत् ।',
         slokaTe: '${AshtottaraData.ganapathi108.join('\n')}\n\n'
             '-----------------------------------------\n'
-            '🍎 విఘ్నేశ్వర ధూప, దీప, నైవేద్యం & హారతి (PDF Pages 31-32):\n'
+            '🍎 విఘ్నేశ్వర ధూప, దీప, నైవేద్యం & హారతి:\n'
             'వనస్పతిరసోద్భూతో గంధాఢ్యో గంధ ఉత్తమః | ఆఘ్రేయః సర్వదేవానాం ధూపోऽయం ప్రతిగృహ్యతామ్ ||\n'
             'శ్రీ మహాగణాధిపతయే నమః — ధూపమాఘ్రాపయామి |\n\n'
             'సాజ్యం త్రివర్తి సంయుక్తం వహ్నినా యోజితం ప్రియం | గృహాణ మంగళం దీపం త్రైలోక్య తిమిరాపహమ్ ||\n'
@@ -1245,11 +1245,11 @@ class AyyappaCanonicalPujaData {
         counterTarget: 108,
       ),
 
-      // 9. Subrahmanyeswara Shodashopachara & Anga Puja (PDF Page 33)
+      // 9. Subrahmanyeswara Shodashopachara & Anga Puja
       PujaStepModel(
         stepNumber: 9,
         stepId: 'subramanya_shodasa_anga',
-        titleTe: '9. శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి షోడశోపచారాలు & అంగపూజ (PDF Page 33)',
+        titleTe: '9. శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామి షోడశోపచారాలు & అంగపూజ',
         titleSa: '९. श्री सुब्रह्मण्येश्वर षोडशोपचाराः & अङ्गपूजा',
         actionInstructionTe: 'సుబ్రహ్మణ్యేశ్వరునికి షోడశోపచారాలు సమర్పించి, అంగపూజలోని 16 అంగములకు పుష్పాక్షతలను సమర్పించండి.',
         actionInstructionSa: 'श्री सुब्रह्मण्येश्वराय षोडशोपचारान् अङ्गपूजां च कुर्यात् ।',
@@ -1257,7 +1257,7 @@ class AyyappaCanonicalPujaData {
             'రుద్రస్య సూనుం సురలోకనాథం బ్రహ్మణ్యదేవం శరణం ప్రపద్యే ||\n\n'
             'శ్రీ వల్లీ దేవసేనా సమేత శ్రీ సుబ్రహ్మణ్యేశ్వర స్వామినే నమః — ధ్యానం సమర్పయామి, ఆవాహయామి | ఆసనం, పాద్యం, అర్ఘ్యం, ఆచమనీయం సమర్పయామి | స్నానం, వస్త్రం, యజ్ఞోపవీతం, గంధం, పుష్పాక్షతాన్ సమర్పయామి ||\n\n'
             '-----------------------------------------\n'
-            '🦚 శ్రీ సుబ్రహ్మణ్యేశ్వర అంగపూజ (PDF Page 33):\n'
+            '🦚 శ్రీ సుబ్రహ్మణ్యేశ్వర అంగపూజ:\n'
             '$subrahmanyaAngaPujaTe',
         slokaSa: 'षडाननं चन्दनलेपिताङ्गं महोरसं दिव्यमयूरवाहनम् ।\n'
             'रुद्रस्य सूनुं सुरलोकनाथं ब्रह्मण्यदेवं शरणं प्रपद्ये ॥\n\n'
@@ -1271,11 +1271,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'dhyanam',
       ),
 
-      // 10. Subrahmanyeswara Ashtottaram (PDF Pages 33-35)
+      // 10. Subrahmanyeswara Ashtottaram
       PujaStepModel(
         stepNumber: 10,
         stepId: 'subramanya_ashtottaram',
-        titleTe: '10. శ్రీ సుబ్రహ్మణ్యేశ్వర అష్టోత్తర శతనామావళి (PDF Pages 33-35)',
+        titleTe: '10. శ్రీ సుబ్రహ్మణ్యేశ్వర అష్టోత్తర శతనామావళి',
         titleSa: '१०. श्री सुब्रह्मण्येश्वर अष्टोत्तर शतनामावळिः',
         actionInstructionTe: 'సుబ్రహ్మణ్యేశ్వరునికి 108 నామాలతో స్క్రీన్ పై తాకి పుష్పార్చన చేయండి.',
         actionInstructionSa: '१०८ नामभिः सम्पूज्य पुष्पं समर्पयेत् ।',
@@ -1293,7 +1293,7 @@ class AyyappaCanonicalPujaData {
       PujaStepModel(
         stepNumber: 11,
         stepId: 'subramanya_naivedyam_harathi',
-        titleTe: '11. శ్రీ సుబ్రహ్మణ్యేశ్వర నైవేద్యం & కర్పూర హారతి (శాస్త్రోక్తం)',
+        titleTe: '11. శ్రీ సుబ్రహ్మణ్యేశ్వర నైవేద్యం & కర్పూర హారతి',
         titleSa: '११. श्री सुब्रह्मण्येश्वर नैवेद्यम् & कर्पूर नीराजनम्',
         actionInstructionTe: 'సుబ్రహ్మణ్యేశ్వరునికి పాలు, పండ్లు, పాయసం నైవేద్యం నివేదించి, కర్పూర హారతిని సమర్పించండి.',
         actionInstructionSa: 'नैवेद्यं समर्प्य कर्पूर नीराजनं दर्शयेत् ।',
@@ -1305,11 +1305,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'harathi',
       ),
 
-      // 12. Sri Ayyappa Swami Shodashopachara & Panchamrutha Snanam (PDF Pages 41-44)
+      // 12. Sri Ayyappa Swami Shodashopachara & Panchamrutha Snanam
       PujaStepModel(
         stepNumber: 12,
         stepId: 'ayyappa_shodasa_panchamrutha',
-        titleTe: '12. శ్రీ అయ్యప్పస్వామి ధ్యానం & సంపూర్ణ షోడశోపచారాలు (PDF Pages 41-44)',
+        titleTe: '12. శ్రీ అయ్యప్పస్వామి ధ్యానం & సంపూర్ణ షోడశోపచారాలు',
         titleSa: '१२. श्री अय्यप्पस्वामी ध्यानं & षोडशोपचाराः',
         actionInstructionTe: 'స్వామివారిని ధ్యానించి ఆవాహన చేసి, ఆవుపాలు, పెరుగు, నెయ్యి, తేనె, చక్కెరలతో పంచామృత స్నానం చేయించండి.',
         actionInstructionSa: 'स्वामिनं आवाह्य षोडशोपचारान् वेदोक्त पञ्चामृतस्नानं च समर्पयेत् ।',
@@ -1335,11 +1335,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'shodasha',
       ),
 
-      // 13. Sri Ayyappa Swami Anga Puja (PDF Page 44)
+      // 13. Sri Ayyappa Swami Anga Puja
       PujaStepModel(
         stepNumber: 13,
         stepId: 'ayyappa_anga_puja',
-        titleTe: '13. శ్రీ అయ్యప్పస్వామి అంగ పూజ (PDF Page 44)',
+        titleTe: '13. శ్రీ అయ్యప్పస్వామి అంగపూజ',
         titleSa: '१३. श्री अय्यप्पस्वामी अङ्गपूजा',
         actionInstructionTe: 'స్వామివారి పాదాల నుండి రత్న కిరీటం వరకు ప్రతి అంగాన్ని స్మరిస్తూ పువ్వులు లేదా అక్షతలను సమర్పించండి.',
         actionInstructionSa: 'पादादारभ्य शिरःपर्यन्तं अङ्गानि सम्पूज्य पुष्पाणि समर्पयेत् ।',
@@ -1351,11 +1351,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'angapuja',
       ),
 
-      // 14. Sri Ayyappa Swami Ashtottaram (PDF Pages 45-46)
+      // 14. Sri Ayyappa Swami Ashtottaram
       PujaStepModel(
         stepNumber: 14,
         stepId: 'ayyappa_ashtottaram',
-        titleTe: '14. శ్రీ అయ్యప్పస్వామి అష్టోత్తర శతనామావళి (PDF Pages 45-46)',
+        titleTe: '14. శ్రీ అయ్యప్పస్వామి అష్టోత్తర శతనామావళి',
         titleSa: '१४. श्री अय्यप्पस्वामी अष्टोत्तर शतनामावळिः',
         actionInstructionTe: 'ఒక్కొక్క నామం చదువుతూ స్క్రీన్ పై తాకి పువ్వు సమర్పించండి (కౌంటర్ 108 వరకు సాగుతుంది).',
         actionInstructionSa: 'एकैकं नाम उच्चार्य पुष्पं समर्पयेत् (१०८ वारम्) ।',
@@ -1369,11 +1369,11 @@ class AyyappaCanonicalPujaData {
         counterTarget: 108,
       ),
 
-      // 15. Sri Ayyappa Swami Maha Naivedyam & Tambulam (PDF Page 47)
+      // 15. Sri Ayyappa Swami Maha Naivedyam & Tambulam
       PujaStepModel(
         stepNumber: 15,
         stepId: 'ayyappa_naivedyam',
-        titleTe: '15. శ్రీ అయ్యప్పస్వామి మహా నైవేద్యం, తాంబూలం & పరిషేచనం (PDF Page 47)',
+        titleTe: '15. శ్రీ అయ్యప్పస్వామి మహా నైవేద్యం, తాంబూలం & పరిషేచనం',
         titleSa: '१५. श्री अय्यप्पस्वामी महानैवेद्यम् & ताम्बूलम्',
         actionInstructionTe: 'అప్పాలు, పాయసం, అరటిపండ్లు సమర్పిస్తూ చుట్టూ మూడుసార్లు జలమును ప్రోక్షించి గాయత్రి మంత్రం పఠించండి.',
         actionInstructionSa: 'नैवेद्यं समर्प्य त्रीणि वारान् जलं प्रोक्षयेत् ।',
@@ -1397,11 +1397,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'naivedyam',
       ),
 
-      // 16. Sri Ayyappa Swami 108 Saranalu (PDF Pages 48-49)
+      // 16. Sri Ayyappa Swami 108 Saranalu
       PujaStepModel(
         stepNumber: 16,
         stepId: 'ayyappa_108_saranalu',
-        titleTe: '16. శ్రీ అయ్యప్పస్వామి 108 శరణు ఘోష (PDF Pages 48-49)',
+        titleTe: '16. శ్రీ అయ్యప్పస్వామి 108 శరణు ఘోష',
         titleSa: '१६. श्री अय्यप्पस्वामी १०८ शरण घोष',
         actionInstructionTe: 'ప్రతి శరణు నామానికి "శరణమయ్యప్ప" అంటూ భక్తితో శరణు ఘోష చేయండి (భజన పాటలు మినహాయించబడ్డాయి).',
         actionInstructionSa: 'एकैकं शरणं उच्चार्य प्रणमेत् ।',
@@ -1417,7 +1417,7 @@ class AyyappaCanonicalPujaData {
       PujaStepModel(
         stepNumber: 17,
         stepId: 'namaskara_slokalu',
-        titleTe: '17. శ్రీ అయ్యప్ప నమస్కార శ్లోకాలు (13 శ్లోకాలు) (PDF Page 64)',
+        titleTe: '17. శ్రీ అయ్యప్ప నమస్కార శ్లోకాలు',
         titleSa: '१७. श्री अय्यप्प नमस्कार श्लोकाः (१३ श्लोकाः)',
         actionInstructionTe: 'ప్రతి శ్లోకం పఠించిన తర్వాత "స్వామియే శరణమయ్యప్ప" అంటూ సాష్టాంగ నమస్కారం చేయండి.',
         actionInstructionSa: 'श्लोकं पठित्वा साष्टाङ्गं प्रणमेत् ।',
@@ -1429,11 +1429,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'pradakshina',
       ),
 
-      // 18. Mangala Harathi (PDF Pages 64-65)
+      // 18. Mangala Harathi
       PujaStepModel(
         stepNumber: 18,
         stepId: 'mangala_harathi',
-        titleTe: '18. శ్రీ అయ్యప్పస్వామి దివ్య మంగళ హారతి (PDF Pages 64-65)',
+        titleTe: '18. శ్రీ అయ్యప్పస్వామి దివ్య మంగళ హారతి',
         titleSa: '१८. श्री अय्यप्पस्वामी मङ्गल नीराजनम्',
         actionInstructionTe: 'కర్పూర హారతిని వెలిగించి నివేదిస్తూ, ఘంట వాయిస్తూ భక్తితో స్తుతించండి.',
         actionInstructionSa: 'कर्पूर नीराजनं प्रज्वाल्य स्वामिने दर्शयेत् ।',
@@ -1445,11 +1445,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'harathi',
       ),
 
-      // 19. Mantrapushpam (PDF Pages 65-66)
+      // 19. Mantrapushpam
       PujaStepModel(
         stepNumber: 19,
         stepId: 'mantrapushpam',
-        titleTe: '19. వేదోక్త దివ్య మంత్రపుష్పం & చతుర్వేద గాయత్రి (PDF Pages 65-66)',
+        titleTe: '19. వేదోక్త దివ్య మంత్రపుష్పం & చతుర్వేద గాయత్రి',
         titleSa: '१९. वेदोक्त दिव्य मन्त्रपुष्पं & गायत्री',
         actionInstructionTe: 'చేతిలో పుష్పాలు, అక్షతలు ఉంచుకుని వేద మంత్రపుష్పం పఠించి సమర్పించండి.',
         actionInstructionSa: 'हस्ते पुष्पाणि अक्षतान् धृत्वा मन्त्रपुष्पं समर्पयेत् ।',
@@ -1461,11 +1461,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'mantrapushpam',
       ),
 
-      // 20. Aatma Pradakshinam (PDF Page 66)
+      // 20. Aatma Pradakshinam
       PujaStepModel(
         stepNumber: 20,
         stepId: 'aatma_pradakshina',
-        titleTe: '20. ఆత్మ ప్రదక్షిణ నమస్కారం (PDF Page 66)',
+        titleTe: '20. ఆత్మ ప్రదక్షిణ నమస్కారం',
         titleSa: '२०. आत्मप्रदक्षिणा & साष्टाङ्ग प्रणामः',
         actionInstructionTe: 'కుడివైపుకు మూడుసార్లు తిరిగి ఆత్మప్రదక్షిణ చేసి, సాష్టాంగ నమస్కారం ఆచరించండి.',
         actionInstructionSa: 'त्रिः प्रदक्षिणं कृत्वा साष्टाङ्गं प्रणमेत् ।',
@@ -1481,7 +1481,7 @@ class AyyappaCanonicalPujaData {
       PujaStepModel(
         stepNumber: 21,
         stepId: 'kshamapana',
-        titleTe: '21. అయ్యప్ప దివ్య క్షమాపణ & బ్రహ్మార్పణం (Attached Images)',
+        titleTe: '21. అయ్యప్ప దివ్య క్షమాపణ & బ్రహ్మార్పణం',
         titleSa: '२१. अय्यप्प दिव्य क्षमापणं समर्पणं च',
         actionInstructionTe: 'చేతులు జోడించి పూజలో జరిగిన తప్పు ఒప్పులను క్షమించమని వేడుకుంటూ ప్రసాదాన్ని శిరసా ధరించండి.',
         actionInstructionSa: 'क्षमां प्रार्थ्य स्वामिनः पादोदकं प्रसादं च शिरसा गृह्णीयात् ।',
@@ -1493,11 +1493,11 @@ class AyyappaCanonicalPujaData {
         audioKey: 'kshama',
       ),
 
-      // 22. Udyasana Mantram (PDF Page 67)
+      // 22. Udyasana Mantram
       PujaStepModel(
         stepNumber: 22,
         stepId: 'udvasana',
-        titleTe: '22. యజ్ఞోక్త ఉద్వాసన మంత్రం (PDF Page 67)',
+        titleTe: '22. యజ్ఞోక్త ఉద్వాసన మంత్రం',
         titleSa: '२२. यज्ञोक्त उद्धासन मन्त्रः',
         actionInstructionTe: 'స్వామివారిపై కొన్ని అక్షతలు వేసి, దైవ చైతన్యాన్ని తిరిగి మీ హృదయ కమలంలో నిలుపుకోండి.',
         actionInstructionSa: 'अक्षतान् समर्प्य स्वामिनं स्वहृदये स्थापयेत् ।',

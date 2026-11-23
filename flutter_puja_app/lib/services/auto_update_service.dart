@@ -35,8 +35,8 @@ class UpdateInfo {
 
 /// ఇన్-యాప్ ఆటో అప్‌డేట్ సర్వీస్ (Auto Update & Zero Data Loss Service)
 class AutoUpdateService {
-  static const String currentVersion = '1.3.0';
-  static const int currentBuildNumber = 4;
+  static const String currentVersion = '1.3.1';
+  static const int currentBuildNumber = 5;
   static const String updateManifestUrl =
       'https://raw.githubusercontent.com/srinuy2024/AyyappaSwamiPuja/main/version.json';
 
