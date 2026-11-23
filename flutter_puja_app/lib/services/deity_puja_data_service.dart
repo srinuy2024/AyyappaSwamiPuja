@@ -6,6 +6,7 @@ import '../models/panchangam_data.dart';
 import '../services/dynamic_sankalpam_service.dart';
 import '../data/ashtottara_data.dart';
 import '../data/purvanga_puja_data.dart';
+import '../data/ayyappa_canonical_puja_data.dart';
 
 /// సమగ్ర దేవతా పూజా సమాచారం మరియు లఘు / సంపూర్ణ షోడశోపచార పూజా విధి
 class DeityPujaDataService {
@@ -230,6 +231,21 @@ class DeityPujaDataService {
     required PanchangamData panchang,
     required bool isFullMode,
   }) {
+    // శ్రీ అయ్యప్పస్వామి పూజా నియమావళి (Ayyappa Pooja Niyamavali PDF శాస్త్రోక్త పూజా విధానం)
+    if (deityId == 'ayyappa') {
+      if (isFullMode) {
+        return AyyappaCanonicalPujaData.getShodasaSteps(
+          profile: profile,
+          panchang: panchang,
+        );
+      } else {
+        return AyyappaCanonicalPujaData.getLaghuSteps(
+          profile: profile,
+          panchang: panchang,
+        );
+      }
+    }
+
     final deity = getDeity(deityId);
     final sankalpaMap = DynamicSankalpamService.generateBilingualSankalpam(
       profile: profile,

@@ -5,6 +5,7 @@ import '../models/puja_step_model.dart';
 import '../models/deity_model.dart';
 import '../services/panchangam_service.dart';
 import '../services/deity_puja_data_service.dart';
+import '../data/ashtottara_data.dart';
 import '../constants/app_typography.dart';
 
 /// భక్తుల కొరకు సులభతరమైన సమగ్ర పూజా ప్లేయర్ (లఘు పూజ vs సంపూర్ణ షోడశోపచార పూజ)
@@ -120,11 +121,30 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
     });
   }
 
+  List<String> _getActiveAshtottaraList(PujaStepModel step) {
+    if (step.stepId.contains('ganapathi')) {
+      return AshtottaraData.ganapathi108;
+    } else if (step.stepId.contains('subramanya')) {
+      return AshtottaraData.subramanya108;
+    }
+    return _deity.ashtottaraNamesTe;
+  }
+
+  String _getActiveAshtottaraTitle(PujaStepModel step) {
+    if (step.stepId.contains('ganapathi')) {
+      return 'శ్రీ మహాగణపతి 108 దివ్య నామావళి';
+    } else if (step.stepId.contains('subramanya')) {
+      return 'శ్రీ సుబ్రహ్మణ్యేశ్వర 108 దివ్య నామావళి';
+    }
+    return 'శ్రీ ${_deity.nameTe} 108 దివ్య నామావళి';
+  }
+
   @override
   Widget build(BuildContext context) {
     final step = _pujaSteps[_currentStepIndex];
     final progress = (_currentStepIndex + 1) / _pujaSteps.length;
     final isAshtottaraStep = step.hasInteractiveCounter || step.stepId == 'ashtottara';
+    final activeAshtottaraList = _getActiveAshtottaraList(step);
 
     return Scaffold(
       backgroundColor: AppTypography.saffronBackground,
@@ -459,7 +479,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
 
                                   // Deity-Specific 108 Name
                                   SelectableText(
-                                    _deity.ashtottaraNamesTe[_ashtottaraCounter - 1],
+                                    activeAshtottaraList[(_ashtottaraCounter - 1).clamp(0, activeAshtottaraList.length - 1)],
                                     style: AppTypography.teluguSloka(
                                       fontSize: 22.0,
                                       fontWeight: FontWeight.w700,
@@ -552,7 +572,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Text(
-                                    'శ్రీ ${_deity.nameTe} 108 దివ్య నామావళి',
+                                    _getActiveAshtottaraTitle(step),
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
@@ -561,7 +581,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                                     textAlign: TextAlign.center,
                                   ),
                                   const Divider(height: 18),
-                                  ..._deity.ashtottaraNamesTe.asMap().entries.map((entry) {
+                                  ...activeAshtottaraList.asMap().entries.map((entry) {
                                     final idx = entry.key + 1;
                                     final name = entry.value;
                                     return Padding(
