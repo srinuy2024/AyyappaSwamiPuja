@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../models/devotee_profile.dart';
 import '../models/panchangam_data.dart';
 import '../services/panchangam_service.dart';
-import '../services/deity_puja_data_service.dart';
 import '../constants/app_typography.dart';
 import 'puja_player_screen.dart';
 import 'ayyappa_deeksha_screen.dart';
@@ -16,7 +15,8 @@ import '../widgets/sankalpam_panchang_box.dart';
 
 /// యాప్ హోమ్ స్క్రీన్ (Devotional Dashboard, Live Panchangam & Deity Puja Selector)
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final Function(int)? onNavigateToTab;
+  const HomeScreen({Key? key, this.onNavigateToTab}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -739,7 +739,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       subtitle: 'పూజలు & వ్రతాలు',
                       icon: Icons.temple_hindu,
                       color: const Color(0xFFB91C1C),
-                      onTap: () => _openVratamScreen('satyanarayana_vratam'),
+                      onTap: () {
+                        if (widget.onNavigateToTab != null) {
+                          widget.onNavigateToTab!(1);
+                        } else {
+                          _openVratamScreen('satyanarayana_vratam');
+                        }
+                      },
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -761,7 +767,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       subtitle: 'భగవద్గీత & వేదాలు',
                       icon: Icons.menu_book,
                       color: const Color(0xFF0D9488),
-                      onTap: _openJnanaLibraryScreen,
+                      onTap: () {
+                        if (widget.onNavigateToTab != null) {
+                          widget.onNavigateToTab!(2);
+                        } else {
+                          _openJnanaLibraryScreen();
+                        }
+                      },
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -772,7 +784,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       subtitle: '108 జపమాల',
                       icon: Icons.self_improvement,
                       color: const Color(0xFF7C3AED),
-                      onTap: _openJapaMalaScreen,
+                      onTap: () {
+                        if (widget.onNavigateToTab != null) {
+                          widget.onNavigateToTab!(3);
+                        } else {
+                          _openJapaMalaScreen();
+                        }
+                      },
                     ),
                   ),
                 ],

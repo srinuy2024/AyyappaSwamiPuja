@@ -1,9 +1,8 @@
 // lib/screens/jnana_library_screen.dart
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../constants/app_typography.dart';
 import '../data/bhagavad_gita_data.dart';
-import '../models/library_model.dart';
+
 
 class JnanaLibraryScreen extends StatefulWidget {
   const JnanaLibraryScreen({super.key});

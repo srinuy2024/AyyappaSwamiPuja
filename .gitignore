@@ -15,6 +15,8 @@ flutter_puja_app/build/
 flutter_puja_app/.packages
 flutter_puja_app/.flutter-plugins
 flutter_puja_app/.flutter-plugins-dependencies
+flutter_puja_app/android/local.properties
+**/GeneratedPluginRegistrant.java
 
 # Logs
 *.log
