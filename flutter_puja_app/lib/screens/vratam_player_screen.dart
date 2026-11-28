@@ -48,14 +48,14 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
               SatyanarayanaVratamData.vratamTitleTe,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            Text(
+            const Text(
               'స్వయం వ్రత కల్పం • స్కాంద పురాణోక్తం',
               style: TextStyle(fontSize: 11, color: Color(0xFFFDE68A)),
             ),

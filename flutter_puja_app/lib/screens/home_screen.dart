@@ -631,17 +631,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Row(
-                          children: [
+                          children: const [
                             Text('✨ ', style: TextStyle(fontSize: 14)),
                             Text('అభిజిత్ ముహూర్తం: ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFFB45309))),
                             Text('11:45 AM - 12:30 PM', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFF15803D))),
                           ],
                         ),
-                        SizedBox(height: 4),
+                        const SizedBox(height: 4),
                         Row(
-                          children: [
+                          children: const [
                             Text('⚠️ ', style: TextStyle(fontSize: 14)),
                             Text('రాహుకాలం (వర్జ్యం): ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFFB45309))),
                             Text('03:00 PM - 04:30 PM', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFFDC2626))),
