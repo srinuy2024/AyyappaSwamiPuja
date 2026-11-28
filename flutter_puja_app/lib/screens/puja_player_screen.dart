@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/devotee_profile.dart';
 import '../models/panchangam_data.dart';
 import '../models/puja_step_model.dart';
@@ -45,6 +47,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
       setState(() {
         _slokaFontSize -= 1.0;
       });
+      _saveFontSize();
     }
   }
 
@@ -53,7 +56,40 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
       setState(() {
         _slokaFontSize += 1.0;
       });
+      _saveFontSize();
     }
+  }
+
+  Future<void> _saveFontSize() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setDouble('puja_sloka_font_size', _slokaFontSize);
+    } catch (_) {}
+  }
+
+  Future<void> _saveScript(String script) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('puja_active_script', script);
+    } catch (_) {}
+  }
+
+  Future<void> _loadPreferences() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final savedFontSize = prefs.getDouble('puja_sloka_font_size');
+      final savedScript = prefs.getString('puja_active_script');
+      if (mounted) {
+        setState(() {
+          if (savedFontSize != null && savedFontSize >= 12.0 && savedFontSize <= 22.0) {
+            _slokaFontSize = savedFontSize;
+          }
+          if (savedScript != null && (savedScript == 'telugu' || savedScript == 'sanskrit')) {
+            _activeScript = savedScript;
+          }
+        });
+      }
+    } catch (_) {}
   }
 
   late PanchangamData _panchang;
@@ -67,6 +103,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
     _panchang = widget.initialPanchang ?? PanchangamService.calculate(DateTime.now());
     _deity = DeityPujaDataService.getDeity(widget.deityId);
     _reloadSteps();
+    _loadPreferences();
   }
 
   void _reloadSteps() {
@@ -96,6 +133,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
 
   void _nextStep() {
     if (_currentStepIndex < _pujaSteps.length - 1) {
+      HapticFeedback.selectionClick();
       setState(() {
         _currentStepIndex++;
         _isMeaningExpanded = false;
@@ -107,6 +145,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
 
   void _previousStep() {
     if (_currentStepIndex > 0) {
+      HapticFeedback.selectionClick();
       setState(() {
         _currentStepIndex--;
         _isMeaningExpanded = false;
@@ -118,14 +157,19 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
 
   void _incrementFlowerCounter() {
     if (_ashtottaraCounter < 108) {
+      HapticFeedback.lightImpact();
       setState(() {
         _ashtottaraCounter++;
       });
+      if (_ashtottaraCounter == 108) {
+        HapticFeedback.mediumImpact();
+      }
     }
   }
 
   void _decrementFlowerCounter() {
     if (_ashtottaraCounter > 1) {
+      HapticFeedback.selectionClick();
       setState(() {
         _ashtottaraCounter--;
       });
@@ -246,9 +290,12 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
               onPressed: () {
+                final newScript = _activeScript == 'telugu' ? 'sanskrit' : 'telugu';
+                HapticFeedback.selectionClick();
                 setState(() {
-                  _activeScript = _activeScript == 'telugu' ? 'sanskrit' : 'telugu';
+                  _activeScript = newScript;
                 });
+                _saveScript(newScript);
               },
               child: Text(
                 _activeScript == 'telugu' ? 'संस्कृतम्' : 'తెలుగు',

@@ -103,6 +103,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _panchang = PanchangamService.calculate(DateTime.now());
+    // Load persisted devotee family profile
+    DevoteeProfile.loadFromPrefs().then((loadedProfile) {
+      if (mounted) {
+        setState(() {
+          _profile = loadedProfile;
+        });
+      }
+    });
     // Auto-update check in background (100% safe offline)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       AutoUpdateService.checkForUpdate().then((info) {
@@ -226,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 contentPadding: EdgeInsets.zero,
                 leading: const Icon(Icons.system_update_alt, color: AppTypography.primaryMaroon),
                 title: const Text('అప్‌డేట్స్ తనిఖీ చేయండి (Check Updates)', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
-                subtitle: const Text('వెర్షన్: v1.2.0 • 100% ఆఫ్‌లైన్ సేఫ్', style: TextStyle(fontSize: 11.5)),
+                subtitle: Text('వెర్షన్: v${AutoUpdateService.currentVersion} • 100% ఆఫ్‌లైన్ సేఫ్', style: const TextStyle(fontSize: 11.5)),
                 trailing: TextButton(
                   onPressed: () {
                     Navigator.pop(ctx);
@@ -235,8 +243,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         AutoUpdateService.showUpdateDialog(context, info);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('మీరు తాజా వెర్షన్ (v1.2.0) వాడుతున్నారు! ఎటువంటి అప్‌డేట్ అవసరం లేదు.'),
+                          SnackBar(
+                            content: Text('మీరు తాజా వెర్షన్ (v${AutoUpdateService.currentVersion}) వాడుతున్నారు! ఎటువంటి అప్‌డేట్ అవసరం లేదు.'),
                             backgroundColor: AppTypography.primaryMaroon,
                           ),
                         );
@@ -256,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: AppTypography.primaryMaroon,
               foregroundColor: Colors.white,
             ),
-            onPressed: () {
+            onPressed: () async {
               setState(() {
                 _profile.gotram = gotraController.text;
                 _profile.kartaName = kartaController.text;
@@ -264,6 +272,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 _profile.childrenNames = childrenController.text;
                 _profile.pincode = pincodeController.text;
               });
+              await _profile.saveToPrefs();
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('భక్తుని వివరాలు శాశ్వతంగా భద్రపరచబడ్డాయి!'),
+                    backgroundColor: Color(0xFF15803D),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
               Navigator.pop(ctx);
             },
             child: const Text('సేవ్ చేయండి'),

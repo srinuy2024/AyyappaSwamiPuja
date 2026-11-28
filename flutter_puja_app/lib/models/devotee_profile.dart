@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+
 /// భక్తుని కుటుంబ వివరాల మోడల్ (Devotee Profile Model)
 class DevoteeProfile {
   String gotram;
@@ -21,6 +24,31 @@ class DevoteeProfile {
     this.selectedDeityId = 'ayyappa',
     this.preferredScript = 'both',
   });
+
+  static const String _prefsKey = 'devotee_family_profile';
+
+  /// స్థానిక నిల్వ (SharedPreferences) నుండి భక్తుని వివరాలు లోడ్ చేయుట
+  static Future<DevoteeProfile> loadFromPrefs() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final str = prefs.getString(_prefsKey);
+      if (str != null && str.isNotEmpty) {
+        final data = jsonDecode(str) as Map<String, dynamic>;
+        return DevoteeProfile.fromJson(data);
+      }
+    } catch (_) {}
+    return DevoteeProfile();
+  }
+
+  /// భక్తుని వివరాలను స్థానిక నిల్వ (SharedPreferences) లో శాశ్వతంగా భద్రపరచుట
+  Future<bool> saveToPrefs() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return await prefs.setString(_prefsKey, jsonEncode(toJson()));
+    } catch (_) {
+      return false;
+    }
+  }
 
   Map<String, dynamic> toJson() => {
     'gotram': gotram,

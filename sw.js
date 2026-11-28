@@ -1,5 +1,5 @@
 // Service Worker for Sri Ayyappa Daily Puja App
-const CACHE_NAME = 'ayyappa-puja-v20261120';
+const CACHE_NAME = 'ayyappa-puja-v20261128';
 const ASSETS_TO_CACHE = [
   './',
   './pooja-niyamavali.html',

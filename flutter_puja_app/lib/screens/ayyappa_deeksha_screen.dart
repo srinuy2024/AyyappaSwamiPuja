@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../data/ayyappa_deeksha_data.dart';
+import '../data/ayyappa_bhajana_padi_data.dart';
 import '../constants/app_typography.dart';
 
 /// శ్రీ అయ్యప్పస్వామి మండల దీక్షా ప్రత్యేక హబ్ (18 మెట్లు, 108 శరణుఘోష, లోకవీరం, హరివరాసనం, నియామావళి)
@@ -13,11 +14,13 @@ class AyyappaDeekshaScreen extends StatefulWidget {
 class _AyyappaDeekshaScreenState extends State<AyyappaDeekshaScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _sharanuCounter = 1;
+  bool _showPadiPaata = true;
+  String _bhajanaSearchQuery = '';
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 6, vsync: this);
   }
 
   @override
@@ -59,6 +62,7 @@ class _AyyappaDeekshaScreenState extends State<AyyappaDeekshaScreen> with Single
             Tab(text: '📜 లోకవీరం స్తోత్రం'),
             Tab(text: '🪔 హరివరాసనం'),
             Tab(text: '🚩 దీక్షా నియామావళి'),
+            Tab(text: '🎵 భజన & పడిపాట'),
           ],
         ),
       ),
@@ -70,6 +74,7 @@ class _AyyappaDeekshaScreenState extends State<AyyappaDeekshaScreen> with Single
           _buildLokaveeramTab(),
           _buildHarivarasanamTab(),
           _buildNiyamavaliTab(),
+          _buildBhajanaPadiTab(),
         ],
       ),
     );
@@ -409,6 +414,225 @@ class _AyyappaDeekshaScreenState extends State<AyyappaDeekshaScreen> with Single
           ),
         );
       },
+    );
+  }
+
+  // TAB 6: Bhajana Songs & Padi Paata (అధ్యాయాలు 26 & 27)
+  Widget _buildBhajanaPadiTab() {
+    final allSongs = AyyappaBhajanaPadiData.bhajanaSongs;
+    final filteredSongs = _bhajanaSearchQuery.trim().isEmpty
+        ? allSongs
+        : allSongs.where((s) {
+            final t = s['title']!.toLowerCase();
+            final l = s['lyrics']!.toLowerCase();
+            final q = _bhajanaSearchQuery.toLowerCase();
+            return t.contains(q) || l.contains(q);
+          }).toList();
+
+    return Column(
+      children: [
+        // Sub-Mode Switcher: Padi Paata vs Bhajana Songs
+        Container(
+          color: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          child: Row(
+            children: [
+              Expanded(
+                child: InkWell(
+                  onTap: () => setState(() => _showPadiPaata = true),
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      color: _showPadiPaata ? AppTypography.primaryMaroon : Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: _showPadiPaata ? AppTypography.primaryMaroon : Colors.grey.shade300,
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '🪔 18 మెట్ల పడిపాట',
+                      style: TextStyle(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.bold,
+                        color: _showPadiPaata ? Colors.white : AppTypography.textSecondary,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: InkWell(
+                  onTap: () => setState(() => _showPadiPaata = false),
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      color: !_showPadiPaata ? AppTypography.sacredGoldDark : Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: !_showPadiPaata ? AppTypography.sacredGoldDark : Colors.grey.shade300,
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '🎵 22 భజన పాటలు',
+                      style: TextStyle(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.bold,
+                        color: !_showPadiPaata ? Colors.white : AppTypography.textSecondary,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        // Content Area
+        Expanded(
+          child: _showPadiPaata
+              ? _buildPadiPaataView()
+              : _buildBhajanaSongsList(filteredSongs),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPadiPaataView() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(14),
+      child: Card(
+        color: Colors.white,
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
+          side: const BorderSide(color: Color(0xFFFDE68A), width: 1.5),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFFBEB),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.amber.shade200),
+                ),
+                child: Row(
+                  children: const [
+                    Text('🚩 ', style: TextStyle(fontSize: 20)),
+                    Expanded(
+                      child: Text(
+                        'అయ్యప్ప స్వామి 18 మెట్ల పడిపాట (గురుస్వామి & స్వాముల ప్రతిస్పందన)',
+                        style: TextStyle(
+                          fontSize: 13.5,
+                          fontWeight: FontWeight.bold,
+                          color: AppTypography.primaryMaroon,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 14),
+              SelectableText(
+                AyyappaBhajanaPadiData.padiPaataLyrics,
+                style: AppTypography.teluguSloka(
+                  fontSize: 16.5,
+                  fontWeight: FontWeight.w600,
+                  height: 1.8,
+                  color: AppTypography.textPrimary,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBhajanaSongsList(List<Map<String, String>> songs) {
+    return Column(
+      children: [
+        // Song Search Input
+        Padding(
+          padding: const EdgeInsets.fromLTRB(14, 10, 14, 4),
+          child: TextField(
+            onChanged: (val) => setState(() => _bhajanaSearchQuery = val),
+            decoration: InputDecoration(
+              hintText: 'భజన పాటను వెతకండి (Search Song)...',
+              prefixIcon: const Icon(Icons.search, color: AppTypography.primaryMaroon),
+              suffixIcon: _bhajanaSearchQuery.isNotEmpty
+                  ? IconButton(
+                      icon: const Icon(Icons.clear),
+                      onPressed: () => setState(() => _bhajanaSearchQuery = ''),
+                    )
+                  : null,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: Colors.amber.shade300),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
+            padding: const EdgeInsets.all(14),
+            itemCount: songs.length,
+            itemBuilder: (context, index) {
+              final song = songs[index];
+              return Card(
+                margin: const EdgeInsets.only(bottom: 12),
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(color: Colors.amber.shade200),
+                ),
+                child: ExpansionTile(
+                  leading: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFEF3C7),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Text('🎵', style: TextStyle(fontSize: 18)),
+                  ),
+                  title: Text(
+                    song['title']!,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: AppTypography.primaryMaroon,
+                    ),
+                  ),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      child: SelectableText(
+                        song['lyrics']!,
+                        style: AppTypography.teluguSloka(
+                          fontSize: 15.5,
+                          height: 1.7,
+                          color: AppTypography.textPrimary,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
