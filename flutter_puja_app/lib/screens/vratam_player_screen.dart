@@ -44,7 +44,7 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTypography.scaffoldBg,
+      backgroundColor: AppTypography.saffronBackground,
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -30,7 +30,7 @@ class _JnanaLibraryScreenState extends State<JnanaLibraryScreen> with SingleTick
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTypography.scaffoldBg,
+      backgroundColor: AppTypography.saffronBackground,
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

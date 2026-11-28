@@ -13,6 +13,7 @@ class AppTypography {
 
   // High-Contrast Backgrounds & Surfaces
   static const Color saffronBackground = Color(0xFFFFFDF5);   // Crisp Divine Warm Cream (Light Theme)
+  static const Color scaffoldBg = saffronBackground;           // Global Scaffold Background
   static const Color cardSurface = Color(0xFFFFFFFF);         // Pure Card White for max readability
   static const Color cardSurfaceWarm = Color(0xFFFFFBEB);     // Gentle Warm Tint Card
   static const Color darkCardBg = Color(0xFF1E140F);          // Deep Charcoal-Maroon for Dark Cards
