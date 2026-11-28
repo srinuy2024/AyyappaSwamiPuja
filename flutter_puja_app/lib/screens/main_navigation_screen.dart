@@ -1,7 +1,7 @@
 // lib/screens/main_navigation_screen.dart
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../constants/app_typography.dart';
 import '../models/devotee_profile.dart';
 import '../models/panchangam_data.dart';
 import '../services/panchangam_service.dart';
@@ -38,6 +38,46 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     });
   }
 
+  Widget _buildNavItem(int index, IconData icon, IconData activeIcon, String label, Color accentColor) {
+    final isSelected = _currentIndex == index;
+    return InkWell(
+      onTap: () => _onTabTapped(index),
+      borderRadius: BorderRadius.circular(22),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: EdgeInsets.symmetric(horizontal: isSelected ? 14 : 10, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected ? accentColor.withValues(alpha: 0.22) : Colors.transparent,
+          borderRadius: BorderRadius.circular(22),
+          border: isSelected
+              ? Border.all(color: accentColor.withValues(alpha: 0.55), width: 1.0)
+              : null,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              isSelected ? activeIcon : icon,
+              size: 20,
+              color: isSelected ? accentColor : Colors.white70,
+            ),
+            if (isSelected) ...[
+              const SizedBox(width: 6),
+              Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> chambers = [
@@ -50,51 +90,55 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     ];
 
     return Scaffold(
+      extendBody: true,
       body: IndexedStack(
         index: _currentIndex,
         children: chambers,
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(top: BorderSide(color: Colors.amber.shade200, width: 1.2)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.06),
-              blurRadius: 8,
-              offset: const Offset(0, -3),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.35),
+                blurRadius: 20,
+                offset: const Offset(0, 8),
+              ),
+              BoxShadow(
+                color: Colors.amber.shade900.withValues(alpha: 0.12),
+                blurRadius: 10,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(30),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF130B24).withValues(alpha: 0.82),
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.20),
+                    width: 1.0,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _buildNavItem(0, Icons.temple_hindu_outlined, Icons.temple_hindu, 'మందిరం', const Color(0xFFF59E0B)),
+                    _buildNavItem(1, Icons.auto_awesome_outlined, Icons.auto_awesome, 'పూజలు', const Color(0xFFEF4444)),
+                    _buildNavItem(2, Icons.menu_book_outlined, Icons.menu_book, 'జ్ఞాన నిధి', const Color(0xFF14B8A6)),
+                    _buildNavItem(3, Icons.self_improvement_outlined, Icons.self_improvement, 'సాధన', const Color(0xFFA855F7)),
+                  ],
+                ),
+              ),
             ),
-          ],
-        ),
-        child: NavigationBar(
-          selectedIndex: _currentIndex,
-          onDestinationSelected: _onTabTapped,
-          backgroundColor: Colors.white,
-          indicatorColor: const Color(0xFFFEF3C7),
-          elevation: 0,
-          labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Icons.temple_hindu_outlined, color: AppTypography.primaryMaroon),
-              selectedIcon: Icon(Icons.temple_hindu, color: AppTypography.primaryMaroon),
-              label: 'మందిరం',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.auto_awesome_outlined, color: Color(0xFFB91C1C)),
-              selectedIcon: Icon(Icons.auto_awesome, color: Color(0xFFB91C1C)),
-              label: 'పూజలు & వ్రతాలు',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.menu_book_outlined, color: Color(0xFF0D9488)),
-              selectedIcon: Icon(Icons.menu_book, color: Color(0xFF0D9488)),
-              label: 'జ్ఞాన నిధి',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.self_improvement_outlined, color: Color(0xFF7C3AED)),
-              selectedIcon: Icon(Icons.self_improvement, color: Color(0xFF7C3AED)),
-              label: 'నిత్య సాధన',
-            ),
-          ],
+          ),
         ),
       ),
     );
