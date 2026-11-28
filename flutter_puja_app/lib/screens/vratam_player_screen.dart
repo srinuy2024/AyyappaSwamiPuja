@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../constants/app_typography.dart';
 import '../data/satyanarayana_vratam_data.dart';
+import '../data/varalakshmi_vratam_data.dart';
+import '../data/vinayaka_chavithi_vratam_data.dart';
 import '../models/library_model.dart';
 import '../services/vedic_voice_service.dart';
 
@@ -19,6 +21,8 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
   late List<VratamSamagriItem> _samagriList;
   late List<VratamKathaChapter> _chapters;
   late List<String> _pujaSteps;
+  late String _vratamTitleTe;
+  late String _subtitleTe;
 
   int _selectedChapterIndex = 0;
   final VedicVoiceService _voiceService = VedicVoiceService();
@@ -27,9 +31,29 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    _samagriList = SatyanarayanaVratamData.getSamagriList();
-    _chapters = SatyanarayanaVratamData.getKathaChapters();
-    _pujaSteps = SatyanarayanaVratamData.getPujaStepsSummary();
+    _loadVratamData();
+  }
+
+  void _loadVratamData() {
+    if (widget.vratamId == 'varalakshmi_vratam') {
+      _vratamTitleTe = VaralakshmiVratamData.vratamTitleTe;
+      _subtitleTe = VaralakshmiVratamData.subtitleTe;
+      _samagriList = VaralakshmiVratamData.getSamagriList();
+      _chapters = VaralakshmiVratamData.getKathaChapters();
+      _pujaSteps = VaralakshmiVratamData.getPujaStepsSummary();
+    } else if (widget.vratamId == 'vinayaka_vratam') {
+      _vratamTitleTe = VinayakaChavithiVratamData.vratamTitleTe;
+      _subtitleTe = VinayakaChavithiVratamData.subtitleTe;
+      _samagriList = VinayakaChavithiVratamData.getSamagriList();
+      _chapters = VinayakaChavithiVratamData.getKathaChapters();
+      _pujaSteps = VinayakaChavithiVratamData.getPujaStepsSummary();
+    } else {
+      _vratamTitleTe = SatyanarayanaVratamData.vratamTitleTe;
+      _subtitleTe = 'స్వయం వ్రత కల్పం • స్కాంద పురాణోక్తం';
+      _samagriList = SatyanarayanaVratamData.getSamagriList();
+      _chapters = SatyanarayanaVratamData.getKathaChapters();
+      _pujaSteps = SatyanarayanaVratamData.getPujaStepsSummary();
+    }
   }
 
   @override
@@ -50,14 +74,14 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              SatyanarayanaVratamData.vratamTitleTe,
+              _vratamTitleTe,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            const Text(
-              'స్వయం వ్రత కల్పం • స్కాంద పురాణోక్తం',
-              style: TextStyle(fontSize: 11, color: Color(0xFFFDE68A)),
+            Text(
+              _subtitleTe,
+              style: const TextStyle(fontSize: 11, color: Color(0xFFFDE68A)),
             ),
           ],
         ),
@@ -77,9 +101,9 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
               icon: Icon(Icons.temple_hindu_rounded, size: 20),
               text: '2. పూజా విధి',
             ),
-            const Tab(
-              icon: Icon(Icons.menu_book_rounded, size: 20),
-              text: '3. వ్రత కథ (5)',
+            Tab(
+              icon: const Icon(Icons.menu_book_rounded, size: 20),
+              text: '3. వ్రత కథ (${_chapters.length})',
             ),
           ],
         ),
@@ -127,7 +151,7 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: item.isChecked ? AppTypography.successGreen.withOpacity(0.5) : Colors.grey.shade300,
+                color: item.isChecked ? AppTypography.successGreen.withValues(alpha: 0.5) : Colors.grey.shade300,
               ),
             ),
             color: item.isChecked ? const Color(0xFFF0FDF4) : Colors.white,
@@ -169,9 +193,9 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
         Container(
           padding: const EdgeInsets.all(14.0),
           decoration: BoxDecoration(
-            color: AppTypography.primaryMaroon.withOpacity(0.08),
+            color: AppTypography.primaryMaroon.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppTypography.primaryMaroon.withOpacity(0.2)),
+            border: Border.all(color: AppTypography.primaryMaroon.withValues(alpha: 0.2)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,7 +247,7 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
     );
   }
 
-  // 3. సంపూర్ణ 5 అధ్యాయాల వ్రత కథ ట్యాబ్
+  // 3. సంపూర్ణ వ్రత కథ ట్యాబ్
   Widget _buildKathaTab() {
     final chapter = _chapters[_selectedChapterIndex];
 
@@ -271,7 +295,7 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
                 borderRadius: BorderRadius.circular(14),
                 border: Border.all(color: AppTypography.cardBorder),
                 boxShadow: [
-                  BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 8, offset: const Offset(0, 2)),
+                  BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2)),
                 ],
               ),
               child: Column(
@@ -353,8 +377,8 @@ class _VratamPlayerScreenState extends State<VratamPlayerScreen> with SingleTick
                         ElevatedButton.icon(
                           onPressed: () {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('✓ శ్రీ సత్యనారాయణ వ్రత కథ సంపూర్ణమాయెను! ప్రసాద స్వీకరణ చేయండి!'),
+                              SnackBar(
+                                content: Text('✓ $_vratamTitleTe కథ సంపూర్ణమాయెను! మంగళం మహత్!'),
                                 backgroundColor: AppTypography.successGreen,
                               ),
                             );

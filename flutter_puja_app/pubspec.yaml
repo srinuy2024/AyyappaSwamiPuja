@@ -1,7 +1,7 @@
 name: flutter_puja_app
 description: "సర్వ దేవతా నిత్య & షోడశోపచార పూజా విధి - Universal Devotional Puja App with Dual Script (Sanskrit & Telugu), Deep Spiritual Learnings, and Custom Voice Model."
 publish_to: 'none'
-version: 1.5.0+10
+version: 1.6.0+11
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

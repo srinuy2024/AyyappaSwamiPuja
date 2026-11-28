@@ -22,6 +22,33 @@ class PujasHubScreen extends StatefulWidget {
 }
 
 class _PujasHubScreenState extends State<PujasHubScreen> {
+  final List<Map<String, dynamic>> _vratamsList = [
+    {
+      'id': 'satyanarayana_vratam',
+      'title': 'శ్రీ సత్యనారాయణ స్వామి సంపూర్ణ వ్రతం',
+      'subtitle': 'సామగ్రి చెక్‌లిస్ట్ • 12 పూజా దశలు • సంపూర్ణ 5 కథలు',
+      'badge': 'స్కాంద పురాణోక్తం',
+      'icon': '🪔',
+      'color': const Color(0xFFB45309),
+    },
+    {
+      'id': 'varalakshmi_vratam',
+      'title': 'శ్రీ వరలక్ష్మీ దేవి సంపూర్ణ వ్రత కల్పం',
+      'subtitle': 'నవగ్రంథి తోర పూజ • చారుమతీ కథ • వాయన దానం',
+      'badge': 'భవిష్యోత్తర పురాణోక్తం',
+      'icon': '🌸',
+      'color': const Color(0xFFBE185D),
+    },
+    {
+      'id': 'vinayaka_vratam',
+      'title': 'శ్రీ సిద్ధివినాయక వ్రతం (వినాయక చవితి)',
+      'subtitle': '21 పత్ర పూజ • శమంతకోపాఖ్యానం • చంద్ర శాప నివారణ',
+      'badge': 'గణేశ ఖండోక్తం',
+      'icon': '🐘',
+      'color': const Color(0xFFC2410C),
+    },
+  ];
+
   final List<Map<String, dynamic>> _deitiesList = [
     {
       'id': 'ayyappa',
@@ -114,11 +141,11 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
     );
   }
 
-  void _openSatyanarayanaVratam() {
+  void _openVratam(String vratamId) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const VratamPlayerScreen(vratamId: 'satyanarayana_vratam'),
+        builder: (context) => VratamPlayerScreen(vratamId: vratamId),
       ),
     );
   }
@@ -167,47 +194,85 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
         children: [
-          // 1. Major Vratam Card: Sri Satyanarayana Swamy Vratam
-          SacredGlassCard(
-            onTap: _openSatyanarayanaVratam,
-            borderColor: AppTypography.sacredGold,
+          // Section 1: Major Self-Guided Vratams (ప్రముఖ స్వయం వ్రతాలు)
+          Padding(
+            padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
             child: Row(
-              children: [
-                Container(
-                  width: 54,
-                  height: 54,
-                  decoration: BoxDecoration(
-                    color: AppTypography.primaryMaroon.withOpacity(0.12),
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(color: AppTypography.sacredGold, width: 1.2),
-                  ),
-                  alignment: Alignment.center,
-                  child: const Text('🪔', style: TextStyle(fontSize: 28)),
+              children: const [
+                Text('🌟 ', style: TextStyle(fontSize: 18)),
+                Text(
+                  'స్వయం వ్రత కల్పాలు (Self-Guided Vratams)',
+                  style: TextStyle(fontSize: 16.5, fontWeight: FontWeight.bold, color: AppTypography.primaryMaroon),
                 ),
-                const SizedBox(width: 14),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'శ్రీ సత్యనారాయణ స్వామి సంపూర్ణ వ్రతం',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppTypography.primaryMaroon),
-                      ),
-                      SizedBox(height: 3),
-                      Text(
-                        'సామగ్రి చెక్‌లిస్ట్ • 12 పూజా దశలు • సంపూర్ణ 5 కథలు',
-                        style: TextStyle(fontSize: 12.5, color: AppTypography.textSecondary),
-                      ),
-                    ],
-                  ),
-                ),
-                const Icon(Icons.arrow_forward_ios, size: 16, color: AppTypography.primaryMaroon),
               ],
             ),
           ),
-          const SizedBox(height: 14),
 
-          // 2. HERO: Sri Ayyappa Daily Puja Card
+          ..._vratamsList.map((vratam) {
+            final color = vratam['color'] as Color;
+            return SacredGlassCard(
+              margin: const EdgeInsets.only(bottom: 10),
+              onTap: () => _openVratam(vratam['id'] as String),
+              borderColor: color.withValues(alpha: 0.5),
+              child: Row(
+                children: [
+                  Container(
+                    width: 52,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      color: color.withValues(alpha: 0.12),
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(color: color.withValues(alpha: 0.4), width: 1.2),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(vratam['icon'] as String, style: const TextStyle(fontSize: 26)),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                vratam['title'] as String,
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: color),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: color.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                vratam['badge'] as String,
+                                style: TextStyle(fontSize: 9.5, fontWeight: FontWeight.bold, color: color),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 3),
+                        Text(
+                          vratam['subtitle'] as String,
+                          style: const TextStyle(fontSize: 12, color: AppTypography.textSecondary),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Icon(Icons.arrow_forward_ios, size: 14, color: color),
+                ],
+              ),
+            );
+          }),
+
+          const SizedBox(height: 12),
+
+          // Section 2: HERO: Sri Ayyappa Daily Puja Card
           SacredGlassCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -258,9 +323,10 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
               ],
             ),
           ),
+
           const SizedBox(height: 16),
 
-          // 3. Section Title: All Deities
+          // Section 3: Section Title: All Deities
           Padding(
             padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
             child: Row(
@@ -274,7 +340,7 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
             ),
           ),
 
-          // 4. Deities List
+          // Deities List
           ..._deitiesList.where((d) => d['id'] != 'ayyappa').map((deity) {
             final deityId = deity['id'] as String;
             final nameTe = deity['name_te'] as String;
