@@ -8,6 +8,7 @@ import '../models/deity_model.dart';
 import '../services/panchangam_service.dart';
 import '../services/deity_puja_data_service.dart';
 import '../data/ashtottara_data.dart';
+import '../services/vedic_voice_service.dart';
 import '../constants/app_typography.dart';
 
 /// భక్తుల కొరకు సులభతరమైన సమగ్ర పూజా ప్లేయర్ (లఘు పూజ vs సంపూర్ణ షోడశోపచార పూజ)
@@ -41,6 +42,10 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
   bool _showAll108Names = false;
   late bool _isFullMode;
   double _slokaFontSize = 15.5; // Allows full sloka lines to fit without wrapping
+
+  final VedicVoiceService _voiceService = VedicVoiceService();
+  bool _isAutoAdvanceActive = false;
+  bool _isAuto108Active = false;
 
   void _decreaseFontSize() {
     if (_slokaFontSize > 12.5) {
@@ -104,6 +109,19 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
     _deity = DeityPujaDataService.getDeity(widget.deityId);
     _reloadSteps();
     _loadPreferences();
+    _voiceService.initTts();
+    _voiceService.addListener(_onVoiceUpdate);
+  }
+
+  void _onVoiceUpdate() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _stopVoice();
+    _voiceService.removeListener(_onVoiceUpdate);
+    super.dispose();
   }
 
   void _reloadSteps() {
@@ -122,6 +140,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
 
   void _togglePujaMode(bool isFull) {
     if (_isFullMode == isFull) return;
+    _stopVoice();
     setState(() {
       _isFullMode = isFull;
       _currentStepIndex = 0;
@@ -133,6 +152,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
 
   void _nextStep() {
     if (_currentStepIndex < _pujaSteps.length - 1) {
+      _stopVoice();
       HapticFeedback.selectionClick();
       setState(() {
         _currentStepIndex++;
@@ -145,6 +165,7 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
 
   void _previousStep() {
     if (_currentStepIndex > 0) {
+      _stopVoice();
       HapticFeedback.selectionClick();
       setState(() {
         _currentStepIndex--;
@@ -153,6 +174,94 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
         _showAll108Names = false;
       });
     }
+  }
+
+  void _playCurrentVoice() {
+    final step = _pujaSteps[_currentStepIndex];
+    final isAshtottaraStep = step.hasInteractiveCounter || step.stepId == 'ashtottara';
+
+    if (isAshtottaraStep) {
+      final names = _getActiveAshtottaraList(step);
+      _startAuto108Chant(names);
+      return;
+    }
+
+    final text = _activeScript == 'telugu' ? step.slokaTe : step.slokaSa;
+    _voiceService.speakSloka(
+      text,
+      script: _activeScript,
+      onComplete: () {
+        if (_isAutoAdvanceActive && mounted && _currentStepIndex < _pujaSteps.length - 1) {
+          Future.delayed(const Duration(seconds: 3), () {
+            if (mounted && _isAutoAdvanceActive) {
+              _nextStep();
+              _playCurrentVoice();
+            }
+          });
+        }
+      },
+    );
+  }
+
+  void _stopVoice() {
+    _isAuto108Active = false;
+    _voiceService.stop();
+  }
+
+  void _startAuto108Chant(List<String> names) {
+    if (_isAuto108Active) {
+      _stopAuto108Chant();
+      return;
+    }
+    _isAuto108Active = true;
+    setState(() {});
+    _speakNext108Name(names);
+  }
+
+  void _speakNext108Name(List<String> names) {
+    if (!_isAuto108Active || !mounted) return;
+    if (_ashtottaraCounter > 108) {
+      _isAuto108Active = false;
+      setState(() {});
+      return;
+    }
+
+    final currentIdx = _ashtottaraCounter - 1;
+    if (currentIdx >= names.length) {
+      _isAuto108Active = false;
+      setState(() {});
+      return;
+    }
+
+    final rawName = names[currentIdx];
+    final cleanName = VedicVoiceService.cleanSlokaForSpeech(rawName);
+
+    _voiceService.speakSloka(
+      cleanName,
+      script: _activeScript,
+      onComplete: () {
+        if (!_isAuto108Active || !mounted) return;
+        HapticFeedback.lightImpact();
+        if (_ashtottaraCounter < 108) {
+          setState(() {
+            _ashtottaraCounter++;
+          });
+          Future.delayed(const Duration(milliseconds: 1400), () {
+            _speakNext108Name(names);
+          });
+        } else {
+          HapticFeedback.mediumImpact();
+          _isAuto108Active = false;
+          setState(() {});
+        }
+      },
+    );
+  }
+
+  void _stopAuto108Chant() {
+    _isAuto108Active = false;
+    _voiceService.stop();
+    setState(() {});
   }
 
   void _incrementFlowerCounter() {
@@ -447,6 +556,9 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
             ),
           ),
 
+          // 2.1 వేద పండిత స్వర పఠనం & ఆటో-పూజ కంట్రోలర్ (Sacred Voice & Auto-Puja Bar)
+          _buildSacredVoiceBar(isAshtottaraStep, activeAshtottaraList),
+
           // 3. Scrollable Sacred Ritual Sloka & Meaning Area
           Expanded(
             child: SingleChildScrollView(
@@ -568,13 +680,40 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                                           ),
                                         ),
                                       ),
-                                      TextButton.icon(
-                                        onPressed: _resetFlowerCounter,
-                                        icon: const Icon(Icons.refresh, size: 16, color: AppTypography.sacredGoldDark),
-                                        label: const Text(
-                                          'మొదటి నుండి',
-                                          style: TextStyle(fontSize: 12, color: AppTypography.sacredGoldDark, fontWeight: FontWeight.bold),
-                                        ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          TextButton.icon(
+                                            onPressed: () {
+                                              if (_isAuto108Active) {
+                                                _stopAuto108Chant();
+                                              } else {
+                                                _startAuto108Chant(activeAshtottaraList);
+                                              }
+                                            },
+                                            icon: Icon(
+                                              _isAuto108Active ? Icons.stop_circle : Icons.play_circle_fill,
+                                              size: 16,
+                                              color: _isAuto108Active ? const Color(0xFFDC2626) : AppTypography.primaryMaroon,
+                                            ),
+                                            label: Text(
+                                              _isAuto108Active ? 'ఆపండి' : 'ఆటో చాంట్',
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                color: _isAuto108Active ? const Color(0xFFDC2626) : AppTypography.primaryMaroon,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          TextButton.icon(
+                                            onPressed: _resetFlowerCounter,
+                                            icon: const Icon(Icons.refresh, size: 16, color: AppTypography.sacredGoldDark),
+                                            label: const Text(
+                                              'మొదటి నుండి',
+                                              style: TextStyle(fontSize: 12, color: AppTypography.sacredGoldDark, fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -918,6 +1057,128 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
               color: AppTypography.primaryMaroon,
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSacredVoiceBar(bool isAshtottaraStep, List<String> activeAshtottaraList) {
+    final isVoicePlaying = _voiceService.isPlaying || _isAuto108Active;
+
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: isVoicePlaying ? const Color(0xFFFEF3C7) : Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: isVoicePlaying ? const Color(0xFFD97706) : const Color(0xFFFDE68A),
+          width: 1.2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.amber.shade900.withOpacity(0.04),
+            blurRadius: 4,
+            offset: const Offset(0, 1),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          // Play / Stop Button
+          ElevatedButton.icon(
+            onPressed: isVoicePlaying ? _stopVoice : _playCurrentVoice,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: isVoicePlaying
+                  ? const Color(0xFFDC2626)
+                  : AppTypography.primaryMaroon,
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+              elevation: 1,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+            icon: Icon(
+              isVoicePlaying ? Icons.stop : Icons.volume_up,
+              size: 17,
+            ),
+            label: Text(
+              isVoicePlaying
+                  ? 'ఆపండి'
+                  : (isAshtottaraStep ? '🌸 108 నామాల పఠనం' : '🔊 పండిత పఠనం'),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12.5),
+            ),
+          ),
+          const SizedBox(width: 8),
+
+          // Playing animation / status label
+          Expanded(
+            child: Text(
+              isVoicePlaying
+                  ? (isAshtottaraStep
+                      ? '🌸 నామం $_ashtottaraCounter పఠిస్తున్నారు...'
+                      : '🎙️ పండిత స్వర శ్రవణం...')
+                  : 'వేదోచ్ఛారణ శ్రవణం',
+              style: TextStyle(
+                fontSize: 11.5,
+                fontWeight: isVoicePlaying ? FontWeight.bold : FontWeight.w500,
+                color: isVoicePlaying ? const Color(0xFF92400E) : AppTypography.textMuted,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+
+          // Auto-Advance Toggle
+          if (!isAshtottaraStep) ...[
+            InkWell(
+              onTap: () {
+                HapticFeedback.selectionClick();
+                setState(() {
+                  _isAutoAdvanceActive = !_isAutoAdvanceActive;
+                });
+              },
+              borderRadius: BorderRadius.circular(8),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                decoration: BoxDecoration(
+                  color: _isAutoAdvanceActive
+                      ? AppTypography.templeDeepOrange.withOpacity(0.12)
+                      : Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: _isAutoAdvanceActive
+                        ? AppTypography.templeDeepOrange
+                        : Colors.grey.shade300,
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      _isAutoAdvanceActive
+                          ? Icons.check_circle
+                          : Icons.radio_button_unchecked,
+                      size: 14,
+                      color: _isAutoAdvanceActive
+                          ? AppTypography.templeDeepOrange
+                          : Colors.grey.shade600,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      'ఆటో పూజ',
+                      style: TextStyle(
+                        fontSize: 11.5,
+                        fontWeight: FontWeight.w600,
+                        color: _isAutoAdvanceActive
+                            ? AppTypography.templeDeepOrange
+                            : Colors.grey.shade700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
