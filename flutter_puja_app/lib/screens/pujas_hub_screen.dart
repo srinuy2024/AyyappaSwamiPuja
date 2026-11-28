@@ -1,5 +1,6 @@
 // lib/screens/pujas_hub_screen.dart
 import 'package:flutter/material.dart';
+import '../constants/app_typography.dart';
 import '../models/devotee_profile.dart';
 import '../models/panchangam_data.dart';
 import '../widgets/sacred_glass_card.dart';
@@ -28,7 +29,7 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
       'subtitle': 'సామగ్రి చెక్‌లిస్ట్ • 12 పూజా దశలు • సంపూర్ణ 5 కథలు',
       'badge': 'స్కాంద పురాణోక్తం',
       'icon': '🪔',
-      'color': const Color(0xFFF59E0B),
+      'color': const Color(0xFFB45309),
     },
     {
       'id': 'varalakshmi_vratam',
@@ -36,7 +37,7 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
       'subtitle': 'నవగ్రంథి తోర పూజ • చారుమతీ కథ • వాయన దానం',
       'badge': 'భవిష్యోత్తర పురాణోక్తం',
       'icon': '🌸',
-      'color': const Color(0xFFF472B6),
+      'color': const Color(0xFFBE185D),
     },
     {
       'id': 'vinayaka_vratam',
@@ -44,7 +45,7 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
       'subtitle': '21 పత్ర పూజ • శమంతకోపాఖ్యానం • చంద్ర శాప నివారణ',
       'badge': 'గణేశ ఖండోక్తం',
       'icon': '🐘',
-      'color': const Color(0xFFFB923C),
+      'color': const Color(0xFFC2410C),
     },
   ];
 
@@ -55,47 +56,47 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
       'name_sa': 'श्री अय్యప్పస్వామి',
       'icon': '🪔',
       'desc': 'హరిహరపుత్ర మండల దీక్ష నిత్య పూజ & పడిపూజ',
-      'color': const Color(0xFFF59E0B),
+      'color': const Color(0xFFB45309),
     },
     {
       'id': 'ganapathi',
       'name_te': 'శ్రీ మహాగణపతి',
-      'name_sa': 'श्री महागणाधिपतये नमः',
+      'name_sa': 'श्री महागణాధిపతయే నమః',
       'icon': '🐘',
       'desc': 'విఘ్న నివారణ సంకష్టహర చతుర్థి & నిత్య పూజ',
-      'color': const Color(0xFFFB923C),
+      'color': const Color(0xFFC2410C),
     },
     {
       'id': 'shiva',
       'name_te': 'శ్రీ పరమశివుడు (మహాదేవుడు)',
-      'name_sa': 'श्री साम्बसदाशिवाय नमः',
+      'name_sa': 'श्री సాంబసదాశివాయ నమః',
       'icon': '🔱',
       'desc': 'బిల్వార్చన, రుద్రాభిషేకం & ప్రదోష పూజ',
-      'color': const Color(0xFF38BDF8),
+      'color': const Color(0xFF0369A1),
     },
     {
       'id': 'durga',
       'name_te': 'శ్రీ కనకదుర్గా దేవి',
-      'name_sa': 'श्री दुर्गार्पणमस्तु',
+      'name_sa': 'श्री దుర్గార్పణమస్తు',
       'icon': '🦁',
       'desc': 'సర్వబాధా నివారణ నవరాత్రి & నిత్య పూజ',
-      'color': const Color(0xFFF87171),
+      'color': const Color(0xFFBE185D),
     },
     {
       'id': 'lakshmi',
       'name_te': 'శ్రీ మహాలక్ష్మీ దేవి',
-      'name_sa': 'श्री महालक्ष्म्यै नमः',
+      'name_sa': 'श्री మహాలక్ష్మ్యై నమః',
       'icon': '🪷',
       'desc': 'అష్టైశ్వర్య ప్రాప్తి కనకధారా & శుక్రవార పూజ',
-      'color': const Color(0xFFFBBF24),
+      'color': const Color(0xFFB45309),
     },
     {
       'id': 'venkateswara',
       'name_te': 'శ్రీ వేంకటేశ్వర స్వామి',
-      'name_sa': 'श्री श्रीనివాసాయ నమః',
+      'name_sa': 'श्री శ్రీనివాసాయ నమః',
       'icon': '🛕',
       'desc': 'కలియుగ ప్రత్యక్ష దైవ శ్రీవారి నిత్య తోమాల పూజ',
-      'color': const Color(0xFFF59E0B),
+      'color': const Color(0xFF78350F),
     },
     {
       'id': 'subramanya',
@@ -103,7 +104,7 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
       'name_sa': 'श्री స్కంద షణ్ముఖాయ నమః',
       'icon': '🦚',
       'desc': 'సర్పదోష నివారణ షష్ఠి & నిత్య పూజ',
-      'color': const Color(0xFFEA580C),
+      'color': const Color(0xFFC2410C),
     },
     {
       'id': 'anjaneya',
@@ -111,7 +112,7 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
       'name_sa': 'श्री ఆఞ్జనేయ స్వామి',
       'icon': '🐒',
       'desc': 'వాయుపుత్ర వీర హనుమాన్ సంకటమోచన పూజ',
-      'color': const Color(0xFFFB923C),
+      'color': const Color(0xFFC2410C),
     },
     {
       'id': 'saraswati',
@@ -119,7 +120,7 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
       'name_sa': 'श्री సరస్వతీ దేవి',
       'icon': '📖',
       'desc': 'విద్యాబుద్ధి ప్రదాయిని జ్ఞాన సరస్వతి పూజ',
-      'color': const Color(0xFF2DD4BF),
+      'color': const Color(0xFF0369A1),
     },
   ];
 
@@ -161,7 +162,7 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
             width: size,
             height: size,
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.12),
+              color: const Color(0xFFFEF3C7),
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,
@@ -175,11 +176,11 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: const Color(0xFF0A0718),
+      backgroundColor: const Color(0xFFFEF3C7),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        backgroundColor: AppTypography.primaryMaroon,
+        foregroundColor: Colors.white,
+        elevation: 2,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
@@ -196,7 +197,7 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
       ),
       body: Stack(
         children: [
-          // Ambient Gradient
+          // Radiant Sacred Temple Background Gradient & Ambient Glows
           Positioned.fill(
             child: Container(
               decoration: const BoxDecoration(
@@ -204,10 +205,10 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Color(0xFF0A0718),
-                    Color(0xFF180D2C),
-                    Color(0xFF281039),
-                    Color(0xFF12071F),
+                    Color(0xFFFFF9ED),
+                    Color(0xFFFEF3C7),
+                    Color(0xFFFDE68A),
+                    Color(0xFFFFEDD5),
                   ],
                 ),
               ),
@@ -221,12 +222,12 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
               height: 260,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: const Color(0xFFF59E0B).withValues(alpha: 0.22),
+                color: const Color(0xFFF59E0B).withValues(alpha: 0.28),
               ),
             ),
           ),
           Positioned(
-            bottom: 140,
+            bottom: 80,
             left: -40,
             child: Container(
               width: 240,
@@ -238,212 +239,245 @@ class _PujasHubScreenState extends State<PujasHubScreen> {
             ),
           ),
 
-          SafeArea(
-            child: ListView(
-              padding: const EdgeInsets.fromLTRB(14, 8, 14, 90),
-              children: [
-                // Section 1: Major Self-Guided Vratams (ప్రముఖ స్వయం వ్రతాలు)
-                Padding(
-                  padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
-                  child: Row(
-                    children: const [
-                      Text('🌟 ', style: TextStyle(fontSize: 18)),
-                      Text(
-                        'స్వయం వ్రత కల్పాలు (Self-Guided Vratams)',
-                        style: TextStyle(fontSize: 16.5, fontWeight: FontWeight.bold, color: Colors.white),
+          ListView(
+            padding: const EdgeInsets.fromLTRB(14, 12, 14, 85),
+            children: [
+              // Section 1: Major Self-Guided Vratams (ప్రముఖ స్వయం వ్రతాలు)
+              Padding(
+                padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
+                child: Row(
+                  children: const [
+                    Text('🌟 ', style: TextStyle(fontSize: 18)),
+                    Text(
+                      'స్వయం వ్రత కల్పాలు (Self-Guided Vratams)',
+                      style: TextStyle(
+                        fontSize: 16.5,
+                        fontWeight: FontWeight.bold,
+                        color: AppTypography.primaryMaroon,
                       ),
-                    ],
-                  ),
-                ),
-
-                ..._vratamsList.map((vratam) {
-                  final color = vratam['color'] as Color;
-                  return SacredGlassCard(
-                    margin: const EdgeInsets.only(bottom: 10),
-                    onTap: () => _openVratam(vratam['id'] as String),
-                    borderColor: color.withValues(alpha: 0.45),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 52,
-                          height: 52,
-                          decoration: BoxDecoration(
-                            color: color.withValues(alpha: 0.16),
-                            borderRadius: BorderRadius.circular(14),
-                            border: Border.all(color: color.withValues(alpha: 0.45), width: 1.2),
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(vratam['icon'] as String, style: const TextStyle(fontSize: 26)),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      vratam['title'] as String,
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: color),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                    decoration: BoxDecoration(
-                                      color: color.withValues(alpha: 0.15),
-                                      borderRadius: BorderRadius.circular(6),
-                                      border: Border.all(color: color.withValues(alpha: 0.3)),
-                                    ),
-                                    child: Text(
-                                      vratam['badge'] as String,
-                                      style: TextStyle(fontSize: 9.5, fontWeight: FontWeight.bold, color: color),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 3),
-                              Text(
-                                vratam['subtitle'] as String,
-                                style: const TextStyle(fontSize: 12, color: Colors.white70),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 6),
-                        Icon(Icons.arrow_forward_ios, size: 14, color: color),
-                      ],
                     ),
-                  );
-                }),
+                  ],
+                ),
+              ),
 
-                const SizedBox(height: 12),
-
-                // Section 2: HERO: Sri Ayyappa Daily Puja Card
-                SacredGlassCard(
-                  borderColor: const Color(0xFFF59E0B).withValues(alpha: 0.5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              ..._vratamsList.map((vratam) {
+                final color = vratam['color'] as Color;
+                return SacredGlassCard(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  onTap: () => _openVratam(vratam['id'] as String),
+                  borderColor: color.withValues(alpha: 0.45),
+                  child: Row(
                     children: [
-                      Row(
-                        children: [
-                          _buildDeityAvatar('ayyappa', '🪔', 52),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  'శ్రీ అయ్యప్పస్వామి నిత్య పూజ',
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xFFFDE68A)),
+                      Container(
+                        width: 52,
+                        height: 52,
+                        decoration: BoxDecoration(
+                          color: color.withValues(alpha: 0.12),
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(color: color.withValues(alpha: 0.4), width: 1.2),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(vratam['icon'] as String, style: const TextStyle(fontSize: 26)),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    vratam['title'] as String,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: color,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
-                                Text(
-                                  'హరిహరపుత్ర ధర్మశాస్తా లఘు & షోడశోపచారాలు',
-                                  style: TextStyle(fontSize: 12, color: Colors.white70),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: color.withValues(alpha: 0.1),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  child: Text(
+                                    vratam['badge'] as String,
+                                    style: TextStyle(
+                                      fontSize: 9.5,
+                                      fontWeight: FontWeight.bold,
+                                      color: color,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: ElevatedButton.icon(
-                              onPressed: () => _startPuja('ayyappa', 'శ్రీ అయ్యప్పస్వామి', 'श्री अय్యప్పస్వామి', false),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFFD97706),
-                                foregroundColor: Colors.white,
+                            const SizedBox(height: 3),
+                            Text(
+                              vratam['subtitle'] as String,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: AppTypography.textSecondary,
                               ),
-                              icon: const Icon(Icons.flash_on, size: 16),
-                              label: const Text('నిత్య లఘు (15 ని)'),
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: ElevatedButton.icon(
-                              onPressed: () => _startPuja('ayyappa', 'శ్రీ అయ్యప్పస్వామి', 'श्री अय్యప్పస్వామి', true),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white.withValues(alpha: 0.15),
-                                foregroundColor: const Color(0xFFFDE68A),
-                                side: BorderSide(color: const Color(0xFFF59E0B).withValues(alpha: 0.5)),
-                              ),
-                              icon: const Icon(Icons.stars, size: 16),
-                              label: const Text('షోడశ (45 ని)'),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      const SizedBox(width: 6),
+                      Icon(Icons.arrow_forward_ios, size: 14, color: color),
                     ],
                   ),
-                ),
+                );
+              }),
 
-                const SizedBox(height: 16),
+              const SizedBox(height: 12),
 
-                // Section 3: Section Title: All Deities
-                Padding(
-                  padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
-                  child: Row(
-                    children: const [
-                      Text('🌺 ', style: TextStyle(fontSize: 18)),
-                      Text(
-                        'సనాతన ధర్మ దేవతా నిత్య పూజలు',
-                        style: TextStyle(fontSize: 16.5, fontWeight: FontWeight.bold, color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Deities List
-                ..._deitiesList.where((d) => d['id'] != 'ayyappa').map((deity) {
-                  final deityId = deity['id'] as String;
-                  final nameTe = deity['name_te'] as String;
-                  final nameSa = deity['name_sa'] as String;
-                  final icon = deity['icon'] as String;
-                  final desc = deity['desc'] as String;
-                  final color = deity['color'] as Color;
-
-                  return SacredGlassCard(
-                    margin: const EdgeInsets.only(bottom: 10),
-                    borderColor: Colors.white.withValues(alpha: 0.16),
-                    child: Row(
+              // Section 2: HERO: Sri Ayyappa Daily Puja Card
+              SacredGlassCard(
+                borderColor: AppTypography.sacredGold.withValues(alpha: 0.6),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
-                        _buildDeityAvatar(deityId, icon, 48),
+                        _buildDeityAvatar('ayyappa', '🪔', 52),
                         const SizedBox(width: 12),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(nameTe, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white)),
-                              const SizedBox(height: 2),
-                              Text(desc, style: const TextStyle(fontSize: 12, color: Colors.white70)),
+                            children: const [
+                              Text(
+                                'శ్రీ అయ్యప్పస్వామి నిత్య పూజ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                  color: AppTypography.primaryMaroon,
+                                ),
+                              ),
+                              Text(
+                                'హరిహరపుత్ర ధర్మశాస్తా లఘు & షోడశోపచారాలు',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: AppTypography.textSecondary,
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                        PopupMenuButton<bool>(
-                          icon: Icon(Icons.play_circle_fill, color: color, size: 30),
-                          tooltip: 'పూజ ప్రారంభించండి',
-                          onSelected: (isFull) => _startPuja(deityId, nameTe, nameSa, isFull),
-                          itemBuilder: (ctx) => [
-                            const PopupMenuItem(
-                              value: false,
-                              child: Text('⚡ నిత్య లఘు పూజ (15 ని)'),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton.icon(
+                            onPressed: () => _startPuja('ayyappa', 'శ్రీ అయ్యప్పస్వామి', 'श्री अय्यप्पस्वामी', false),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppTypography.primaryMaroon,
+                              foregroundColor: Colors.white,
                             ),
-                            const PopupMenuItem(
-                              value: true,
-                              child: Text('🪔 సంపూర్ణ షోడశ పూజ (35 ని)'),
+                            icon: const Icon(Icons.flash_on, size: 16),
+                            label: const Text('నిత్య లఘు (15 ని)'),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: ElevatedButton.icon(
+                            onPressed: () => _startPuja('ayyappa', 'శ్రీ అయ్యప్పస్వామి', 'श्री अय्यप्पस्वामी', true),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFFEF3C7),
+                              foregroundColor: AppTypography.primaryMaroon,
                             ),
-                          ],
+                            icon: const Icon(Icons.stars, size: 16),
+                            label: const Text('షోడశ (45 ని)'),
+                          ),
                         ),
                       ],
                     ),
-                  );
-                }),
-              ],
-            ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Section 3: Section Title: All Deities
+              Padding(
+                padding: const EdgeInsets.only(left: 4.0, bottom: 8.0),
+                child: Row(
+                  children: const [
+                    Text('🌺 ', style: TextStyle(fontSize: 18)),
+                    Text(
+                      'సనాతన ధర్మ దేవతా నిత్య పూజలు',
+                      style: TextStyle(
+                        fontSize: 16.5,
+                        fontWeight: FontWeight.bold,
+                        color: AppTypography.primaryMaroon,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Deities List
+              ..._deitiesList.where((d) => d['id'] != 'ayyappa').map((deity) {
+                final deityId = deity['id'] as String;
+                final nameTe = deity['name_te'] as String;
+                final nameSa = deity['name_sa'] as String;
+                final icon = deity['icon'] as String;
+                final desc = deity['desc'] as String;
+
+                return SacredGlassCard(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  child: Row(
+                    children: [
+                      _buildDeityAvatar(deityId, icon, 48),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              nameTe,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              desc,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: AppTypography.textSecondary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      PopupMenuButton<bool>(
+                        icon: const Icon(Icons.play_circle_fill, color: AppTypography.primaryMaroon, size: 28),
+                        tooltip: 'పూజ ప్రారంభించండి',
+                        onSelected: (isFull) => _startPuja(deityId, nameTe, nameSa, isFull),
+                        itemBuilder: (ctx) => [
+                          const PopupMenuItem(
+                            value: false,
+                            child: Text('⚡ నిత్య లఘు పూజ (15 ని)'),
+                          ),
+                          const PopupMenuItem(
+                            value: true,
+                            child: Text('🪔 సంపూర్ణ షోడశ పూజ (35 ని)'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              }),
+            ],
           ),
         ],
       ),
