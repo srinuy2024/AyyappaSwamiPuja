@@ -1,0 +1,171 @@
+{
+  "manifest_version": 1,
+  "app_name": "శ్రీ పూజా మందిరం",
+  "last_updated": "2026-11-28",
+  "yogas": [
+    {
+      "id": "karma_yoga",
+      "title_te": "కర్మ యోగం",
+      "title_sa": "कर्म योगः",
+      "subtitle": "నిత్య పూజలు, స్వయం వ్రతాలు & శాస్త్రోక్త కర్మలు",
+      "icon_name": "temple_hindu",
+      "color_hex": "#B91C1C",
+      "items": [
+        {
+          "id": "satyanarayana_vratam",
+          "title_te": "శ్రీ సత్యనారాయణ స్వామి వ్రతం",
+          "title_sa": "श्री सत्यनారాయణ వ్రతమ్",
+          "description": "సామగ్రి జాబితా, మండప స్థాపన, పూజా విధి మరియు సంపూర్ణ 5 అధ్యాయాల వ్రత కథ.",
+          "type": "vratam",
+          "duration": "60-90 ని",
+          "is_offline_ready": true
+        },
+        {
+          "id": "varalakshmi_vratam",
+          "title_te": "శ్రీ వరలక్ష్మీ వ్రతం",
+          "title_sa": "श्री వరలక్ష్మీ వ్రతమ్",
+          "description": "శ్రావణ పవిత్ర వ్రతం - కలశ స్థాపన, తోర పూజ, లక్ష్మీ అష్టోత్తరం మరియు వ్రత కథ.",
+          "type": "vratam",
+          "duration": "45-60 ని",
+          "is_offline_ready": true
+        },
+        {
+          "id": "vinayaka_vratam",
+          "title_te": "శ్రీ వినాయక చవితి వ్రత కల్పం",
+          "title_sa": "श्री వినాయక చతుర్థీ వ్రతకల్పః",
+          "description": "ఏకవింశతి (21) పత్ర పూజ, గణాధిప అష్టోత్తరం మరియు వినాయక వ్రత కథ.",
+          "type": "vratam",
+          "duration": "40-50 ని",
+          "is_offline_ready": true
+        },
+        {
+          "id": "ayyappa_canonical_puja",
+          "title_te": "శ్రీ ధర్మశాస్తా అయ్యప్ప నిత్య పూజ",
+          "title_sa": "श्री అయ్యప్ప నిత్య పూజా విధిః",
+          "description": "లఘు (18 దశలు) & సంపూర్ణ షోడశోపచార పూజా విధి, లైవ్ సంకల్పం.",
+          "type": "puja",
+          "duration": "15-45 ని",
+          "is_offline_ready": true
+        }
+      ]
+    },
+    {
+      "id": "bhakti_yoga",
+      "title_te": "భక్తి యోగం",
+      "title_sa": "భక్తి యోగః",
+      "subtitle": "భజనలు, స్తోత్ర నిధి, శరణు ఘోష & హారతులు",
+      "icon_name": "volunteer_activism",
+      "color_hex": "#D97706",
+      "items": [
+        {
+          "id": "ayyappa_harivarasanam",
+          "title_te": "హరివరాసనం (విశ్వమోహనం)",
+          "title_sa": "హరివరాసనమ్",
+          "description": "శబరిమల రాత్రి వేళ ఆలయ నిద్ర సమర్పణ దివ్య గీతం.",
+          "type": "stotra",
+          "is_offline_ready": true
+        },
+        {
+          "id": "ayyappa_108_sharanu",
+          "title_te": "108 శరణు ఘోష & 18 పడి పాటలు",
+          "title_sa": "108 శరణ ఘోష",
+          "description": "స్వామియే శరణం అయ్యప్ప భక్తి పారాయణం.",
+          "type": "bhajana",
+          "is_offline_ready": true
+        },
+        {
+          "id": "hanuman_chalisa",
+          "title_te": "శ్రీ హనుమాన్ చాలీసా",
+          "title_sa": "శ్రీ హనుమాన్ చాలీసా",
+          "description": "తులసీదాస విరచిత సంపూర్ణ 40 చౌపాయీలు & తాత్పర్యం.",
+          "type": "stotra",
+          "is_offline_ready": true
+        },
+        {
+          "id": "aditya_hrudayam",
+          "title_te": "ఆదిత్య హృదయ స్తోత్రం",
+          "title_sa": "ఆదిత్య హృదయమ్",
+          "description": "శ్రీరామునికి అగస్త్య మహర్షి ఉపదేశించిన ప్రత్యక్ష సూర్య స్తోత్రం.",
+          "type": "stotra",
+          "is_offline_ready": true
+        }
+      ]
+    },
+    {
+      "id": "jnana_yoga",
+      "title_te": "జ్ఞాన యోగం",
+      "title_sa": "జ్ఞాన యోగః",
+      "subtitle": "భగవద్గీత, వేద సూక్తాలు, ఉపనిషత్తులు & పురాణాలు",
+      "icon_name": "menu_book",
+      "color_hex": "#0D9488",
+      "items": [
+        {
+          "id": "bhagavad_gita",
+          "title_te": "శ్రీమద్ భగవద్గీత",
+          "title_sa": "శ్రీమద్ భగవద్గీతా",
+          "description": "18 అధ్యాయాలు, ప్రతి శ్లోకం, ప్రతిపదార్థం & నిత్య జీవిత పాఠాలు.",
+          "type": "scripture",
+          "is_offline_ready": true
+        },
+        {
+          "id": "purusha_suktam",
+          "title_te": "పురుష సూక్తం (ఋగ్వేదం)",
+          "title_sa": "పురుష సూక్తమ్",
+          "description": "విరాట్ పురుష వైదిక దర్శనం, స్వరాలు & విశేషార్థం.",
+          "type": "suktam",
+          "is_offline_ready": true
+        },
+        {
+          "id": "sri_suktam",
+          "title_te": "శ్రీ సూక్తం (లక్ష్మీ అనుగ్రహం)",
+          "title_sa": "శ్రీ సూక్తమ్",
+          "description": "సర్వ ఐశ్వర్య ప్రదాత మహాలక్ష్మీ వైదిక మంత్రాలు.",
+          "type": "suktam",
+          "is_offline_ready": true
+        },
+        {
+          "id": "astadasa_puranas",
+          "title_te": "అష్టాదశ పురాణాల కథా రత్నావళి",
+          "title_sa": "అష్టాదశ మహాపురాణాని",
+          "description": "18 పురాణాల సారాంశం, ప్రధాన ఘట్టాలు & ధర్మ సూత్రాలు.",
+          "type": "purana",
+          "is_offline_ready": true
+        }
+      ]
+    },
+    {
+      "id": "dhyana_yoga",
+      "title_te": "ధ్యాన యోగం",
+      "title_sa": "ధ్యాన యోగః",
+      "subtitle": "డిజిటల్ 108 జపమాల, ఓంకార నాదం & మంత్ర ధ్యానం",
+      "icon_name": "self_improvement",
+      "color_hex": "#7C3AED",
+      "items": [
+        {
+          "id": "japa_mala_108",
+          "title_te": "డిజిటల్ 108 జపమాల కౌంటర్",
+          "title_sa": "జపమాలా సాధన",
+          "description": "హ్యాప్టిక్ వైబ్రేషన్‌తో మంత్ర జపం, నిత్య సంఖ్య రికార్డు.",
+          "type": "tool",
+          "is_offline_ready": true
+        },
+        {
+          "id": "om_meditation",
+          "title_te": "ఓంకార ప్రణవ ధ్యానం",
+          "title_sa": "ఓంకార ధ్యానమ్",
+          "description": "ప్రశాంతమైన ఓంకార ప్రతిధ్వని & ప్రాణాయామ సాధన.",
+          "type": "tool",
+          "is_offline_ready": true
+        },
+        {
+          "id": "shanti_mantras",
+          "title_te": "వైదిక శాంతి పాఠం",
+          "title_sa": "శాంతి పాఠః",
+          "description": "ఓం సహనాభవతు... విశ్వశాంతి దివ్య మంత్రాలు.",
+          "type": "stotra",
+          "is_offline_ready": true
+        }
+      ]
+    }
+  ]
+}

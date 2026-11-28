@@ -6,7 +6,11 @@ import '../services/deity_puja_data_service.dart';
 import '../constants/app_typography.dart';
 import 'puja_player_screen.dart';
 import 'ayyappa_deeksha_screen.dart';
+import 'package:flutter/services.dart';
 import 'suprabhatam_screen.dart';
+import 'vratam_player_screen.dart';
+import 'japa_mala_screen.dart';
+import 'jnana_library_screen.dart';
 import '../services/auto_update_service.dart';
 import '../widgets/sankalpam_panchang_box.dart';
 
@@ -176,6 +180,157 @@ class _HomeScreenState extends State<HomeScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => const AyyappaDeekshaScreen(),
+      ),
+    );
+  }
+
+  void _openVratamScreen(String vratamId) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => VratamPlayerScreen(vratamId: vratamId),
+      ),
+    );
+  }
+
+  void _openJapaMalaScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const JapaMalaScreen(),
+      ),
+    );
+  }
+
+  void _openJnanaLibraryScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const JnanaLibraryScreen(),
+      ),
+    );
+  }
+
+  void _ringTempleBell() {
+    HapticFeedback.heavyImpact();
+    SystemSound.play(SystemSoundType.click);
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('🔔 ఆగమార్ధంచ దేవానాం గమనార్థంచ రక్షసాం - ఆలయ కంచు ఘంటానాదం!'),
+        duration: Duration(seconds: 2),
+        backgroundColor: AppTypography.primaryMaroon,
+      ),
+    );
+  }
+
+  void _blowConch() {
+    HapticFeedback.vibrate();
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('🐚 ఓం పాంచజన్యాయ నమః - మంగళకరమైన దివ్య శంఖధ్వని!'),
+        duration: Duration(seconds: 2),
+        backgroundColor: AppTypography.templeDeepOrange,
+      ),
+    );
+  }
+
+  void _lightDiya() {
+    HapticFeedback.mediumImpact();
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('🪔 దీపజ్యోతిః పరబ్రహ్మ దీపజ్యోతిర్జనార్దనః - నిత్య దీపారాధన!'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Color(0xFFD97706),
+      ),
+    );
+  }
+
+  void _showerFlowers() {
+    HapticFeedback.lightImpact();
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('🌸 నానావిధ పరిమళ పత్ర పుష్పాణి సమర్పయామి!'),
+        duration: Duration(seconds: 2),
+        backgroundColor: Color(0xFF059669),
+      ),
+    );
+  }
+
+  Widget _buildSoundboardItem({
+    required String icon,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFFBEB),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.amber.shade300, width: 1.0),
+        ),
+        child: Column(
+          children: [
+            Text(icon, style: const TextStyle(fontSize: 24)),
+            const SizedBox(height: 3),
+            Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11.5, color: AppTypography.primaryMaroon),
+            ),
+            Text(
+              subtitle,
+              style: TextStyle(fontSize: 9.5, color: Colors.grey.shade700),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildYogaPill({
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.08),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: color.withOpacity(0.35), width: 1.2),
+        ),
+        child: Column(
+          children: [
+            Icon(icon, color: color, size: 22),
+            const SizedBox(height: 4),
+            Text(
+              title,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11, color: color),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              subtitle,
+              style: TextStyle(fontSize: 8.5, color: Colors.grey.shade700),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -389,6 +544,291 @@ class _HomeScreenState extends State<HomeScreen> {
               onSelectDate: _selectPanchangDate,
               onResetDate: _resetPanchangDate,
               onEditProfile: _showProfileDialog,
+            ),
+
+            // 1.6 Temple Sanctum Interactive Soundboard (గర్భగుడి & శబ్దాల బోర్డు)
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: Colors.amber.shade200, width: 1.2),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 6, offset: const Offset(0, 2)),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: const [
+                          Text('🛕 ', style: TextStyle(fontSize: 16)),
+                          Text(
+                            'ఆలయ గర్భగుడి దర్శనం & శబ్దాల బోర్డు',
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5, color: AppTypography.primaryMaroon),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: Colors.amber.shade100,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text('లైవ్ టెంపుల్', style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.bold, color: AppTypography.primaryMaroon)),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _buildSoundboardItem(
+                        icon: '🔔',
+                        title: 'కంచు గంట',
+                        subtitle: 'ఘంటానాదం',
+                        onTap: _ringTempleBell,
+                      ),
+                      _buildSoundboardItem(
+                        icon: '🐚',
+                        title: 'దివ్య శంఖం',
+                        subtitle: 'శంఖధ్వని',
+                        onTap: _blowConch,
+                      ),
+                      _buildSoundboardItem(
+                        icon: '🪔',
+                        title: 'దీపారాధన',
+                        subtitle: 'నిత్య జ్యోతి',
+                        onTap: _lightDiya,
+                      ),
+                      _buildSoundboardItem(
+                        icon: '🌸',
+                        title: 'పుష్పార్చన',
+                        subtitle: 'పూల వర్షం',
+                        onTap: _showerFlowers,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            // 1.7 Today's Auspicious Timings & Rahu Kalam Card
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFFBEB),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: const Color(0xFFF59E0B), width: 1.2),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Row(
+                          children: [
+                            Text('✨ ', style: TextStyle(fontSize: 14)),
+                            Text('అభిజిత్ ముహూర్తం: ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFFB45309))),
+                            Text('11:45 AM - 12:30 PM', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFF15803D))),
+                          ],
+                        ),
+                        SizedBox(height: 4),
+                        Row(
+                          children: [
+                            Text('⚠️ ', style: TextStyle(fontSize: 14)),
+                            Text('రాహుకాలం (వర్జ్యం): ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFFB45309))),
+                            Text('03:00 PM - 04:30 PM', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFFDC2626))),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFDE68A),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Text('శుభ సమయం\n11:45 AM', textAlign: TextAlign.center, style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Color(0xFF92400E))),
+                  ),
+                ],
+              ),
+            ),
+
+            // 1.8 Sloka of the Day Card (నేటి దిన శ్లోకం)
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppTypography.cardBorder),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 4, offset: const Offset(0, 2)),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: const [
+                          Text('📜 ', style: TextStyle(fontSize: 14)),
+                          Text(
+                            'నేటి దిన శ్లోకం (భగవద్గీత 2.47)',
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.5, color: AppTypography.primaryMaroon),
+                          ),
+                        ],
+                      ),
+                      InkWell(
+                        onTap: _openJnanaLibraryScreen,
+                        child: const Text('మరిన్ని >', style: TextStyle(fontSize: 11.5, color: AppTypography.templeDeepOrange, fontWeight: FontWeight.bold)),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  const Text(
+                    'కర్మణ్యేవాధికారస్తే మా ఫలేషు కదాచన | మా కర్మఫలహేతుర్భూర్మా తే సఙ్గోఽస్త్వకర్మణి ||',
+                    style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.bold, color: Color(0xFF1E293B), height: 1.3),
+                  ),
+                  const SizedBox(height: 4),
+                  const Text(
+                    'తాత్పర్యం: పనిని కర్తవ్యంగా చెయ్యి; ఫలితంపై ఆందోళన వదిలేసి మనశ్శాంతిని పొందు.',
+                    style: TextStyle(fontSize: 12, color: Color(0xFF475569)),
+                  ),
+                ],
+              ),
+            ),
+
+            // 1.9 Section Title: The 4 Divine Yogas (చతుర్విధ యోగ మార్గాలు)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                children: const [
+                  Text('🌟 ', style: TextStyle(fontSize: 18)),
+                  Text(
+                    'చతుర్విధ యోగ మార్గాలు (4 Divine Paths)',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: AppTypography.primaryMaroon,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // 4 Yogas Grid
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+              child: Row(
+                children: [
+                  // Karma Yoga
+                  Expanded(
+                    child: _buildYogaPill(
+                      title: 'కర్మ యోగం',
+                      subtitle: 'పూజలు & వ్రతాలు',
+                      icon: Icons.temple_hindu,
+                      color: const Color(0xFFB91C1C),
+                      onTap: () => _openVratamScreen('satyanarayana_vratam'),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  // Bhakti Yoga
+                  Expanded(
+                    child: _buildYogaPill(
+                      title: 'భక్తి యోగం',
+                      subtitle: 'భజనలు & స్తుతులు',
+                      icon: Icons.volunteer_activism,
+                      color: const Color(0xFFD97706),
+                      onTap: _openSuprabhatamScreen,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  // Jnana Yoga
+                  Expanded(
+                    child: _buildYogaPill(
+                      title: 'జ్ఞాన యోగం',
+                      subtitle: 'భగవద్గీత & వేదాలు',
+                      icon: Icons.menu_book,
+                      color: const Color(0xFF0D9488),
+                      onTap: _openJnanaLibraryScreen,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  // Dhyana Yoga
+                  Expanded(
+                    child: _buildYogaPill(
+                      title: 'ధ్యాన యోగం',
+                      subtitle: '108 జపమాల',
+                      icon: Icons.self_improvement,
+                      color: const Color(0xFF7C3AED),
+                      onTap: _openJapaMalaScreen,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // 1.95 Dedicated Self-Guided Satyanarayana Vratam Banner (Karma Yoga Feature)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              child: InkWell(
+                onTap: () => _openVratamScreen('satyanarayana_vratam'),
+                borderRadius: BorderRadius.circular(14),
+                child: Container(
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF991B1B), Color(0xFFB91C1C)],
+                    ),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: const Color(0xFFFDE68A), width: 1.2),
+                    boxShadow: [
+                      BoxShadow(color: Colors.red.shade900.withOpacity(0.2), blurRadius: 6, offset: const Offset(0, 3)),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.18),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Text('🪔', style: TextStyle(fontSize: 26)),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'శ్రీ సత్యనారాయణ స్వామి సంపూర్ణ వ్రతం',
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white),
+                            ),
+                            SizedBox(height: 2),
+                            Text(
+                              'సామగ్రి చెక్‌లిస్ట్ • పూజా విధానం • సంపూర్ణ 5 అధ్యాయాల కథ',
+                              style: TextStyle(fontSize: 12, color: Color(0xFFFDE68A)),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.arrow_forward_ios, size: 16, color: Color(0xFFFDE68A)),
+                    ],
+                  ),
+                ),
+              ),
             ),
 
             // 2. HERO CARD: Sri Ayyappa Swamy Puja & Mandala Deeksha Hub
