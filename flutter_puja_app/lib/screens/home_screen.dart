@@ -145,6 +145,8 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
+        backgroundColor: const Color(0xFFFFFBEB),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         title: const Text(
           'భక్తుని కుటుంబ వివరాలు (Family Profile)',
           style: TextStyle(fontWeight: FontWeight.bold, color: AppTypography.primaryMaroon),
@@ -217,12 +219,12 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.65),
+          color: Colors.white.withValues(alpha: 0.16),
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.85), width: 1.0),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.35), width: 1.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.amber.shade900.withValues(alpha: 0.06),
+              color: Colors.black.withValues(alpha: 0.12),
               blurRadius: 6,
               offset: const Offset(0, 2),
             ),
@@ -237,14 +239,14 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 11.5,
-                color: AppTypography.primaryMaroon,
+                color: Colors.white,
               ),
             ),
             Text(
               subtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 9.5,
-                color: Colors.grey.shade700,
+                color: Color(0xFFFDE68A),
               ),
             ),
           ],
@@ -265,7 +267,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
     return SacredGlassCard(
       onTap: onTap,
       padding: const EdgeInsets.all(12),
-      borderColor: accentColor.withValues(alpha: 0.45),
+      borderColor: accentColor.withValues(alpha: 0.55),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -277,7 +279,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
               borderRadius: BorderRadius.circular(18),
               boxShadow: [
                 BoxShadow(
-                  color: accentColor.withValues(alpha: 0.25),
+                  color: accentColor.withValues(alpha: 0.30),
                   blurRadius: 14,
                   offset: const Offset(0, 4),
                 ),
@@ -304,7 +306,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
             style: const TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w600,
-              color: Colors.black87,
+              color: Colors.white,
             ),
             textAlign: TextAlign.center,
             maxLines: 1,
@@ -314,9 +316,9 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
             decoration: BoxDecoration(
-              color: accentColor.withValues(alpha: 0.12),
+              color: accentColor.withValues(alpha: 0.22),
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: accentColor.withValues(alpha: 0.35)),
+              border: Border.all(color: accentColor.withValues(alpha: 0.50)),
             ),
             child: Text(
               '$actionLabel >',
@@ -335,11 +337,11 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFEF3C7),
+      backgroundColor: const Color(0xFF5B1318),
       appBar: AppBar(
-        backgroundColor: AppTypography.primaryMaroon,
+        backgroundColor: const Color(0xFF5B1318).withValues(alpha: 0.90),
         foregroundColor: Colors.white,
-        elevation: 2,
+        elevation: 0,
         title: Row(
           children: const [
             Text('🛕 ', style: TextStyle(fontSize: 22)),
@@ -371,10 +373,11 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Color(0xFFFFF9ED), // Warm sacred morning cream
-                    Color(0xFFFEF3C7), // Temple sanctum gold
-                    Color(0xFFFDE68A), // Radiant golden amber
-                    Color(0xFFFFEDD5), // Sacred evening glow
+                    Color(0xFF5B1318), // Deep Sacred Temple Burgundy
+                    Color(0xFF831843), // Auspicious Kumkum Burgundy
+                    Color(0xFF9A3412), // Deep Sacred Saffron
+                    Color(0xFFC2410C), // Traditional Temple Orange
+                    Color(0xFFB45309), // Radiant Sanctum Amber Gold
                   ],
                 ),
               ),
@@ -386,23 +389,23 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
             top: -20,
             right: -30,
             child: Container(
-              width: 260,
-              height: 260,
+              width: 280,
+              height: 280,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: const Color(0xFFF59E0B).withValues(alpha: 0.30),
+                color: const Color(0xFFF59E0B).withValues(alpha: 0.35),
               ),
             ),
           ),
           Positioned(
-            top: 280,
+            top: 260,
             left: -50,
             child: Container(
-              width: 250,
-              height: 250,
+              width: 260,
+              height: 260,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: const Color(0xFFEA580C).withValues(alpha: 0.18),
+                color: const Color(0xFFEA580C).withValues(alpha: 0.28),
               ),
             ),
           ),
@@ -410,11 +413,11 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
             bottom: 60,
             right: -40,
             child: Container(
-              width: 230,
-              height: 230,
+              width: 240,
+              height: 240,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: const Color(0xFFD97706).withValues(alpha: 0.22),
+                color: const Color(0xFFD97706).withValues(alpha: 0.30),
               ),
             ),
           ),
@@ -429,7 +432,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                 SacredGlassCard(
                   margin: const EdgeInsets.only(bottom: 12),
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                  borderColor: Colors.white.withValues(alpha: 0.9),
+                  borderColor: Colors.white.withValues(alpha: 0.40),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -441,7 +444,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                               child: Text(
                                 '${_profile.gotram} గోత్రం • ${_profile.kartaName} & ${_profile.spouseName}',
                                 style: const TextStyle(
-                                  color: AppTypography.primaryMaroon,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13.5,
                                 ),
@@ -457,18 +460,18 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                           decoration: BoxDecoration(
-                            color: AppTypography.primaryMaroon.withValues(alpha: 0.1),
+                            color: Colors.white.withValues(alpha: 0.18),
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: AppTypography.primaryMaroon.withValues(alpha: 0.3)),
+                            border: Border.all(color: const Color(0xFFFDE68A).withValues(alpha: 0.6)),
                           ),
                           child: Row(
                             children: const [
-                              Icon(Icons.edit, size: 12, color: AppTypography.primaryMaroon),
+                              Icon(Icons.edit, size: 12, color: Color(0xFFFDE68A)),
                               SizedBox(width: 4),
                               Text(
                                 'సవరించు',
                                 style: TextStyle(
-                                  color: AppTypography.primaryMaroon,
+                                  color: Color(0xFFFDE68A),
                                   fontSize: 11,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -484,7 +487,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                 // 2. Centerpiece: Living Temple Sanctum & Soundboard (ఆలయ గర్భగుడి దర్శనం)
                 SacredGlassCard(
                   margin: const EdgeInsets.only(bottom: 12),
-                  borderColor: AppTypography.sacredGold.withValues(alpha: 0.7),
+                  borderColor: const Color(0xFFFDE68A).withValues(alpha: 0.6),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -509,7 +512,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                                 decoration: BoxDecoration(
                                   color: Colors.black.withValues(alpha: 0.65),
                                   borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: AppTypography.sacredGold, width: 0.8),
+                                  border: Border.all(color: const Color(0xFFFDE68A), width: 0.8),
                                 ),
                                 child: const Text(
                                   '✨ ఆలయ గర్భగుడి దర్శనం',
@@ -597,6 +600,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                 // 4. Sloka of the Day Glass Card (నేటి దిన శ్లోకం & WhatsApp Share)
                 SacredGlassCard(
                   margin: const EdgeInsets.only(bottom: 14),
+                  borderColor: Colors.white.withValues(alpha: 0.35),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -611,7 +615,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13,
-                                  color: AppTypography.primaryMaroon,
+                                  color: Color(0xFFFDE68A),
                                 ),
                               ),
                             ],
@@ -631,7 +635,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                               'జ్ఞాన నిధి >',
                               style: TextStyle(
                                 fontSize: 11.5,
-                                color: AppTypography.templeDeepOrange,
+                                color: Color(0xFFFDE68A),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -644,14 +648,14 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                         style: TextStyle(
                           fontSize: 13.5,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF1E293B),
+                          color: Colors.white,
                           height: 1.3,
                         ),
                       ),
                       const SizedBox(height: 3),
                       const Text(
                         'తాత్పర్యం: పనిని కర్తవ్యంగా చెయ్యి; ఫలితంపై ఆందోళన వదిలేసి మనశ్శాంతిని పొందు.',
-                        style: TextStyle(fontSize: 12, color: Color(0xFF475569)),
+                        style: TextStyle(fontSize: 12, color: Colors.white70),
                       ),
                       const SizedBox(height: 10),
                       SizedBox(
@@ -659,9 +663,9 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                         child: OutlinedButton.icon(
                           onPressed: _shareDailyStatusCard,
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: const Color(0xFF15803D),
-                            side: const BorderSide(color: Color(0xFF86EFAC), width: 1.2),
-                            backgroundColor: const Color(0xFFF0FDF4).withValues(alpha: 0.9),
+                            foregroundColor: Colors.white,
+                            side: BorderSide(color: const Color(0xFF34D399).withValues(alpha: 0.6), width: 1.2),
+                            backgroundColor: const Color(0xFF059669).withValues(alpha: 0.25),
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                           ),
@@ -687,7 +691,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                         style: TextStyle(
                           fontSize: 16.5,
                           fontWeight: FontWeight.bold,
-                          color: AppTypography.primaryMaroon,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -704,7 +708,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                         title: 'కర్మ యోగం',
                         subtitle: 'పూజలు & వ్రతాలు',
                         imageWidget: Sacred3DImages.getKarmaKalashamImage(width: 76, height: 76),
-                        accentColor: const Color(0xFFB91C1C),
+                        accentColor: const Color(0xFFF97316),
                         actionLabel: 'ప్రవేశించండి',
                         onTap: () => widget.onNavigateToTab != null ? widget.onNavigateToTab!(1) : null,
                       ),
@@ -716,7 +720,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                         title: 'భక్తి యోగం',
                         subtitle: 'సుప్రభాతాలు & భజనలు',
                         imageWidget: Sacred3DImages.getBhaktiHaratiImage(width: 76, height: 76),
-                        accentColor: const Color(0xFFD97706),
+                        accentColor: const Color(0xFFFBBF24),
                         actionLabel: 'దర్శించండి',
                         onTap: () => Navigator.push(
                           context,
@@ -738,7 +742,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                         title: 'జ్ఞాన యోగం',
                         subtitle: 'భగవద్గీత & వేదాలు',
                         imageWidget: Sacred3DImages.getJnanaGitaImage(width: 76, height: 76),
-                        accentColor: const Color(0xFF0D9488),
+                        accentColor: const Color(0xFF2DD4BF),
                         actionLabel: 'చదవండి',
                         onTap: () => widget.onNavigateToTab != null ? widget.onNavigateToTab!(2) : null,
                       ),
@@ -750,7 +754,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                         title: 'ధ్యాన యోగం',
                         subtitle: '108 జపమాల & సాధన',
                         imageWidget: Sacred3DImages.getDhyanaMalaImage(width: 76, height: 76),
-                        accentColor: const Color(0xFF7C3AED),
+                        accentColor: const Color(0xFFC084FC),
                         actionLabel: 'సాధన చేయండి',
                         onTap: () => widget.onNavigateToTab != null ? widget.onNavigateToTab!(3) : null,
                       ),
@@ -762,7 +766,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
 
                 // Quick Banner to Pujas Hub
                 SacredGlassCard(
-                  borderColor: AppTypography.primaryMaroon.withValues(alpha: 0.35),
+                  borderColor: const Color(0xFFFDE68A).withValues(alpha: 0.40),
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                   onTap: () => widget.onNavigateToTab != null ? widget.onNavigateToTab!(1) : null,
                   child: Row(
@@ -774,7 +778,7 @@ https://github.com/srinuy2024/AyyappaSwamiPuja''';
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
-                          color: AppTypography.primaryMaroon,
+                          color: Color(0xFFFDE68A),
                         ),
                       ),
                     ],

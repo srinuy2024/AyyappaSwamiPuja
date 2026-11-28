@@ -61,9 +61,11 @@ class SankalpamPanchangBox extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(7),
               decoration: BoxDecoration(
-                color: const Color(0xFFFEF3C7),
+                color: isGlassmorphic ? Colors.white.withValues(alpha: 0.18) : const Color(0xFFFEF3C7),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: const Color(0xFFFDE68A)),
+                border: Border.all(
+                  color: isGlassmorphic ? const Color(0xFFFDE68A).withValues(alpha: 0.5) : const Color(0xFFFDE68A),
+                ),
               ),
               child: const Text('🪔', style: TextStyle(fontSize: 20)),
             ),
@@ -72,21 +74,21 @@ class SankalpamPanchangBox extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'నేటి పంచాంగం • సంకల్ప దర్శిని',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: AppTypography.primaryMaroon,
+                      color: isGlassmorphic ? Colors.white : AppTypography.primaryMaroon,
                     ),
                   ),
                   const SizedBox(height: 2),
                   Text(
                     '📅 ${PanchangamService.formatTeluguDate(selectedDate)}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: AppTypography.sacredGoldDark,
+                      color: isGlassmorphic ? const Color(0xFFFDE68A) : AppTypography.sacredGoldDark,
                     ),
                   ),
                 ],
@@ -125,27 +127,27 @@ class SankalpamPanchangBox extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.85),
+                      color: isGlassmorphic ? Colors.white.withValues(alpha: 0.18) : Colors.white.withValues(alpha: 0.85),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                        color: AppTypography.sacredGold,
+                        color: isGlassmorphic ? const Color(0xFFFDE68A).withValues(alpha: 0.6) : AppTypography.sacredGold,
                         width: 1,
                       ),
                     ),
                     child: Row(
-                      children: const [
+                      children: [
                         Icon(
                           Icons.calendar_month,
                           size: 13,
-                          color: AppTypography.primaryMaroon,
+                          color: isGlassmorphic ? const Color(0xFFFDE68A) : AppTypography.primaryMaroon,
                         ),
-                        SizedBox(width: 3),
+                        const SizedBox(width: 3),
                         Text(
                           'తేదీ మార్చు',
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.bold,
-                            color: AppTypography.primaryMaroon,
+                            color: isGlassmorphic ? const Color(0xFFFDE68A) : AppTypography.primaryMaroon,
                           ),
                         ),
                       ],
@@ -157,10 +159,10 @@ class SankalpamPanchangBox extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 12),
-        const Divider(
+        Divider(
           height: 1,
           thickness: 1,
-          color: Color(0xFFFDE68A),
+          color: isGlassmorphic ? Colors.white.withValues(alpha: 0.20) : const Color(0xFFFDE68A),
         ),
         const SizedBox(height: 12),
 
@@ -251,10 +253,10 @@ class SankalpamPanchangBox extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
           decoration: BoxDecoration(
-            color: const Color(0xFFFEF3C7).withValues(alpha: 0.85),
+            color: isGlassmorphic ? Colors.black.withValues(alpha: 0.22) : const Color(0xFFFEF3C7).withValues(alpha: 0.85),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: const Color(0xFFFDE68A),
+              color: isGlassmorphic ? const Color(0xFFFDE68A).withValues(alpha: 0.4) : const Color(0xFFFDE68A),
             ),
           ),
           child: Row(
@@ -264,10 +266,10 @@ class SankalpamPanchangBox extends StatelessWidget {
               Flexible(
                 child: Text(
                   'రాహుకాలం: ${panchang.rahuKalam}   |   యమగండం: ${panchang.yamagandam}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 11.5,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF92400E),
+                    color: isGlassmorphic ? const Color(0xFFFDE68A) : const Color(0xFF92400E),
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -281,8 +283,8 @@ class SankalpamPanchangBox extends StatelessWidget {
         ElevatedButton.icon(
           onPressed: () => _showFullSankalpamModal(context),
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppTypography.primaryMaroon,
-            foregroundColor: Colors.white,
+            backgroundColor: isGlassmorphic ? const Color(0xFFF59E0B) : AppTypography.primaryMaroon,
+            foregroundColor: isGlassmorphic ? Colors.black : Colors.white,
             padding: const EdgeInsets.symmetric(vertical: 11),
             elevation: 1.5,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -339,15 +341,15 @@ class SankalpamPanchangBox extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.70),
+        color: isGlassmorphic ? Colors.white.withValues(alpha: 0.16) : Colors.white.withValues(alpha: 0.70),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: const Color(0xFFFDE68A),
+          color: isGlassmorphic ? Colors.white.withValues(alpha: 0.35) : const Color(0xFFFDE68A),
           width: 1.0,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.02),
+            color: Colors.black.withValues(alpha: isGlassmorphic ? 0.06 : 0.02),
             blurRadius: 4,
             offset: const Offset(0, 1),
           ),
@@ -364,10 +366,10 @@ class SankalpamPanchangBox extends StatelessWidget {
               Expanded(
                 child: Text(
                   labelTe,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
-                    color: AppTypography.textMuted,
+                    color: isGlassmorphic ? Colors.white70 : AppTypography.textMuted,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -378,10 +380,10 @@ class SankalpamPanchangBox extends StatelessWidget {
           // Main Telugu Value
           Text(
             valTe,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 13.5,
               fontWeight: FontWeight.bold,
-              color: AppTypography.textPrimary,
+              color: isGlassmorphic ? Colors.white : AppTypography.textPrimary,
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -390,10 +392,10 @@ class SankalpamPanchangBox extends StatelessWidget {
           // Sanskrit Script Term
           Text(
             valSa,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w500,
-              color: AppTypography.primaryMaroon,
+              color: isGlassmorphic ? const Color(0xFFFDE68A) : AppTypography.primaryMaroon,
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

@@ -21,7 +21,7 @@ class SacredGlassCard extends StatelessWidget {
     this.borderRadius = 18.0,
     this.glassColor,
     this.borderColor,
-    this.blurAmount = 16.0,
+    this.blurAmount = 20.0,
     this.onTap,
   }) : super(key: key);
 
@@ -32,13 +32,13 @@ class SacredGlassCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
         boxShadow: [
           BoxShadow(
-            color: Colors.amber.shade900.withValues(alpha: 0.08),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
+            color: Colors.black.withValues(alpha: 0.16),
+            blurRadius: 18,
+            offset: const Offset(0, 6),
           ),
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 6,
+            color: (borderColor ?? Colors.amber).withValues(alpha: 0.08),
+            blurRadius: 10,
             offset: const Offset(0, 2),
           ),
         ],
@@ -50,19 +50,18 @@ class SacredGlassCard extends StatelessWidget {
           child: Container(
             padding: padding,
             decoration: BoxDecoration(
-              color: glassColor ?? Colors.white.withValues(alpha: 0.48),
               borderRadius: BorderRadius.circular(borderRadius),
               border: Border.all(
-                color: borderColor ?? Colors.white.withValues(alpha: 0.78),
+                color: borderColor ?? Colors.white.withValues(alpha: 0.75),
                 width: 1.2,
               ),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  (glassColor ?? Colors.white).withValues(alpha: 0.68),
-                  (glassColor ?? Colors.white).withValues(alpha: 0.38),
-                  const Color(0xFFFEF3C7).withValues(alpha: 0.28),
+                  (glassColor ?? Colors.white).withValues(alpha: 0.22),
+                  (glassColor ?? Colors.white).withValues(alpha: 0.10),
+                  Colors.white.withValues(alpha: 0.05),
                 ],
               ),
             ),
