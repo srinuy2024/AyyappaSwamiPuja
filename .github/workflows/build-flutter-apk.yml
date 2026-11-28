@@ -61,6 +61,16 @@ jobs:
             sed -i 's/minSdkVersion = flutter.minSdkVersion/minSdkVersion = 21/g' android/app/build.gradle.kts || true
           fi
 
+          # Ensure Kotlin 1.9.24 compatibility across Gradle settings and buildscript
+          if [ -f "android/settings.gradle" ]; then
+            sed -i 's/id "org.jetbrains.kotlin.android" version "[^"]*"/id "org.jetbrains.kotlin.android" version "1.9.24"/g' android/settings.gradle || true
+            sed -i "s/id 'org.jetbrains.kotlin.android' version '[^']*'/id 'org.jetbrains.kotlin.android' version '1.9.24'/g" android/settings.gradle || true
+          fi
+          if [ -f "android/build.gradle" ]; then
+            sed -i "s/ext.kotlin_version = '[^']*'/ext.kotlin_version = '1.9.24'/g" android/build.gradle || true
+            sed -i 's/ext.kotlin_version = "[^"]*"/ext.kotlin_version = "1.9.24"/g' android/build.gradle || true
+          fi
+
           # Ensure all declared asset directories exist
           mkdir -p assets/data assets/icon assets/images/deities
 
