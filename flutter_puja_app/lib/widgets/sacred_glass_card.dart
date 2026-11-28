@@ -21,34 +21,53 @@ class SacredGlassCard extends StatelessWidget {
     this.borderRadius = 16.0,
     this.glassColor,
     this.borderColor,
-    this.blurAmount = 8.0,
+    this.blurAmount = 14.0,
     this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Widget cardContent = ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: blurAmount, sigmaY: blurAmount),
-        child: Container(
-          padding: padding,
-          decoration: BoxDecoration(
-            color: glassColor ?? Colors.white.withOpacity(0.84),
-            borderRadius: BorderRadius.circular(borderRadius),
-            border: Border.all(
-              color: borderColor ?? const Color(0xFFFDE68A).withOpacity(0.65),
-              width: 1.2,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.amber.shade900.withOpacity(0.08),
-                blurRadius: 12,
-                offset: const Offset(0, 4),
-              ),
-            ],
+    Widget cardContent = Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(borderRadius),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.amber.shade900.withValues(alpha: 0.08),
+            blurRadius: 18,
+            offset: const Offset(0, 6),
           ),
-          child: child,
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(borderRadius),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: blurAmount, sigmaY: blurAmount),
+          child: Container(
+            padding: padding,
+            decoration: BoxDecoration(
+              color: glassColor ?? Colors.white.withValues(alpha: 0.68),
+              borderRadius: BorderRadius.circular(borderRadius),
+              border: Border.all(
+                color: borderColor ?? Colors.white.withValues(alpha: 0.85),
+                width: 1.4,
+              ),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  (glassColor ?? Colors.white).withValues(alpha: 0.80),
+                  (glassColor ?? Colors.white).withValues(alpha: 0.55),
+                  Colors.amber.shade50.withValues(alpha: 0.40),
+                ],
+              ),
+            ),
+            child: child,
+          ),
         ),
       ),
     );
