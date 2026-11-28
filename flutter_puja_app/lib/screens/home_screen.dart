@@ -111,6 +111,35 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  void _shareDailyStatusCard() {
+    HapticFeedback.mediumImpact();
+    final dateStr = '${_selectedDate.day.toString().padLeft(2, '0')}-${_selectedDate.month.toString().padLeft(2, '0')}-${_selectedDate.year}';
+    final shareText = '''🛕 శ్రీ పూజా మందిరం • నేటి శుభోదయ సందేశం 🙏
+📅 తేది: $dateStr
+✨ తిథి: ${_panchang.tithiTe}
+🌟 నక్షత్రం: ${_panchang.nakshatraTe}
+⏰ అభిజిత్ ముహూర్తం: 11:45 AM - 12:30 PM
+⚠️ రాహుకాలం: 03:00 PM - 04:30 PM
+
+📜 నేటి దిన శ్లోకం (భగవద్గీత 2.47):
+కర్మణ్యేవాధికారస్తే మా ఫలేషు కదాచన |
+మా కర్మఫలహేతుర్భూర్మా తే సఙ్గోఽస్త్వకర్మణి ||
+💡 భావం: కర్తవ్యాన్ని నిష్కామంగా నిర్వహించు; ఫలితంపై ఆందోళన వదిలేసి మనశ్శాంతిని పొందు.
+
+🌸 లోకాః సమస్తాః సుఖినో భవంతు! 🪔
+సర్వ దేవతా నిత్య పూజలు & వ్రతాల వేదిక:
+https://github.com/srinuy2024/AyyappaSwamiPuja''';
+
+    Clipboard.setData(ClipboardData(text: shareText));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('✓ నేటి శుభోదయ సందేశం కాపీ చేయబడింది! వాట్సాప్‌లో బంధుమిత్రులకు షేర్ చేయండి!'),
+        backgroundColor: Color(0xFF059669),
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
   void _showProfileDialog() {
     final gotraController = TextEditingController(text: _profile.gotram);
     final kartaController = TextEditingController(text: _profile.kartaName);
@@ -486,6 +515,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Text(
                     'తాత్పర్యం: పనిని కర్తవ్యంగా చెయ్యి; ఫలితంపై ఆందోళన వదిలేసి మనశ్శాంతిని పొందు.',
                     style: TextStyle(fontSize: 12, color: Color(0xFF475569)),
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      onPressed: _shareDailyStatusCard,
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: const Color(0xFF15803D),
+                        side: const BorderSide(color: Color(0xFF86EFAC), width: 1.2),
+                        backgroundColor: const Color(0xFFF0FDF4),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      ),
+                      icon: const Text('📲', style: TextStyle(fontSize: 16)),
+                      label: const Text(
+                        'నేటి శుభోదయ సందేశం వాట్సాప్‌లో షేర్ చేయండి',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                      ),
+                    ),
                   ),
                 ],
               ),
