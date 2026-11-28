@@ -325,24 +325,25 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
           icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
+        titleSpacing: 0,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              _deity.nameTe,
+              'శ్రీ ${_deity.nameTe} పూజ',
               style: AppTypography.teluguSloka(
-                fontSize: 19,
+                fontSize: 17,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
                 height: 1.2,
               ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
             Text(
-              _isFullMode
-                  ? 'సంపూర్ణ షోడశ పూజ (${_pujaSteps.length} దశలు)'
-                  : 'నిత్య లఘు పూజ (${_pujaSteps.length} దశలు)',
+              'దశ ${step.stepNumber} / ${_pujaSteps.length} • ${_isFullMode ? "షోడశోపచార" : "నిత్య లఘు"}',
               style: const TextStyle(
-                fontSize: 12,
+                fontSize: 11,
                 color: Color(0xFFFDE68A),
                 fontWeight: FontWeight.w500,
               ),
@@ -350,248 +351,205 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
           ],
         ),
         actions: [
-          // Live Sloka Font Size Stepper (A- / A+)
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.text_decrease, color: Colors.white, size: 20),
-                tooltip: 'ఫాంట్ తగ్గించండి (A-)',
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                onPressed: _decreaseFontSize,
+          // Quick Mode Toggle (లఘు / షోడశ)
+          TextButton(
+            onPressed: () => _togglePujaMode(!_isFullMode),
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              minimumSize: const Size(40, 28),
+            ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2.5),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.18),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.white30),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.black26,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Text(
-                  _slokaFontSize.toStringAsFixed(0),
-                  style: const TextStyle(
-                    fontSize: 11,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+              child: Text(
+                _isFullMode ? 'షోడశ' : 'లఘు',
+                style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+
+          // Script Switcher (తెలుగు / దేవనాగరి)
+          TextButton(
+            onPressed: () {
+              final newScript = _activeScript == 'telugu' ? 'sanskrit' : 'telugu';
+              HapticFeedback.selectionClick();
+              setState(() {
+                _activeScript = newScript;
+              });
+              _saveScript(newScript);
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              minimumSize: const Size(40, 28),
+            ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2.5),
+              decoration: BoxDecoration(
+                color: AppTypography.sacredGold,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                _activeScript == 'telugu' ? 'संस्कृतम्' : 'తెలుగు',
+                style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+
+          // Settings popup menu (Font Size A- / A+)
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert, color: Colors.white, size: 21),
+            tooltip: 'ఫాంట్ సైజు',
+            onSelected: (val) {
+              if (val == 'increase_font') _increaseFontSize();
+              if (val == 'decrease_font') _decreaseFontSize();
+            },
+            itemBuilder: (ctx) => [
+              PopupMenuItem(
+                enabled: false,
+                child: Text('ఫాంట్ సైజు: ${_slokaFontSize.toInt()}', style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black87)),
+              ),
+              PopupMenuItem(
+                value: 'increase_font',
+                child: Row(
+                  children: const [
+                    Icon(Icons.text_increase, color: AppTypography.primaryMaroon, size: 20),
+                    SizedBox(width: 8),
+                    Text('ఫాంట్ పెంచండి (A+)'),
+                  ],
                 ),
               ),
-              IconButton(
-                icon: const Icon(Icons.text_increase, color: Colors.white, size: 20),
-                tooltip: 'ఫాంట్ పెంచండి (A+)',
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                onPressed: _increaseFontSize,
+              PopupMenuItem(
+                value: 'decrease_font',
+                child: Row(
+                  children: const [
+                    Icon(Icons.text_decrease, color: AppTypography.primaryMaroon, size: 20),
+                    SizedBox(width: 8),
+                    Text('ఫాంట్ తగ్గించండి (A-)'),
+                  ],
+                ),
               ),
             ],
           ),
           const SizedBox(width: 4),
-
-          // Script Switcher (తెలుగు / దేవనాగరి)
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppTypography.sacredGold,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-                elevation: 1,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              ),
-              onPressed: () {
-                final newScript = _activeScript == 'telugu' ? 'sanskrit' : 'telugu';
-                HapticFeedback.selectionClick();
-                setState(() {
-                  _activeScript = newScript;
-                });
-                _saveScript(newScript);
-              },
-              child: Text(
-                _activeScript == 'telugu' ? 'संस्कृतम्' : 'తెలుగు',
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-              ),
-            ),
-          ),
         ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(3.5),
+          child: LinearProgressIndicator(
+            value: progress,
+            minHeight: 3.5,
+            backgroundColor: Colors.amber.shade100,
+            valueColor: const AlwaysStoppedAnimation<Color>(AppTypography.templeDeepOrange),
+          ),
+        ),
       ),
       body: Column(
         children: [
-          // 1. Mode Switcher & Progress Bar Header
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border(bottom: BorderSide(color: Colors.amber.shade200, width: 1)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.04),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                )
-              ],
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              children: [
-                // Daily vs Full Mode Segmented Bar
-                Row(
-                  children: [
-                    Expanded(
-                      child: InkWell(
-                        onTap: () => _togglePujaMode(false),
-                        borderRadius: BorderRadius.circular(8),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 6),
-                          decoration: BoxDecoration(
-                            color: !_isFullMode ? AppTypography.templeDeepOrange : Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color: !_isFullMode ? AppTypography.templeDeepOrange : Colors.grey.shade300,
-                            ),
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            '⚡ నిత్య లఘు పూజ (15-20 ని)',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: !_isFullMode ? Colors.white : AppTypography.textSecondary,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: InkWell(
-                        onTap: () => _togglePujaMode(true),
-                        borderRadius: BorderRadius.circular(8),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 6),
-                          decoration: BoxDecoration(
-                            color: _isFullMode ? AppTypography.primaryMaroon : Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color: _isFullMode ? AppTypography.primaryMaroon : Colors.grey.shade300,
-                            ),
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            '🪔 సంపూర్ణ షోడశ పూజ (35-45 ని)',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: _isFullMode ? Colors.white : AppTypography.textSecondary,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-
-                // Step Progression Indicator
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'దశ ${step.stepNumber} / ${_pujaSteps.length}',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 13.5,
-                        color: AppTypography.primaryMaroon,
-                      ),
-                    ),
-                    Text(
-                      '${(progress * 100).toInt()}% పూర్తయింది',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 13,
-                        color: AppTypography.sacredGoldDark,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 6),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: LinearProgressIndicator(
-                    value: progress,
-                    minHeight: 7,
-                    backgroundColor: Colors.amber.shade100,
-                    valueColor: const AlwaysStoppedAnimation<Color>(AppTypography.templeDeepOrange),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // 2. Clear Action Prompt Banner (స్పష్టమైన విధి ఆదేశం)
-          Container(
-            width: double.infinity,
-            margin: const EdgeInsets.fromLTRB(14, 10, 14, 6),
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFFBEB),
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: const Color(0xFFF59E0B), width: 1.5),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('👉 ', style: TextStyle(fontSize: 18)),
-                Expanded(
-                  child: Text(
-                    _activeScript == 'telugu'
-                        ? step.actionInstructionTe
-                        : step.actionInstructionSa,
-                    style: AppTypography.instructionText(
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.w600,
-                      color: AppTypography.textAmber,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // 2.1 వేద పండిత స్వర పఠనం & ఆటో-పూజ కంట్రోలర్ (Sacred Voice & Auto-Puja Bar)
-          _buildSacredVoiceBar(isAshtottaraStep, activeAshtottaraList),
-
-          // 3. Scrollable Sacred Ritual Sloka & Meaning Area
+          // Scrollable Sacred Ritual Area (Consistent 16.0 Padding)
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(8, 4, 8, 12),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Step Title
-                  Text(
-                    _activeScript == 'telugu' ? step.titleTe : step.titleSa,
-                    style: AppTypography.sacredHeader(fontSize: 20),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
-
-                  // Main Sacred Card (Pure White with Gold Border for maximum readability)
+                  // Unified Master Sacred Card
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+                    padding: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
                       color: AppTypography.cardSurface,
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppTypography.cardBorder, width: 1.5),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.amber.shade900.withOpacity(0.06),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4),
+                          blurRadius: 10,
+                          offset: const Offset(0, 3),
                         ),
                       ],
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        // Card Header: Step Badge + Title + Compact Audio Button
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
+                              decoration: BoxDecoration(
+                                color: AppTypography.primaryMaroon.withOpacity(0.09),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                'దశ ${step.stepNumber}',
+                                style: const TextStyle(
+                                  color: AppTypography.primaryMaroon,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12.5,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                _activeScript == 'telugu' ? step.titleTe : step.titleSa,
+                                style: AppTypography.sacredHeader(fontSize: 18),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            // Compact Discrete Audio Play/Stop Button
+                            IconButton(
+                              icon: Icon(
+                                _voiceService.isPlaying || _isAuto108Active
+                                    ? Icons.stop_circle
+                                    : Icons.volume_up_outlined,
+                                color: _voiceService.isPlaying || _isAuto108Active
+                                    ? const Color(0xFFDC2626)
+                                    : AppTypography.primaryMaroon,
+                                size: 24,
+                              ),
+                              tooltip: _voiceService.isPlaying ? 'ఆడియో ఆపండి' : 'పఠనం వినండి',
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                              onPressed: _voiceService.isPlaying || _isAuto108Active
+                                  ? _stopVoice
+                                  : _playCurrentVoice,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+
+                        // Action Prompt Ribbon (Inside Card)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFFFBEB),
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: const Color(0xFFFDE68A)),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('👉 ', style: TextStyle(fontSize: 14)),
+                              Expanded(
+                                child: Text(
+                                  _activeScript == 'telugu'
+                                      ? step.actionInstructionTe
+                                      : step.actionInstructionSa,
+                                  style: AppTypography.instructionText(
+                                    fontSize: 13.5,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppTypography.textAmber,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 14),
                         // Sankalpam Quick Elements Reference Card
                         if (step.stepId == 'sankalpam') ...[
                           Container(
@@ -862,79 +820,71 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                             ),
                           ],
                         ],
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 14),
-
-                  // 4. Spiritual Meaning & Inner Significance Accordion (స్పష్టమైన అంతరార్థం)
-                  Card(
-                    elevation: 1.5,
-                    color: AppTypography.cardSurface,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: BorderSide(color: Colors.amber.shade200),
-                    ),
-                    child: ExpansionTile(
-                      initiallyExpanded: _isMeaningExpanded,
-                      onExpansionChanged: (val) {
-                        setState(() {
-                          _isMeaningExpanded = val;
-                        });
-                      },
-                      leading: const Text('💡', style: TextStyle(fontSize: 22)),
-                      title: const Text(
-                        'ఈ దశ యొక్క సరళ తాత్పర్యం & అంతరార్థం',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          color: AppTypography.primaryMaroon,
-                        ),
-                      ),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        // Spiritual Meaning & Inner Significance Accordion (Inside Card)
+                        const SizedBox(height: 14),
+                        const Divider(height: 1),
+                        Theme(
+                          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                          child: ExpansionTile(
+                            initiallyExpanded: _isMeaningExpanded,
+                            tilePadding: EdgeInsets.zero,
+                            onExpansionChanged: (val) {
+                              setState(() {
+                                _isMeaningExpanded = val;
+                              });
+                            },
+                            leading: const Text('💡', style: TextStyle(fontSize: 18)),
+                            title: const Text(
+                              'ఈ దశ యొక్క తాత్పర్యం & అంతరార్థం',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13.5,
+                                color: AppTypography.primaryMaroon,
+                              ),
+                            ),
                             children: [
-                              const Divider(height: 16),
-                              Row(
-                                children: const [
-                                  Text('📜 ', style: TextStyle(fontSize: 16)),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: 4),
+                                  Row(
+                                    children: const [
+                                      Text('📜 ', style: TextStyle(fontSize: 14)),
+                                      Text(
+                                        'సరళ తాత్పర్యం:',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13.5,
+                                          color: AppTypography.primaryMaroon,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 4),
                                   Text(
-                                    'సరళ తాత్పర్యం:',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: AppTypography.primaryMaroon,
-                                    ),
+                                    step.tatparyam,
+                                    style: AppTypography.meaningText(fontSize: 14.0),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: const [
+                                      Text('🧘 ', style: TextStyle(fontSize: 14)),
+                                      Text(
+                                        'ఆధ్యాత్మిక అంతరార్థం:',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13.5,
+                                          color: AppTypography.primaryMaroon,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    step.spiritualMeaning,
+                                    style: AppTypography.meaningText(fontSize: 14.0),
                                   ),
                                 ],
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                step.tatparyam,
-                                style: AppTypography.meaningText(fontSize: 15.0),
-                              ),
-                              const SizedBox(height: 14),
-                              Row(
-                                children: const [
-                                  Text('🧘 ', style: TextStyle(fontSize: 16)),
-                                  Text(
-                                    'ఆధ్యాత్మిక అంతరార్థం (Spiritual Secret):',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: AppTypography.primaryMaroon,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                step.spiritualMeaning,
-                                style: AppTypography.meaningText(fontSize: 15.0),
                               ),
                             ],
                           ),
@@ -947,16 +897,16 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
             ),
           ),
 
-          // 5. Bottom Navigation Controls (మునుపటి / తదుపరి దశ బటన్లు)
+          // Bottom Navigation Controls (Consistent 16px Padding)
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border(top: BorderSide(color: Colors.amber.shade200, width: 1.2)),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.06),
-                  blurRadius: 6,
+                  color: Colors.black.withOpacity(0.04),
+                  blurRadius: 4,
                   offset: const Offset(0, -2),
                 ),
               ],
@@ -974,21 +924,74 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                         style: OutlinedButton.styleFrom(
                           foregroundColor: AppTypography.primaryMaroon,
                           side: const BorderSide(color: AppTypography.primaryMaroon, width: 1.5),
-                          padding: const EdgeInsets.symmetric(vertical: 13),
+                          padding: const EdgeInsets.symmetric(vertical: 11),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         ),
-                        icon: const Icon(Icons.arrow_back, size: 18),
-                        label: const Text('మునుపటి దశ', style: TextStyle(fontWeight: FontWeight.bold)),
+                        icon: const Icon(Icons.arrow_back, size: 16),
+                        label: const Text('మునుపటి', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5)),
                       ),
                     )
                   else
                     const Spacer(flex: 4),
 
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 8),
+
+                  // Auto-Puja Toggle Pill
+                  if (!isAshtottaraStep)
+                    InkWell(
+                      onTap: () {
+                        HapticFeedback.selectionClick();
+                        setState(() {
+                          _isAutoAdvanceActive = !_isAutoAdvanceActive;
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                        decoration: BoxDecoration(
+                          color: _isAutoAdvanceActive
+                              ? AppTypography.templeDeepOrange.withOpacity(0.12)
+                              : Colors.grey.shade100,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: _isAutoAdvanceActive
+                                ? AppTypography.templeDeepOrange
+                                : Colors.grey.shade300,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              _isAutoAdvanceActive
+                                  ? Icons.check_circle
+                                  : Icons.radio_button_unchecked,
+                              size: 14,
+                              color: _isAutoAdvanceActive
+                                  ? AppTypography.templeDeepOrange
+                                  : Colors.grey.shade600,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              'ఆటో పూజ',
+                              style: TextStyle(
+                                fontSize: 11.5,
+                                fontWeight: FontWeight.bold,
+                                color: _isAutoAdvanceActive
+                                    ? AppTypography.templeDeepOrange
+                                    : Colors.grey.shade700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                  const SizedBox(width: 8),
 
                   // Next Step / Finish Button
                   Expanded(
-                    flex: 6,
+                    flex: 5,
                     child: ElevatedButton.icon(
                       onPressed: _currentStepIndex < _pujaSteps.length - 1
                           ? _nextStep
@@ -1007,17 +1010,17 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
                             ? AppTypography.primaryMaroon
                             : AppTypography.successGreen,
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 13),
-                        elevation: 2,
+                        padding: const EdgeInsets.symmetric(vertical: 11),
+                        elevation: 1.5,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       ),
                       icon: Icon(
                         _currentStepIndex < _pujaSteps.length - 1 ? Icons.arrow_forward : Icons.check_circle,
-                        size: 20,
+                        size: 18,
                       ),
                       label: Text(
-                        _currentStepIndex < _pujaSteps.length - 1 ? 'తదుపరి దశ' : 'పూజ సంపూర్ణం 🪔',
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        _currentStepIndex < _pujaSteps.length - 1 ? 'తదుపరి దశ' : 'సంపూర్ణం 🪔',
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                       ),
                     ),
                   ),
@@ -1057,128 +1060,6 @@ class _PujaPlayerScreenState extends State<PujaPlayerScreen> {
               color: AppTypography.primaryMaroon,
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSacredVoiceBar(bool isAshtottaraStep, List<String> activeAshtottaraList) {
-    final isVoicePlaying = _voiceService.isPlaying || _isAuto108Active;
-
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: isVoicePlaying ? const Color(0xFFFEF3C7) : Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: isVoicePlaying ? const Color(0xFFD97706) : const Color(0xFFFDE68A),
-          width: 1.2,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.amber.shade900.withOpacity(0.04),
-            blurRadius: 4,
-            offset: const Offset(0, 1),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          // Play / Stop Button
-          ElevatedButton.icon(
-            onPressed: isVoicePlaying ? _stopVoice : _playCurrentVoice,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: isVoicePlaying
-                  ? const Color(0xFFDC2626)
-                  : AppTypography.primaryMaroon,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-              elevation: 1,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            ),
-            icon: Icon(
-              isVoicePlaying ? Icons.stop : Icons.volume_up,
-              size: 17,
-            ),
-            label: Text(
-              isVoicePlaying
-                  ? 'ఆపండి'
-                  : (isAshtottaraStep ? '🌸 108 నామాల పఠనం' : '🔊 పండిత పఠనం'),
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12.5),
-            ),
-          ),
-          const SizedBox(width: 8),
-
-          // Playing animation / status label
-          Expanded(
-            child: Text(
-              isVoicePlaying
-                  ? (isAshtottaraStep
-                      ? '🌸 నామం $_ashtottaraCounter పఠిస్తున్నారు...'
-                      : '🎙️ పండిత స్వర శ్రవణం...')
-                  : 'వేదోచ్ఛారణ శ్రవణం',
-              style: TextStyle(
-                fontSize: 11.5,
-                fontWeight: isVoicePlaying ? FontWeight.bold : FontWeight.w500,
-                color: isVoicePlaying ? const Color(0xFF92400E) : AppTypography.textMuted,
-              ),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-
-          // Auto-Advance Toggle
-          if (!isAshtottaraStep) ...[
-            InkWell(
-              onTap: () {
-                HapticFeedback.selectionClick();
-                setState(() {
-                  _isAutoAdvanceActive = !_isAutoAdvanceActive;
-                });
-              },
-              borderRadius: BorderRadius.circular(8),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                decoration: BoxDecoration(
-                  color: _isAutoAdvanceActive
-                      ? AppTypography.templeDeepOrange.withOpacity(0.12)
-                      : Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: _isAutoAdvanceActive
-                        ? AppTypography.templeDeepOrange
-                        : Colors.grey.shade300,
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      _isAutoAdvanceActive
-                          ? Icons.check_circle
-                          : Icons.radio_button_unchecked,
-                      size: 14,
-                      color: _isAutoAdvanceActive
-                          ? AppTypography.templeDeepOrange
-                          : Colors.grey.shade600,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      'ఆటో పూజ',
-                      style: TextStyle(
-                        fontSize: 11.5,
-                        fontWeight: FontWeight.w600,
-                        color: _isAutoAdvanceActive
-                            ? AppTypography.templeDeepOrange
-                            : Colors.grey.shade700,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
         ],
       ),
     );
